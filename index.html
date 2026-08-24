@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#080706" />
+  <title>Chandelier</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="hero" data-light="off">
+    <div class="hero-media" aria-hidden="true">
+      <img class="hero-image hero-image--off" src="./assets/chandelier-off.webp" alt="" />
+      <img class="hero-image hero-image--on" src="./assets/chandelier-on.webp" alt="" />
+      <div class="hero-shade"></div>
+    </div>
+
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Home">LUMINA</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#collection">Collection</a>
+        <a href="#story">Story</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero-copy">
+      <p class="eyebrow">Sculptural lighting · 2026</p>
+      <h1>Shape the<br />atmosphere.</h1>
+      <p class="hero-description">A quiet architectural chandelier with two floating rings, designed to shift the room from shadow to warm ambient light.</p>
+      <a class="cta" href="#collection">Discover the piece <span>↗</span></a>
+    </section>
+
+    <div class="light-control" aria-label="Chandelier light control">
+      <span class="control-caption">Light</span>
+      <button class="switch" id="light-switch" type="button" role="switch" aria-checked="false" aria-label="Turn chandelier light on">
+        <span class="switch-track">
+          <span class="switch-label switch-label--off">OFF</span>
+          <span class="switch-label switch-label--on">ON</span>
+          <span class="switch-thumb"></span>
+        </span>
+      </button>
+    </div>
+
+    <div class="scroll-note">Scroll to explore <span>↓</span></div>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
