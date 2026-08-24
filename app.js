@@ -8,14 +8,68 @@ let rafId=null;
 let targetProgress=0;
 let smoothProgress=0;
 let lastTime=performance.now();
+let frames=[];
+let preloadedFrames=[];
 
-const frames=Array.from({length:10},(_,i)=>`./frame_${String(i+1).padStart(2,'0')}.png`);
-const preloadedFrames=frames.map(src=>{
+const ZIP_SRC='./frames_8k_total_under_25mb.zip';
+
+function frameMime(name){
+  const ext=name.split('.').pop().toLowerCase();
+  if(ext==='jpg'||ext==='jpeg')return 'image/jpeg';
+  if(ext==='webp')return 'image/webp';
+  if(ext==='avif')return 'image/avif';
+  return 'image/png';
+}
+
+function preloadFrame(index){
+  if(index<0||index>=frames.length||preloadedFrames[index])return;
   const img=new Image();
   img.decoding='async';
-  img.src=src;
-  return img;
-});
+  img.src=frames[index];
+  preloadedFrames[index]=img;
+}
+
+function preloadSequence(){
+  for(let i=0;i<Math.min(8,frames.length);i++)preloadFrame(i);
+  const preloadRemaining=()=>{
+    for(let i=8;i<frames.length;i++)preloadFrame(i);
+  };
+  if('requestIdleCallback' in window){
+    requestIdleCallback(preloadRemaining,{timeout:1800});
+  }else{
+    setTimeout(preloadRemaining,500);
+  }
+}
+
+async function loadSequenceFrames(){
+  try{
+    const response=await fetch(ZIP_SRC,{cache:'force-cache'});
+    if(!response.ok)throw new Error(`Frame ZIP failed to load (${response.status})`);
+    const archive=new Uint8Array(await response.arrayBuffer());
+
+    const files=await new Promise((resolve,reject)=>{
+      fflate.unzip(archive,(error,data)=>error?reject(error):resolve(data));
+    });
+
+    const names=Object.keys(files)
+      .filter(name=>!name.startsWith('__MACOSX/')&&!name.endsWith('/')&&/\.(png|jpe?g|webp|avif)$/i.test(name))
+      .sort((a,b)=>a.localeCompare(b,undefined,{numeric:true,sensitivity:'base'}));
+
+    if(names.length!==50){
+      throw new Error(`Expected 50 frames in ZIP, found ${names.length}`);
+    }
+
+    frames=names.map(name=>URL.createObjectURL(new Blob([files[name]],{type:frameMime(name)})));
+    preloadedFrames=new Array(frames.length);
+    preloadSequence();
+
+    targetProgress=readTargetProgress();
+    smoothProgress=targetProgress;
+    render(smoothProgress);
+  }catch(error){
+    console.error('Unable to initialize 50-frame scroll sequence:',error);
+  }
+}
 
 function setLight(on){
   hero.dataset.light=on?'on':'off';
@@ -44,6 +98,8 @@ function readTargetProgress(){
 }
 
 function render(progress){
+  if(!frames.length)return;
+
   const sequenceOpacity=clamp(progress/.105,0,1);
   const uiOpacity=1-clamp(progress/.145,0,1);
 
@@ -51,6 +107,7 @@ function render(progress){
   const position=eased*(frames.length-1);
   const index=Math.floor(position);
   const nextIndex=Math.min(frames.length-1,index+1);
+  for(let i=index-2;i<=nextIndex+3;i++)preloadFrame(i);
   const local=position-index;
   const blend=local*local*(3-2*local);
 
@@ -103,8 +160,9 @@ window.addEventListener('load',()=>{
   smoothProgress=targetProgress;
   render(smoothProgress);
 });
+window.addEventListener('beforeunload',()=>{
+  frames.forEach(src=>URL.revokeObjectURL(src));
+});
 
 hero.dataset.light='off';
-targetProgress=readTargetProgress();
-smoothProgress=targetProgress;
-render(smoothProgress);
+loadSequenceFrames();
