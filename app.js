@@ -1,9 +1,10 @@
 const hero=document.querySelector('.hero');
 const lightSwitch=document.querySelector('#light-switch');
-const motionSection=document.querySelector('.motion-scroll');
+const story=document.querySelector('#scroll-story');
 const motionGif=document.querySelector('#motion-gif');
 let flashTimer;
-let motionStarted=false;
+let ticking=false;
+let gifStarted=false;
 
 function setLight(on){
   hero.dataset.light=on?'on':'off';
@@ -21,21 +22,35 @@ lightSwitch.addEventListener('click',()=>{
   setLight(hero.dataset.light!=='on');
 });
 
-if(motionSection&&motionGif){
-  const observer=new IntersectionObserver((entries)=>{
-    entries.forEach((entry)=>{
-      if(entry.isIntersecting&&!motionStarted){
-        const src=motionGif.getAttribute('src');
-        motionGif.setAttribute('src','');
-        requestAnimationFrame(()=>motionGif.setAttribute('src',src));
-        motionStarted=true;
-      }
-      if(!entry.isIntersecting&&entry.boundingClientRect.top>0){
-        motionStarted=false;
-      }
-    });
-  },{threshold:.08});
-  observer.observe(motionSection);
+function updateScrollBlend(){
+  ticking=false;
+  if(!story)return;
+
+  const rect=story.getBoundingClientRect();
+  const scrollable=Math.max(1,story.offsetHeight-window.innerHeight);
+  const travelled=Math.min(scrollable,Math.max(0,-rect.top));
+  const raw=travelled/scrollable;
+
+  // Keep the hero stable first, then blend continuously into the motion scene.
+  const progress=Math.min(1,Math.max(0,(raw-.08)/.76));
+  story.style.setProperty('--scroll-progress',progress.toFixed(4));
+
+  if(progress>.025&&!gifStarted&&motionGif){
+    const src=motionGif.getAttribute('src').split('?')[0];
+    motionGif.setAttribute('src',`${src}?play=${Date.now()}`);
+    gifStarted=true;
+  }
+  if(progress<.01){gifStarted=false;}
 }
 
+function requestBlendUpdate(){
+  if(ticking)return;
+  ticking=true;
+  requestAnimationFrame(updateScrollBlend);
+}
+
+window.addEventListener('scroll',requestBlendUpdate,{passive:true});
+window.addEventListener('resize',requestBlendUpdate);
+
 hero.dataset.light='off';
+updateScrollBlend();
