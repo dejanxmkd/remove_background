@@ -15,7 +15,7 @@ body{font-family:Inter,Arial,Helvetica,sans-serif}
 a{color:inherit;text-decoration:none}
 button{font:inherit}
 
-.scroll-story{position:relative;height:300svh;background:#070605}
+.scroll-story{position:relative;height:360svh;background:#070605}
 .story-sticky{position:sticky;top:0;height:100svh;overflow:hidden;background:#080706}
 
 .hero{position:absolute;inset:0;overflow:hidden;background:#080706;isolation:isolate}
@@ -52,4 +52,4 @@ h1{margin:0;font-family:"DT Getai Grotesk Display",Arial,Helvetica,sans-serif;fo
 .sequence-vignette{position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.05),transparent 18%,transparent 80%,rgba(0,0,0,.18))}
 
 @media (prefers-reduced-motion:reduce){.ambient-flicker{animation:none}.hero-image,.switch-thumb{transition-duration:.01ms}}
-@media (max-width:760px){.scroll-story{height:280svh}.topbar{padding-top:22px}.brand{font-size:20px}.hero-copy{bottom:100px;width:calc(100% - 32px)}h1{font-size:clamp(42px,13vw,68px)}.hero-image,.sequence-frame{object-position:50% 50%}.light-control{bottom:20px}}
+@media (max-width:760px){.scroll-story{height:330svh}.topbar{padding-top:22px}.brand{font-size:20px}.hero-copy{bottom:100px;width:calc(100% - 32px)}h1{font-size:clamp(42px,13vw,68px)}.hero-image,.sequence-frame{object-position:50% 50%}.light-control{bottom:20px}}
