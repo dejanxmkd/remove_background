@@ -1,0 +1,33 @@
+name: Extract uploaded font
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/extract-font.yml'
+      - 'assets/fonts/dt-getai-grotesk.zip'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract DT Getai Grotesk
+        run: |
+          rm -rf assets/fonts/dt-getai-grotesk
+          mkdir -p assets/fonts/dt-getai-grotesk
+          unzip -o assets/fonts/dt-getai-grotesk.zip -d assets/fonts/dt-getai-grotesk
+          find assets/fonts/dt-getai-grotesk -type f -print
+      - name: Commit extracted font files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/fonts/dt-getai-grotesk
+          if ! git diff --cached --quiet; then
+            git commit -m "Extract DT Getai Grotesk font assets"
+            git push
+          fi
