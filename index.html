@@ -8,37 +8,39 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <main class="hero" data-light="off">
-    <div class="hero-media" aria-hidden="true">
-      <img class="hero-image hero-image--off" src="./assets/chandelier-off.png" alt="" />
-      <img class="hero-image hero-image--on" src="./assets/chandelier-on.png" alt="" />
-      <div class="hero-shade"></div>
-      <div class="ambient-flicker"></div>
-    </div>
+  <main class="scroll-story" id="scroll-story">
+    <div class="story-sticky">
+      <section class="hero" data-light="off">
+        <div class="hero-media" aria-hidden="true">
+          <img class="hero-image hero-image--off" src="./assets/chandelier-off.png" alt="" />
+          <img class="hero-image hero-image--on" src="./assets/chandelier-on.png" alt="" />
+          <div class="hero-shade"></div>
+          <div class="ambient-flicker"></div>
+        </div>
 
-    <header class="topbar">
-      <a class="brand" href="#" aria-label="Home">LUMINA</a>
-    </header>
+        <header class="topbar">
+          <a class="brand" href="#" aria-label="Home">LUMINA</a>
+        </header>
 
-    <section class="hero-copy">
-      <h1>Shape the atmosphere.</h1>
-    </section>
+        <section class="hero-copy">
+          <h1>Shape the atmosphere.</h1>
+        </section>
 
-    <div class="light-control" aria-label="Chandelier light control">
-      <span class="mode-label mode-label--dark">Dark</span>
-      <button class="switch" id="light-switch" type="button" role="switch" aria-checked="false" aria-label="Turn chandelier light on">
-        <span class="switch-track"><span class="switch-thumb"></span></span>
-      </button>
-      <span class="mode-label mode-label--light">Light</span>
+        <div class="light-control" aria-label="Chandelier light control">
+          <span class="mode-label mode-label--dark">Dark</span>
+          <button class="switch" id="light-switch" type="button" role="switch" aria-checked="false" aria-label="Turn chandelier light on">
+            <span class="switch-track"><span class="switch-thumb"></span></span>
+          </button>
+          <span class="mode-label mode-label--light">Light</span>
+        </div>
+      </section>
+
+      <div class="motion-layer" aria-hidden="true">
+        <img id="motion-gif" class="motion-gif" src="./assets/motion-scroll.gif" alt="" />
+        <div class="motion-vignette"></div>
+      </div>
     </div>
   </main>
-
-  <section class="motion-scroll" id="motion" aria-label="Chandelier motion">
-    <div class="motion-sticky">
-      <img id="motion-gif" class="motion-gif" src="./assets/motion-scroll.gif" alt="Chandelier motion animation" />
-      <div class="motion-vignette" aria-hidden="true"></div>
-    </div>
-  </section>
 
   <script src="./app.js"></script>
 </body>
