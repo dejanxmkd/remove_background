@@ -21,23 +21,38 @@ button{font:inherit}
 .hero{position:relative;min-height:100svh;overflow:hidden;background:#080706;isolation:isolate}
 .hero-media,.hero-shade,.hero-image{position:absolute;inset:0}
 .hero-media{z-index:-2;background:#080706}
-.hero-image{width:100%;height:100%;object-fit:cover;object-position:center;transition:opacity 850ms var(--ease),transform 1200ms var(--ease);transform:scale(1.008)}
+.hero-image{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:50% 50%;
+  transition:opacity 700ms var(--ease);
+  transform:none;
+}
 .hero-image--off{opacity:1}
 .hero-image--on{opacity:0}
-.hero[data-light="on"] .hero-image--off{opacity:0;transform:scale(1.014)}
-.hero[data-light="on"] .hero-image--on{opacity:1;transform:scale(1)}
-.hero-shade{z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.58) 0%,rgba(0,0,0,.28) 22%,rgba(0,0,0,.04) 55%,rgba(0,0,0,.18) 100%);transition:opacity .7s var(--ease)}
-.hero[data-light="on"] .hero-shade{opacity:.66}
+.hero[data-light="on"] .hero-image--off{opacity:0;transform:none}
+.hero[data-light="on"] .hero-image--on{opacity:1;transform:none}
+.hero-shade{z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.05) 46%,rgba(0,0,0,.34) 100%);transition:opacity .7s var(--ease)}
+.hero[data-light="on"] .hero-shade{opacity:.72}
 
 .topbar{position:absolute;top:0;left:0;right:0;z-index:4;display:flex;justify-content:center;padding:28px 24px}
 .brand{font-family:"DT Getai Grotesk Display",Arial,Helvetica,sans-serif;font-size:24px;line-height:1;font-weight:900;letter-spacing:.02em}
 
-.hero-copy{position:absolute;top:17vh;left:50%;z-index:3;width:min(880px,calc(100% - 48px));transform:translateX(-50%);text-align:center}
-.eyebrow{margin:0 0 14px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.62)}
-h1{margin:0;font-family:"DT Getai Grotesk Display",Arial,Helvetica,sans-serif;font-size:clamp(54px,7.6vw,118px);line-height:.86;letter-spacing:-.04em;font-weight:900;text-wrap:balance}
-.hero-description{max-width:560px;margin:24px auto 0;font-size:15px;line-height:1.55;color:var(--muted)}
+.hero-copy{
+  position:absolute;
+  left:50%;
+  bottom:92px;
+  z-index:3;
+  width:min(880px,calc(100% - 48px));
+  transform:translateX(-50%);
+  text-align:center;
+}
+.eyebrow{margin:0 0 12px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+h1{margin:0;font-family:"DT Getai Grotesk Display",Arial,Helvetica,sans-serif;font-size:clamp(52px,7.2vw,110px);line-height:.86;letter-spacing:-.04em;font-weight:900;text-wrap:balance}
+.hero-description{max-width:560px;margin:20px auto 0;font-size:15px;line-height:1.55;color:var(--muted)}
 
-.light-control{position:absolute;left:50%;bottom:30px;z-index:4;display:flex;align-items:center;gap:13px;padding:8px 9px 8px 14px;transform:translateX(-50%);border:1px solid rgba(255,255,255,.14);background:rgba(8,7,6,.34);backdrop-filter:blur(18px);border-radius:999px}
+.light-control{position:absolute;left:50%;bottom:24px;z-index:4;display:flex;align-items:center;gap:13px;padding:8px 9px 8px 14px;transform:translateX(-50%);border:1px solid rgba(255,255,255,.14);background:rgba(8,7,6,.34);backdrop-filter:blur(18px);border-radius:999px}
 .control-caption{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.52)}
 .switch{border:0;padding:0;background:transparent;cursor:pointer}
 .switch-track{position:relative;display:block;width:104px;height:44px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);transition:background .35s ease,box-shadow .35s ease}
@@ -52,10 +67,10 @@ h1{margin:0;font-family:"DT Getai Grotesk Display",Arial,Helvetica,sans-serif;fo
 @media (max-width:760px){
   .topbar{padding-top:22px}
   .brand{font-size:20px}
-  .hero-copy{top:15vh;width:calc(100% - 32px)}
+  .hero-copy{bottom:92px;width:calc(100% - 32px)}
   .eyebrow{font-size:9px}
-  h1{font-size:clamp(44px,14vw,72px)}
-  .hero-description{max-width:420px;font-size:13px;margin-top:18px}
-  .hero-image{object-position:54% center}
-  .light-control{bottom:20px}
+  h1{font-size:clamp(42px,13vw,68px)}
+  .hero-description{max-width:420px;font-size:13px;margin-top:16px}
+  .hero-image{object-position:50% 50%}
+  .light-control{bottom:18px}
 }
