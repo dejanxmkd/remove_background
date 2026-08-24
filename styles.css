@@ -1,10 +1,6 @@
-@font-face{
-  font-family:"Uncut Sans";
-  src:url("https://raw.githubusercontent.com/kaspernordkvist/uncut_sans/main/Webfonts/UncutSans-Medium.woff2") format("woff2");
-  font-style:normal;
-  font-weight:500;
-  font-display:swap;
-}
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/uncut-sans@5.3.0/400.css");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/uncut-sans@5.3.0/500.css");
+
 :root{
   --paper:#f1eee8;
   --muted:rgba(241,238,232,.66);
@@ -33,7 +29,7 @@ button{font:inherit}
 .nav a{transition:color .2s ease}.nav a:hover{color:#fff}
 .hero-copy{position:absolute;left:clamp(28px,6vw,104px);bottom:clamp(110px,16vh,180px);z-index:3;max-width:650px}
 .eyebrow{margin:0 0 18px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.62)}
-h1{margin:0;font-family:"Uncut Sans",Arial,Helvetica,sans-serif;font-size:clamp(58px,7.3vw,118px);line-height:.88;letter-spacing:-.055em;font-weight:500;text-wrap:balance}
+h1{margin:0;font-family:"Uncut Sans",Arial,Helvetica,sans-serif;font-size:clamp(58px,7.3vw,118px);line-height:.88;letter-spacing:-.055em;font-weight:400;text-wrap:balance}
 .hero-description{max-width:510px;margin:28px 0 0;font-size:16px;line-height:1.65;color:var(--muted)}
 .cta{display:inline-flex;align-items:center;gap:12px;margin-top:30px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.42);font-size:14px;letter-spacing:.02em;transition:border-color .2s ease,transform .2s ease}.cta:hover{border-color:#fff;transform:translateY(-1px)}
 .light-control{position:absolute;right:42px;bottom:42px;z-index:4;display:flex;align-items:center;gap:16px;padding:9px 10px 9px 16px;border:1px solid rgba(255,255,255,.15);background:rgba(8,7,6,.42);backdrop-filter:blur(18px);border-radius:999px;box-shadow:0 16px 44px rgba(0,0,0,.28)}
