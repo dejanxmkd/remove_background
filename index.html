@@ -13,6 +13,7 @@
       <img class="hero-image hero-image--off" src="./assets/chandelier-off.png" alt="" />
       <img class="hero-image hero-image--on" src="./assets/chandelier-on.png" alt="" />
       <div class="hero-shade"></div>
+      <div class="ambient-flicker"></div>
     </div>
 
     <header class="topbar">
@@ -20,20 +21,16 @@
     </header>
 
     <section class="hero-copy">
-      <p class="eyebrow">Sculptural lighting · 2026</p>
       <h1>Shape the atmosphere.</h1>
       <p class="hero-description">A sculptural chandelier designed to transform a room from shadow into warm ambient light.</p>
     </section>
 
     <div class="light-control" aria-label="Chandelier light control">
-      <span class="control-caption">Light</span>
+      <span class="mode-label mode-label--dark">Dark</span>
       <button class="switch" id="light-switch" type="button" role="switch" aria-checked="false" aria-label="Turn chandelier light on">
-        <span class="switch-track">
-          <span class="switch-label switch-label--off">OFF</span>
-          <span class="switch-label switch-label--on">ON</span>
-          <span class="switch-thumb"></span>
-        </span>
+        <span class="switch-track"><span class="switch-thumb"></span></span>
       </button>
+      <span class="mode-label mode-label--light">Light</span>
     </div>
   </main>
 
