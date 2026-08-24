@@ -97,17 +97,6 @@ h1{
   text-wrap:balance;
 }
 
-.hero-description{
-  max-width:610px;
-  margin:18px auto 0;
-  font-family:Inter,Arial,Helvetica,sans-serif;
-  font-size:14px;
-  font-weight:400;
-  line-height:1.6;
-  letter-spacing:.015em;
-  color:var(--muted)
-}
-
 .light-control{
   position:absolute;
   left:50%;
@@ -157,6 +146,33 @@ h1{
 .hero[data-light="on"] .switch-track{background:rgba(233,169,95,.20);border-color:rgba(239,181,111,.30)}
 .hero[data-light="on"] .switch-thumb{transform:translateX(20px);background:#f0bd7d;box-shadow:0 0 12px rgba(240,189,125,.42)}
 
+.motion-scroll{
+  position:relative;
+  height:190svh;
+  background:#050505;
+}
+.motion-sticky{
+  position:sticky;
+  top:0;
+  height:100svh;
+  overflow:hidden;
+  background:#050505;
+}
+.motion-gif{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transform:none;
+}
+.motion-vignette{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.08),transparent 18%,transparent 78%,rgba(0,0,0,.28));
+}
+
 @media (prefers-reduced-motion:reduce){
   .ambient-flicker{animation:none}
   .hero-image,.switch-thumb{transition-duration:.01ms}
@@ -167,7 +183,7 @@ h1{
   .brand{font-size:20px}
   .hero-copy{bottom:100px;width:calc(100% - 32px)}
   h1{font-size:clamp(42px,13vw,68px)}
-  .hero-description{max-width:420px;font-size:13px;margin-top:14px}
   .hero-image{object-position:50% 50%}
   .light-control{bottom:20px}
+  .motion-scroll{height:170svh}
 }
