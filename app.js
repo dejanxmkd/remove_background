@@ -11,7 +11,8 @@ let lastTime=performance.now();
 let frames=[];
 let preloadedFrames=[];
 
-const ZIP_SRC='./frames_8k_total_under_25mb.zip';
+const ZIP_SRC='./40_smooth_frames.zip';
+const FRAME_COUNT=40;
 
 function frameMime(name){
   const ext=name.split('.').pop().toLowerCase();
@@ -30,14 +31,14 @@ function preloadFrame(index){
 }
 
 function preloadSequence(){
-  for(let i=0;i<Math.min(8,frames.length);i++)preloadFrame(i);
+  for(let i=0;i<Math.min(10,frames.length);i++)preloadFrame(i);
   const preloadRemaining=()=>{
-    for(let i=8;i<frames.length;i++)preloadFrame(i);
+    for(let i=10;i<frames.length;i++)preloadFrame(i);
   };
   if('requestIdleCallback' in window){
-    requestIdleCallback(preloadRemaining,{timeout:1800});
+    requestIdleCallback(preloadRemaining,{timeout:1200});
   }else{
-    setTimeout(preloadRemaining,500);
+    setTimeout(preloadRemaining,250);
   }
 }
 
@@ -55,8 +56,8 @@ async function loadSequenceFrames(){
       .filter(name=>!name.startsWith('__MACOSX/')&&!name.endsWith('/')&&/\.(png|jpe?g|webp|avif)$/i.test(name))
       .sort((a,b)=>a.localeCompare(b,undefined,{numeric:true,sensitivity:'base'}));
 
-    if(names.length!==50){
-      throw new Error(`Expected 50 frames in ZIP, found ${names.length}`);
+    if(names.length!==FRAME_COUNT){
+      throw new Error(`Expected ${FRAME_COUNT} frames in ZIP, found ${names.length}`);
     }
 
     frames=names.map(name=>URL.createObjectURL(new Blob([files[name]],{type:frameMime(name)})));
@@ -67,7 +68,7 @@ async function loadSequenceFrames(){
     smoothProgress=targetProgress;
     render(smoothProgress);
   }catch(error){
-    console.error('Unable to initialize 50-frame scroll sequence:',error);
+    console.error('Unable to initialize 40-frame scroll sequence:',error);
   }
 }
 
@@ -92,22 +93,24 @@ function readTargetProgress(){
   const scrollable=Math.max(1,story.offsetHeight-window.innerHeight);
   const travelled=clamp(-rect.top,0,scrollable);
   const raw=travelled/scrollable;
-  const sequenceStart=.055;
-  const sequenceEnd=.945;
+  const sequenceStart=.045;
+  const sequenceEnd=.955;
   return clamp((raw-sequenceStart)/(sequenceEnd-sequenceStart),0,1);
 }
 
 function render(progress){
   if(!frames.length)return;
 
-  const sequenceOpacity=clamp(progress/.105,0,1);
-  const uiOpacity=1-clamp(progress/.145,0,1);
+  const sequenceOpacity=clamp(progress/.09,0,1);
+  const uiOpacity=1-clamp(progress/.13,0,1);
 
-  const eased=progress*progress*(3-2*progress);
-  const position=eased*(frames.length-1);
+  // The source sequence is already motion-interpolated, so keep frame travel linear.
+  // Only blend between adjacent frames to hide discrete frame boundaries.
+  const position=progress*(frames.length-1);
   const index=Math.floor(position);
   const nextIndex=Math.min(frames.length-1,index+1);
-  for(let i=index-2;i<=nextIndex+3;i++)preloadFrame(i);
+  for(let i=index-3;i<=nextIndex+4;i++)preloadFrame(i);
+
   const local=position-index;
   const blend=local*local*(3-2*local);
 
@@ -125,16 +128,17 @@ function animate(now){
   const dt=Math.min(34,Math.max(8,now-lastTime));
   lastTime=now;
 
-  const smoothing=1-Math.pow(.82,dt/16.67);
+  // Light inertia smooths wheel/trackpad input without making the animation feel delayed.
+  const smoothing=1-Math.pow(.74,dt/16.67);
   smoothProgress+=(targetProgress-smoothProgress)*smoothing;
 
-  if(Math.abs(targetProgress-smoothProgress)<0.00008){
+  if(Math.abs(targetProgress-smoothProgress)<0.00005){
     smoothProgress=targetProgress;
   }
 
   render(smoothProgress);
 
-  if(Math.abs(targetProgress-smoothProgress)>0.00008){
+  if(Math.abs(targetProgress-smoothProgress)>0.00005){
     rafId=requestAnimationFrame(animate);
   }else{
     rafId=null;
