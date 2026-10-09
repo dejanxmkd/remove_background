@@ -138,3 +138,22 @@ html,body{max-width:100%;overflow-x:clip}
 .categories-section{width:100%;max-width:100%;}
 .categories-section::after{right:0}
 @media(max-width:760px){.categories-section::after{right:0}}
+
+/* Footer component — minimal 3-column layout from the supplied reference. */
+.site-footer{background:#fff;color:var(--ink);padding:82px 0 0}
+.footer-inner{width:min(1440px,calc(100% - 96px));margin:0 auto}
+.footer-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:64px;padding-bottom:60px}
+.footer-column h2{margin:0 0 30px;font-size:15px;font-weight:800;letter-spacing:0}
+.footer-column ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:19px}
+.footer-column li{font-size:15px;font-weight:500;line-height:1.4}
+.footer-bottom{border-top:1px dashed #e4e4e8;padding:28px 0 32px;text-align:center;font-size:15px;font-weight:500}
+@media(max-width:760px){
+ .site-footer{padding-top:54px}
+ .footer-inner{width:calc(100% - 36px)}
+ .footer-columns{grid-template-columns:repeat(2,minmax(0,1fr));gap:38px 22px;padding-bottom:45px}
+ .footer-column:first-child{grid-row:span 2}
+ .footer-column h2{font-size:13px;margin-bottom:22px}
+ .footer-column li{font-size:13px}
+ .footer-column ul{gap:16px}
+ .footer-bottom{font-size:12px;line-height:1.6;padding:24px 0}
+}
