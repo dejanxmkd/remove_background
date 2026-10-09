@@ -92,3 +92,7 @@
  .carousel{overflow-x:auto!important;overflow-y:hidden!important;transform:none!important;transition:none!important;scroll-snap-type:x mandatory!important;scroll-behavior:smooth;touch-action:pan-x pan-y;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;user-select:auto}
  .carousel .card{scroll-snap-align:start;scroll-snap-stop:normal}
 }
+
+/* Show bottom View All button only on mobile. */
+.mobile-view-all{display:none}
+@media(max-width:760px){.mobile-view-all{display:flex}}
