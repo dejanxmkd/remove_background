@@ -92,9 +92,9 @@ carousel.element.addEventListener('click',event=>{if(event.target.closest('.add'
 
 // Brand cards share the carousel's scrolling, progress and responsive behavior.
 class BrandCard {
- static render(brand,index){return `<article class="card brand-card"><div class="brand-picture"><span class="brand-mark">BRAND</span></div><div class="brand-info"><h3 class="brand-name">${brand.name}</h3><a class="brand-link" href="#brands" aria-label="Explore ${brand.name}" data-brand="${index}"><span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a></div></article>`;}
+ static render(brand,index){return `<article class="card brand-card"><div class="brand-picture"></div><div class="brand-info"><h3 class="brand-name">${brand.name}</h3></div></article>`;}
 }
-const brands=Array.from({length:8},(_,i)=>({name:'Brand name '+String(i+1).padStart(2,'0')}));
+const brands=Array.from({length:8},(_,i)=>({name:'Brand name'}));
 const brandCarousel=new ProductCarousel(document.getElementById('brandCarousel'),brands,document.getElementById('brandProgress'),BrandCard.render);
 brandCarousel.element.addEventListener('click',event=>{const link=event.target.closest('[data-brand]');if(link){event.preventDefault();notify('Brand page — demo only')}});
 ['viewAllBrands','mobileViewAllBrands'].forEach(id=>document.getElementById(id)?.addEventListener('click',event=>{event.preventDefault();brandCarousel.reset();notify('Showing all 8 placeholder brands')}));
