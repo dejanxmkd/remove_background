@@ -290,3 +290,10 @@ html,body{max-width:100%;overflow-x:clip}
 .hero-video-content h1{letter-spacing:.035em}
 .hero-cta{background:var(--cyan);color:#08070b}
 @media(max-width:760px){.hero-video-overlay{background:linear-gradient(90deg,rgba(42,14,94,.6),rgba(102,51,204,.22))}.hero-video-content h1{letter-spacing:.025em}}
+
+/* Static decorative circles in the hero, consistent with brand sections. */
+.hero-video::before,.hero-video::after{content:"";position:absolute;border-radius:50%;pointer-events:none;z-index:-1}
+.hero-video::before{width:clamp(260px,36vw,540px);height:clamp(260px,36vw,540px);background:rgba(157,115,241,.26);right:-7%;top:-32%}
+.hero-video::after{width:clamp(130px,17vw,270px);height:clamp(130px,17vw,270px);background:var(--cyan);right:8%;bottom:-23%;opacity:.85}
+.hero-video-content::after{content:"";position:absolute;width:clamp(48px,7vw,105px);height:clamp(48px,7vw,105px);border-radius:50%;background:rgba(255,255,255,.2);right:3%;top:18%;pointer-events:none;z-index:-1}
+@media(max-width:760px){.hero-video::before{right:-38%;top:-12%;opacity:.65}.hero-video::after{right:-18%;bottom:-11%;opacity:.68}.hero-video-content::after{right:2%;top:8%;opacity:.7}}
