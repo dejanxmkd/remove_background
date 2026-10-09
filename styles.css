@@ -269,3 +269,16 @@ html,body{max-width:100%;overflow-x:clip}
 /* Match featured View All link typography to New Arrivals. */
 .featured-top .featured-action{font-size:15px}
 @media(max-width:760px){.featured-top .featured-action{font-size:15px}}
+
+/* Full-width hero video — media source can be replaced at ./assets/hero.mp4. */
+.hero-video{position:relative;isolation:isolate;display:flex;align-items:center;min-height:clamp(520px,68vw,740px);width:100%;overflow:hidden;background:radial-gradient(circle at 78% 32%,rgba(87,212,229,.28),transparent 36%),linear-gradient(125deg,#251348 0%,#6633CC 58%,#392066 100%);color:#fff}
+.hero-video-media{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;filter:saturate(1.25) contrast(1.08)}
+.hero-video-overlay{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(16,8,38,.77) 0%,rgba(25,10,58,.46) 54%,rgba(25,10,58,.25) 100%);pointer-events:none}
+.hero-video-content{position:relative;width:min(1440px,calc(100% - 96px));margin:0 auto;padding:90px 0}
+.hero-kicker{display:inline-block;font-size:12px;letter-spacing:.17em;font-weight:800;margin-bottom:22px;color:#9ae9f4}
+.hero-video-content h1{max-width:800px;color:#fff;font-size:clamp(46px,7.2vw,104px);font-weight:900;letter-spacing:-.05em;line-height:.98;margin:0}
+.hero-video-content p{font-size:clamp(15px,1.55vw,20px);font-weight:500;line-height:1.65;margin:26px 0 30px;color:#eee8fc}
+.hero-cta{display:inline-flex;align-items:center;gap:18px;padding:16px 25px;background:#fff;color:#301665;border-radius:999px;font-size:14px;font-weight:800}
+.hero-cta .material-symbols-outlined{font-size:20px}
+@media(max-width:760px){.hero-video{min-height:570px}.hero-video-content{width:calc(100% - 36px);padding:82px 0}.hero-video-content h1{font-size:clamp(43px,11vw,65px)}.hero-video-overlay{background:linear-gradient(90deg,rgba(16,8,38,.8),rgba(16,8,38,.46))}}
+@media(prefers-reduced-motion:reduce){.hero-video-media{display:none}}
