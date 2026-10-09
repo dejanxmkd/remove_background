@@ -1,28 +1,35 @@
 const products=Array.from({length:8},(_,i)=>({item:'#'+String(48720+i),name:'Product name',original:(19.99+i*2).toFixed(2),price:(14.99+i*2).toFixed(2)}));
 const rail=document.getElementById('productCarousel');
 const progress=document.getElementById('progress');
-const progressTrack=progress.parentElement;
-let start=0;
-function visibleCount(){return window.innerWidth<=760?1:window.innerWidth<=1180?3:5}
-function render(){
-  const visible=visibleCount();
-  start=Math.min(Math.max(0,start),Math.max(0,products.length-visible));
-  rail.innerHTML=products.slice(start,start+visible).map((p,i)=>'<article class="card"><div class="picture shade-'+((start+i)%8+1)+'"></div><div class="card-info"><div class="item">Item '+p.item+'</div><h2 class="product-title">'+p.name+'</h2><div class="purchase"><div class="prices"><span class="old">$'+p.original+'</span><strong class="new-price">$'+p.price+'</strong></div><button type="button" class="add" aria-label="Add product to cart" data-index="'+(start+i)+'"><span class="material-symbols-outlined" aria-hidden="true">add</span></button></div></div></article>').join('');
-  const pct=Math.round(((start+visible)/products.length)*100);
-  progress.style.width=pct+'%';
-  progressTrack.setAttribute('aria-valuenow',String(pct));
+const track=progress.parentElement;
+rail.innerHTML=products.map((p,i)=>'<article class="card"><div class="picture shade-'+(i+1)+'"></div><div class="card-info"><div class="item">Item '+p.item+'</div><h2 class="product-title">'+p.name+'</h2><div class="purchase"><div class="prices"><span class="old">$'+p.original+'</span><strong class="new-price">$'+p.price+'</strong></div><button type="button" class="add" aria-label="Add product to cart" data-index="'+i+'"><span class="material-symbols-outlined" aria-hidden="true">add</span></button></div></div></article>').join('');
+function updateProgress(){
+ const max=rail.scrollWidth-rail.clientWidth;
+ const visibleFraction=rail.clientWidth/rail.scrollWidth;
+ const fraction=max>0?Math.max(0,Math.min(1,rail.scrollLeft/max)):0;
+ progress.style.width=(visibleFraction*100)+'%';
+ progress.style.transform='translateX('+(fraction*((track.clientWidth)*(1-visibleFraction)))+'px)';
+ track.setAttribute('aria-valuenow',String(Math.round(fraction*100)));
 }
-function move(delta){const next=Math.max(0,Math.min(products.length-visibleCount(),start+delta));if(next!==start){start=next;render()}}
-let dragStart=null;
-rail.addEventListener('pointerdown',e=>{if(e.target.closest('button'))return;dragStart={x:e.clientX,y:e.clientY};if(e.pointerType==='mouse')rail.setPointerCapture(e.pointerId)});
-rail.addEventListener('pointerup',e=>{if(!dragStart)return;const dx=e.clientX-dragStart.x;const dy=e.clientY-dragStart.y;if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy))move(dx<0?1:-1);dragStart=null});
-rail.addEventListener('pointercancel',()=>{dragStart=null});
-let wheelCooldown=0;
-rail.addEventListener('wheel',e=>{if(Math.abs(e.deltaX)<4)return;e.preventDefault();const now=performance.now();if(now-wheelCooldown>300){move(e.deltaX>0?1:-1);wheelCooldown=now}},{passive:false});
-rail.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();move(e.key==='ArrowRight'?1:-1)}});
-window.addEventListener('resize',render);
-render();
+rail.addEventListener('scroll',updateProgress,{passive:true});
+window.addEventListener('resize',updateProgress);
+let drag=null;
+rail.addEventListener('pointerdown',e=>{
+ if(e.pointerType!=='mouse'||e.target.closest('button'))return;
+ drag={x:e.clientX,left:rail.scrollLeft,moved:false};rail.classList.add('dragging');rail.setPointerCapture(e.pointerId);
+});
+rail.addEventListener('pointermove',e=>{
+ if(!drag)return;
+ const dx=e.clientX-drag.x;
+ if(Math.abs(dx)>3)drag.moved=true;
+ rail.scrollLeft=drag.left-dx;
+});
+function endDrag(){if(!drag)return;const moved=drag.moved;drag=null;rail.classList.remove('dragging');if(moved){const card=rail.querySelector('.card');const step=card.getBoundingClientRect().width+18;rail.scrollTo({left:Math.round(rail.scrollLeft/step)*step,behavior:'smooth'});}}
+rail.addEventListener('pointerup',endDrag);rail.addEventListener('pointercancel',endDrag);
+rail.addEventListener('wheel',e=>{if(Math.abs(e.deltaX)<1)return;e.preventDefault();rail.scrollLeft+=e.deltaX;},{passive:false});
+rail.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const card=rail.querySelector('.card');const step=card.getBoundingClientRect().width+18;rail.scrollBy({left:e.key==='ArrowRight'?step:-step,behavior:'smooth'})}});
+updateProgress();
 let timeout;
 function notice(message){const el=document.getElementById('notice');el.textContent=message;el.classList.add('show');clearTimeout(timeout);timeout=setTimeout(()=>el.classList.remove('show'),2300)}
 rail.addEventListener('click',e=>{if(e.target.closest('.add'))notice('Product added — demo only')});
-document.getElementById('viewAll').addEventListener('click',e=>{e.preventDefault();start=0;render();notice('Showing all 8 placeholder products')});
+document.getElementById('viewAll').addEventListener('click',e=>{e.preventDefault();rail.scrollTo({left:0,behavior:'smooth'});notice('Showing all 8 placeholder products')});
