@@ -132,3 +132,14 @@ const categories=[
 const categoryCarousel=new ProductCarousel(document.getElementById('categoryCarousel'),categories,document.getElementById('categoryProgress'),CategoryCard.render);
 
 document.querySelectorAll('[data-feature]').forEach(link=>link.addEventListener('click',()=>notify(link.dataset.feature+' collection — preview only')));
+
+/* Reuse the exact New Arrivals product-card renderer in both featured collections. */
+const dealsHost=document.getElementById('dealsProducts');
+const sellersHost=document.getElementById('bestSellerProducts');
+if(dealsHost&&sellersHost){
+ dealsHost.innerHTML=products.slice(0,2).map((p,i)=>ProductCard.render(p,i)).join('');
+ sellersHost.innerHTML=products.slice(2,4).map((p,i)=>ProductCard.render(p,i+2)).join('');
+ [dealsHost,sellersHost].forEach(host=>host.addEventListener('click',event=>{
+  if(event.target.closest('.add'))notify('Product added — demo only');
+ }));
+}
