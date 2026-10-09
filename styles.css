@@ -14,3 +14,11 @@
 .card{border:0;box-shadow:none;transition:transform 220ms cubic-bezier(.2,.75,.3,1)}
 .card:hover{transform:translateY(-12px);box-shadow:none;border-color:transparent}
 @media(prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
+
+/* Product card refinements */
+.card{border:1px solid var(--line);overflow:visible;box-shadow:none}
+.card:hover{border-color:var(--line);box-shadow:none;transform:translateY(-12px)}
+.carousel-wrap{overflow:visible}
+.carousel{padding-top:20px;padding-bottom:22px}
+.view-all{font-size:15px}
+@media(max-width:760px){.view-all{font-size:15px}}
