@@ -37,3 +37,11 @@
 .carousel .card{min-width:0;width:100%;flex:none;overflow:hidden;scroll-snap-align:unset}
 @media(min-width:761px) and (max-width:1180px){.carousel{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:760px){.carousel{grid-template-columns:minmax(0,1fr)}.carousel .card{max-width:none}}
+
+/* Centered progress-only product navigation */
+.section-bottom{display:flex;align-items:center;justify-content:center;margin-top:14px}
+.section-bottom .progress{width:180px;height:4px;margin:0;border-radius:999px;background:#eae7ef;overflow:hidden}
+.section-bottom .progress span{width:0;height:100%;display:block;border-radius:999px;background:var(--purple);transition:width 300ms ease}
+.carousel{touch-action:pan-y;user-select:none;cursor:grab}
+.carousel:active{cursor:grabbing}
+.carousel .add{user-select:auto;cursor:pointer}
