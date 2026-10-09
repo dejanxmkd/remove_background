@@ -130,3 +130,27 @@ const categories=[
  {name:'Popcorn & Pretzels',icon:'fastfood'}
 ];
 const categoryCarousel=new ProductCarousel(document.getElementById('categoryCarousel'),categories,document.getElementById('categoryProgress'),CategoryCard.render);
+
+// Lightweight parallax for background shapes; product cards never move.
+(()=>{
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+ const sections=[document.querySelector('.brands-section'),document.querySelector('.categories-section')].filter(Boolean);
+ if(!sections.length)return;
+ let queued=false;
+ function update(){
+  queued=false;
+  for(const section of sections){
+   if(reduced.matches){section.style.setProperty('--parallax-y','0px');continue}
+   const rect=section.getBoundingClientRect();
+   if(rect.bottom<0||rect.top>window.innerHeight)continue;
+   const offset=(window.innerHeight/2-(rect.top+rect.height/2));
+   const shift=Math.max(-28,Math.min(28,offset*.055));
+   section.style.setProperty('--parallax-y',shift.toFixed(2)+'px');
+  }
+ }
+ function schedule(){if(!queued){queued=true;requestAnimationFrame(update)}}
+ window.addEventListener('scroll',schedule,{passive:true});
+ window.addEventListener('resize',schedule,{passive:true});
+ reduced.addEventListener?.('change',schedule);
+ schedule();
+})();
