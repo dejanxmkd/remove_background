@@ -301,3 +301,16 @@ html,body{max-width:100%;overflow-x:clip}
 /* Keep WHAT'S NEXT. together on a single line across viewports. */
 .hero-nowrap{white-space:nowrap;display:inline-block}
 @media(max-width:760px){.hero-video-content h1{font-size:clamp(30px,8.5vw,65px)}}
+
+/* Match the BRANDS section's exact purple and decorative circle language. */
+.hero-video{background:var(--purple)}
+.hero-video-overlay{background:transparent}
+.hero-video::before{width:clamp(180px,19vw,250px);height:clamp(180px,19vw,250px);top:-105px;right:9%;background:var(--cyan);opacity:1}
+.hero-video::after{width:clamp(180px,20vw,260px);height:clamp(180px,20vw,260px);right:-120px;bottom:80px;background:#fff;opacity:1}
+.hero-video-content::after{width:min(36vw,520px);height:min(36vw,520px);right:9%;top:0;background:rgba(255,255,255,.10);opacity:1}
+@media(max-width:760px){
+ .hero-video-overlay{background:transparent}
+ .hero-video::before{width:150px;height:150px;top:-75px;right:-50px;opacity:1}
+ .hero-video::after{width:165px;height:165px;right:-105px;bottom:55px;opacity:1}
+ .hero-video-content::after{width:220px;height:220px;right:-70px;top:28%;opacity:1}
+}
