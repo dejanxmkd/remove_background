@@ -22,3 +22,11 @@
 .carousel{padding-top:20px;padding-bottom:22px}
 .view-all{font-size:15px}
 @media(max-width:760px){.view-all{font-size:15px}}
+
+/* Carousel viewport: mask off-canvas cards within the content container. */
+.carousel-wrap{width:100%;max-width:100%;overflow:hidden;clip-path:inset(0 0 0 0)}
+.carousel{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-inline:0;padding:20px 0 22px;overscroll-behavior-inline:contain}
+.card{overflow:hidden;scroll-snap-align:start;scroll-snap-stop:always}
+@media(min-width:1181px){.card{flex:0 0 calc((100% - 72px)/5);min-width:0}}
+@media(min-width:761px) and (max-width:1180px){.card{flex:0 0 calc((100% - 36px)/3);min-width:0}}
+@media(max-width:760px){.card{flex:0 0 min(82%,290px);min-width:0}}
