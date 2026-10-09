@@ -7,11 +7,11 @@ class ProductCard {
 }
 
 class ProductCarousel {
- constructor(element,items,progress){
+ constructor(element,items,progress,renderCard=ProductCard.render){
   this.element=element;this.items=items;this.progress=progress;
   this.track=progress.parentElement;
   this.target=0;this.frame=0;this.settleTimer=0;this.drag=null;
-  element.innerHTML=items.map(ProductCard.render).join('');
+  element.innerHTML=items.map((item,index)=>renderCard(item,index)).join('');
   element.addEventListener('scroll',()=>this.updateProgress(),{passive:true});
   element.addEventListener('wheel',e=>this.onWheel(e),{passive:false});
   element.addEventListener('pointerdown',e=>this.onPointerDown(e));
@@ -88,3 +88,13 @@ let noticeTimer;
 function notify(message){const el=document.getElementById('notice');el.textContent=message;el.classList.add('show');clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>el.classList.remove('show'),2300)}
 carousel.element.addEventListener('click',event=>{if(event.target.closest('.add'))notify('Product added — demo only')});
 ['viewAll','mobileViewAll'].forEach(id=>document.getElementById(id)?.addEventListener('click',event=>{event.preventDefault();carousel.reset();notify('Showing all 8 placeholder products')}));
+
+
+// Brand cards share the carousel's scrolling, progress and responsive behavior.
+class BrandCard {
+ static render(brand,index){return `<article class="card brand-card"><div class="brand-picture"><span class="brand-mark">BRAND</span></div><div class="brand-info"><h3 class="brand-name">${brand.name}</h3><a class="brand-link" href="#brands" aria-label="Explore ${brand.name}" data-brand="${index}"><span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a></div></article>`;}
+}
+const brands=Array.from({length:8},(_,i)=>({name:'Brand name '+String(i+1).padStart(2,'0')}));
+const brandCarousel=new ProductCarousel(document.getElementById('brandCarousel'),brands,document.getElementById('brandProgress'),BrandCard.render);
+brandCarousel.element.addEventListener('click',event=>{const link=event.target.closest('[data-brand]');if(link){event.preventDefault();notify('Brand page — demo only')}});
+['viewAllBrands','mobileViewAllBrands'].forEach(id=>document.getElementById(id)?.addEventListener('click',event=>{event.preventDefault();brandCarousel.reset();notify('Showing all 8 placeholder brands')}));
