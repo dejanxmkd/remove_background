@@ -106,3 +106,27 @@ if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduc
  },{threshold:.12});
  document.querySelectorAll('.section-header,.section-bottom').forEach(el=>{el.classList.add('scroll-reveal');observer.observe(el)});
 }
+
+
+// Small category tiles reuse the shared carousel and progress component.
+class CategoryCard {
+ static render(category){return `<article class="card category-card"><div class="category-visual"><span class="material-symbols-outlined" aria-hidden="true">${category.icon}</span></div><div class="category-footer"><span>${category.name}</span><span class="material-symbols-outlined" aria-hidden="true">chevron_right</span></div></article>`;}
+}
+const categories=[
+ {name:'Candy',icon:'candy'},
+ {name:'Chips & Snacks',icon:'nutrition'},
+ {name:'Chocolate',icon:'cookie'},
+ {name:'Coffee',icon:'coffee'},
+ {name:'European Products',icon:'shopping_bag'},
+ {name:'Grocery',icon:'shopping_basket'},
+ {name:'Variety Packs',icon:'inventory_2'},
+ {name:'Olive Oil',icon:'water_drop'},
+ {name:'Tools',icon:'handyman'},
+ {name:'Health & Beauty',icon:'health_and_beauty'},
+ {name:'Cleaning',icon:'cleaning_services'},
+ {name:'Personal Care',icon:'spa'},
+ {name:'Nutrition',icon:'fitness_center'},
+ {name:'Tobacco Accessories',icon:'package_2'},
+ {name:'Popcorn & Pretzels',icon:'fastfood'}
+];
+const categoryCarousel=new ProductCarousel(document.getElementById('categoryCarousel'),categories,document.getElementById('categoryProgress'),CategoryCard.render);
