@@ -237,3 +237,22 @@ html,body{max-width:100%;overflow-x:clip}
  .featured-product-info span{font-size:13px}
  .featured-action{font-size:14px;margin-top:20px}
 }
+
+/* TOP DEALS / BEST SELLERS share the exact product-card component from New Arrivals. */
+.featured-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin-bottom:105px}
+.featured-panel{background:none;border:0;box-shadow:none;padding:0;border-radius:0}
+.featured-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:stretch}
+.featured-items .card{width:100%;min-width:0;min-height:0;flex:none}
+.featured-items .picture{height:230px}
+.featured-items .card-info{padding:19px 17px 18px}
+.featured-heading{margin-bottom:28px}
+.featured-action{margin-top:22px}
+@media(max-width:760px){
+ .featured-links{grid-template-columns:1fr;gap:64px;margin-bottom:72px}
+ .featured-items{gap:12px}
+ .featured-items .picture{height:180px}
+ .featured-items .card-info{padding:15px 12px}
+ .featured-items .new-price{font-size:18px}
+ .featured-items .add{width:36px;height:36px}
+ .featured-items .product-title{font-size:14px}
+}
