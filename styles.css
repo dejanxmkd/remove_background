@@ -138,14 +138,3 @@ html,body{max-width:100%;overflow-x:clip}
 .categories-section{width:100%;max-width:100%;}
 .categories-section::after{right:0}
 @media(max-width:760px){.categories-section::after{right:0}}
-
-/* Very subtle, scroll-linked depth on decorative circles only. */
-.brands-shapes .shape{transform:translate3d(0,calc(var(--parallax-y,0px) * var(--depth,1)),0);will-change:transform}
-.brands-shapes .tl,.brands-shapes .tr{--depth:.6}
-.brands-shapes .ml,.brands-shapes .mr{--depth:-.45}
-.brands-shapes .purple-glow{--depth:1}
-.categories-section::before,.categories-section::after{transform:translate3d(0,calc(var(--parallax-y,0px) * .65),0);will-change:transform}
-.categories-section{overflow:clip}
-@media(prefers-reduced-motion:reduce){
- .brands-shapes .shape,.categories-section::before,.categories-section::after{transform:none;will-change:auto}
-}
