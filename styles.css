@@ -9,3 +9,8 @@
 /* NEW ARRIVALS supporting description */
 .title-group p{font-size:18px}
 @media(max-width:760px){.title-group p{font-size:18px}}
+
+/* Minimal product card interaction: no border/shadow, subtle lift only */
+.card{border:0;box-shadow:none;transition:transform 220ms cubic-bezier(.2,.75,.3,1)}
+.card:hover{transform:translateY(-12px);box-shadow:none;border-color:transparent}
+@media(prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
