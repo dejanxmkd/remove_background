@@ -297,3 +297,7 @@ html,body{max-width:100%;overflow-x:clip}
 .hero-video::after{width:clamp(130px,17vw,270px);height:clamp(130px,17vw,270px);background:var(--cyan);right:8%;bottom:-23%;opacity:.85}
 .hero-video-content::after{content:"";position:absolute;width:clamp(48px,7vw,105px);height:clamp(48px,7vw,105px);border-radius:50%;background:rgba(255,255,255,.2);right:3%;top:18%;pointer-events:none;z-index:-1}
 @media(max-width:760px){.hero-video::before{right:-38%;top:-12%;opacity:.65}.hero-video::after{right:-18%;bottom:-11%;opacity:.68}.hero-video-content::after{right:2%;top:8%;opacity:.7}}
+
+/* Keep WHAT'S NEXT. together on a single line across viewports. */
+.hero-nowrap{white-space:nowrap;display:inline-block}
+@media(max-width:760px){.hero-video-content h1{font-size:clamp(30px,8.5vw,65px)}}
