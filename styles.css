@@ -60,3 +60,6 @@
 .carousel-wrap{overflow:hidden;clip-path:none}
 .carousel{scroll-snap-type:x mandatory;scroll-padding-left:0;scroll-padding-right:0}
 .carousel .card{scroll-snap-align:start}
+
+/* All product image placeholders use the same color as the first card. */
+.carousel .picture{background:#eae7f0}
