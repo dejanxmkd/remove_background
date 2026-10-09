@@ -12,8 +12,8 @@ a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
 .carousel{--gap:18px;display:flex;gap:var(--gap);width:100%;overflow-x:auto;overflow-y:hidden;padding:20px 0 24px;scrollbar-width:none;scroll-snap-type:x mandatory;scroll-padding-inline:0;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
 .carousel::-webkit-scrollbar{display:none}
 .carousel:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
-.card{flex:0 0 calc((100% - 4 * var(--gap))/5);min-width:0;scroll-snap-align:start;scroll-snap-stop:normal;border:1px solid var(--line);border-radius:17px;background:#fff;overflow:hidden;transition:transform .24s cubic-bezier(.2,.75,.3,1)}
-.card:hover{transform:translateY(-12px);box-shadow:none;border-color:var(--line)}
+.card{flex:0 0 calc((100% - 4 * var(--gap))/5);min-width:0;scroll-snap-align:start;scroll-snap-stop:normal;border:1px solid var(--line);border-radius:17px;background:#fff;overflow:hidden;transition:none}
+.card:hover{transform:none;box-shadow:none;border-color:var(--line)}
 .picture{height:230px;background:var(--placeholder)}
 .card-info{padding:19px 17px 18px}
 .item{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--purple)}
@@ -22,7 +22,7 @@ a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
 .prices{display:flex;flex-direction:column;gap:4px}
 .old{font-size:12px;font-weight:600;color:#a5a1ae;text-decoration:line-through}
 .new-price{font-size:20px;letter-spacing:-.035em;font-weight:800}
-.add{display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:50%;background:var(--purple);color:#fff;transition:background .2s}
+.add{display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:50%;background:var(--purple);color:#fff;transition:none}
 .add:hover{background:#4b21a6}.add .material-symbols-outlined{font-size:24px}
 .section-bottom{display:flex;justify-content:center;align-items:center;margin-top:14px}
 .progress{width:180px;height:4px;background:#eae7ef;border-radius:999px;overflow:hidden;position:relative}
@@ -41,7 +41,10 @@ a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
  .card{flex-basis:calc((100% - var(--gap))/1.5)}
  .picture{height:220px}
  .section-bottom{margin-top:8px}
- .mobile-view-all{display:flex;align-items:center;justify-content:center;gap:12px;margin:28px auto 0;min-height:50px;border-radius:999px;background:var(--purple);color:#fff;font-size:14px;font-weight:700}
+ .mobile-view-all{display:flex;align-items:center;justify-content:center;gap:12px;margin:20px auto 0;min-height:50px;border-radius:999px;background:var(--purple);color:#fff;font-size:14px;font-weight:700}
  .mobile-view-all .material-symbols-outlined{font-size:20px}
 }
 @media(prefers-reduced-motion:reduce){.card{transition:none}}
+
+/* Product cards remain completely static, including hover and touch states. */
+.card,.card:hover,.card:active{transform:none;transition:none;box-shadow:none}
