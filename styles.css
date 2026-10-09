@@ -30,3 +30,10 @@
 @media(min-width:1181px){.card{flex:0 0 calc((100% - 72px)/5);min-width:0}}
 @media(min-width:761px) and (max-width:1180px){.card{flex:0 0 calc((100% - 36px)/3);min-width:0}}
 @media(max-width:760px){.card{flex:0 0 min(82%,290px);min-width:0}}
+
+/* Full-card carousel: no partial cards at container edges */
+.carousel-wrap{overflow:visible;clip-path:none}
+.carousel{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;overflow:visible;padding:20px 0 24px;scroll-snap-type:none}
+.carousel .card{min-width:0;width:100%;flex:none;overflow:hidden;scroll-snap-align:unset}
+@media(min-width:761px) and (max-width:1180px){.carousel{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.carousel{grid-template-columns:minmax(0,1fr)}.carousel .card{max-width:none}}
