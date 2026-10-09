@@ -282,3 +282,11 @@ html,body{max-width:100%;overflow-x:clip}
 .hero-cta .material-symbols-outlined{font-size:20px}
 @media(max-width:760px){.hero-video{min-height:570px}.hero-video-content{width:calc(100% - 36px);padding:82px 0}.hero-video-content h1{font-size:clamp(43px,11vw,65px)}.hero-video-overlay{background:linear-gradient(90deg,rgba(16,8,38,.8),rgba(16,8,38,.46))}}
 @media(prefers-reduced-motion:reduce){.hero-video-media{display:none}}
+
+/* Hero branding refinements. */
+.hero-video{background:#6633CC}
+.hero-video-overlay{background:linear-gradient(90deg,rgba(42,14,94,.56) 0%,rgba(102,51,204,.22) 100%)}
+.hero-kicker{display:inline-flex;align-items:center;width:max-content;border-radius:999px;background:var(--cyan);color:#08070b;padding:10px 17px;margin-bottom:24px;font-size:11px;font-weight:800;letter-spacing:.12em}
+.hero-video-content h1{letter-spacing:.035em}
+.hero-cta{background:var(--cyan);color:#08070b}
+@media(max-width:760px){.hero-video-overlay{background:linear-gradient(90deg,rgba(42,14,94,.6),rgba(102,51,204,.22))}.hero-video-content h1{letter-spacing:.025em}}
