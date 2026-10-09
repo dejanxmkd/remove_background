@@ -8,88 +8,77 @@ class ProductCard {
 
 class ProductCarousel {
  constructor(element,items,progress,renderCard=ProductCard.render){
-  this.element=element;this.items=items;this.progress=progress;
-  this.track=progress.parentElement;
-  this.target=0;this.frame=0;this.settleTimer=0;this.drag=null;
-  element.innerHTML=items.map((item,index)=>renderCard(item,index)).join('');
+  this.element=element;this.items=items;this.progress=progress;this.track=progress.parentElement;
+  this.target=0;this.frame=0;this.wheelTimer=0;this.drag=null;
+  element.innerHTML=items.map((item,i)=>renderCard(item,i)).join('');
   element.addEventListener('scroll',()=>this.updateProgress(),{passive:true});
   element.addEventListener('wheel',e=>this.onWheel(e),{passive:false});
   element.addEventListener('pointerdown',e=>this.onPointerDown(e));
   element.addEventListener('pointermove',e=>this.onPointerMove(e));
-  element.addEventListener('pointerup',e=>this.onPointerUp(e));
+  element.addEventListener('pointerup',()=>this.endDrag());
   element.addEventListener('pointercancel',()=>this.endDrag());
   element.addEventListener('keydown',e=>this.onKeyDown(e));
-  window.addEventListener('resize',()=>{this.stopAnimation();this.updateProgress()});
+  window.addEventListener('resize',()=>{this.stop();this.updateProgress()});
   this.updateProgress();
  }
  max(){return Math.max(0,this.element.scrollWidth-this.element.clientWidth)}
- step(){
-  const card=this.element.querySelector('.card');
-  return card?card.getBoundingClientRect().width+parseFloat(getComputedStyle(this.element).gap||18):this.element.clientWidth;
- }
+ step(){const card=this.element.querySelector('.card');return card?card.getBoundingClientRect().width+(parseFloat(getComputedStyle(this.element).columnGap)||0):this.element.clientWidth}
  updateProgress(){
-  const max=this.max();const visible=Math.min(1,this.element.clientWidth/this.element.scrollWidth);
-  const ratio=max?Math.min(1,Math.max(0,this.element.scrollLeft/max)):0;
+  const max=this.max(),visible=Math.min(1,this.element.clientWidth/this.element.scrollWidth);
+  const ratio=max?Math.max(0,Math.min(1,this.element.scrollLeft/max)):0;
   this.progress.style.width=(visible*100)+'%';
   this.progress.style.transform=`translateX(${this.track.clientWidth*(1-visible)*ratio}px)`;
   this.track.setAttribute('aria-valuenow',String(Math.round(ratio*100)));
  }
- stopAnimation(){if(this.frame)cancelAnimationFrame(this.frame);this.frame=0;clearTimeout(this.settleTimer);this.element.style.scrollSnapType='none';this.target=this.element.scrollLeft}
- animate(){
-  const diff=this.target-this.element.scrollLeft;
-  if(Math.abs(diff)<.45){this.element.scrollLeft=this.target;this.frame=0;this.scheduleSnap();return}
-  this.element.scrollLeft+=diff*.16;
-  this.frame=requestAnimationFrame(()=>this.animate());
- }
- animateTo(value){
-  this.target=Math.max(0,Math.min(this.max(),value));
+ stop(){cancelAnimationFrame(this.frame);this.frame=0;clearTimeout(this.wheelTimer);this.target=this.element.scrollLeft;this.element.style.scrollSnapType=''}
+ animateTo(position){
+  this.target=Math.max(0,Math.min(this.max(),position));
   this.element.style.scrollSnapType='none';
-  clearTimeout(this.settleTimer);
-  if(!this.frame)this.frame=requestAnimationFrame(()=>this.animate());
+  if(!this.frame)this.frame=requestAnimationFrame(()=>this.tick());
  }
- snapPoints(){
-  const max=this.max(),step=this.step(),points=[0];
-  for(let n=1;n*step<max-0.5;n++)points.push(n*step);
-  if(max>0)points.push(max);
-  return points;
+ tick(){
+  const delta=this.target-this.element.scrollLeft;
+  if(Math.abs(delta)<.6){
+   this.element.scrollLeft=this.target;this.frame=0;
+   return;
+  }
+  this.element.scrollLeft+=delta*.13;
+  this.frame=requestAnimationFrame(()=>this.tick());
  }
- nearestIndex(position){
-  const points=this.snapPoints();
-  return points.reduce((best,p,i)=>Math.abs(p-position)<Math.abs(points[best]-position)?i:best,0);
- }
- scheduleSnap(){
-  clearTimeout(this.settleTimer);
-  this.settleTimer=setTimeout(()=>{
-   const points=this.snapPoints();
-   const snapped=points[this.nearestIndex(this.element.scrollLeft)];
-   if(Math.abs(snapped-this.element.scrollLeft)>0.5)this.animateTo(snapped);
-   else this.element.style.scrollSnapType='';
-  },110);
+ settle(){
+  const max=this.max(),step=this.step();
+  const nearest=Math.max(0,Math.min(max,Math.round(this.target/step)*step));
+  // The last position is an exact edge alignment, never a clipped final card.
+  const position=max-nearest<step*.5?max:nearest;
+  this.animateTo(position);
  }
  onWheel(event){
   if(event.ctrlKey||matchMedia('(max-width:760px)').matches)return;
-  const delta=Math.abs(event.deltaY)>Math.abs(event.deltaX)?event.deltaY:event.deltaX;
-  if(!delta)return;
+  const raw=Math.abs(event.deltaY)>=Math.abs(event.deltaX)?event.deltaY:event.deltaX;
+  if(Math.abs(raw)<.5)return;
+  const delta=raw*(event.deltaMode===1?18:event.deltaMode===2?this.element.clientWidth:1);
   const base=this.frame?this.target:this.element.scrollLeft;
-  const points=this.snapPoints();
-  const current=this.nearestIndex(base);
-  const next=Math.max(0,Math.min(points.length-1,current+Math.sign(delta)));
-  if(next===current)return;
+  if((delta<0&&base<=0)||(delta>0&&base>=this.max()))return;
   event.preventDefault();
-  this.animateTo(points[next]);
+  this.animateTo(base+delta);
+  clearTimeout(this.wheelTimer);
+  this.wheelTimer=setTimeout(()=>this.settle(),160);
  }
  onPointerDown(event){
   if(event.pointerType!=='mouse'||event.target.closest('button'))return;
-  this.stopAnimation();this.drag={x:event.clientX,start:this.element.scrollLeft};
-  this.element.style.scrollSnapType='none';
-  this.element.setPointerCapture(event.pointerId);
+  this.stop();this.drag={x:event.clientX,left:this.element.scrollLeft};
+  this.element.style.scrollSnapType='none';this.element.setPointerCapture(event.pointerId);
  }
- onPointerMove(event){if(!this.drag)return;this.element.scrollLeft=this.drag.start-(event.clientX-this.drag.x)}
- onPointerUp(){this.endDrag()}
- endDrag(){if(!this.drag)return;this.drag=null;this.scheduleSnap()}
+ onPointerMove(event){if(this.drag)this.element.scrollLeft=this.drag.left-(event.clientX-this.drag.x)}
+ endDrag(){
+  if(!this.drag)return;
+  this.drag=null;this.target=this.element.scrollLeft;this.settle();
+ }
  onKeyDown(event){
   if(event.key!=='ArrowLeft'&&event.key!=='ArrowRight')return;
-  event.preventDefault();const points=this.snapPoints();const current=this.nearestIndex(this.frame?this.target:this.element.scrollLeft);const next=Math.max(0,Math.min(points.length-1,current+(event.key==='ArrowRight'?1:-1)));this.animateTo(points[next]);
+  event.preventDefault();
+  this.animateTo(this.element.scrollLeft+(event.key==='ArrowRight'?1:-1)*this.step());
+  clearTimeout(this.wheelTimer);this.wheelTimer=setTimeout(()=>this.settle(),300);
  }
  reset(){this.animateTo(0)}
 }
@@ -109,3 +98,11 @@ const brands=Array.from({length:8},(_,i)=>({name:'Brand name'}));
 const brandCarousel=new ProductCarousel(document.getElementById('brandCarousel'),brands,document.getElementById('brandProgress'),BrandCard.render);
 brandCarousel.element.addEventListener('click',event=>{const link=event.target.closest('[data-brand]');if(link){event.preventDefault();notify('Brand page — demo only')}});
 ['viewAllBrands','mobileViewAllBrands'].forEach(id=>document.getElementById(id)?.addEventListener('click',event=>{event.preventDefault();brandCarousel.reset();notify('Showing all 8 placeholder brands')}));
+
+// Subtle section entrance animations, not applied to individual cards.
+if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+ const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}});
+ },{threshold:.12});
+ document.querySelectorAll('.section-header,.section-bottom').forEach(el=>{el.classList.add('scroll-reveal');observer.observe(el)});
+}
