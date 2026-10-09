@@ -85,3 +85,10 @@
  .mobile-view-all{display:flex;align-items:center;justify-content:center;gap:12px;margin:28px auto 0;width:100%;min-height:50px;background:var(--purple);color:#fff;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none}
  .mobile-view-all .material-symbols-outlined{font-size:20px}
 }
+
+/* Mobile: browser-native horizontal touch scrolling instead of translated track. */
+@media(max-width:760px){
+ .carousel-wrap{overflow:hidden}
+ .carousel{overflow-x:auto!important;overflow-y:hidden!important;transform:none!important;transition:none!important;scroll-snap-type:x mandatory!important;scroll-behavior:smooth;touch-action:pan-x pan-y;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;user-select:auto}
+ .carousel .card{scroll-snap-align:start;scroll-snap-stop:normal}
+}
