@@ -72,3 +72,16 @@
 @media(min-width:761px) and (max-width:1180px){.carousel .card{flex-basis:calc((100% - 36px)/3)}}
 @media(max-width:760px){.carousel .card{flex-basis:100%;max-width:none}}
 @media(prefers-reduced-motion:reduce){.carousel{transition:none}}
+
+/* Mobile carousel: one full product plus a visible peek of the next. */
+.mobile-view-all{display:none}
+@media(max-width:760px){
+ .section-header{margin-bottom:20px}
+ .desktop-view-all{display:none}
+ .carousel-wrap{overflow:hidden}
+ .carousel{gap:14px;padding:16px 0 22px}
+ .carousel .card{flex:0 0 68%;min-width:0;max-width:none}
+ .section-bottom{margin-top:8px}
+ .mobile-view-all{display:flex;align-items:center;justify-content:center;gap:12px;margin:28px auto 0;width:100%;min-height:50px;background:var(--purple);color:#fff;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none}
+ .mobile-view-all .material-symbols-outlined{font-size:20px}
+}
