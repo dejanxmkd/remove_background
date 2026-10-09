@@ -55,3 +55,8 @@
 @media(min-width:761px) and (max-width:1180px){.carousel .card{flex-basis:calc((100% - 36px)/3)}}
 @media(max-width:760px){.carousel .card{flex-basis:100%;max-width:none}}
 @media(prefers-reduced-motion:reduce){.carousel{scroll-behavior:auto}}
+
+/* Keep product slider aligned with page edges: no half-visible items at rest. */
+.carousel-wrap{overflow:hidden;clip-path:none}
+.carousel{scroll-snap-type:x mandatory;scroll-padding-left:0;scroll-padding-right:0}
+.carousel .card{scroll-snap-align:start}
