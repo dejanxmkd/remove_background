@@ -20,15 +20,15 @@ function render(){
  track.setAttribute('aria-valuenow',String(Math.round(proportion*100)));
 }
 function move(direction){const next=Math.max(0,Math.min(maxIndex(),index+direction));if(next!==index){index=next;render();return true}return false}
-window.addEventListener('resize',render);
+window.addEventListener('resize',()=>{if(!matchMedia('(max-width:760px)').matches)rail.scrollLeft=0;render();});
 let pointer=null;
 rail.addEventListener('pointerdown',e=>{
- if(e.target.closest('button'))return;
+ if(matchMedia('(max-width:760px)').matches||e.target.closest('button'))return;
  pointer={x:e.clientX,y:e.clientY};
  if(e.pointerType==='mouse')rail.setPointerCapture(e.pointerId);
 });
 rail.addEventListener('pointerup',e=>{
- if(!pointer)return;
+ if(matchMedia('(max-width:760px)').matches||!pointer)return;
  const dx=e.clientX-pointer.x,dy=e.clientY-pointer.y;
  pointer=null;
  if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy))move(dx<0?1:-1);
@@ -36,7 +36,7 @@ rail.addEventListener('pointerup',e=>{
 rail.addEventListener('pointercancel',()=>pointer=null);
 let lastWheel=0;
 rail.addEventListener('wheel',e=>{
- if(e.ctrlKey)return;
+ if(matchMedia('(max-width:760px)').matches||e.ctrlKey)return;
  const delta=Math.abs(e.deltaY)>=Math.abs(e.deltaX)?e.deltaY:e.deltaX;
  if(Math.abs(delta)<1)return;
  const dir=Math.sign(delta);
@@ -52,8 +52,19 @@ rail.addEventListener('keydown',e=>{
   e.preventDefault();move(e.key==='ArrowRight'?1:-1);
  }
 });
-document.fonts?.ready.then(render);render();
+function mobileProgress(){
+ if(!matchMedia('(max-width:760px)').matches)return;
+ const max=rail.scrollWidth-rail.clientWidth;
+ const portion=rail.clientWidth/rail.scrollWidth;
+ const fraction=max>0?Math.max(0,Math.min(1,rail.scrollLeft/max)):0;
+ progress.style.width=(portion*100)+'%';
+ progress.style.transform='translateX('+(track.clientWidth*(1-portion)*fraction)+'px)';
+ track.setAttribute('aria-valuenow',String(Math.round(fraction*100)));
+}
+rail.addEventListener('scroll',mobileProgress,{passive:true});
+window.addEventListener('resize',()=>requestAnimationFrame(mobileProgress));
+document.fonts?.ready.then(()=>{render();mobileProgress()});render();mobileProgress();
 let timeout;
 function notice(message){const el=document.getElementById('notice');el.textContent=message;el.classList.add('show');clearTimeout(timeout);timeout=setTimeout(()=>el.classList.remove('show'),2300)}
 rail.addEventListener('click',e=>{if(e.target.closest('.add'))notice('Product added — demo only')});
-['viewAll','mobileViewAll'].forEach(id=>document.getElementById(id)?.addEventListener('click',e=>{e.preventDefault();index=0;render();notice('Showing all 8 placeholder products')}));
+['viewAll','mobileViewAll'].forEach(id=>document.getElementById(id)?.addEventListener('click',e=>{e.preventDefault();index=0;render();if(matchMedia('(max-width:760px)').matches)rail.scrollTo({left:0,behavior:'smooth'});notice('Showing all 8 placeholder products')}));
