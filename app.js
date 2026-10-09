@@ -110,7 +110,7 @@ if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduc
 
 // Small category tiles reuse the shared carousel and progress component.
 class CategoryCard {
- static render(category){return `<article class="card category-card"><div class="category-visual"><span class="material-symbols-outlined" aria-hidden="true">${category.icon}</span></div><div class="category-footer"><span>${category.name}</span><span class="material-symbols-outlined" aria-hidden="true">chevron_right</span></div></article>`;}
+ static render(category){return `<article class="card category-card"><div class="category-visual" aria-hidden="true"></div><div class="category-footer"><span>${category.name}</span></div></article>`;}
 }
 const categories=[
  {name:'Candy',icon:'candy'},
