@@ -113,3 +113,22 @@ a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
 .categories-section .section-bottom{margin-top:14px}
 @media(min-width:761px) and (max-width:1180px){.categories-carousel .category-card{flex-basis:calc((100% - 2 * var(--gap))/3)}}
 @media(max-width:760px){.categories-section{padding:52px 0 72px;background:linear-gradient(to bottom,var(--purple) 0%,var(--purple) 49%,#fff 49%,#fff 100%)}.categories-inner{width:calc(100% - 36px)}#categories-title{font-size:clamp(37px,8vw,54px)}.categories-carousel .category-card{flex-basis:calc((100% - var(--gap))/1.5)}.category-visual{height:170px}.category-visual .material-symbols-outlined{font-size:68px}.category-footer{font-size:13px}}
+
+/* Categories: full portrait cards, same structure as the Brand cards. */
+.categories-section{position:relative;isolation:isolate}
+.categories-inner{position:relative;z-index:2}
+.categories-carousel .category-card{background:#fff;border:1px solid var(--line);border-radius:17px;overflow:hidden;flex:0 0 calc((100% - 4 * var(--gap))/5)}
+.category-visual{height:276px;border:0;border-radius:0;background:#f2eff9;display:block}
+.category-footer{min-height:58px;display:flex;align-items:center;justify-content:flex-start;padding:17px;color:var(--ink);background:#fff;font-size:15px;font-weight:700}
+@media(min-width:761px) and (max-width:1180px){.categories-carousel .category-card{flex-basis:calc((100% - 2 * var(--gap))/3)}}
+@media(max-width:760px){.categories-carousel .category-card{flex-basis:calc((100% - var(--gap))/1.5)}.category-visual{height:264px}.category-footer{font-size:14px}}
+/* Move bottom cyan circles to the bridging section so both circles are complete. */
+.brands-shapes .bl,.brands-shapes .br{display:none}
+.categories-section::before,.categories-section::after{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:var(--cyan);top:-115px;pointer-events:none;z-index:1}
+.categories-section::before{left:4%}
+.categories-section::after{right:-85px}
+@media(max-width:760px){
+ .categories-section::before,.categories-section::after{width:165px;height:165px;top:-82px}
+ .categories-section::before{left:4%}
+ .categories-section::after{right:-65px}
+}
