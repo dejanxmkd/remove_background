@@ -64,3 +64,38 @@ a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
 .brands-section .progress{background:rgba(255,255,255,.25)}
 .brands-section .progress span{background:#fff}
 @media(max-width:760px){.brands-section{padding:58px 0 64px}.brands-inner{width:calc(100% - 36px)}#brands-title{font-size:clamp(37px,8vw,54px)}.brand-picture{height:220px}.brands-mobile-view{background:#fff;color:var(--purple)}}
+
+/* Decorative geometric pattern sits behind the Brands content. */
+.brands-section{position:relative;isolation:isolate;overflow:hidden}
+.brands-inner{position:relative;z-index:1}
+.brands-shapes{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.brands-shapes .shape{position:absolute;display:block;border-radius:50%}
+.brands-shapes .cyan{background:#57D4E5}
+.brands-shapes .white{background:#fff}
+.brands-shapes .tl{width:220px;height:220px;top:-110px;left:-110px}
+.brands-shapes .tr{width:220px;height:220px;top:-95px;right:8%}
+.brands-shapes .ml{width:220px;height:220px;left:-120px;bottom:100px}
+.brands-shapes .mr{width:240px;height:240px;top:115px;right:-125px}
+.brands-shapes .bl{width:230px;height:230px;left:4%;bottom:-125px}
+.brands-shapes .br{width:220px;height:220px;right:-85px;bottom:-100px}
+.brands-shapes .purple-glow{width:min(36vw,520px);height:min(36vw,520px);right:12%;top:15%;background:rgba(255,255,255,.10)}
+/* Native scrolling with exact card bounds at the beginning and end. */
+.carousel-wrap{overflow:hidden}
+.carousel{scroll-padding:0;scroll-snap-type:x proximity;scroll-behavior:auto}
+.carousel .card{scroll-snap-align:start}
+@media(max-width:760px){
+ .brands-shapes .tl{width:150px;height:150px;top:-75px;left:-75px}
+ .brands-shapes .tr{width:150px;height:150px;top:-70px;right:5%}
+ .brands-shapes .ml{width:150px;height:150px;left:-95px;bottom:100px}
+ .brands-shapes .mr{width:160px;height:160px;top:115px;right:-100px}
+ .brands-shapes .bl{width:165px;height:165px;left:4%;bottom:-95px}
+ .brands-shapes .br{width:150px;height:150px;right:-75px;bottom:-75px}
+ .brands-shapes .purple-glow{width:280px;height:280px;right:-50px;top:24%}
+}
+@media(prefers-reduced-motion:reduce){.carousel{scroll-behavior:auto}}
+
+/* Scroll reveal for section furniture only; cards remain static. */
+@media(prefers-reduced-motion:no-preference){
+ .scroll-reveal{opacity:0;translate:0 14px;transition:opacity .65s ease,translate .65s cubic-bezier(.2,.8,.2,1)}
+ .scroll-reveal.is-visible{opacity:1;translate:0 0}
+}
