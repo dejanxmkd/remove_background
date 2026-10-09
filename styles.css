@@ -45,3 +45,13 @@
 .carousel{touch-action:pan-y;user-select:none;cursor:grab}
 .carousel:active{cursor:grabbing}
 .carousel .add{user-select:auto;cursor:pointer}
+
+/* Animated continuous carousel: complete cards snap into place, with smooth dragging. */
+.carousel-wrap{width:100%;overflow:hidden;clip-path:none}
+.carousel{display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain;scrollbar-width:none;touch-action:pan-x pan-y;cursor:grab;padding:20px 0 24px}
+.carousel::-webkit-scrollbar{display:none}
+.carousel.dragging{scroll-behavior:auto;scroll-snap-type:none;cursor:grabbing}
+.carousel .card{flex:0 0 calc((100% - 72px)/5);min-width:0;scroll-snap-align:start;scroll-snap-stop:always}
+@media(min-width:761px) and (max-width:1180px){.carousel .card{flex-basis:calc((100% - 36px)/3)}}
+@media(max-width:760px){.carousel .card{flex-basis:100%;max-width:none}}
+@media(prefers-reduced-motion:reduce){.carousel{scroll-behavior:auto}}
