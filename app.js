@@ -26,20 +26,31 @@ rail.addEventListener('pointermove',e=>{
 });
 function endDrag(){if(!drag)return;const moved=drag.moved;drag=null;rail.classList.remove('dragging');if(moved){const card=rail.querySelector('.card');const step=card.getBoundingClientRect().width+18;rail.scrollTo({left:Math.round(rail.scrollLeft/step)*step,behavior:'smooth'});}}
 rail.addEventListener('pointerup',endDrag);rail.addEventListener('pointercancel',endDrag);
+let lastWheelMove=0;
+function stepSize(){const card=rail.querySelector('.card');return card?card.getBoundingClientRect().width+18:rail.clientWidth}
+function scrollToCard(direction){
+ const step=stepSize(),max=rail.scrollWidth-rail.clientWidth;
+ const current=Math.round(rail.scrollLeft/step);
+ const target=Math.max(0,Math.min(max,(current+direction)*step));
+ rail.scrollTo({left:target,behavior:'smooth'});
+}
 rail.addEventListener('wheel',e=>{
  if(e.ctrlKey)return;
  const delta=Math.abs(e.deltaY)>=Math.abs(e.deltaX)?e.deltaY:e.deltaX;
  if(Math.abs(delta)<0.5)return;
  const max=rail.scrollWidth-rail.clientWidth;
+ const direction=Math.sign(delta);
  const atStart=rail.scrollLeft<=1;
  const atEnd=rail.scrollLeft>=max-1;
- if(max<=1||(delta<0&&atStart)||(delta>0&&atEnd))return;
+ if(max<=1||(direction<0&&atStart)||(direction>0&&atEnd))return;
  e.preventDefault();
- // Native wheel momentum keeps the movement fluid and updates the progress bar.
- const pixels=e.deltaMode===1?delta*22:e.deltaMode===2?delta*rail.clientWidth:delta;
- rail.scrollLeft+=pixels;
+ const now=performance.now();
+ if(now-lastWheelMove<430)return;
+ lastWheelMove=now;
+ scrollToCard(direction);
 },{passive:false});
 rail.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const card=rail.querySelector('.card');const step=card.getBoundingClientRect().width+18;rail.scrollBy({left:e.key==='ArrowRight'?step:-step,behavior:'smooth'})}});
+rail.scrollLeft=0;
 updateProgress();
 let timeout;
 function notice(message){const el=document.getElementById('notice');el.textContent=message;el.classList.add('show');clearTimeout(timeout);timeout=setTimeout(()=>el.classList.remove('show'),2300)}
