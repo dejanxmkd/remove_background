@@ -256,3 +256,12 @@ html,body{max-width:100%;overflow-x:clip}
  .featured-items .add{width:36px;height:36px}
  .featured-items .product-title{font-size:14px}
 }
+
+/* Spacious split featured sections and heading-aligned View All links. */
+.featured-links{column-gap:clamp(65px,7vw,130px);margin-bottom:clamp(135px,12vw,205px)}
+.featured-top{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:32px}
+.featured-top .featured-heading{margin-bottom:0;min-width:0}
+.featured-top .featured-action{display:inline-flex;align-items:center;gap:8px;flex-shrink:0;white-space:nowrap;align-self:flex-end;margin:0 0 3px;font-size:13px;font-weight:800}
+.featured-top .featured-action .material-symbols-outlined{font-size:18px}
+@media(max-width:1180px) and (min-width:761px){.featured-top{align-items:flex-start;flex-direction:column;gap:14px}.featured-top .featured-action{align-self:flex-start}}
+@media(max-width:760px){.featured-links{gap:72px;margin-bottom:105px}.featured-top{align-items:flex-start;flex-direction:column;gap:14px;margin-bottom:24px}.featured-top .featured-action{align-self:flex-start;margin:0;font-size:14px}}
