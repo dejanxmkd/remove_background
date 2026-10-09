@@ -4,15 +4,15 @@ const progress=document.getElementById('progress');
 const track=progress.parentElement;
 rail.innerHTML=products.map((p,i)=>'<article class="card"><div class="picture"></div><div class="card-info"><div class="item">Item '+p.item+'</div><h2 class="product-title">'+p.name+'</h2><div class="purchase"><div class="prices"><span class="old">$'+p.original+'</span><strong class="new-price">$'+p.price+'</strong></div><button type="button" class="add" aria-label="Add product to cart" data-index="'+i+'"><span class="material-symbols-outlined" aria-hidden="true">add</span></button></div></div></article>').join('');
 let index=0;
-const gap=18;
-function visibleCount(){return matchMedia('(max-width:760px)').matches?1:matchMedia('(max-width:1180px)').matches?3:5}
-function maxIndex(){return Math.max(0,products.length-visibleCount())}
-function step(){return rail.querySelector('.card').getBoundingClientRect().width+gap}
+function gap(){return parseFloat(getComputedStyle(rail).gap)||18;}
+function visibleCount(){return matchMedia('(max-width:760px)').matches?1.5:matchMedia('(max-width:1180px)').matches?3:5}
+function maxIndex(){return Math.max(0,Math.floor(products.length-visibleCount()))}
+function step(){return rail.querySelector('.card').getBoundingClientRect().width+gap()}
 function render(){
  index=Math.max(0,Math.min(index,maxIndex()));
  rail.style.transform='translate3d('+(-index*step())+'px,0,0)';
  const viewportCount=visibleCount();
- const share=viewportCount/products.length;
+ const share=Math.min(1,viewportCount/products.length);
  const proportion=maxIndex()?index/maxIndex():0;
  const travel=track.clientWidth*(1-share);
  progress.style.width=(share*100)+'%';
@@ -56,4 +56,4 @@ document.fonts?.ready.then(render);render();
 let timeout;
 function notice(message){const el=document.getElementById('notice');el.textContent=message;el.classList.add('show');clearTimeout(timeout);timeout=setTimeout(()=>el.classList.remove('show'),2300)}
 rail.addEventListener('click',e=>{if(e.target.closest('.add'))notice('Product added — demo only')});
-document.getElementById('viewAll').addEventListener('click',e=>{e.preventDefault();index=0;render();notice('Showing all 8 placeholder products')});
+['viewAll','mobileViewAll'].forEach(id=>document.getElementById(id)?.addEventListener('click',e=>{e.preventDefault();index=0;render();notice('Showing all 8 placeholder products')}));
