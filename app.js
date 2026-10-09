@@ -130,3 +130,5 @@ const categories=[
  {name:'Popcorn & Pretzels',icon:'fastfood'}
 ];
 const categoryCarousel=new ProductCarousel(document.getElementById('categoryCarousel'),categories,document.getElementById('categoryProgress'),CategoryCard.render);
+
+document.querySelectorAll('[data-feature]').forEach(link=>link.addEventListener('click',()=>notify(link.dataset.feature+' collection — preview only')));
