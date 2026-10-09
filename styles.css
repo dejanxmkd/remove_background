@@ -157,3 +157,20 @@ html,body{max-width:100%;overflow-x:clip}
  .footer-column ul{gap:16px}
  .footer-bottom{font-size:12px;line-height:1.6;padding:24px 0}
 }
+
+/* Footer refinements: compact two-column payments and subtle brand personality. */
+.site-footer{background:#faf9fd;border-top:1px solid #efebf6}
+.footer-columns{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,90px);padding-bottom:66px}
+.footer-column h2{display:flex;align-items:center;gap:12px;margin-bottom:27px;font-size:14px;letter-spacing:.025em}
+.footer-column h2::before{content:"";display:block;flex:none;width:5px;height:18px;background:var(--purple);border-radius:99px}
+.footer-column:first-child ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:22px;row-gap:18px}
+.footer-column li{color:#4a4653;line-height:1.45}
+.footer-bottom{border-top:1px solid #e7e2ef;color:#777281}
+@media(max-width:760px){
+ .site-footer{padding-top:54px}
+ .footer-columns{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 24px;padding-bottom:45px}
+ .footer-column:first-child{grid-column:1/-1;grid-row:auto}
+ .footer-column:first-child ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+ .footer-column h2{font-size:13px;margin-bottom:22px}
+ .footer-column li{font-size:13px}
+}
