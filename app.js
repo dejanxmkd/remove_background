@@ -34,7 +34,7 @@ class ProductCarousel {
   this.progress.style.transform=`translateX(${this.track.clientWidth*(1-visible)*ratio}px)`;
   this.track.setAttribute('aria-valuenow',String(Math.round(ratio*100)));
  }
- stopAnimation(){if(this.frame)cancelAnimationFrame(this.frame);this.frame=0;clearTimeout(this.settleTimer);this.element.style.scrollSnapType='';this.target=this.element.scrollLeft}
+ stopAnimation(){if(this.frame)cancelAnimationFrame(this.frame);this.frame=0;clearTimeout(this.settleTimer);this.element.style.scrollSnapType='none';this.target=this.element.scrollLeft}
  animate(){
   const diff=this.target-this.element.scrollLeft;
   if(Math.abs(diff)<.45){this.element.scrollLeft=this.target;this.frame=0;this.scheduleSnap();return}
@@ -47,25 +47,36 @@ class ProductCarousel {
   clearTimeout(this.settleTimer);
   if(!this.frame)this.frame=requestAnimationFrame(()=>this.animate());
  }
+ snapPoints(){
+  const max=this.max(),step=this.step(),points=[0];
+  for(let n=1;n*step<max-0.5;n++)points.push(n*step);
+  if(max>0)points.push(max);
+  return points;
+ }
+ nearestIndex(position){
+  const points=this.snapPoints();
+  return points.reduce((best,p,i)=>Math.abs(p-position)<Math.abs(points[best]-position)?i:best,0);
+ }
  scheduleSnap(){
   clearTimeout(this.settleTimer);
   this.settleTimer=setTimeout(()=>{
-   const step=this.step();
-   const snapped=Math.min(this.max(),Math.max(0,Math.round(this.element.scrollLeft/step)*step));
-   if(Math.abs(snapped-this.element.scrollLeft)>1){
-    this.animateTo(snapped);
-   }else{this.element.style.scrollSnapType='';}
+   const points=this.snapPoints();
+   const snapped=points[this.nearestIndex(this.element.scrollLeft)];
+   if(Math.abs(snapped-this.element.scrollLeft)>0.5)this.animateTo(snapped);
+   else this.element.style.scrollSnapType='';
   },110);
  }
  onWheel(event){
   if(event.ctrlKey||matchMedia('(max-width:760px)').matches)return;
   const delta=Math.abs(event.deltaY)>Math.abs(event.deltaX)?event.deltaY:event.deltaX;
   if(!delta)return;
-  const pixels=event.deltaMode===1?delta*18:event.deltaMode===2?delta*this.element.clientWidth:delta;
   const base=this.frame?this.target:this.element.scrollLeft;
-  if((pixels<0&&base<=0)||(pixels>0&&base>=this.max()))return;
+  const points=this.snapPoints();
+  const current=this.nearestIndex(base);
+  const next=Math.max(0,Math.min(points.length-1,current+Math.sign(delta)));
+  if(next===current)return;
   event.preventDefault();
-  this.animateTo(base+pixels*1.05);
+  this.animateTo(points[next]);
  }
  onPointerDown(event){
   if(event.pointerType!=='mouse'||event.target.closest('button'))return;
@@ -78,7 +89,7 @@ class ProductCarousel {
  endDrag(){if(!this.drag)return;this.drag=null;this.scheduleSnap()}
  onKeyDown(event){
   if(event.key!=='ArrowLeft'&&event.key!=='ArrowRight')return;
-  event.preventDefault();this.animateTo(this.element.scrollLeft+(event.key==='ArrowRight'?1:-1)*this.step());
+  event.preventDefault();const points=this.snapPoints();const current=this.nearestIndex(this.frame?this.target:this.element.scrollLeft);const next=Math.max(0,Math.min(points.length-1,current+(event.key==='ArrowRight'?1:-1)));this.animateTo(points[next]);
  }
  reset(){this.animateTo(0)}
 }
