@@ -931,3 +931,33 @@ html,body{max-width:100%;overflow-x:clip}
     -webkit-text-size-adjust:100%;
   }
 }
+
+/* Mobile store bottom-sheet: grab bar is a real swipe-to-dismiss handle. */
+@media(max-width:760px){
+  .mobile-user-sheet-grab{
+    position:relative;
+    width:88px;
+    height:30px;
+    margin:-6px auto 3px;
+    border-radius:12px;
+    background:transparent;
+    touch-action:none;
+    cursor:grab;
+    -webkit-user-select:none;
+    user-select:none;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .mobile-user-sheet-grab::after{
+    content:"";
+    position:absolute;
+    left:50%;top:12px;
+    width:38px;height:4px;
+    transform:translateX(-50%);
+    border-radius:999px;
+    background:#d9d9dc;
+  }
+  .mobile-user-sheet.is-dragging .mobile-user-sheet-dialog{
+    transition:none;
+  }
+  .mobile-user-sheet.is-dragging .mobile-user-sheet-grab{cursor:grabbing}
+}
