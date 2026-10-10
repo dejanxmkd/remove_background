@@ -405,24 +405,24 @@ if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduc
 
 // Small category tiles reuse the shared carousel and progress component.
 class CategoryCard {
- static render(category){return `<article class="card category-card"><div class="category-visual" aria-hidden="true"></div><div class="category-footer"><span>${category.name}</span></div></article>`;}
+ static render(category){return `<article class="card category-card"><div class="category-visual"><img class="category-image" src="${category.image}" alt="${category.name} products" loading="lazy" decoding="async" width="480" height="480"></div><div class="category-footer"><span>${category.name}</span></div></article>`;}
 }
 const categories=[
- {name:'Candy',icon:'candy'},
- {name:'Chips & Snacks',icon:'nutrition'},
- {name:'Chocolate',icon:'cookie'},
- {name:'Coffee',icon:'coffee'},
- {name:'European Products',icon:'shopping_bag'},
- {name:'Grocery',icon:'shopping_basket'},
- {name:'Variety Packs',icon:'inventory_2'},
- {name:'Olive Oil',icon:'water_drop'},
- {name:'Tools',icon:'handyman'},
- {name:'Health & Beauty',icon:'health_and_beauty'},
- {name:'Cleaning',icon:'cleaning_services'},
- {name:'Personal Care',icon:'spa'},
- {name:'Nutrition',icon:'fitness_center'},
- {name:'Tobacco Accessories',icon:'package_2'},
- {name:'Popcorn & Pretzels',icon:'fastfood'}
+ {name:'Candy',icon:'candy',image:'./assets/categories/01-candy.webp'},
+ {name:'Chips & Snacks',icon:'nutrition',image:'./assets/categories/02-chips-snacks.webp'},
+ {name:'Chocolate',icon:'cookie',image:'./assets/categories/03-chocolate.webp'},
+ {name:'Coffee',icon:'coffee',image:'./assets/categories/04-coffee.webp'},
+ {name:'European Products',icon:'shopping_bag',image:'./assets/categories/05-european-products.webp'},
+ {name:'Grocery',icon:'shopping_basket',image:'./assets/categories/06-grocery.webp'},
+ {name:'Variety Packs',icon:'inventory_2',image:'./assets/categories/07-variety-packs.webp'},
+ {name:'Olive Oil',icon:'water_drop',image:'./assets/categories/08-olive-oil.webp'},
+ {name:'Tools',icon:'handyman',image:'./assets/categories/09-tools.webp'},
+ {name:'Health & Beauty',icon:'health_and_beauty',image:'./assets/categories/10-health-beauty.webp'},
+ {name:'Cleaning',icon:'cleaning_services',image:'./assets/categories/11-cleaning.webp'},
+ {name:'Personal Care',icon:'spa',image:'./assets/categories/12-personal-care.webp'},
+ {name:'Nutrition',icon:'fitness_center',image:'./assets/categories/13-nutrition.webp'},
+ {name:'Tobacco Accessories',icon:'package_2',image:'./assets/categories/14-tobacco-accessories.webp'},
+ {name:'Popcorn & Pretzels',icon:'fastfood',image:'./assets/categories/15-popcorn-pretzels.webp'}
 ];
 const categoryCarousel=new ProductCarousel(document.getElementById('categoryCarousel'),categories,document.getElementById('categoryProgress'),CategoryCard.render);
 

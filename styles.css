@@ -1037,3 +1037,7 @@ html,body{max-width:100%;overflow-x:clip}
 
 /* Keep Request Price links above product-card decorative layers. */
 .request-price-link{position:relative;z-index:2;pointer-events:auto}
+
+/* Product category artwork: crisp branded 3D still lifes on clean white cards. */
+.categories-carousel .category-visual{background:#fff;overflow:hidden}
+.category-visual .category-image{display:block;width:100%;height:100%;object-fit:contain;object-position:center;background:#fff;padding:6px}
