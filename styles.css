@@ -516,8 +516,8 @@ html,body{max-width:100%;overflow-x:clip}
 .shopping-user-select select:focus-visible{outline:2px solid var(--cyan)}
 .quick-shop-button{
   display:inline-flex;align-items:center;justify-content:center;
-  min-height:41px;padding:0 19px;border:1.5px solid var(--ink);
-  border-radius:999px;color:var(--ink);background:#fff;
+  min-height:41px;padding:0 19px;border:1.5px solid var(--cyan);
+  border-radius:12px;color:var(--ink);background:var(--cyan);
   font-size:13px;font-weight:700;white-space:nowrap;
 }
 .quick-shop-button:hover{background:var(--cyan);border-color:var(--cyan)}
