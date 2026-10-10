@@ -1034,3 +1034,6 @@ html,body{max-width:100%;overflow-x:clip}
 .request-price-link .lucide-icon{width:16px;height:16px;flex:none;stroke-width:3.1}
 .request-price-link:hover{color:var(--ink)}
 .request-price-link:focus-visible{outline:2px solid var(--cyan);outline-offset:4px;border-radius:3px}
+
+/* Keep Request Price links above product-card decorative layers. */
+.request-price-link{position:relative;z-index:2;pointer-events:auto}
