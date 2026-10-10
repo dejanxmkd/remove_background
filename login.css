@@ -101,11 +101,6 @@ button{cursor:pointer}
   width:clamp(165px,19vw,270px);height:clamp(165px,19vw,270px);
   bottom:-99px;right:-118px;background:#fff
 }
-.brand-circle-soft{
-  width:min(38vw,530px);height:min(38vw,530px);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  background:rgba(255,255,255,.065)
-}
 .auth-brand-logo{
   position:relative;z-index:1;display:block;
   width:min(245px,54%);height:auto;
@@ -127,7 +122,6 @@ button{cursor:pointer}
   .brand-circle-middle-right{width:75px;height:75px;top:77px;right:-49px}
   .brand-circle-bottom-left{width:90px;height:90px;bottom:-56px;left:23%}
   .brand-circle-right{width:90px;height:90px;bottom:-55px;right:-50px}
-  .brand-circle-soft{width:182px;height:182px;top:50%;left:50%}
   .auth-left{flex:1;padding:0 24px}
   .back-home{margin-top:auto;margin-bottom:22px;font-size:12px}
   .auth-center{align-items:flex-start;padding:33px 0 25px}
