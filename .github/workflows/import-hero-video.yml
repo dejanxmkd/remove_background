@@ -1,0 +1,30 @@
+name: Import warehouse hero video
+on:
+  push:
+    paths:
+      - .github/workflows/import-hero-video.yml
+
+permissions:
+  contents: write
+
+jobs:
+  import-video:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download uploaded warehouse video
+        shell: bash
+        run: |
+          curl -fL --retry 3 --connect-timeout 15 --max-time 180 "https://cdn.openart.ai/openart-uploads/production/attachment-transfers/64cd25f58934a0b67981cc8d113391da7d02d429a97c44da0f31fe1527e3664c.mp4" -o hero-warehouse-motions.mp4
+          test "$(wc -c < hero-warehouse-motions.mp4)" -gt 1000000
+          file hero-warehouse-motions.mp4 | grep -q 'ISO Media'
+      - name: Commit video to site repository
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add hero-warehouse-motions.mp4
+          if ! git diff --cached --quiet; then
+            git commit -m "Add warehouse hero MP4 for GitHub Pages"
+            git push origin HEAD:main
+          fi
