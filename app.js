@@ -369,7 +369,7 @@ const carousel=new ProductCarousel(document.getElementById('productCarousel'),pr
 let noticeTimer;
 function notify(message){const el=document.getElementById('notice');el.textContent=message;el.classList.add('show');clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>el.classList.remove('show'),2300)}
 carousel.element.addEventListener('click',event=>{if(event.target.closest('.add'))notify('Product added — demo only')});
-['viewAll','mobileViewAll'].forEach(id=>document.getElementById(id)?.addEventListener('click',event=>{event.preventDefault();carousel.reset();notify('Showing all 8 placeholder products')}));
+
 
 
 // Brand cards share the carousel's scrolling, progress and responsive behavior.
@@ -416,7 +416,7 @@ const categories=[
 ];
 const categoryCarousel=new ProductCarousel(document.getElementById('categoryCarousel'),categories,document.getElementById('categoryProgress'),CategoryCard.render);
 
-document.querySelectorAll('[data-feature]').forEach(link=>link.addEventListener('click',()=>notify(link.dataset.feature+' collection — preview only')));
+
 
 /* Featured sections reuse the New Arrivals product carousel and card rendering. */
 const dealsHost=document.getElementById('dealsProducts');
