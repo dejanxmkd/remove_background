@@ -133,13 +133,15 @@ const categoryCarousel=new ProductCarousel(document.getElementById('categoryCaro
 
 document.querySelectorAll('[data-feature]').forEach(link=>link.addEventListener('click',()=>notify(link.dataset.feature+' collection — preview only')));
 
-/* Reuse the exact New Arrivals product-card renderer in both featured collections. */
+/* Featured sections reuse the New Arrivals product carousel and card rendering. */
 const dealsHost=document.getElementById('dealsProducts');
 const sellersHost=document.getElementById('bestSellerProducts');
 if(dealsHost&&sellersHost){
- dealsHost.innerHTML=products.slice(0,2).map((p,i)=>ProductCard.render(p,i)).join('');
- sellersHost.innerHTML=products.slice(2,4).map((p,i)=>ProductCard.render(p,i+2)).join('');
- [dealsHost,sellersHost].forEach(host=>host.addEventListener('click',event=>{
-  if(event.target.closest('.add'))notify('Product added — demo only');
- }));
+ const dealsCarousel=new ProductCarousel(dealsHost,products.slice(0,2),document.getElementById('dealsProgress'),(product,i)=>ProductCard.render(product,i));
+ const sellersCarousel=new ProductCarousel(sellersHost,products.slice(2,4),document.getElementById('bestSellerProgress'),(product,i)=>ProductCard.render(product,i+2));
+ [dealsCarousel,sellersCarousel].forEach(slider=>{
+  slider.element.addEventListener('click',event=>{
+   if(event.target.closest('.add'))notify('Product added — demo only');
+  });
+ });
 }
