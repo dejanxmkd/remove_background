@@ -111,20 +111,11 @@ button{cursor:pointer}
   .auth-brand-logo{width:min(220px,62%)}
 }
 @media(max-width:760px){
-  .auth-shell{display:flex;flex-direction:column;min-height:100svh}
-  .auth-right{
-    order:-1;flex:none;min-height:170px;height:170px;
-    margin:0;padding:0;border:0;border-radius:0
-  }
-  .auth-brand-logo{width:min(186px,52%);max-height:66px}
-  .brand-circle-left{width:120px;height:120px;top:-65px;left:-62px}
-  .brand-circle-top{width:92px;height:92px;top:-44px;right:-46px}
-  .brand-circle-middle-right{width:75px;height:75px;top:77px;right:-49px}
-  .brand-circle-bottom-left{width:90px;height:90px;bottom:-56px;left:23%}
-  .brand-circle-right{width:90px;height:90px;bottom:-55px;right:-50px}
-  .auth-left{flex:1;padding:0 24px}
-  .back-home{margin-top:auto;margin-bottom:22px;font-size:12px}
-  .auth-center{align-items:flex-start;padding:33px 0 25px}
+  /* Mobile auth shows only the tabs and active form. */
+  .auth-shell{display:block;min-height:100svh}
+  .auth-right,.back-home{display:none}
+  .auth-left{min-height:100svh;padding:0 24px}
+  .auth-center{align-items:flex-start;padding:clamp(64px,9vh,96px) 0 42px}
   .auth-box{max-width:440px}
   .auth-tabs{margin-bottom:27px}
   .auth-tab{min-height:44px}
