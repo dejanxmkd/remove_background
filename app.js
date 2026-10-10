@@ -347,7 +347,7 @@ class ProductCarousel {
   this.wheelTimer=setTimeout(()=>this.settle(),160);
  }
  onPointerDown(event){
-  if(event.pointerType!=='mouse'||event.target.closest('button'))return;
+  if(event.pointerType!=='mouse'||event.target.closest('a, button, input, select, textarea'))return;
   this.stop();this.drag={x:event.clientX,left:this.element.scrollLeft};
   this.element.style.scrollSnapType='none';this.element.setPointerCapture(event.pointerId);
  }
