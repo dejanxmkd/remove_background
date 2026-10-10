@@ -118,7 +118,7 @@ function setMobileUserSheetOpen(open,restoreFocus=true){
     renderMobileUserOptions();
     mobileUserOptions.querySelector('button')?.focus({preventScroll:true});
   }else if(restoreFocus&&mobileMenuPanel?.classList.contains('is-open')){
-    mobileUserTrigger.focus();
+    mobileUserTrigger.focus({preventScroll:true});
   }
 }
 shoppingUserSelect?.addEventListener('change',syncMobileUserLabel);
@@ -180,6 +180,7 @@ mobileUserSheetDialog?.addEventListener('touchcancel',()=>endStoreSheetDrag(true
 // Mouse / stylus support without competing with touch handlers.
 mobileUserSheetDialog?.addEventListener('pointerdown',event=>{
   if(event.pointerType==='touch'||event.button!==0)return;
+  if(!event.target.closest('.mobile-user-sheet-grab,.mobile-user-sheet-header'))return;
   beginStoreSheetDrag(event.clientY);
   mobileUserSheetDialog.setPointerCapture(event.pointerId);
 });
