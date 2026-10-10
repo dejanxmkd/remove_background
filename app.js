@@ -54,7 +54,7 @@ function syncShoppingNavLayout(){
   if(!quickShopLink||!shoppingNavDivider||!shoppingUserBlock)return;
   setMobileMenuOpen(false);
   if(mobileNavMedia.matches){
-    mobileMenuContent.append(quickShopLink,shoppingNavDivider,shoppingUserBlock);
+    mobileMenuContent.append(shoppingUserBlock,quickShopLink,shoppingNavDivider);
   }else{
     shoppingNavControls.append(quickShopLink,shoppingNavDivider,shoppingUserBlock);
   }
@@ -68,13 +68,92 @@ mobileMenuToggle?.addEventListener('click',()=>{
 });
 document.addEventListener('pointerdown',event=>{
   if(!mobileMenuPanel?.classList.contains('is-open'))return;
+  if(mobileUserSheet?.classList.contains('is-open'))return;
   if(mobileMenuPanel.contains(event.target)||mobileMenuToggle.contains(event.target))return;
   setMobileMenuOpen(false);
 });
 document.addEventListener('keydown',event=>{
-  if(event.key==='Escape'&&mobileMenuPanel?.classList.contains('is-open'))setMobileMenuOpen(false,true);
+  if(event.key==='Escape'&&!mobileUserSheet?.classList.contains('is-open')&&mobileMenuPanel?.classList.contains('is-open'))setMobileMenuOpen(false,true);
 });
 quickShopLink?.addEventListener('click',()=>setMobileMenuOpen(false));
+
+/* Bottom-sheet account chooser for mobile; desktop keeps the native select.
+   The same select remains the source of truth for cart totals per account. */
+const mobileUserTrigger=document.getElementById('mobileUserTrigger');
+const mobileUserName=document.getElementById('mobileUserName');
+const mobileUserSheet=document.getElementById('mobileUserSheet');
+const mobileUserSheetDialog=mobileUserSheet?.querySelector('.mobile-user-sheet-dialog');
+const mobileUserOptions=document.getElementById('mobileUserOptions');
+const mobileUserSheetClose=document.getElementById('mobileUserSheetClose');
+const mobileUserBackdrop=document.getElementById('mobileUserBackdrop');
+const userCheckSvg='<svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg>';
+
+function syncMobileUserLabel(){
+  if(!shoppingUserSelect||!mobileUserName||!mobileUserTrigger)return;
+  mobileUserName.textContent=shoppingUserSelect.selectedOptions[0]?.textContent||shoppingUserSelect.value;
+  mobileUserTrigger.setAttribute('aria-label','Switch shopping account: '+mobileUserName.textContent);
+}
+function renderMobileUserOptions(){
+  if(!shoppingUserSelect||!mobileUserOptions)return;
+  mobileUserOptions.replaceChildren();
+  for(const option of shoppingUserSelect.options){
+    const button=document.createElement('button');
+    button.type='button';
+    button.className='mobile-user-option';
+    button.dataset.user=option.value;
+    button.setAttribute('aria-pressed',String(option.value===shoppingUserSelect.value));
+    const name=document.createElement('span');
+    name.textContent=option.textContent;
+    button.append(name);
+    button.insertAdjacentHTML('beforeend',userCheckSvg);
+    mobileUserOptions.append(button);
+  }
+}
+function setMobileUserSheetOpen(open,restoreFocus=true){
+  if(!mobileUserSheet||!mobileNavMedia.matches)return;
+  mobileUserSheet.classList.toggle('is-open',open);
+  mobileUserSheet.inert=!open;
+  mobileUserSheet.setAttribute('aria-hidden',String(!open));
+  document.body.classList.toggle('mobile-user-sheet-active',open);
+  if(open){
+    renderMobileUserOptions();
+    mobileUserSheetClose.focus();
+  }else if(restoreFocus&&mobileMenuPanel?.classList.contains('is-open')){
+    mobileUserTrigger.focus();
+  }
+}
+shoppingUserSelect?.addEventListener('change',syncMobileUserLabel);
+syncMobileUserLabel();
+mobileUserTrigger?.addEventListener('click',()=>setMobileUserSheetOpen(true));
+mobileUserOptions?.addEventListener('click',event=>{
+  const button=event.target.closest('.mobile-user-option');
+  if(!button||!shoppingUserSelect)return;
+  shoppingUserSelect.value=button.dataset.user;
+  shoppingUserSelect.dispatchEvent(new Event('change',{bubbles:true}));
+  setMobileUserSheetOpen(false);
+});
+mobileUserSheetClose?.addEventListener('click',()=>setMobileUserSheetOpen(false));
+mobileUserBackdrop?.addEventListener('click',()=>setMobileUserSheetOpen(false));
+document.addEventListener('keydown',event=>{
+  if(!mobileUserSheet?.classList.contains('is-open'))return;
+  if(event.key==='Escape'){
+    event.preventDefault();event.stopPropagation();
+    setMobileUserSheetOpen(false);
+  }else if(event.key==='Tab'){
+    const buttons=[mobileUserSheetClose,...mobileUserOptions.querySelectorAll('button')];
+    const first=buttons[0],last=buttons[buttons.length-1];
+    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
+    else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+  }
+},true);
+mobileNavMedia.addEventListener('change',()=>{
+  if(!mobileNavMedia.matches&&mobileUserSheet?.classList.contains('is-open')){
+    mobileUserSheet.classList.remove('is-open');
+    mobileUserSheet.inert=true;
+    mobileUserSheet.setAttribute('aria-hidden','true');
+    document.body.classList.remove('mobile-user-sheet-active');
+  }
+});
 
 /* Sticky-header search: icon turns into a close button and the search bar
    closes on an outside click or Escape. Clear X appears only while typing. */
