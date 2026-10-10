@@ -394,8 +394,8 @@ html,body{max-width:100%;overflow-x:clip}
   .hero-video-content h1{
     max-width:100%;
     margin:0;
-    font-size:clamp(32px,10.5vw,56px);
-    letter-spacing:-.035em;
+    font-size:clamp(36px,11.5vw,62px);
+    letter-spacing:-.055em;
     line-height:1.04;
     text-align:center;
   }
