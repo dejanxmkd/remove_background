@@ -1,45 +1,139 @@
-/* Minimal True Distributors sign-in */
-:root{--purple:#6633CC;--cyan:#57D4E5;--ink:#08070b;--font:'Montserrat',Arial,sans-serif}
+/* TRUE DISTRIBUTORS | Centered login card on the familiar circle hero. */
+:root{
+  --purple:#6633CC;--cyan:#57D4E5;--ink:#08070b;
+  --font:'Montserrat',Arial,sans-serif;
+}
 *{box-sizing:border-box}
 html{font-family:var(--font);-webkit-text-size-adjust:100%}
-body{display:flex;flex-direction:column;min-height:100svh;margin:0;background:#fff;color:var(--ink);-webkit-font-smoothing:antialiased}
+body{
+  display:flex;flex-direction:column;min-height:100vh;min-height:100svh;
+  margin:0;background:var(--purple);color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
 a{color:inherit;text-decoration:none}
 button,input{font:inherit}
 button{cursor:pointer}
-.site-header{flex:none;border-bottom:1px solid rgba(8,7,11,.10);background:#fff}
-.site-nav{display:flex;align-items:center;justify-content:space-between;width:min(1440px,calc(100% - 96px));min-height:78px;margin:0 auto;gap:20px}
-.site-logo{display:inline-flex;align-items:center}
+
+/* Same simple white header as the main site. */
+.site-header{position:relative;z-index:10;flex:none;background:#fff}
+.site-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  width:min(1440px,calc(100% - 96px));min-height:78px;
+  margin:0 auto;gap:20px;
+}
+.site-logo{display:inline-flex;align-items:center;flex:none}
 .site-logo img{display:block;width:160px;height:auto}
-.lucide-icon{display:block;width:22px;height:22px;flex:none}
-.back-button{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;color:var(--ink);transition:background .18s ease}
-.back-button:hover{background:#f4f2f8}
-.login-main{display:grid;place-items:center;flex:1;padding:64px 24px 96px}
-.login-container{width:100%;max-width:420px}
-.login-container h1{margin:0 0 39px;font-size:clamp(34px,3vw,42px);line-height:1.1;font-weight:900;letter-spacing:-.045em}
+.lucide-icon{display:block;width:20px;height:20px;flex:none}
+.back-button{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:43px;padding:0 17px;border-radius:12px;
+  background:var(--cyan);color:var(--ink);
+  font-size:12px;font-weight:800;white-space:nowrap;
+  transition:background .2s ease;
+}
+.back-button:hover{background:#43c6d9}
+.back-button .lucide-icon{width:17px;height:17px}
+
+/* Full-screen purple brand area, with the same solid cyan + white circles. */
+.login-main{
+  position:relative;isolation:isolate;overflow:hidden;
+  display:grid;place-items:center;flex:1;
+  width:100%;min-height:calc(100svh - 78px);
+  padding:62px 22px;
+  background:var(--purple);
+}
+.login-main::before,.login-main::after,.login-background-circle{
+  content:"";position:absolute;display:block;border-radius:50%;
+  pointer-events:none;z-index:-1;
+}
+.login-main::before{
+  width:clamp(180px,19vw,250px);height:clamp(180px,19vw,250px);
+  top:-105px;right:9%;background:var(--cyan);opacity:1;
+}
+.login-main::after{
+  width:clamp(180px,20vw,260px);height:clamp(180px,20vw,260px);
+  right:-120px;bottom:80px;background:#fff;opacity:1;
+}
+.login-background-circle{
+  width:min(36vw,520px);height:min(36vw,520px);
+  top:8%;left:-11%;background:rgba(255,255,255,.10);
+}
+
+/* Only the original login form inside one centered card. */
+.login-container{
+  position:relative;z-index:1;width:100%;max-width:464px;
+  padding:47px 45px 46px;
+  border-radius:22px;background:#fff;
+  box-shadow:0 22px 70px rgba(25,9,69,.20);
+}
+.login-container h1{
+  margin:0 0 33px;font-size:clamp(32px,3vw,40px);
+  line-height:1.1;font-weight:900;letter-spacing:-.045em;
+}
 .login-form{display:flex;flex-direction:column;gap:22px}
 .field{display:flex;flex-direction:column;gap:10px}
 .field label{font-size:13px;font-weight:700}
-.field input{display:block;width:100%;min-width:0;height:54px;padding:0 16px;border:1px solid #e0dee5;border-radius:12px;background:#fff;color:var(--ink);font-size:16px;font-weight:500;outline:none;transition:border-color .18s ease,box-shadow .18s ease}
+.field input{
+  display:block;width:100%;min-width:0;height:54px;padding:0 16px;
+  border:1px solid #e0dee5;border-radius:12px;
+  background:#fff;color:var(--ink);font-size:16px;font-weight:500;
+  outline:none;transition:border-color .18s ease,box-shadow .18s ease;
+}
 .field input::placeholder{color:#9a97a1}
-.field input:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(102,51,204,.09)}
+.field input:focus{
+  border-color:var(--purple);box-shadow:0 0 0 3px rgba(102,51,204,.09);
+}
 .password-field{position:relative}
 .password-field input{padding-right:60px}
-.password-toggle{position:absolute;top:50%;right:7px;transform:translateY(-50%);display:grid;place-items:center;width:43px;height:42px;border:0;border-radius:9px;background:transparent;color:#777481}
+.password-toggle{
+  position:absolute;top:50%;right:7px;transform:translateY(-50%);
+  display:grid;place-items:center;width:43px;height:42px;
+  border:0;border-radius:9px;background:transparent;color:#777481;
+}
 .password-toggle:hover{color:var(--ink)}
-.password-toggle[aria-pressed="false"] .icon-eye-off,.password-toggle[aria-pressed="true"] .icon-eye{display:none}
-.login-submit{display:grid;place-items:center;width:100%;min-height:54px;margin-top:5px;padding:12px 20px;border:0;border-radius:12px;background:var(--cyan);color:var(--ink);font-size:15px;font-weight:800;transition:filter .18s ease}
-.login-submit:hover{filter:brightness(.96)}
-.login-status{margin:0;padding:13px 15px;border:1px solid #ded4f5;border-radius:12px;background:#f9f7ff;color:#492480;font-size:12px;font-weight:600;line-height:1.6}
+.password-toggle[aria-pressed="false"] .icon-eye-off,
+.password-toggle[aria-pressed="true"] .icon-eye{display:none}
+.login-submit{
+  display:grid;place-items:center;width:100%;min-height:54px;
+  margin-top:5px;padding:12px 20px;border:0;border-radius:12px;
+  background:var(--cyan);color:var(--ink);font-size:15px;font-weight:800;
+  transition:background .18s ease;
+}
+.login-submit:hover{background:#43c6d9}
+.login-status{
+  margin:0;padding:13px 15px;border:1px solid #ded4f5;
+  border-radius:12px;background:#f9f7ff;color:#492480;
+  font-size:12px;font-weight:600;line-height:1.6;
+}
 .login-status[hidden]{display:none}
-.site-logo:focus-visible,.back-button:focus-visible,.password-toggle:focus-visible,.login-submit:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+.site-logo:focus-visible,.back-button:focus-visible,
+.password-toggle:focus-visible,.login-submit:focus-visible{
+  outline:2px solid var(--cyan);outline-offset:4px;
+}
 @media(max-width:760px){
-  .site-nav{width:calc(100% - 36px);min-height:66px}
+  .site-nav{width:calc(100% - 36px);min-height:66px;gap:12px}
   .site-logo img{width:128px}
-  .back-button{width:40px;height:40px}
-  .login-main{display:flex;align-items:flex-start;justify-content:center;padding:80px 22px 64px}
-  .login-container{max-width:440px}
-  .login-container h1{font-size:34px;margin-bottom:34px}
+  .back-button{min-height:39px;padding:0 11px;gap:7px;font-size:11px}
+  .back-button .lucide-icon{width:16px;height:16px}
+  .login-main{min-height:calc(100svh - 66px);padding:40px 18px}
+  .login-main::before{width:150px;height:150px;top:-75px;right:-50px}
+  .login-main::after{width:165px;height:165px;right:-105px;bottom:55px}
+  .login-background-circle{
+    width:220px;height:220px;left:-105px;top:34%;
+  }
+  .login-container{
+    max-width:440px;padding:35px 27px 34px;border-radius:18px;
+    box-shadow:0 16px 54px rgba(25,9,69,.20);
+  }
+  .login-container h1{font-size:34px;margin-bottom:30px}
   .login-form{gap:20px}
 }
-@media(max-width:380px){.login-main{padding-top:62px}}
-@media(prefers-reduced-motion:reduce){.back-button,.field input,.login-submit{transition:none}}
+@media(max-width:360px){
+  .site-logo img{width:113px}
+  .back-button{padding:0 9px;font-size:10px;gap:5px}
+  .login-main{padding:28px 14px}
+  .login-container{padding:30px 21px}
+}
+@media(prefers-reduced-motion:reduce){
+  .back-button,.field input,.login-submit{transition:none}
+}
