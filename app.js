@@ -414,7 +414,7 @@ const categories=[
  {name:'Coffee',icon:'coffee',image:'./assets/categories/04-coffee.webp'},
  {name:'European Products',icon:'shopping_bag',image:'./assets/categories/05-european-products.webp'},
  {name:'Grocery',icon:'shopping_basket',image:'./assets/categories/06-grocery.webp'},
- {name:'Variety Packs',icon:'inventory_2',image:'./assets/categories/07-variety-packs.webp'},
+ {name:'Variety Packs',icon:'inventory_2',image:'./assets/categories/07-variety-packs-purple.webp'},
  {name:'Olive Oil',icon:'water_drop',image:'./assets/categories/08-olive-oil.webp'},
  {name:'Tools',icon:'handyman',image:'./assets/categories/09-tools.webp'},
  {name:'Health & Beauty',icon:'health_and_beauty',image:'./assets/categories/10-health-beauty.webp'},
