@@ -1023,22 +1023,27 @@ html,body{max-width:100%;overflow-x:clip}
 }
 
 
-/* Request pricing: replaces placeholder product prices in every carousel. */
-.purchase{align-items:center}
+/* Product pricing CTA uses the original price typography, black + Lucide chevron. */
+.purchase{align-items:center;gap:6px}
 .request-price-link{
   display:inline-flex;align-items:center;justify-content:flex-start;
-  gap:7px;min-width:0;max-width:calc(100% - 48px);
-  padding:7px 0 6px;
-  border-bottom:1.5px solid rgba(102,51,204,.5);
-  color:var(--purple);font-size:12px;font-weight:800;
-  line-height:1.25;letter-spacing:-.01em;white-space:nowrap;
-  transition:border-color .17s ease,color .17s ease;
+  gap:3px;min-width:0;max-width:calc(100% - 46px);
+  padding:3px 0;
+  border:0;
+  color:var(--ink);font-size:20px;font-weight:800;
+  line-height:1.2;letter-spacing:-.035em;white-space:nowrap;
 }
-.request-price-link .lucide-icon{width:16px;height:16px;flex:none}
-.request-price-link:hover{border-color:currentColor;color:#4b21a6}
+.request-price-link .lucide-icon{width:18px;height:18px;flex:none;stroke-width:2.4}
+.request-price-link:hover{color:var(--ink)}
 .request-price-link:focus-visible{outline:2px solid var(--cyan);outline-offset:4px;border-radius:3px}
+@media(max-width:1180px){
+  .request-price-link{font-size:clamp(15px,1.55vw,20px)}
+  .request-price-link .lucide-icon{width:16px;height:16px}
+}
 @media(max-width:760px){
-  .request-price-link{font-size:12px;gap:5px}
+  .request-price-link{font-size:clamp(15px,4.25vw,18px);gap:2px}
   .request-price-link .lucide-icon{width:15px;height:15px}
 }
-@media(prefers-reduced-motion:reduce){.request-price-link{transition:none}}
+@media(max-width:360px){
+  .request-price-link{font-size:15px}
+}
