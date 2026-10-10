@@ -4,6 +4,32 @@ if(heroVideo){
  heroVideo.playbackRate=0.8;
 }
 
+/* Header shopping context and cart indicator. Counts are per selected demo user. */
+const shoppingUserSelect=document.getElementById('shoppingUser');
+const shoppingCartButton=document.getElementById('shoppingCart');
+const shoppingCartCount=document.getElementById('cartCount');
+const shoppingCartTotals=Object.create(null);
+
+function updateShoppingCartBadge(){
+  if(!shoppingUserSelect||!shoppingCartButton||!shoppingCartCount)return;
+  const count=shoppingCartTotals[shoppingUserSelect.value]||0;
+  shoppingCartCount.textContent=String(count);
+  shoppingCartCount.hidden=count===0;
+  shoppingCartButton.setAttribute('aria-label',`Shopping cart, ${count} ${count===1?'item':'items'} for ${shoppingUserSelect.value}`);
+}
+shoppingUserSelect?.addEventListener('change',updateShoppingCartBadge);
+document.addEventListener('click',event=>{
+  if(!event.target.closest('.card .add')||!shoppingUserSelect)return;
+  const user=shoppingUserSelect.value;
+  shoppingCartTotals[user]=(shoppingCartTotals[user]||0)+1;
+  updateShoppingCartBadge();
+});
+shoppingCartButton?.addEventListener('click',()=>{
+  const count=shoppingCartTotals[shoppingUserSelect.value]||0;
+  notify(`${shoppingUserSelect.value}: ${count} ${count===1?'item':'items'} in cart`);
+});
+updateShoppingCartBadge();
+
 const products=Array.from({length:8},(_,i)=>({item:'#'+(48720+i),name:'Product name',original:(19.99+i*2).toFixed(2),price:(14.99+i*2).toFixed(2)}));
 
 class ProductCard {
