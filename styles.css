@@ -415,3 +415,6 @@ html,body{max-width:100%;overflow-x:clip}
   .brands-section{isolation:auto}
   .brands-inner{z-index:3}
 }
+
+/* Match ordinary footer item text to the 15px Product name label on all screens. */
+.footer-column li{font-size:15px}
