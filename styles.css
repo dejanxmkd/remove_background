@@ -425,3 +425,39 @@ html,body{max-width:100%;overflow-x:clip}
 
 /* Spacing beneath the hero headline after removing the subtitle. */
 .hero-video-content .hero-cta{margin-top:32px}
+
+/* Warehouse HERO video: muted black-and-purple cinematic treatment. */
+.hero-video{position:relative;background:var(--purple);isolation:isolate}
+.hero-video-media{
+  position:absolute;
+  inset:-3%;
+  width:106%;
+  height:106%;
+  object-fit:cover;
+  z-index:0;
+  filter:grayscale(.88) saturate(.8) brightness(.62) contrast(1.12) blur(2.4px);
+  transform:scale(1.025);
+}
+.hero-video-overlay{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:
+    linear-gradient(115deg,rgba(0,0,0,.40),rgba(34,12,76,.44) 42%,rgba(102,51,204,.59)),
+    rgba(102,51,204,.12);
+}
+.hero-video::before,.hero-video::after{z-index:2;opacity:.65}
+.hero-video-content{z-index:3}
+.hero-video-content::after{z-index:-1}
+@media(max-width:760px){
+  .hero-video-media{
+    filter:grayscale(.92) saturate(.8) brightness(.57) contrast(1.12) blur(2.6px);
+  }
+  .hero-video-overlay{
+    background:linear-gradient(180deg,rgba(0,0,0,.30),rgba(38,11,87,.47) 54%,rgba(102,51,204,.62));
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-video-media{display:none}
+}
