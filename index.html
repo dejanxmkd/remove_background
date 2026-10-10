@@ -6,6 +6,15 @@
       <img src="./td_logo.svg" alt="True Distributors" width="128" height="27">
     </a>
     <div class="shopping-nav-controls">
+      <button class="header-search-toggle" id="headerSearchToggle" type="button" aria-label="Open search" aria-expanded="false" aria-controls="headerSearchPanel">
+        <span class="material-symbols-outlined" id="headerSearchToggleIcon" aria-hidden="true">search</span>
+      </button>
+      <button class="shopping-cart-button" id="shoppingCart" type="button" aria-label="Shopping cart, 0 items">
+        <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
+        <span class="shopping-cart-count" id="cartCount" aria-live="polite" hidden>0</span>
+      </button>
+      <a class="quick-shop-button" href="#new-title">Quick Shop</a>
+      <span class="shopping-nav-separator" aria-hidden="true"></span>
       <div class="shopping-user">
         <div class="shopping-user-details">
           <label for="shoppingUser" class="shopping-user-label">Shopping for</label>
@@ -18,24 +27,17 @@
           </div>
         </div>
       </div>
-      <span class="shopping-nav-separator" aria-hidden="true"></span>
-      <a class="quick-shop-button" href="#new-title">Quick Shop</a>
-      <button class="shopping-cart-button" id="shoppingCart" type="button" aria-label="Shopping cart, 0 items">
-        <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
-        <span class="shopping-cart-count" id="cartCount" aria-live="polite" hidden>0</span>
-      </button>
-      <button class="header-search-toggle" id="headerSearchToggle" type="button" aria-label="Open search" aria-expanded="false" aria-controls="headerSearchPanel">
-        <span class="material-symbols-outlined" id="headerSearchToggleIcon" aria-hidden="true">search</span>
-      </button>
     </div>
   </nav>
-  <div class="header-search-panel" id="headerSearchPanel" role="search" hidden>
-    <div class="header-search-inner">
-      <span class="material-symbols-outlined" aria-hidden="true">search</span>
-      <input id="headerSearchInput" type="search" aria-label="Search products" placeholder="Search products..." autocomplete="off" enterkeyhint="search">
-      <button class="header-search-clear" id="headerSearchClear" type="button" aria-label="Clear search" hidden>
-        <span class="material-symbols-outlined" aria-hidden="true">close</span>
-      </button>
+  <div class="header-search-panel" id="headerSearchPanel" role="search" aria-hidden="true" inert>
+    <div class="header-search-reveal">
+      <div class="header-search-inner">
+        <span class="material-symbols-outlined" aria-hidden="true">search</span>
+        <input id="headerSearchInput" type="search" aria-label="Search products" placeholder="Search products..." autocomplete="off" enterkeyhint="search">
+        <button class="header-search-clear" id="headerSearchClear" type="button" aria-label="Clear search" hidden>
+          <span class="material-symbols-outlined" aria-hidden="true">close</span>
+        </button>
+      </div>
     </div>
   </div>
 </header><section class="hero-video" aria-label="True Distributors hero">
