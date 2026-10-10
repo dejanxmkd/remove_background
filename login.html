@@ -5,80 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#6633CC">
   <title>Sign In — True Distributors</title>
-  <meta name="description" content="Sign in to your True Distributors account to access wholesale product pricing.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./login.css">
+  <link rel="stylesheet" href="./login.css?v=minimal-login-2">
 </head>
-<body class="login-body">
-  <header class="login-header">
-    <div class="login-header-inner">
-      <a class="login-brand" href="./index.html" aria-label="True Distributors — home">
-        <img src="./td_logo.svg" alt="True Distributors" width="160" height="34">
+<body>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="site-logo" href="./index.html" aria-label="True Distributors home">
+        <img src="./td_logo.svg" width="160" height="34" alt="True Distributors">
       </a>
-      <a class="login-back-link" href="./index.html#new-title">
-        <svg class="login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
-        Back to products
+      <a class="back-button" href="./index.html#new-title" aria-label="Back to products">
+        <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
       </a>
-    </div>
+    </nav>
   </header>
-  <main class="login-layout">
-    <section class="login-promo" aria-label="True Distributors wholesale">
-      <span class="login-orbit login-orbit-cyan" aria-hidden="true"></span>
-      <span class="login-orbit login-orbit-white" aria-hidden="true"></span>
-      <div class="login-promo-content">
-        <span class="login-brand-pill">TRUE DISTRIBUTORS</span>
-        <h1>WHOLESALE.<br>SIMPLIFIED.</h1>
-        <p>Discover more products. Access pricing built for your business.</p>
-      </div>
-      <div class="login-promo-note">YOUR PARTNER IN EVERY ORDER <span aria-hidden="true">↗</span></div>
-    </section>
-    <section class="login-content" aria-labelledby="login-title">
-      <div class="login-form-container">
-        <span class="login-kicker">WELCOME BACK</span>
-        <h2 id="login-title">Sign in to your account.</h2>
-        <p class="login-description">Sign in to request prices and continue shopping with True Distributors.</p>
-        <form id="loginForm" class="login-form">
-          <div class="login-field">
-            <label for="loginEmail">Email address</label>
-            <input id="loginEmail" name="email" type="email" autocomplete="username" placeholder="name@company.com" inputmode="email" required>
+  <main class="login-main">
+    <section class="login-container" aria-labelledby="login-title">
+      <h1 id="login-title">Sign In</h1>
+      <form class="login-form" id="loginForm">
+        <div class="field">
+          <label for="loginEmail">Email</label>
+          <input id="loginEmail" name="email" type="email" inputmode="email" autocomplete="username" placeholder="Email address" required>
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <div class="password-field">
+            <input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Password" required>
+            <button type="button" class="password-toggle" id="loginPasswordToggle" aria-label="Show password" aria-pressed="false">
+              <svg class="lucide-icon icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.06 12.34a1 1 0 0 1 0-.68 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .68 10.75 10.75 0 0 1-19.88 0Z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="lucide-icon icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 3 18 18"/><path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.88 5.09A10.7 10.7 0 0 1 12 4.88a10.75 10.75 0 0 1 9.94 6.78 1 1 0 0 1 0 .68 10.84 10.84 0 0 1-4.1 4.74"/><path d="M6.13 6.13a10.83 10.83 0 0 0-4.07 5.53 1 1 0 0 0 0 .68A10.75 10.75 0 0 0 12 19.12c1.02 0 2.01-.14 2.94-.4"/></svg>
+            </button>
           </div>
-          <div class="login-field">
-            <label for="loginPassword">Password</label>
-            <div class="login-password-field">
-              <input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
-              <button id="loginPasswordToggle" class="login-show-password" type="button" aria-label="Show password" aria-pressed="false">
-                <svg class="login-icon login-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.06 12.34a1 1 0 0 1 0-.68 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .68 10.75 10.75 0 0 1-19.88 0Z"/><circle cx="12" cy="12" r="3"/></svg>
-                <svg class="login-icon login-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 3 18 18"/><path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.88 5.09A10.7 10.7 0 0 1 12 4.88a10.75 10.75 0 0 1 9.94 6.78 1 1 0 0 1 0 .68 10.84 10.84 0 0 1-4.1 4.74"/><path d="M6.13 6.13a10.83 10.83 0 0 0-4.07 5.53 1 1 0 0 0 0 .68A10.75 10.75 0 0 0 12 19.12c1.02 0 2.01-.14 2.94-.4"/></svg>
-              </button>
-            </div>
-          </div>
-          <button type="submit" class="login-submit">
-            Sign In
-            <svg class="login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </button>
-          <p class="login-status" id="loginStatus" role="status" aria-live="polite" hidden></p>
-          <p class="login-demo-note">Preview only — account sign-in is not connected yet.</p>
-        </form>
-      </div>
+        </div>
+        <button class="login-submit" type="submit">Sign In</button>
+        <p class="login-status" id="loginStatus" role="status" aria-live="polite" hidden></p>
+      </form>
     </section>
   </main>
   <script>
-    const loginForm=document.getElementById('loginForm');
-    const loginStatus=document.getElementById('loginStatus');
-    const loginPassword=document.getElementById('loginPassword');
-    const loginPasswordToggle=document.getElementById('loginPasswordToggle');
-    loginPasswordToggle.addEventListener('click',()=>{
-      const show=loginPassword.type==='password';
-      loginPassword.type=show?'text':'password';
-      loginPasswordToggle.setAttribute('aria-pressed',String(show));
-      loginPasswordToggle.setAttribute('aria-label',show?'Hide password':'Show password');
+    const form=document.getElementById('loginForm');
+    const input=document.getElementById('loginPassword');
+    const toggle=document.getElementById('loginPasswordToggle');
+    const status=document.getElementById('loginStatus');
+    toggle.addEventListener('click',()=>{
+      const visible=input.type==='password';
+      input.type=visible?'text':'password';
+      toggle.setAttribute('aria-pressed',String(visible));
+      toggle.setAttribute('aria-label',visible?'Hide password':'Show password');
     });
-    loginForm.addEventListener('submit',event=>{
+    form.addEventListener('submit',event=>{
       event.preventDefault();
-      loginStatus.textContent='Sign-in is not connected in this preview. No credentials were sent.';
-      loginStatus.hidden=false;
+      status.textContent='Sign-in is not connected in this preview. No credentials were sent.';
+      status.hidden=false;
     });
   </script>
 </body>
