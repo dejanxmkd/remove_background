@@ -113,7 +113,8 @@ button{cursor:pointer}
 @media(max-width:760px){
   /* Mobile auth shows only the tabs and active form. */
   .auth-shell{display:block;min-height:100svh}
-  .auth-right,.back-home{display:none}
+  .auth-right{display:none}
+  .back-home{margin-bottom:22px;font-size:12px}
   .auth-left{min-height:100svh;padding:0 24px}
   .auth-center{align-items:flex-start;padding:clamp(64px,9vh,96px) 0 42px}
   .auth-box{max-width:440px}
