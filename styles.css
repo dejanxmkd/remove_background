@@ -408,3 +408,10 @@ html,body{max-width:100%;overflow-x:clip}
   }
   .hero-cta{justify-content:center;margin:0 auto}
 }
+
+/* Mobile: keep the BRANDS slider progress above the cyan circles at the
+   BRANDS / PRODUCTS WE OFFER boundary, without moving the circles. */
+@media(max-width:760px){
+  .brands-section{isolation:auto}
+  .brands-inner{z-index:3}
+}
