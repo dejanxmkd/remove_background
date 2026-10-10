@@ -134,6 +134,41 @@ mobileUserOptions?.addEventListener('click',event=>{
 });
 mobileUserSheetClose?.addEventListener('click',()=>setMobileUserSheetOpen(false));
 mobileUserBackdrop?.addEventListener('click',()=>setMobileUserSheetOpen(false));
+
+/* Drag the visible grab line down to dismiss; short gestures spring back. */
+const mobileUserDragHandle=mobileUserSheet?.querySelector('.mobile-user-sheet-grab');
+let mobileUserDrag=null;
+mobileUserDragHandle?.addEventListener('pointerdown',event=>{
+  if(!mobileUserSheet.classList.contains('is-open')||!event.isPrimary)return;
+  mobileUserDrag={id:event.pointerId,startY:event.clientY,startTime:performance.now(),distance:0};
+  mobileUserSheet.classList.add('is-dragging');
+  mobileUserDragHandle.setPointerCapture(event.pointerId);
+  event.preventDefault();
+});
+mobileUserDragHandle?.addEventListener('pointermove',event=>{
+  if(!mobileUserDrag||mobileUserDrag.id!==event.pointerId)return;
+  const distance=Math.max(0,event.clientY-mobileUserDrag.startY);
+  mobileUserDrag.distance=distance;
+  mobileUserSheetDialog.style.transform=`translate3d(0,${distance}px,0)`;
+  event.preventDefault();
+});
+function finishMobileUserDrag(event,cancelled=false){
+  if(!mobileUserDrag||mobileUserDrag.id!==event.pointerId)return;
+  const {distance,startTime}=mobileUserDrag;
+  const elapsed=Math.max(1,performance.now()-startTime);
+  mobileUserDrag=null;
+  mobileUserSheet.classList.remove('is-dragging');
+  if(mobileUserDragHandle.hasPointerCapture(event.pointerId)){
+    mobileUserDragHandle.releasePointerCapture(event.pointerId);
+  }
+  if(!cancelled&&(distance>90||(distance>30&&distance/elapsed>.65))){
+    setMobileUserSheetOpen(false);
+  }
+  mobileUserSheetDialog.style.removeProperty('transform');
+}
+mobileUserDragHandle?.addEventListener('pointerup',event=>finishMobileUserDrag(event));
+mobileUserDragHandle?.addEventListener('pointercancel',event=>finishMobileUserDrag(event,true));
+
 document.addEventListener('keydown',event=>{
   if(!mobileUserSheet?.classList.contains('is-open'))return;
   if(event.key==='Escape'){
