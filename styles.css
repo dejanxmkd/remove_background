@@ -361,5 +361,21 @@ html,body{max-width:100%;overflow-x:clip}
   .featured-items .new-price{font-size:20px}
   .featured-items .add{width:40px;height:40px}
   .featured-progress-wrap{display:flex;margin-top:8px}
-  .featured-mobile-view-all{display:flex}
+  /* Same full-width purple pill buttons as NEW ARRIVALS on mobile. */
+  .featured-mobile-view-all{
+    display:flex;
+    width:100%;
+    min-height:50px;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    margin:40px auto 0;
+    padding:0 18px;
+    border-radius:999px;
+    background:var(--purple);
+    color:#fff;
+    font-size:14px;
+    font-weight:700;
+  }
+  .featured-mobile-view-all .material-symbols-outlined{font-size:20px}
 }
