@@ -84,7 +84,6 @@ const mobileUserName=document.getElementById('mobileUserName');
 const mobileUserSheet=document.getElementById('mobileUserSheet');
 const mobileUserSheetDialog=mobileUserSheet?.querySelector('.mobile-user-sheet-dialog');
 const mobileUserOptions=document.getElementById('mobileUserOptions');
-const mobileUserSheetClose=document.getElementById('mobileUserSheetClose');
 const mobileUserBackdrop=document.getElementById('mobileUserBackdrop');
 const userCheckSvg='<svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg>';
 
@@ -117,7 +116,7 @@ function setMobileUserSheetOpen(open,restoreFocus=true){
   document.body.classList.toggle('mobile-user-sheet-active',open);
   if(open){
     renderMobileUserOptions();
-    mobileUserSheetClose.focus();
+    mobileUserOptions.querySelector('button')?.focus({preventScroll:true});
   }else if(restoreFocus&&mobileMenuPanel?.classList.contains('is-open')){
     mobileUserTrigger.focus();
   }
@@ -132,42 +131,68 @@ mobileUserOptions?.addEventListener('click',event=>{
   shoppingUserSelect.dispatchEvent(new Event('change',{bubbles:true}));
   setMobileUserSheetOpen(false);
 });
-mobileUserSheetClose?.addEventListener('click',()=>setMobileUserSheetOpen(false));
 mobileUserBackdrop?.addEventListener('click',()=>setMobileUserSheetOpen(false));
 
-/* Drag the visible grab line down to dismiss; short gestures spring back. */
+/* iOS-friendly swipe-to-dismiss: drag anywhere on the sheet downward
+   (including the grab line and header). Upward gestures still scroll options. */
 const mobileUserDragHandle=mobileUserSheet?.querySelector('.mobile-user-sheet-grab');
 let mobileUserDrag=null;
-mobileUserDragHandle?.addEventListener('pointerdown',event=>{
-  if(!mobileUserSheet.classList.contains('is-open')||!event.isPrimary)return;
-  mobileUserDrag={id:event.pointerId,startY:event.clientY,startTime:performance.now(),distance:0};
-  mobileUserSheet.classList.add('is-dragging');
-  mobileUserDragHandle.setPointerCapture(event.pointerId);
-  event.preventDefault();
-});
-mobileUserDragHandle?.addEventListener('pointermove',event=>{
-  if(!mobileUserDrag||mobileUserDrag.id!==event.pointerId)return;
-  const distance=Math.max(0,event.clientY-mobileUserDrag.startY);
+function beginStoreSheetDrag(y){
+  if(!mobileUserSheet?.classList.contains('is-open')||!mobileUserSheetDialog)return;
+  mobileUserDrag={startY:y,startTime:performance.now(),distance:0,active:false};
+}
+function moveStoreSheetDrag(y,event){
+  if(!mobileUserDrag||!mobileUserSheetDialog)return;
+  const delta=y-mobileUserDrag.startY;
+  // Only downward movement from the top; never hijack upward list scrolling.
+  if(!mobileUserDrag.active){
+    if(delta<=10||mobileUserSheetDialog.scrollTop>0)return;
+    mobileUserDrag.active=true;
+    mobileUserSheet.classList.add('is-dragging');
+  }
+  const distance=Math.max(0,delta);
   mobileUserDrag.distance=distance;
   mobileUserSheetDialog.style.transform=`translate3d(0,${distance}px,0)`;
-  event.preventDefault();
-});
-function finishMobileUserDrag(event,cancelled=false){
-  if(!mobileUserDrag||mobileUserDrag.id!==event.pointerId)return;
-  const {distance,startTime}=mobileUserDrag;
+  if(event.cancelable)event.preventDefault();
+}
+function endStoreSheetDrag(cancelled=false){
+  if(!mobileUserDrag||!mobileUserSheetDialog)return;
+  const {distance,startTime,active}=mobileUserDrag;
   const elapsed=Math.max(1,performance.now()-startTime);
   mobileUserDrag=null;
   mobileUserSheet.classList.remove('is-dragging');
-  if(mobileUserDragHandle.hasPointerCapture(event.pointerId)){
-    mobileUserDragHandle.releasePointerCapture(event.pointerId);
-  }
-  if(!cancelled&&(distance>90||(distance>30&&distance/elapsed>.65))){
-    setMobileUserSheetOpen(false);
-  }
+  const dismiss=!cancelled&&active&&(distance>=75||(distance>=24&&distance/elapsed>.5));
+  if(dismiss)setMobileUserSheetOpen(false);
   mobileUserSheetDialog.style.removeProperty('transform');
 }
-mobileUserDragHandle?.addEventListener('pointerup',event=>finishMobileUserDrag(event));
-mobileUserDragHandle?.addEventListener('pointercancel',event=>finishMobileUserDrag(event,true));
+// Safari frequently cancels pointer capture during a vertical swipe.
+// Native non-passive Touch Events work reliably for this modal.
+mobileUserSheetDialog?.addEventListener('touchstart',event=>{
+  if(event.touches.length!==1)return;
+  beginStoreSheetDrag(event.touches[0].clientY);
+},{passive:true});
+mobileUserSheetDialog?.addEventListener('touchmove',event=>{
+  if(event.touches.length!==1)return;
+  moveStoreSheetDrag(event.touches[0].clientY,event);
+},{passive:false});
+mobileUserSheetDialog?.addEventListener('touchend',()=>endStoreSheetDrag());
+mobileUserSheetDialog?.addEventListener('touchcancel',()=>endStoreSheetDrag(true));
+// Mouse / stylus support without competing with touch handlers.
+mobileUserSheetDialog?.addEventListener('pointerdown',event=>{
+  if(event.pointerType==='touch'||event.button!==0)return;
+  beginStoreSheetDrag(event.clientY);
+  mobileUserSheetDialog.setPointerCapture(event.pointerId);
+});
+mobileUserSheetDialog?.addEventListener('pointermove',event=>{
+  if(event.pointerType==='touch'||!mobileUserDrag)return;
+  moveStoreSheetDrag(event.clientY,event);
+});
+mobileUserSheetDialog?.addEventListener('pointerup',event=>{
+  if(event.pointerType!=='touch')endStoreSheetDrag();
+});
+mobileUserSheetDialog?.addEventListener('pointercancel',event=>{
+  if(event.pointerType!=='touch')endStoreSheetDrag(true);
+});
 
 document.addEventListener('keydown',event=>{
   if(!mobileUserSheet?.classList.contains('is-open'))return;
@@ -175,7 +200,7 @@ document.addEventListener('keydown',event=>{
     event.preventDefault();event.stopPropagation();
     setMobileUserSheetOpen(false);
   }else if(event.key==='Tab'){
-    const buttons=[mobileUserSheetClose,...mobileUserOptions.querySelectorAll('button')];
+    const buttons=[...mobileUserOptions.querySelectorAll('button')];
     const first=buttons[0],last=buttons[buttons.length-1];
     if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
     else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
