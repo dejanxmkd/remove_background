@@ -896,3 +896,38 @@ html,body{max-width:100%;overflow-x:clip}
 @media(prefers-reduced-motion:reduce){
   .mobile-user-sheet,.mobile-user-sheet-backdrop,.mobile-user-sheet-dialog{transition:none!important}
 }
+
+
+/* Mobile Safari search stabilization:
+   overlay the expanded search below the sticky bar rather than resizing the page,
+   and use 16px input type to prevent automatic iOS viewport zoom. */
+@media(max-width:760px){
+  .site-header{position:sticky;top:0}
+  .header-search-panel{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    box-sizing:border-box;
+    z-index:10;
+    box-shadow:none;
+    overscroll-behavior:contain;
+  }
+  .header-search-inner{
+    box-sizing:border-box;
+    width:calc(100% - 36px);
+    max-width:100%;
+    min-width:0;
+    margin:0 auto;
+  }
+  .header-search-inner input{
+    flex:1 1 auto;
+    min-width:0;
+    max-width:100%;
+    font-size:16px;
+    -webkit-text-size-adjust:100%;
+  }
+}
