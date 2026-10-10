@@ -30,6 +30,40 @@ shoppingCartButton?.addEventListener('click',()=>{
 });
 updateShoppingCartBadge();
 
+/* Sticky-header search: icon turns into a close button and the search bar
+   closes on an outside click or Escape. Clear X appears only while typing. */
+const headerSearchToggle=document.getElementById('headerSearchToggle');
+const headerSearchToggleIcon=document.getElementById('headerSearchToggleIcon');
+const headerSearchPanel=document.getElementById('headerSearchPanel');
+const headerSearchInput=document.getElementById('headerSearchInput');
+const headerSearchClear=document.getElementById('headerSearchClear');
+function setHeaderSearchOpen(open,restoreFocus=false){
+  if(!headerSearchToggle||!headerSearchPanel)return;
+  headerSearchPanel.hidden=!open;
+  headerSearchToggle.setAttribute('aria-expanded',String(open));
+  headerSearchToggle.setAttribute('aria-label',open?'Close search':'Open search');
+  headerSearchToggleIcon.textContent=open?'close':'search';
+  if(open)headerSearchInput.focus();
+  else if(restoreFocus)headerSearchToggle.focus();
+}
+headerSearchToggle?.addEventListener('click',()=>setHeaderSearchOpen(headerSearchPanel.hidden));
+headerSearchInput?.addEventListener('input',()=>{
+  headerSearchClear.hidden=headerSearchInput.value.length===0;
+});
+headerSearchClear?.addEventListener('click',()=>{
+  headerSearchInput.value='';
+  headerSearchClear.hidden=true;
+  headerSearchInput.focus();
+});
+document.addEventListener('pointerdown',event=>{
+  if(headerSearchPanel?.hidden)return;
+  if(headerSearchPanel.contains(event.target)||headerSearchToggle.contains(event.target))return;
+  setHeaderSearchOpen(false);
+});
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&!headerSearchPanel?.hidden)setHeaderSearchOpen(false,true);
+});
+
 const products=Array.from({length:8},(_,i)=>({item:'#'+(48720+i),name:'Product name',original:(19.99+i*2).toFixed(2),price:(14.99+i*2).toFixed(2)}));
 
 class ProductCard {
