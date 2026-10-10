@@ -614,10 +614,10 @@ html,body{max-width:100%;overflow-x:clip}
 .header-search-panel.is-open{
   grid-template-rows:1fr;visibility:visible;
   border-top-color:rgba(8,7,11,.10);
-  border-bottom-color:rgba(8,7,11,.14);
+  border-bottom-color:transparent;
   transition:grid-template-rows .38s cubic-bezier(.22,1,.36,1),visibility 0s linear 0s,border-color .22s ease;
 }
-.header-search-panel:focus-within{border-bottom-color:var(--cyan)}
+.header-search-panel:focus-within{border-bottom-color:transparent}
 .header-search-reveal{min-height:0;overflow:hidden}
 .header-search-inner{
   display:flex;align-items:center;gap:17px;cursor:text;
