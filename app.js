@@ -168,7 +168,9 @@ function setHeaderSearchOpen(open,restoreFocus=false){
   headerSearchPanel.setAttribute('aria-hidden',String(!open));
   headerSearchToggle.setAttribute('aria-expanded',String(open));
   headerSearchToggle.setAttribute('aria-label',open?'Close search':'Open search');
-  if(open)headerSearchInput.focus();
+  // iOS Safari zooms/scrolls the viewport when a 15px input auto-focuses.
+  // On mobile the expanded search waits for an explicit tap; desktop still focuses.
+  if(open&&!mobileNavMedia.matches)headerSearchInput.focus({preventScroll:true});
   else{
     if(headerSearchPanel.contains(document.activeElement))document.activeElement.blur();
     if(restoreFocus)headerSearchToggle.focus();
