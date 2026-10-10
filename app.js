@@ -30,6 +30,52 @@ shoppingCartButton?.addEventListener('click',()=>{
 });
 updateShoppingCartBadge();
 
+/* One set of account controls is moved into the mobile burger panel;
+   this preserves the current shopping account and cart state on resize. */
+const mobileMenuToggle=document.getElementById('mobileMenuToggle');
+const mobileMenuPanel=document.getElementById('mobileMenuPanel');
+const mobileMenuContent=document.getElementById('mobileMenuContent');
+const shoppingNavControls=document.querySelector('.shopping-nav-controls');
+const quickShopLink=shoppingNavControls?.querySelector('.quick-shop-button');
+const shoppingNavDivider=shoppingNavControls?.querySelector('.shopping-nav-separator');
+const shoppingUserBlock=shoppingNavControls?.querySelector('.shopping-user');
+const mobileNavMedia=window.matchMedia('(max-width:760px)');
+function setMobileMenuOpen(open,restoreFocus=false){
+  if(!mobileMenuPanel||!mobileMenuToggle)return;
+  mobileMenuPanel.classList.toggle('is-open',open);
+  mobileMenuPanel.inert=!open;
+  mobileMenuPanel.setAttribute('aria-hidden',String(!open));
+  mobileMenuToggle.setAttribute('aria-expanded',String(open));
+  mobileMenuToggle.setAttribute('aria-label',open?'Close menu':'Open menu');
+  if(!open&&mobileMenuPanel.contains(document.activeElement))document.activeElement.blur();
+  if(!open&&restoreFocus)mobileMenuToggle.focus();
+}
+function syncShoppingNavLayout(){
+  if(!quickShopLink||!shoppingNavDivider||!shoppingUserBlock)return;
+  setMobileMenuOpen(false);
+  if(mobileNavMedia.matches){
+    mobileMenuContent.append(quickShopLink,shoppingNavDivider,shoppingUserBlock);
+  }else{
+    shoppingNavControls.append(quickShopLink,shoppingNavDivider,shoppingUserBlock);
+  }
+}
+mobileNavMedia.addEventListener('change',syncShoppingNavLayout);
+syncShoppingNavLayout();
+mobileMenuToggle?.addEventListener('click',()=>{
+  const next=!mobileMenuPanel.classList.contains('is-open');
+  if(next&&typeof setHeaderSearchOpen==='function')setHeaderSearchOpen(false);
+  setMobileMenuOpen(next);
+});
+document.addEventListener('pointerdown',event=>{
+  if(!mobileMenuPanel?.classList.contains('is-open'))return;
+  if(mobileMenuPanel.contains(event.target)||mobileMenuToggle.contains(event.target))return;
+  setMobileMenuOpen(false);
+});
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&mobileMenuPanel?.classList.contains('is-open'))setMobileMenuOpen(false,true);
+});
+quickShopLink?.addEventListener('click',()=>setMobileMenuOpen(false));
+
 /* Sticky-header search: icon turns into a close button and the search bar
    closes on an outside click or Escape. Clear X appears only while typing. */
 const headerSearchToggle=document.getElementById('headerSearchToggle');
@@ -49,7 +95,11 @@ function setHeaderSearchOpen(open,restoreFocus=false){
     if(restoreFocus)headerSearchToggle.focus();
   }
 }
-headerSearchToggle?.addEventListener('click',()=>setHeaderSearchOpen(!headerSearchPanel.classList.contains('is-open')));
+headerSearchToggle?.addEventListener('click',()=>{
+  const next=!headerSearchPanel.classList.contains('is-open');
+  if(next)setMobileMenuOpen(false);
+  setHeaderSearchOpen(next);
+});
 headerSearchPanel?.addEventListener('click',event=>{
   if(!event.target.closest('button'))headerSearchInput.focus();
 });
