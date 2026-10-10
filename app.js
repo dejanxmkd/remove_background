@@ -282,6 +282,16 @@ document.addEventListener('keydown',event=>{
 
 const products=Array.from({length:8},(_,i)=>({item:'#'+(48720+i),name:'Product name'}));
 
+/* Request Price: reliably open auth on desktop even inside draggable carousels.
+   Normal middle-click / command-click continues to use the native anchor. */
+document.addEventListener('click',event=>{
+  const target=event.target;
+  const link=target instanceof Element?target.closest('a.request-price-link'):null;
+  if(!link||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+  event.preventDefault();
+  window.location.assign(link.href);
+},true);
+
 class ProductCard {
  static render(product,index){
   return `<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item ${product.item}</div><h2 class="product-title">${product.name}</h2><div class="purchase"><a class="request-price-link" href="./login.html" aria-label="Request price for item ${product.item}">Request Price <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a><button class="add" type="button" aria-label="Add product to cart" data-index="${index}"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>`;
