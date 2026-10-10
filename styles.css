@@ -961,3 +961,45 @@ html,body{max-width:100%;overflow-x:clip}
   }
   .mobile-user-sheet.is-dragging .mobile-user-sheet-grab{cursor:grabbing}
 }
+
+
+/* iPhone/Android: search is a fixed overlay, never a layout-expanding row.
+   No automatic keyboard pop-up, horizontal growth, or focus zoom. */
+@media(max-width:760px){
+  html,body{max-width:100%;overflow-x:clip}
+  .site-header{width:100%;max-width:100%;left:0;right:0}
+  .header-search-panel{
+    position:fixed;
+    top:var(--mobile-search-top,66px);
+    left:0;right:0;
+    width:100%;max-width:100%;
+    min-width:0;
+    margin:0;padding:0;
+    box-sizing:border-box;
+    z-index:1050;
+    overflow:hidden;
+    contain:layout paint;
+  }
+  .header-search-reveal{
+    width:100%;max-width:100%;
+    min-width:0;overflow:hidden;
+  }
+  .header-search-inner{
+    width:calc(100% - 36px);
+    max-width:calc(100% - 36px);
+    min-width:0;
+    margin:0 auto;
+    box-sizing:border-box;
+  }
+  .header-search-inner input,
+  .header-search-inner input:focus{
+    display:block;
+    flex:1 1 0;
+    width:0;min-width:0;max-width:100%;
+    font-size:16px!important;
+    line-height:normal;
+    -webkit-text-size-adjust:100%;
+    -webkit-appearance:none;
+    appearance:none;
+  }
+}
