@@ -1021,3 +1021,24 @@ html,body{max-width:100%;overflow-x:clip}
   }
   .mobile-user-sheet-header{justify-content:flex-start}
 }
+
+
+/* Request pricing: replaces placeholder product prices in every carousel. */
+.purchase{align-items:center}
+.request-price-link{
+  display:inline-flex;align-items:center;justify-content:flex-start;
+  gap:7px;min-width:0;max-width:calc(100% - 48px);
+  padding:7px 0 6px;
+  border-bottom:1.5px solid rgba(102,51,204,.5);
+  color:var(--purple);font-size:12px;font-weight:800;
+  line-height:1.25;letter-spacing:-.01em;white-space:nowrap;
+  transition:border-color .17s ease,color .17s ease;
+}
+.request-price-link .lucide-icon{width:16px;height:16px;flex:none}
+.request-price-link:hover{border-color:currentColor;color:#4b21a6}
+.request-price-link:focus-visible{outline:2px solid var(--cyan);outline-offset:4px;border-radius:3px}
+@media(max-width:760px){
+  .request-price-link{font-size:12px;gap:5px}
+  .request-price-link .lucide-icon{width:15px;height:15px}
+}
+@media(prefers-reduced-motion:reduce){.request-price-link{transition:none}}
