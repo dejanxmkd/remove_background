@@ -5,6 +5,26 @@
     <a href="#top" class="site-nav-logo" aria-label="True Distributors — back to top">
       <img src="./td_logo.svg" alt="True Distributors" width="128" height="27">
     </a>
+    <div class="shopping-nav-controls">
+      <div class="shopping-user">
+        <span class="material-symbols-outlined shopping-user-icon" aria-hidden="true">person_outline</span>
+        <div class="shopping-user-details">
+          <label for="shoppingUser" class="shopping-user-label">Shopping for</label>
+          <div class="shopping-user-select">
+            <select id="shoppingUser" aria-label="Switch shopping user">
+              <option value="Testing 2" selected>Testing 2</option>
+              <option value="Testing 1">Testing 1</option>
+            </select>
+            <span class="material-symbols-outlined" aria-hidden="true">keyboard_arrow_down</span>
+          </div>
+        </div>
+      </div>
+      <a class="quick-shop-button" href="#new-title">Quick Shop</a>
+      <button class="shopping-cart-button" id="shoppingCart" type="button" aria-label="Shopping cart, 0 items">
+        <span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span>
+        <span class="shopping-cart-count" id="cartCount" aria-live="polite" hidden>0</span>
+      </button>
+    </div>
   </nav>
 </header><section class="hero-video" aria-label="True Distributors hero">
   <video class="hero-video-media" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
