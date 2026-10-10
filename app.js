@@ -1,3 +1,9 @@
+const heroVideo=document.querySelector('.hero-video-media');
+if(heroVideo){
+ heroVideo.defaultPlaybackRate=0.8;
+ heroVideo.playbackRate=0.8;
+}
+
 const products=Array.from({length:8},(_,i)=>({item:'#'+(48720+i),name:'Product name',original:(19.99+i*2).toFixed(2),price:(14.99+i*2).toFixed(2)}));
 
 class ProductCard {
