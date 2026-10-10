@@ -418,3 +418,7 @@ html,body{max-width:100%;overflow-x:clip}
 
 /* Match ordinary footer item text to the 15px Product name label on all screens. */
 .footer-column li{font-size:15px}
+
+/* HERO CTA: centered label, full-width on mobile only. */
+.hero-cta{justify-content:center;text-align:center}
+@media(max-width:760px){.hero-cta{width:100%;max-width:none;min-height:54px}}
