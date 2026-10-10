@@ -11,12 +11,12 @@ button{cursor:pointer}
 .auth-left{position:relative;display:flex;flex-direction:column;background:#fff;min-width:0;padding:0 clamp(30px,4.5vw,90px)}
 .back-home{
   display:inline-flex;align-items:center;align-self:flex-start;
-  position:relative;margin-top:41px;padding:8px 0;
+  position:relative;margin-top:auto;margin-bottom:28px;padding:8px 0;
   font-size:13px;font-weight:700;color:#5e5869;
   transition:color .18s ease
 }
 .back-home:hover{color:var(--purple)}
-.auth-center{display:flex;flex:1;align-items:flex-start;justify-content:center;width:100%;padding:clamp(47px,7vh,84px) 0 78px}
+.auth-center{display:flex;flex:1;align-items:flex-start;justify-content:center;width:100%;padding:clamp(72px,9vh,110px) 0 34px}
 .auth-box{width:100%;max-width:420px}
 .auth-tabs{
   display:grid;grid-template-columns:1fr 1fr;gap:5px;
@@ -76,7 +76,10 @@ button{cursor:pointer}
 }
 .auth-right{
   position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;
-  min-width:0;min-height:100svh;background:var(--purple);overflow:hidden;padding:48px
+  min-width:0;min-height:calc(100svh - 40px);
+  margin:20px 20px 20px 0;padding:48px;
+  border:1px solid #e6e0ef;border-radius:26px;
+  background:var(--purple);overflow:hidden
 }
 .brand-circle{position:absolute;z-index:0;display:block;border-radius:50%;pointer-events:none}
 .brand-circle-left{
@@ -84,12 +87,8 @@ button{cursor:pointer}
   top:-117px;left:-103px;background:var(--cyan)
 }
 .brand-circle-top{
-  width:clamp(120px,12vw,178px);height:clamp(120px,12vw,178px);
-  top:-73px;right:9%;background:#fff
-}
-.brand-circle-middle-left{
-  width:clamp(105px,12vw,175px);height:clamp(105px,12vw,175px);
-  left:-100px;top:47%;background:#fff
+  width:clamp(150px,16vw,220px);height:clamp(150px,16vw,220px);
+  top:-94px;right:-104px;background:#fff
 }
 .brand-circle-middle-right{
   width:clamp(66px,8vw,116px);height:clamp(66px,8vw,116px);
@@ -110,28 +109,30 @@ button{cursor:pointer}
 }
 .auth-brand-logo{
   position:relative;z-index:1;display:block;
-  width:min(300px,63%);height:auto;
+  width:min(245px,54%);height:auto;
   filter:brightness(0) invert(1)
 }
 @media(max-width:950px) and (min-width:761px){
   .auth-left{padding:0 38px}
   .auth-right{padding:22px}
-  .auth-brand-logo{width:min(270px,75%)}
+  .auth-brand-logo{width:min(220px,62%)}
 }
 @media(max-width:760px){
   .auth-shell{display:flex;flex-direction:column;min-height:100svh}
-  .auth-right{order:-1;flex:none;min-height:170px;height:170px;padding:24px}
-  .auth-brand-logo{width:min(220px,57%);max-height:72px}
+  .auth-right{
+    order:-1;flex:none;min-height:155px;height:155px;
+    margin:14px 14px 0;padding:20px;border-radius:20px
+  }
+  .auth-brand-logo{width:min(186px,52%);max-height:66px}
   .brand-circle-left{width:120px;height:120px;top:-65px;left:-62px}
-  .brand-circle-top{width:74px;height:74px;top:-32px;right:13%}
-  .brand-circle-middle-left{width:80px;height:80px;top:87px;left:-50px}
+  .brand-circle-top{width:92px;height:92px;top:-44px;right:-46px}
   .brand-circle-middle-right{width:75px;height:75px;top:77px;right:-49px}
   .brand-circle-bottom-left{width:90px;height:90px;bottom:-56px;left:23%}
   .brand-circle-right{width:90px;height:90px;bottom:-55px;right:-50px}
   .brand-circle-soft{width:182px;height:182px;top:50%;left:50%}
   .auth-left{flex:1;padding:0 24px}
-  .back-home{margin-top:18px;font-size:12px}
-  .auth-center{align-items:flex-start;padding:33px 0 62px}
+  .back-home{margin-top:auto;margin-bottom:22px;font-size:12px}
+  .auth-center{align-items:flex-start;padding:33px 0 25px}
   .auth-box{max-width:440px}
   .auth-tabs{margin-bottom:27px}
   .auth-tab{min-height:44px}
