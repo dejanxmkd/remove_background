@@ -77,7 +77,7 @@ button{cursor:pointer}
 .auth-right{
   position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;
   min-width:0;min-height:calc(100svh - 40px);
-  margin:20px 20px 20px 0;padding:48px;
+  margin:20px;padding:48px;
   border:1px solid #e6e0ef;border-radius:26px;
   background:var(--purple);overflow:hidden
 }
