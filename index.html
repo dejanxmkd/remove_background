@@ -58,7 +58,7 @@
   </div>
 </header>
 <div class="mobile-user-sheet" id="mobileUserSheet" aria-hidden="true" inert>
-  <button class="mobile-user-sheet-backdrop" id="mobileUserBackdrop" type="button" aria-label="Close shopping account selector"></button>
+  <button class="mobile-user-sheet-backdrop" id="mobileUserBackdrop" type="button" tabindex="-1" aria-label="Close shopping account selector"></button>
   <section class="mobile-user-sheet-dialog" role="dialog" aria-modal="true" aria-labelledby="mobileUserSheetTitle" tabindex="-1">
     <div class="mobile-user-sheet-grab" aria-hidden="true"></div>
     <div class="mobile-user-sheet-header">
@@ -66,9 +66,6 @@
         <p class="mobile-user-sheet-eyebrow">SHOPPING FOR</p>
         <h2 id="mobileUserSheetTitle">Select a store</h2>
       </div>
-      <button class="mobile-user-sheet-close" id="mobileUserSheetClose" type="button" aria-label="Close">
-        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-      </button>
     </div>
     <div class="mobile-user-sheet-options" id="mobileUserOptions" role="group" aria-label="Available shopping accounts"></div>
   </section>
