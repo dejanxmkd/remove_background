@@ -196,19 +196,35 @@ const headerSearchToggle=document.getElementById('headerSearchToggle');
 const headerSearchPanel=document.getElementById('headerSearchPanel');
 const headerSearchInput=document.getElementById('headerSearchInput');
 const headerSearchClear=document.getElementById('headerSearchClear');
+// Anchor the mobile search overlay beneath the fixed-on-scroll navigation.
+function updateMobileSearchTop(){
+  if(!mobileNavMedia.matches)return;
+  const nav=document.querySelector('.site-nav');
+  if(nav){
+    const bottom=Math.max(0,Math.round(nav.getBoundingClientRect().bottom));
+    document.documentElement.style.setProperty('--mobile-search-top',bottom+'px');
+  }
+}
+window.addEventListener('resize',updateMobileSearchTop,{passive:true});
+window.addEventListener('scroll',updateMobileSearchTop,{passive:true});
+mobileNavMedia.addEventListener('change',updateMobileSearchTop);
+window.visualViewport?.addEventListener('resize',updateMobileSearchTop,{passive:true});
+updateMobileSearchTop();
+
 function setHeaderSearchOpen(open,restoreFocus=false){
   if(!headerSearchToggle||!headerSearchPanel)return;
+  if(open&&mobileNavMedia.matches)updateMobileSearchTop();
   headerSearchPanel.classList.toggle('is-open',open);
   headerSearchPanel.inert=!open;
   headerSearchPanel.setAttribute('aria-hidden',String(!open));
   headerSearchToggle.setAttribute('aria-expanded',String(open));
   headerSearchToggle.setAttribute('aria-label',open?'Close search':'Open search');
-  // iOS Safari zooms/scrolls the viewport when a 15px input auto-focuses.
-  // On mobile the expanded search waits for an explicit tap; desktop still focuses.
-  if(open&&!mobileNavMedia.matches)headerSearchInput.focus({preventScroll:true});
-  else{
+  if(open){
+    // Only desktop auto-focuses; mobile opens without keyboard or viewport changes.
+    if(!mobileNavMedia.matches)headerSearchInput.focus({preventScroll:true});
+  }else{
     if(headerSearchPanel.contains(document.activeElement))document.activeElement.blur();
-    if(restoreFocus)headerSearchToggle.focus();
+    if(restoreFocus)headerSearchToggle.focus({preventScroll:true});
   }
 }
 headerSearchToggle?.addEventListener('click',()=>{
@@ -217,7 +233,9 @@ headerSearchToggle?.addEventListener('click',()=>{
   setHeaderSearchOpen(next);
 });
 headerSearchPanel?.addEventListener('click',event=>{
-  if(!event.target.closest('button'))headerSearchInput.focus();
+  if(!event.target.closest('button')&&event.target!==headerSearchInput){
+    headerSearchInput.focus({preventScroll:true});
+  }
 });
 headerSearchInput?.addEventListener('input',()=>{
   headerSearchClear.hidden=headerSearchInput.value.length===0;
