@@ -25,6 +25,13 @@
             </select>
             <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </div>
+          <button class="mobile-user-trigger" id="mobileUserTrigger" type="button" aria-label="Switch shopping account: Fresh Market" aria-haspopup="dialog" aria-controls="mobileUserSheet">
+            <span class="mobile-user-trigger-copy">
+              <span class="mobile-user-trigger-label">Shopping for</span>
+              <strong class="mobile-user-trigger-name" id="mobileUserName">Fresh Market</strong>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
         </div>
       </div>
       <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenuPanel">
@@ -49,7 +56,24 @@
       </div>
     </div>
   </div>
-</header><section class="hero-video" aria-label="True Distributors hero">
+</header>
+<div class="mobile-user-sheet" id="mobileUserSheet" aria-hidden="true" inert>
+  <button class="mobile-user-sheet-backdrop" id="mobileUserBackdrop" type="button" aria-label="Close shopping account selector"></button>
+  <section class="mobile-user-sheet-dialog" role="dialog" aria-modal="true" aria-labelledby="mobileUserSheetTitle" tabindex="-1">
+    <div class="mobile-user-sheet-grab" aria-hidden="true"></div>
+    <div class="mobile-user-sheet-header">
+      <div>
+        <p class="mobile-user-sheet-eyebrow">SHOPPING FOR</p>
+        <h2 id="mobileUserSheetTitle">Select a store</h2>
+      </div>
+      <button class="mobile-user-sheet-close" id="mobileUserSheetClose" type="button" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <div class="mobile-user-sheet-options" id="mobileUserOptions" role="group" aria-label="Available shopping accounts"></div>
+  </section>
+</div>
+<section class="hero-video" aria-label="True Distributors hero">
   <video class="hero-video-media" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
     <source src="./hero-warehouse-motions.mp4" type="video/mp4">
   </video>
