@@ -1045,3 +1045,18 @@ html,body{max-width:100%;overflow-x:clip}
 /* Authentic partner brand artwork: centered logos on white brand cards. */
 .brands-carousel .brand-picture{background:#fff;overflow:hidden}
 .brands-carousel .brand-logo-img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;background:#fff;padding:6px}
+
+/* Simple 40px overlaid carousel arrows matching the product-card plus button. */
+.carousel-wrap{position:relative}
+.carousel-arrow{position:absolute;z-index:5;top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;width:40px;height:40px;padding:0;border:0;border-radius:50%;background:var(--purple);color:white;box-shadow:0 4px 15px rgba(25,14,61,.18);transition:background .15s ease,opacity .15s ease}
+.carousel-arrow-prev{left:9px}
+.carousel-arrow-next{right:9px}
+.carousel-arrow:hover{background:#4b21a6}
+.carousel-arrow:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.carousel-arrow:disabled{opacity:0;pointer-events:none}
+.carousel-arrow[hidden]{display:none!important}
+.brands-section .carousel-arrow{color:var(--purple);background:#fff}
+.brands-section .carousel-arrow:hover{background:#eee6ff}
+.is-infinite-carousel{scroll-snap-type:none!important}
+@media(max-width:760px){.carousel-arrow{width:36px;height:36px}.carousel-arrow-prev{left:5px}.carousel-arrow-next{right:5px}.carousel-arrow svg{width:18px;height:18px}}
+@media(prefers-reduced-motion:reduce){.carousel-arrow{transition:none}}

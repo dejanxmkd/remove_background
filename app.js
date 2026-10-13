@@ -375,7 +375,40 @@ class ProductCarousel {
  reset(){this.animateTo(0)}
 }
 
+// Overlaid arrow controls use the same 40px circle as product-card plus actions.
+function installCarouselArrows(slider,label){
+ const wrap=slider.element.closest('.carousel-wrap');
+ if(!wrap||wrap.querySelector('.carousel-arrow'))return;
+ const create=direction=>{
+  const btn=document.createElement('button');
+  btn.type='button';
+  btn.className='carousel-arrow '+(direction<0?'carousel-arrow-prev':'carousel-arrow-next');
+  btn.setAttribute('aria-label',(direction<0?'Previous ':'Next ')+label);
+  btn.innerHTML=direction<0
+    ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>'
+    : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>';
+  btn.addEventListener('click',()=>{
+   if(slider.advance)slider.advance(direction);
+   else slider.animateTo(slider.element.scrollLeft+direction*slider.step());
+  });
+  return btn;
+ };
+ const prev=create(-1),next=create(1);
+ wrap.append(prev,next);
+ if(!slider.advance){
+  const sync=()=>{
+   const max=slider.max(),left=slider.element.scrollLeft;
+   prev.disabled=left<1;next.disabled=left>=max-1;
+   prev.hidden=max<2;next.hidden=max<2;
+  };
+  slider.element.addEventListener('scroll',sync,{passive:true});
+  window.addEventListener('resize',sync);
+  sync();
+ }
+}
+
 const carousel=new ProductCarousel(document.getElementById('productCarousel'),products,document.getElementById('progress'));
+installCarouselArrows(carousel,'products');
 let noticeTimer;
 function notify(message){const el=document.getElementById('notice');el.textContent=message;el.classList.add('show');clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>el.classList.remove('show'),2300)}
 carousel.element.addEventListener('click',event=>{if(event.target.closest('.add'))notify('Product added — demo only')});
@@ -387,28 +420,112 @@ class BrandCard {
  static render(brand,index){return `<article class="card brand-card"><div class="brand-picture"><img class="brand-logo-img" src="${brand.image}" alt="${brand.name} logo" loading="lazy" decoding="async" width="640" height="640"></div><div class="brand-info"><h3 class="brand-name">${brand.name}</h3></div></article>`;}
 }
 const brands=[
- {name:'VELO',image:'./assets/brands/velo.webp'},
- {name:'Mentos',image:'./assets/brands/mentos.webp'},
- {name:'ZYN',image:'./assets/brands/zyn.webp'},
- {name:'RAW',image:'./assets/brands/raw.webp'},
- {name:'HARIBO',image:'./assets/brands/haribo.webp'},
- {name:'Trident',image:'./assets/brands/trident.webp'},
- {name:'Planters',image:'./assets/brands/planters.webp'},
- {name:'Cheez-It',image:'./assets/brands/cheez-it.webp'},
- {name:'Milka',image:'./assets/brands/milka.webp'},
- {name:'Hostess',image:'./assets/brands/hostess.webp'},
- {name:'HI-CHEW',image:'./assets/brands/hi-chew.webp'},
- {name:'Twix',image:'./assets/brands/twix.webp'},
- {name:'Starburst',image:'./assets/brands/starburst.webp'},
- {name:'Tic Tac',image:'./assets/brands/tic-tac.webp'},
- {name:'Tide',image:'./assets/brands/tide.webp'},
- {name:'Takis',image:'./assets/brands/takis.webp'},
- {name:'Mike and Ike',image:'./assets/brands/mike-and-ike.webp'},
- {name:'Trojan',image:'./assets/brands/trojan.webp'}
+ {name:"Airheads",image:'./assets/brands/v2/01-airheads.webp'},
+ {name:"Altoids",image:'./assets/brands/v2/02-altoids.webp'},
+ {name:"Barebells",image:'./assets/brands/v2/03-barebells.webp'},
+ {name:"Giannos",image:'./assets/brands/v2/04-giannos.webp'},
+ {name:"Hersheys",image:'./assets/brands/v2/05-hersheys.webp'},
+ {name:"Ice Breakers",image:'./assets/brands/v2/06-ice-breakers.webp'},
+ {name:"Jolly Rancher",image:'./assets/brands/v2/07-jolly-rancher.webp'},
+ {name:"Kidsmania",image:'./assets/brands/v2/08-kidsmania.webp'},
+ {name:"Kinder",image:'./assets/brands/v2/09-kinder.webp'},
+ {name:"M&M's",image:'./assets/brands/v2/10-m-m-s.webp'},
+ {name:"Nerds",image:'./assets/brands/v2/11-nerds.webp'},
+ {name:"Oreo",image:'./assets/brands/v2/12-oreo.webp'},
+ {name:"Pringles",image:'./assets/brands/v2/13-pringles.webp'},
+ {name:"Quest Protein",image:'./assets/brands/v2/14-quest-protein.webp'},
+ {name:"Reese's",image:'./assets/brands/v2/15-reese-s.webp'},
+ {name:"Sour Patch Kids",image:'./assets/brands/v2/16-sour-patch-kids.webp'},
+ {name:"Trolli",image:'./assets/brands/v2/17-trolli.webp'},
+ {name:"Cheez-It",image:'./assets/brands/v2/18-cheez-it.webp'},
+ {name:"Haribo",image:'./assets/brands/v2/19-haribo.webp'},
+ {name:"Hi-Chew",image:'./assets/brands/v2/20-hi-chew.webp'},
+ {name:"Hostess",image:'./assets/brands/v2/21-hostess.webp'},
+ {name:"Mentos",image:'./assets/brands/v2/22-mentos.webp'},
+ {name:"Milka",image:'./assets/brands/v2/23-milka.webp'},
+ {name:"Planters",image:'./assets/brands/v2/24-planters.webp'},
+ {name:"RAW",image:'./assets/brands/v2/25-raw.webp'},
+ {name:"Trident",image:'./assets/brands/v2/26-trident.webp'},
+ {name:"VELO",image:'./assets/brands/v2/27-velo.webp'},
+ {name:"ZYN",image:'./assets/brands/v2/28-zyn.webp'},
+ {name:"Mike and Ike",image:'./assets/brands/v2/29-mike-and-ike.webp'},
+ {name:"Starburst",image:'./assets/brands/v2/30-starburst.webp'},
+ {name:"Takis",image:'./assets/brands/v2/31-takis.webp'},
+ {name:"Tic Tac",image:'./assets/brands/v2/32-tic-tac.webp'},
+ {name:"Tide",image:'./assets/brands/v2/33-tide.webp'},
+ {name:"Trojan",image:'./assets/brands/v2/34-trojan.webp'},
+ {name:"Twix",image:'./assets/brands/v2/35-twix.webp'},
+ {name:"Advil",image:'./assets/brands/v2/36-advil.webp'},
+ {name:"ALP",image:'./assets/brands/v2/37-alp.webp'},
+ {name:"Always",image:'./assets/brands/v2/38-always.webp'},
+ {name:"Amos",image:'./assets/brands/v2/39-amos.webp'},
+ {name:"AXE",image:'./assets/brands/v2/40-axe.webp'},
+ {name:"Davids Seeds",image:'./assets/brands/v2/41-davids-seeds.webp'},
+ {name:"Duracell",image:'./assets/brands/v2/42-duracell.webp'},
+ {name:"Keebler",image:'./assets/brands/v2/43-keebler.webp'},
+ {name:"KIND",image:'./assets/brands/v2/44-kind.webp'},
+ {name:"Lays",image:'./assets/brands/v2/45-lays.webp'},
+ {name:"Lenny & Larrys",image:'./assets/brands/v2/46-lenny-larrys.webp'},
+ {name:"Lifesavers",image:'./assets/brands/v2/47-lifesavers.webp'},
+ {name:"Listerine",image:'./assets/brands/v2/48-listerine.webp'},
+ {name:"Loacker",image:'./assets/brands/v2/49-loacker.webp'},
+ {name:"Nutella",image:'./assets/brands/v2/50-nutella.webp'},
+ {name:"One Bar",image:'./assets/brands/v2/51-one-bar.webp'},
+ {name:"Pop Tarts",image:'./assets/brands/v2/52-pop-tarts.webp'},
+ {name:"Popcorners",image:'./assets/brands/v2/53-popcorners.webp'},
+ {name:"Red Bull",image:'./assets/brands/v2/54-red-bull.webp'},
+ {name:"Ritter Sport",image:'./assets/brands/v2/55-ritter-sport.webp'},
+ {name:"Sahale",image:'./assets/brands/v2/56-sahale.webp'},
+ {name:"Skittles",image:'./assets/brands/v2/57-skittles.webp'},
+ {name:"Slim Jim",image:'./assets/brands/v2/58-slim-jim.webp'},
+ {name:"Snickers",image:'./assets/brands/v2/59-snickers.webp'},
+ {name:"Sour Power Straws",image:'./assets/brands/v2/60-sour-power-straws.webp'},
+ {name:"Swedish Fish",image:'./assets/brands/v2/61-swedish-fish.webp'},
+ {name:"True Pinless",image:'./assets/brands/v2/62-true-pinless.webp'},
+ {name:"Tylenol",image:'./assets/brands/v2/63-tylenol.webp'}
 ];
-const brandCarousel=new ProductCarousel(document.getElementById('brandCarousel'),brands,document.getElementById('brandProgress'),BrandCard.render);
+// 63 randomly ordered brand cards loop seamlessly through three matching copies.
+class LoopingBrandCarousel extends ProductCarousel {
+ constructor(element,items,progress,renderCard){
+  const order=[...items];
+  for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}
+  super(element,[...order,...order,...order],progress,renderCard);
+  this.element.classList.add('is-infinite-carousel');
+  this.cycle=()=>this.element.scrollWidth/3;
+  this.element.scrollLeft=this.cycle();this.target=this.element.scrollLeft;
+  this.hoverPaused=false;this.focusPaused=false;this.touchUntil=0;this.manualUntil=0;this.lastTick=0;
+  this.element.addEventListener('scroll',()=>this.recenter(),{passive:true});
+  const area=this.element.closest('.carousel-wrap');
+  area.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')this.hoverPaused=true});
+  area.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')this.hoverPaused=false});
+  area.addEventListener('focusin',()=>{this.focusPaused=true});
+  area.addEventListener('focusout',()=>{this.focusPaused=area.contains(document.activeElement)});
+  area.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')this.touchUntil=performance.now()+3500});
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+   const loop=now=>{
+    if(!this.lastTick)this.lastTick=now;
+    const elapsed=Math.min(64,now-this.lastTick);this.lastTick=now;
+    if(!document.hidden&&!this.hoverPaused&&!this.focusPaused&&!this.drag&&now>this.manualUntil&&now>this.touchUntil&&!this.frame){
+     this.element.scrollLeft+=elapsed*.05;
+    }
+    requestAnimationFrame(loop);
+   };
+   requestAnimationFrame(loop);
+  }
+ }
+ recenter(){
+  const span=this.cycle();if(!span)return;
+  const x=this.element.scrollLeft;
+  if(x<span*.55){this.element.scrollLeft=x+span;this.target+=span}
+  else if(x>span*2.45){this.element.scrollLeft=x-span;this.target-=span}
+ }
+ advance(direction){this.manualUntil=performance.now()+2800;this.animateTo(this.element.scrollLeft+direction*this.step())}
+ reset(){this.manualUntil=performance.now()+2800;this.animateTo(this.cycle())}
+}
+const brandCarousel=new LoopingBrandCarousel(document.getElementById('brandCarousel'),brands,document.getElementById('brandProgress'),BrandCard.render);
+installCarouselArrows(brandCarousel,'brands');
 brandCarousel.element.addEventListener('click',event=>{const link=event.target.closest('[data-brand]');if(link){event.preventDefault();notify('Brand page — demo only')}});
-['viewAllBrands','mobileViewAllBrands'].forEach(id=>document.getElementById(id)?.addEventListener('click',event=>{event.preventDefault();brandCarousel.reset();notify('Showing all 18 brands')}));
+['viewAllBrands','mobileViewAllBrands'].forEach(id=>document.getElementById(id)?.addEventListener('click',event=>{event.preventDefault();brandCarousel.reset();notify('Showing all 63 brands')}));
 
 // Uniform section entrance: same restrained upward motion everywhere, no fading.
 if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
@@ -444,6 +561,7 @@ const categories=[
  {name:'Popcorn & Pretzels',icon:'fastfood',image:'./assets/categories/15-popcorn-pretzels.webp'}
 ];
 const categoryCarousel=new ProductCarousel(document.getElementById('categoryCarousel'),categories,document.getElementById('categoryProgress'),CategoryCard.render);
+installCarouselArrows(categoryCarousel,'product categories');
 
 
 
@@ -453,6 +571,8 @@ const sellersHost=document.getElementById('bestSellerProducts');
 if(dealsHost&&sellersHost){
  const dealsCarousel=new ProductCarousel(dealsHost,products.slice(0,2),document.getElementById('dealsProgress'),(product,i)=>ProductCard.render(product,i));
  const sellersCarousel=new ProductCarousel(sellersHost,products.slice(2,4),document.getElementById('bestSellerProgress'),(product,i)=>ProductCard.render(product,i+2));
+ installCarouselArrows(dealsCarousel,'top deals');
+ installCarouselArrows(sellersCarousel,'best sellers');
  [dealsCarousel,sellersCarousel].forEach(slider=>{
   slider.element.addEventListener('click',event=>{
    if(event.target.closest('.add'))notify('Product added — demo only');
