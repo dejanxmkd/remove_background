@@ -52,7 +52,26 @@
     },180);
   }
 
+  function preferPngBrandLogos(){
+    document.querySelectorAll('.brand-logo-img').forEach(img=>{
+      if(img.dataset.tdPngPreferred==='true')return;
+      const current=img.getAttribute('src')||'';
+      if(!current.includes('/assets/brands/v2/') || !current.endsWith('.webp'))return;
+      const png=current.replace(/\.webp(\?.*)?$/,'.png$1');
+      const webp=current;
+      img.dataset.tdPngPreferred='true';
+      img.dataset.tdWebpFallback=webp;
+      img.addEventListener('error',()=>{
+        if(img.dataset.tdFallbackApplied==='true')return;
+        img.dataset.tdFallbackApplied='true';
+        img.src=webp;
+      },{once:true});
+      img.src=png;
+    });
+  }
+
   function classifyBrandLogos(){
+    preferPngBrandLogos();
     document.querySelectorAll('.brand-logo-img').forEach(img=>{
       if(img.dataset.tdBalanced==='true')return;
       const name=(img.getAttribute('alt')||'').toLowerCase();
