@@ -1,0 +1,181 @@
+/* Landing build: purple burger login + balanced brand logos */
+
+/* Brand logo normalization: same card geometry, logo-specific visual balance. */
+.brands-carousel .brand-picture{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  height:276px!important;
+  min-height:276px!important;
+  padding:34px!important;
+  background:#f2eff9!important;
+}
+.brands-carousel .brand-logo-img{
+  display:block!important;
+  width:auto!important;
+  height:auto!important;
+  max-width:74%!important;
+  max-height:58%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  margin:auto!important;
+  transform:translateZ(0);
+}
+.brands-carousel .brand-logo-img.td-logo-wide{max-width:86%!important;max-height:46%!important}
+.brands-carousel .brand-logo-img.td-logo-compact{max-width:62%!important;max-height:62%!important}
+.brands-carousel .brand-logo-img.td-logo-large{max-width:82%!important;max-height:66%!important}
+.brands-carousel .brand-logo-img.td-logo-small{max-width:54%!important;max-height:54%!important}
+.brands-carousel .brand-logo-img.td-logo-tall{max-width:58%!important;max-height:72%!important}
+
+/* Purple burger login overlay. Uses the existing mobile-menu panel and toggle. */
+body.td-login-menu-open{overflow:hidden}
+body.td-login-menu-open .site-header{
+  background:var(--purple)!important;
+  border-bottom-color:transparent!important;
+}
+body.td-login-menu-open .site-nav{
+  position:relative;
+  z-index:2601;
+}
+body.td-login-menu-open .site-nav-logo,
+body.td-login-menu-open .header-search-toggle,
+body.td-login-menu-open .shopping-cart-button,
+body.td-login-menu-open .quick-shop-button,
+body.td-login-menu-open .shopping-nav-separator,
+body.td-login-menu-open .shopping-user{
+  opacity:0!important;
+  pointer-events:none!important;
+}
+body.td-login-menu-open .mobile-menu-toggle{
+  position:fixed!important;
+  left:50%!important;
+  top:18px!important;
+  z-index:2700!important;
+  transform:translateX(-50%)!important;
+  color:#fff!important;
+  background:transparent!important;
+  border:0!important;
+  outline-offset:4px;
+}
+body.td-login-menu-open .mobile-menu-toggle .mobile-menu-open-icon{display:none!important}
+body.td-login-menu-open .mobile-menu-toggle .mobile-menu-close-icon{display:block!important}
+body.td-login-menu-open .mobile-menu-toggle:focus-visible{outline:2px solid #fff!important}
+
+.mobile-menu-panel.td-login-panel.is-open{
+  position:fixed!important;
+  inset:0!important;
+  z-index:2500!important;
+  display:grid!important;
+  grid-template-rows:1fr!important;
+  width:100vw!important;
+  height:100dvh!important;
+  visibility:visible!important;
+  background:var(--purple)!important;
+  color:#fff!important;
+  border:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  animation:tdMenuDropDown .42s cubic-bezier(.22,1,.36,1) both!important;
+}
+.mobile-menu-panel.td-login-panel .mobile-menu-reveal{
+  height:100%!important;
+  min-height:100%!important;
+  overflow:hidden!important;
+}
+.mobile-menu-panel.td-login-panel .mobile-menu-content{
+  width:min(420px,calc(100% - 44px))!important;
+  height:100%!important;
+  min-height:100%!important;
+  margin:0 auto!important;
+  padding:92px 0 42px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:0!important;
+  text-align:center!important;
+  transform:none!important;
+}
+.mobile-menu-panel.td-login-panel .shopping-user,
+.mobile-menu-panel.td-login-panel .quick-shop-button,
+.mobile-menu-panel.td-login-panel .shopping-nav-separator,
+.mobile-menu-panel.td-login-panel .menu-auth-link{
+  display:none!important;
+}
+.td-login-form{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+  color:#fff;
+}
+.td-login-title{
+  margin:0 0 10px;
+  color:#fff;
+  font-size:clamp(44px,8vw,76px);
+  line-height:.92;
+  letter-spacing:-.06em;
+  font-weight:900;
+  text-transform:uppercase;
+}
+.td-login-subtitle{
+  max-width:280px;
+  margin:0 auto 12px;
+  color:rgba(255,255,255,.78);
+  font-size:13px;
+  line-height:1.45;
+  font-weight:650;
+}
+.td-login-form input{
+  width:100%;
+  height:54px;
+  border:1px solid rgba(255,255,255,.38);
+  border-radius:15px;
+  background:rgba(255,255,255,.14);
+  color:#fff;
+  padding:0 17px;
+  font:700 15px var(--font);
+  outline:none;
+}
+.td-login-form input::placeholder{color:rgba(255,255,255,.72)}
+.td-login-form input:focus{border-color:#fff;background:rgba(255,255,255,.21)}
+.td-login-form button{
+  width:100%;
+  height:55px;
+  border:0;
+  border-radius:999px;
+  background:#fff;
+  color:var(--purple);
+  font:900 14px var(--font);
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.td-login-status{
+  min-height:18px;
+  margin:2px 0 0;
+  color:#fff;
+  font-size:12px;
+  font-weight:800;
+}
+@keyframes tdMenuDropDown{
+  from{clip-path:inset(0 0 100% 0)}
+  to{clip-path:inset(0 0 0 0)}
+}
+
+@media(max-width:760px){
+  body.td-login-menu-open .mobile-menu-toggle{top:13px!important}
+  .mobile-menu-panel.td-login-panel .mobile-menu-content{
+    width:calc(100% - 44px)!important;
+    padding-top:82px!important;
+  }
+  .brands-carousel .brand-picture{height:264px!important;min-height:264px!important;padding:30px!important}
+  .brands-carousel .brand-logo-img{max-width:76%!important;max-height:58%!important}
+  .brands-carousel .brand-logo-img.td-logo-wide{max-width:88%!important;max-height:45%!important}
+  .brands-carousel .brand-logo-img.td-logo-compact{max-width:64%!important;max-height:62%!important}
+  .brands-carousel .brand-logo-img.td-logo-tall{max-width:58%!important;max-height:72%!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .mobile-menu-panel.td-login-panel.is-open{animation:none!important}
+}
