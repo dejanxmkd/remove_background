@@ -384,12 +384,31 @@ carousel.element.addEventListener('click',event=>{if(event.target.closest('.add'
 
 // Brand cards share the carousel's scrolling, progress and responsive behavior.
 class BrandCard {
- static render(brand,index){return `<article class="card brand-card"><div class="brand-picture"></div><div class="brand-info"><h3 class="brand-name">${brand.name}</h3></div></article>`;}
+ static render(brand,index){return `<article class="card brand-card"><div class="brand-picture"><img class="brand-logo-img" src="${brand.image}" alt="${brand.name} logo" loading="lazy" decoding="async" width="640" height="640"></div><div class="brand-info"><h3 class="brand-name">${brand.name}</h3></div></article>`;}
 }
-const brands=Array.from({length:8},(_,i)=>({name:'Brand name'}));
+const brands=[
+ {name:'VELO',image:'./assets/brands/velo.webp'},
+ {name:'Mentos',image:'./assets/brands/mentos.webp'},
+ {name:'ZYN',image:'./assets/brands/zyn.webp'},
+ {name:'RAW',image:'./assets/brands/raw.webp'},
+ {name:'HARIBO',image:'./assets/brands/haribo.webp'},
+ {name:'Trident',image:'./assets/brands/trident.webp'},
+ {name:'Planters',image:'./assets/brands/planters.webp'},
+ {name:'Cheez-It',image:'./assets/brands/cheez-it.webp'},
+ {name:'Milka',image:'./assets/brands/milka.webp'},
+ {name:'Hostess',image:'./assets/brands/hostess.webp'},
+ {name:'HI-CHEW',image:'./assets/brands/hi-chew.webp'},
+ {name:'Twix',image:'./assets/brands/twix.webp'},
+ {name:'Starburst',image:'./assets/brands/starburst.webp'},
+ {name:'Tic Tac',image:'./assets/brands/tic-tac.webp'},
+ {name:'Tide',image:'./assets/brands/tide.webp'},
+ {name:'Takis',image:'./assets/brands/takis.webp'},
+ {name:'Mike and Ike',image:'./assets/brands/mike-and-ike.webp'},
+ {name:'Trojan',image:'./assets/brands/trojan.webp'}
+];
 const brandCarousel=new ProductCarousel(document.getElementById('brandCarousel'),brands,document.getElementById('brandProgress'),BrandCard.render);
 brandCarousel.element.addEventListener('click',event=>{const link=event.target.closest('[data-brand]');if(link){event.preventDefault();notify('Brand page — demo only')}});
-['viewAllBrands','mobileViewAllBrands'].forEach(id=>document.getElementById(id)?.addEventListener('click',event=>{event.preventDefault();brandCarousel.reset();notify('Showing all 8 placeholder brands')}));
+['viewAllBrands','mobileViewAllBrands'].forEach(id=>document.getElementById(id)?.addEventListener('click',event=>{event.preventDefault();brandCarousel.reset();notify('Showing all 18 brands')}));
 
 // Uniform section entrance: same restrained upward motion everywhere, no fading.
 if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
