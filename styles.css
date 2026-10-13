@@ -1060,3 +1060,60 @@ html,body{max-width:100%;overflow-x:clip}
 .is-infinite-carousel{scroll-snap-type:none!important}
 @media(max-width:760px){.carousel-arrow{width:36px;height:36px}.carousel-arrow-prev{left:5px}.carousel-arrow-next{right:5px}.carousel-arrow svg{width:18px;height:18px}}
 @media(prefers-reduced-motion:reduce){.carousel-arrow{transition:none}}
+
+
+/* Landing navigation: public pages show only logo, search, cart, and burger.
+   Preview-signed-in sessions reveal the two shopping controls. */
+body:not([data-auth-preview="true"]) .quick-shop-button,
+body:not([data-auth-preview="true"]) .shopping-nav-separator,
+body:not([data-auth-preview="true"]) .shopping-user{display:none!important}
+
+/* Prices are intentionally suppressed during landing-page preview.
+   Keep Request Price CTA, all cards, and shopping affordances unchanged. */
+.prices,.old,.new-price,[data-product-price]{display:none!important}
+
+/* The hamburger is present on desktop as well as mobile. */
+@media(min-width:761px){
+  .mobile-menu-toggle{
+    display:inline-flex;align-items:center;justify-content:center;
+    flex:none;width:43px;height:43px;padding:0;margin:0;
+    border:0;background:transparent;color:var(--ink);cursor:pointer;
+  }
+  .mobile-menu-toggle>.lucide-icon{width:27px;height:27px}
+  .mobile-menu-toggle[aria-expanded="false"] .mobile-menu-close-icon,
+  .mobile-menu-toggle[aria-expanded="true"] .mobile-menu-open-icon{display:none}
+  .mobile-menu-panel{
+    display:grid;grid-template-rows:0fr;visibility:hidden;
+    width:100%;padding:0;border-top:1px solid transparent;background:#fff;
+    transition:grid-template-rows .3s ease,visibility 0s linear .3s,border-color .3s ease;
+  }
+  .mobile-menu-panel.is-open{
+    grid-template-rows:1fr;visibility:visible;
+    border-top-color:rgba(8,7,11,.10);
+    transition:grid-template-rows .3s ease,visibility 0s linear 0s,border-color .3s ease;
+  }
+  .mobile-menu-reveal{min-height:0;overflow:hidden}
+  .mobile-menu-content{
+    display:flex;align-items:center;justify-content:flex-end;
+    gap:18px;width:min(1440px,calc(100% - 96px));
+    margin:0 auto;padding:18px 0;
+  }
+}
+.mobile-menu-toggle:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:5px}
+.menu-auth-link{
+  display:inline-flex;align-items:center;justify-content:space-between;
+  gap:15px;max-width:100%;min-height:44px;
+  padding:0 15px;border:1px solid rgba(102,51,204,.18);border-radius:10px;
+  color:var(--purple);background:#f8f5ff;
+  font-size:13px;font-weight:750;white-space:nowrap;
+}
+.menu-auth-link:hover{background:#efe7ff}
+.menu-auth-link:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.menu-auth-link .lucide-icon{width:19px;height:19px}
+@media(max-width:760px){
+ .mobile-menu-content .menu-auth-link{order:3;align-self:stretch;width:100%;min-height:52px}
+}
+
+/* Brand arrows use the signature purple instead of white backgrounds. */
+.brands-section .carousel-arrow{background:var(--purple);color:#fff}
+.brands-section .carousel-arrow:hover{background:#4b21a6;color:#fff}

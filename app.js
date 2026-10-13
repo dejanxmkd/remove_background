@@ -1,3 +1,11 @@
+/* Frontend preview session. Never stores credentials or grants real authentication. */
+const previewSessionKey='td-preview-auth-v1';
+const previewSignedIn=(()=>{
+ try{return sessionStorage.getItem(previewSessionKey)==='true'}
+ catch{return false}
+})();
+document.body.dataset.authPreview=String(previewSignedIn);
+
 const heroVideo=document.querySelector('.hero-video-media');
 if(heroVideo){
  heroVideo.defaultPlaybackRate=0.8;
@@ -40,6 +48,18 @@ const quickShopLink=shoppingNavControls?.querySelector('.quick-shop-button');
 const shoppingNavDivider=shoppingNavControls?.querySelector('.shopping-nav-separator');
 const shoppingUserBlock=shoppingNavControls?.querySelector('.shopping-user');
 const mobileNavMedia=window.matchMedia('(max-width:760px)');
+const menuAuthLink=document.getElementById('menuAuthLink');
+if(menuAuthLink){
+ menuAuthLink.firstChild.textContent=previewSignedIn?'Log out (demo)':'Login / Create Account';
+ if(previewSignedIn)menuAuthLink.href='./index.html';
+ menuAuthLink.addEventListener('click',event=>{
+  if(!previewSignedIn)return;
+  event.preventDefault();
+  try{sessionStorage.removeItem(previewSessionKey)}catch{}
+  window.location.assign('./index.html');
+ });
+}
+
 function setMobileMenuOpen(open,restoreFocus=false){
   if(!mobileMenuPanel||!mobileMenuToggle)return;
   mobileMenuPanel.classList.toggle('is-open',open);
@@ -51,12 +71,14 @@ function setMobileMenuOpen(open,restoreFocus=false){
   if(!open&&restoreFocus)mobileMenuToggle.focus();
 }
 function syncShoppingNavLayout(){
-  if(!quickShopLink||!shoppingNavDivider||!shoppingUserBlock)return;
+  if(!quickShopLink||!shoppingNavDivider||!shoppingUserBlock||!mobileMenuContent)return;
   setMobileMenuOpen(false);
   if(mobileNavMedia.matches){
     mobileMenuContent.append(shoppingUserBlock,quickShopLink,shoppingNavDivider);
   }else{
-    shoppingNavControls.append(quickShopLink,shoppingNavDivider,shoppingUserBlock);
+    shoppingNavControls.insertBefore(quickShopLink,mobileMenuToggle);
+    shoppingNavControls.insertBefore(shoppingNavDivider,mobileMenuToggle);
+    shoppingNavControls.insertBefore(shoppingUserBlock,mobileMenuToggle);
   }
 }
 mobileNavMedia.addEventListener('change',syncShoppingNavLayout);
@@ -506,7 +528,7 @@ class LoopingBrandCarousel extends ProductCarousel {
     if(!this.lastTick)this.lastTick=now;
     const elapsed=Math.min(64,now-this.lastTick);this.lastTick=now;
     if(!document.hidden&&!this.hoverPaused&&!this.focusPaused&&!this.drag&&now>this.manualUntil&&now>this.touchUntil&&!this.frame){
-     this.element.scrollLeft+=elapsed*.05;
+     this.element.scrollLeft+=elapsed*.085;
     }
     requestAnimationFrame(loop);
    };

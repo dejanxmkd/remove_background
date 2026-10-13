@@ -131,7 +131,11 @@
     }
     document.getElementById('loginForm').addEventListener('submit',event=>{
       event.preventDefault();
-      showStatus('loginStatus','Sign-in is a preview only. No credentials were sent.');
+      // Demo mode only: this site has no authentication backend.
+      // Never retain or transmit entered email and password.
+      showStatus('loginStatus','Demo preview enabled. No credentials were sent or verified. Opening the homepage...');
+      try{sessionStorage.setItem('td-preview-auth-v1','true')}catch{}
+      window.setTimeout(()=>window.location.assign('./index.html'),500);
     });
     document.getElementById('registerForm').addEventListener('submit',event=>{
       event.preventDefault();
