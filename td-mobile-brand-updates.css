@@ -1,65 +1,230 @@
-/* True Distributors mobile menu + brand-logo refinements */
+/* True Distributors — requested mobile burger/login and brand logo polish */
+
+/* BRAND CARDS / LOGOS
+   Keep every brand card visually identical, while allowing each logo to take a
+   balanced size inside the card. The JS adds sizing classes by brand name. */
+.brands-carousel .brand-card{
+  display:flex!important;
+  flex-direction:column!important;
+  min-height:352px!important;
+  border-radius:17px!important;
+  overflow:hidden!important;
+}
+.brands-carousel .brand-picture{
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  height:276px!important;
+  min-height:276px!important;
+  padding:34px!important;
+  background:#f2eff9!important;
+}
+.brands-carousel .brand-info{
+  min-height:76px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  padding:16px 14px!important;
+}
+.brands-carousel .brand-name{
+  width:100%!important;
+  text-align:center!important;
+  line-height:1.25!important;
+}
+.brand-logo-img{
+  display:block!important;
+  width:auto!important;
+  height:auto!important;
+  max-width:74%!important;
+  max-height:58%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  margin:auto!important;
+  transform:translateZ(0) scale(var(--td-logo-scale,1))!important;
+  transform-origin:center!important;
+}
+.brand-logo-img.logo-wide{max-width:88%!important;max-height:46%!important;--td-logo-scale:1.04}
+.brand-logo-img.logo-tall{max-width:58%!important;max-height:72%!important;--td-logo-scale:.96}
+.brand-logo-img.logo-compact{max-width:62%!important;max-height:62%!important;--td-logo-scale:.98}
+.brand-logo-img.logo-large{max-width:82%!important;max-height:66%!important;--td-logo-scale:1.08}
+.brand-logo-img.logo-small{max-width:54%!important;max-height:54%!important;--td-logo-scale:.94}
+.brand-logo-img.logo-extra-wide{max-width:92%!important;max-height:42%!important;--td-logo-scale:1.06}
+
 @media(max-width:760px){
-  body.td-menu-open{overflow:hidden}
-  body.td-menu-open .site-header{background:var(--purple);border-bottom-color:transparent}
-  body.td-menu-open .site-nav-logo,
-  body.td-menu-open .header-search-toggle,
-  body.td-menu-open .shopping-cart-button{opacity:0;pointer-events:none}
-  body.td-menu-open .mobile-menu-toggle{
-    position:absolute;left:50%;top:13px;transform:translateX(-50%);
-    z-index:1202;color:#fff!important;border-radius:999px
-  }
-  body.td-menu-open .mobile-menu-toggle:focus-visible{outline-color:#fff}
-  .mobile-menu-panel{
-    background:var(--purple)!important;color:#fff!important;border-top:0!important
-  }
-  .mobile-menu-panel.is-open{
-    position:fixed;left:0;right:0;top:66px;bottom:0;
-    display:block!important;visibility:visible!important;
-    min-height:calc(100dvh - 66px);z-index:1100;
-    animation:tdMenuDrop .42s cubic-bezier(.22,1,.36,1) both
-  }
-  .mobile-menu-reveal{height:100%;min-height:100%;overflow:hidden!important}
-  .mobile-menu-content{
-    width:100%!important;height:100%;min-height:calc(100dvh - 66px);
-    display:grid!important;place-items:center!important;
-    padding:28px 24px 64px!important;margin:0!important;
-    transform:none!important;text-align:center
-  }
-  .mobile-menu-content .shopping-user,
-  .mobile-menu-content .quick-shop-button,
-  .mobile-menu-content .shopping-nav-separator,
-  .mobile-menu-content .menu-auth-link{display:none!important}
-  .td-menu-login{
-    width:min(360px,100%);display:flex;flex-direction:column;align-items:center;
-    gap:14px;color:#fff
-  }
-  .td-menu-login-title{margin:0 0 6px;font-size:clamp(34px,11vw,56px);line-height:.95;font-weight:900;letter-spacing:-.055em;text-transform:uppercase}
-  .td-menu-login-caption{margin:0 0 12px;max-width:280px;color:rgba(255,255,255,.78);font-size:13px;line-height:1.45;font-weight:600}
-  .td-menu-login input{
-    width:100%;height:52px;border:1px solid rgba(255,255,255,.36);border-radius:15px;
-    background:rgba(255,255,255,.14);color:#fff;padding:0 16px;font:700 15px var(--font);
-    outline:none
-  }
-  .td-menu-login input::placeholder{color:rgba(255,255,255,.7)}
-  .td-menu-login input:focus{border-color:#fff;background:rgba(255,255,255,.2)}
-  .td-menu-login button{
-    width:100%;height:54px;border:0;border-radius:999px;background:#fff;color:var(--purple);
-    font:900 14px var(--font);letter-spacing:.03em;text-transform:uppercase
-  }
-  .td-menu-login-status{min-height:18px;margin:2px 0 0;color:#fff;font-size:12px;font-weight:800}
-  @keyframes tdMenuDrop{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+  .brands-carousel .brand-card{min-height:340px!important}
+  .brands-carousel .brand-picture{height:264px!important;min-height:264px!important;padding:30px!important}
+  .brands-carousel .brand-info{min-height:76px!important}
+  .brand-logo-img{max-width:76%!important;max-height:58%!important}
+  .brand-logo-img.logo-wide{max-width:89%!important;max-height:45%!important}
+  .brand-logo-img.logo-extra-wide{max-width:93%!important;max-height:40%!important}
+  .brand-logo-img.logo-tall{max-width:58%!important;max-height:72%!important}
 }
 
-.brand-picture{display:flex!important;align-items:center!important;justify-content:center!important;padding:30px!important;background:#f2eff9!important}
-.brand-logo-img{display:block!important;width:auto!important;height:auto!important;max-width:76%!important;max-height:58%!important;object-fit:contain!important;margin:auto!important}
-.brand-logo-img.logo-wide{max-width:84%!important;max-height:48%!important}
-.brand-logo-img.logo-compact{max-width:62%!important;max-height:62%!important}
-.brand-logo-img.logo-large{max-width:82%!important;max-height:68%!important}
-.brand-logo-img.logo-small{max-width:54%!important;max-height:54%!important}
+/* MOBILE BURGER MENU
+   The header becomes purple, the burger icon becomes a centered X, and the
+   panel drops from the top with only a centered login form visible. */
 @media(max-width:760px){
-  .brand-picture{height:264px!important;padding:28px!important}
-  .brand-logo-img{max-width:78%!important;max-height:58%!important}
-  .brand-logo-img.logo-wide{max-width:86%!important;max-height:46%!important}
-  .brand-logo-img.logo-compact{max-width:64%!important;max-height:62%!important}
+  body.td-menu-open{
+    overflow:hidden!important;
+    touch-action:none;
+  }
+  body.td-menu-open .site-header{
+    position:fixed!important;
+    top:0!important;
+    left:0!important;
+    right:0!important;
+    z-index:2400!important;
+    width:100%!important;
+    background:var(--purple)!important;
+    border-bottom:0!important;
+  }
+  body.td-menu-open .site-nav{
+    width:100%!important;
+    min-height:66px!important;
+    padding:0!important;
+    justify-content:center!important;
+  }
+  body.td-menu-open .site-nav-logo,
+  body.td-menu-open .header-search-toggle,
+  body.td-menu-open .shopping-cart-button,
+  body.td-menu-open .quick-shop-button,
+  body.td-menu-open .shopping-user,
+  body.td-menu-open .shopping-nav-separator{
+    opacity:0!important;
+    pointer-events:none!important;
+    visibility:hidden!important;
+  }
+  body.td-menu-open .shopping-nav-controls{
+    display:block!important;
+    margin:0!important;
+    width:100%!important;
+  }
+  body.td-menu-open .mobile-menu-toggle{
+    position:absolute!important;
+    left:50%!important;
+    top:50%!important;
+    transform:translate(-50%,-50%)!important;
+    z-index:2602!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:48px!important;
+    height:48px!important;
+    color:#fff!important;
+    border:0!important;
+    border-radius:999px!important;
+    background:transparent!important;
+  }
+  body.td-menu-open .mobile-menu-toggle .mobile-menu-close-icon{
+    display:block!important;
+    width:31px!important;
+    height:31px!important;
+    stroke-width:2.4!important;
+  }
+  body.td-menu-open .mobile-menu-toggle .mobile-menu-open-icon{display:none!important}
+  body.td-menu-open .mobile-menu-toggle:focus-visible{outline:2px solid #fff!important;outline-offset:3px!important}
+
+  .mobile-menu-panel{
+    background:var(--purple)!important;
+    color:#fff!important;
+    border:0!important;
+  }
+  .mobile-menu-panel.is-open{
+    position:fixed!important;
+    inset:66px 0 0 0!important;
+    display:block!important;
+    visibility:visible!important;
+    width:100%!important;
+    min-height:calc(100dvh - 66px)!important;
+    z-index:2300!important;
+    overflow:hidden!important;
+    animation:tdMenuDropFromTop .44s cubic-bezier(.22,1,.36,1) both!important;
+  }
+  .mobile-menu-panel.is-open .mobile-menu-reveal{
+    height:100%!important;
+    min-height:100%!important;
+    overflow:hidden!important;
+  }
+  .mobile-menu-panel.is-open .mobile-menu-content{
+    width:100%!important;
+    height:100%!important;
+    min-height:calc(100dvh - 66px)!important;
+    margin:0!important;
+    padding:24px 24px calc(56px + env(safe-area-inset-bottom))!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    transform:none!important;
+    text-align:center!important;
+  }
+  .mobile-menu-panel.is-open .mobile-menu-content>.shopping-user,
+  .mobile-menu-panel.is-open .mobile-menu-content>.quick-shop-button,
+  .mobile-menu-panel.is-open .mobile-menu-content>.shopping-nav-separator,
+  .mobile-menu-panel.is-open .mobile-menu-content>.menu-auth-link{
+    display:none!important;
+  }
+  .td-menu-login{
+    width:min(374px,100%)!important;
+    min-height:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:13px!important;
+    color:#fff!important;
+  }
+  .td-menu-login-title{
+    margin:0 0 10px!important;
+    color:#fff!important;
+    font-size:clamp(42px,14vw,68px)!important;
+    line-height:.9!important;
+    font-weight:900!important;
+    letter-spacing:-.07em!important;
+    text-transform:lowercase!important;
+  }
+  .td-menu-login-caption{
+    display:none!important;
+  }
+  .td-menu-login input{
+    width:100%!important;
+    height:54px!important;
+    border:1px solid rgba(255,255,255,.42)!important;
+    border-radius:15px!important;
+    background:rgba(255,255,255,.14)!important;
+    color:#fff!important;
+    padding:0 17px!important;
+    font:750 15px var(--font)!important;
+    outline:0!important;
+    text-align:left!important;
+  }
+  .td-menu-login input::placeholder{color:rgba(255,255,255,.74)!important}
+  .td-menu-login input:focus{border-color:#fff!important;background:rgba(255,255,255,.22)!important}
+  .td-menu-login button{
+    width:100%!important;
+    height:56px!important;
+    border:0!important;
+    border-radius:999px!important;
+    background:#fff!important;
+    color:var(--purple)!important;
+    font:900 14px var(--font)!important;
+    letter-spacing:.04em!important;
+    text-transform:uppercase!important;
+  }
+  .td-menu-login-status{
+    min-height:18px!important;
+    margin:3px 0 0!important;
+    color:#fff!important;
+    font-size:12px!important;
+    font-weight:800!important;
+  }
+  @keyframes tdMenuDropFromTop{
+    from{clip-path:inset(0 0 100% 0);transform:translate3d(0,-10px,0)}
+    to{clip-path:inset(0 0 0 0);transform:translate3d(0,0,0)}
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .mobile-menu-panel.is-open{animation:none!important}
 }
