@@ -1,32 +1,32 @@
 /* Landing build: purple burger login + balanced brand logos */
 
-/* Brand logo normalization: full image visible, no crop, centered in equal cards. */
+/* Brand logo normalization: use the full uploaded image area, no crop, no artificial shrinking. */
 .brands-carousel .brand-picture{
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
   height:276px!important;
   min-height:276px!important;
-  padding:24px!important;
+  padding:0!important;
   background:#f2eff9!important;
   overflow:hidden!important;
 }
-.brands-carousel .brand-logo-img{
+.brands-carousel .brand-logo-img,
+.brands-carousel .brand-logo-img.td-logo-wide,
+.brands-carousel .brand-logo-img.td-logo-compact,
+.brands-carousel .brand-logo-img.td-logo-large,
+.brands-carousel .brand-logo-img.td-logo-small,
+.brands-carousel .brand-logo-img.td-logo-tall{
   display:block!important;
-  width:auto!important;
-  height:auto!important;
-  max-width:92%!important;
-  max-height:78%!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
   object-fit:contain!important;
   object-position:center!important;
-  margin:auto!important;
-  transform:translateZ(0);
+  margin:0!important;
+  transform:none!important;
 }
-.brands-carousel .brand-logo-img.td-logo-wide{max-width:96%!important;max-height:68%!important}
-.brands-carousel .brand-logo-img.td-logo-compact{max-width:82%!important;max-height:82%!important}
-.brands-carousel .brand-logo-img.td-logo-large{max-width:94%!important;max-height:84%!important}
-.brands-carousel .brand-logo-img.td-logo-small{max-width:76%!important;max-height:76%!important}
-.brands-carousel .brand-logo-img.td-logo-tall{max-width:78%!important;max-height:88%!important}
 
 /* Purple burger login overlay. Uses the existing mobile-menu panel and toggle. */
 body.td-login-menu-open{overflow:hidden}
@@ -170,11 +170,18 @@ body.td-login-menu-open .mobile-menu-toggle:focus-visible{outline:2px solid #fff
     width:calc(100% - 44px)!important;
     padding-top:82px!important;
   }
-  .brands-carousel .brand-picture{height:264px!important;min-height:264px!important;padding:22px!important}
-  .brands-carousel .brand-logo-img{max-width:92%!important;max-height:78%!important}
-  .brands-carousel .brand-logo-img.td-logo-wide{max-width:96%!important;max-height:68%!important}
-  .brands-carousel .brand-logo-img.td-logo-compact{max-width:82%!important;max-height:82%!important}
-  .brands-carousel .brand-logo-img.td-logo-tall{max-width:78%!important;max-height:88%!important}
+  .brands-carousel .brand-picture{height:264px!important;min-height:264px!important;padding:0!important}
+  .brands-carousel .brand-logo-img,
+  .brands-carousel .brand-logo-img.td-logo-wide,
+  .brands-carousel .brand-logo-img.td-logo-compact,
+  .brands-carousel .brand-logo-img.td-logo-large,
+  .brands-carousel .brand-logo-img.td-logo-small,
+  .brands-carousel .brand-logo-img.td-logo-tall{
+    width:100%!important;
+    height:100%!important;
+    max-width:none!important;
+    max-height:none!important;
+  }
 }
 
 @media(prefers-reduced-motion:reduce){
