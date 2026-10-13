@@ -1044,7 +1044,7 @@ html,body{max-width:100%;overflow-x:clip}
 
 /* Authentic partner brand artwork: centered logos on white brand cards. */
 .brands-carousel .brand-picture{background:#fff;overflow:hidden}
-.brands-carousel .brand-logo-img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;background:#fff;padding:6px}
+.brands-carousel .brand-logo-img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;background:#fff;padding:15% 6px}
 
 /* Simple 40px overlaid carousel arrows matching the product-card plus button. */
 .carousel-wrap{position:relative}
