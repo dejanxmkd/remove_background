@@ -88,3 +88,10 @@ body[data-auth-preview="true"] #productCarousel .add svg,
 body[data-auth-preview="true"] #dealsProducts .add svg,
 body[data-auth-preview="true"] #bestSellerProducts .add svg{width:24px!important;height:24px!important;stroke-width:2.6!important}
 @media(max-width:760px){.td-qty-close svg{width:21px!important;height:21px!important}.td-cart-close svg{width:23px!important;height:23px!important}.td-qty-step svg{width:17px!important;height:17px!important}.td-cart-qty button svg{width:13px!important;height:13px!important}.td-cart-remove svg{width:16px!important;height:16px!important}}
+
+/* Burger menu link scale and tracking */
+.td-burger-nav{gap:24px!important}
+.td-burger-link{font-size:clamp(30px,4.2vw,52px)!important;letter-spacing:.035em!important;line-height:1.05!important}
+.td-burger-contact{margin-top:6px!important}
+.td-burger-login{margin-top:6px!important}
+@media(max-width:760px){.td-burger-nav{gap:18px!important}.td-burger-link{font-size:38px!important;letter-spacing:.03em!important;line-height:1.05!important}}
