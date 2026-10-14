@@ -1121,3 +1121,28 @@ body:not([data-auth-preview="true"]) .shopping-user{display:none!important}
 /* Updated True Distributors logo asset ratio. */
 .site-nav-logo img{width:172px!important;height:auto!important;max-width:172px!important}
 @media(max-width:760px){.site-nav-logo img{width:146px!important;max-width:146px!important}}
+
+/* ===== Button hover states (added, resting look unchanged) ===== */
+.hero-cta{transition:background .18s cubic-bezier(.22,1,.36,1),transform .18s cubic-bezier(.22,1,.36,1),box-shadow .18s cubic-bezier(.22,1,.36,1)}
+.hero-cta:hover{background:#42c6d9;transform:translateY(-2px);box-shadow:0 10px 26px rgba(8,7,11,.16)}
+.quick-shop-button{transition:background .18s ease,border-color .18s ease,transform .18s ease}
+.quick-shop-button:hover{background:#42c6d9;border-color:#42c6d9;transform:translateY(-1px)}
+.mobile-view-all,.featured-mobile-view-all{transition:background .18s ease,transform .18s ease}
+.mobile-view-all:hover,.featured-mobile-view-all:hover{background:#4b21a6;transform:translateY(-1px)}
+.view-all,.featured-action,.featured-top .featured-action{transition:color .18s ease}
+.view-all:hover,.featured-action:hover,.featured-top .featured-action:hover{color:var(--purple)}
+.view-all .lucide-icon,.featured-action .lucide-icon{transition:transform .18s ease}
+.view-all:hover .lucide-icon,.featured-action:hover .lucide-icon{transform:translateX(4px)}
+.shopping-cart-button,.header-search-toggle{transition:color .18s ease,transform .18s ease}
+.shopping-cart-button:hover,.header-search-toggle:hover{color:var(--purple);transform:translateY(-1px)}
+.request-price-link{transition:color .18s ease}
+.request-price-link:hover{color:var(--purple)}
+.request-price-link .lucide-icon{transition:transform .18s ease}
+.request-price-link:hover .lucide-icon{transform:translateX(3px)}
+.site-nav-logo{transition:opacity .18s ease}
+.site-nav-logo:hover{opacity:.82}
+@media(prefers-reduced-motion:reduce){
+ .hero-cta,.quick-shop-button,.mobile-view-all,.featured-mobile-view-all,.view-all,.featured-action,
+ .shopping-cart-button,.header-search-toggle,.request-price-link,.site-nav-logo,
+ .view-all .lucide-icon,.featured-action .lucide-icon,.request-price-link .lucide-icon{transition:none!important;transform:none!important}
+}

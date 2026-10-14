@@ -368,7 +368,11 @@ class ProductCarousel {
  }
  onWheel(event){
   if(event.ctrlKey||matchMedia('(max-width:760px)').matches)return;
-  const raw=Math.abs(event.deltaY)>=Math.abs(event.deltaX)?event.deltaY:event.deltaX;
+  // Only intercept the wheel for an explicit HORIZONTAL gesture
+  // (trackpad swipe or Shift+wheel). Vertical wheel always scrolls the page.
+  const horizontal=event.shiftKey?event.deltaY:event.deltaX;
+  if(!event.shiftKey&&Math.abs(horizontal)<=Math.abs(event.deltaY))return;
+  const raw=horizontal;
   if(Math.abs(raw)<.5)return;
   const delta=raw*(event.deltaMode===1?18:event.deltaMode===2?this.element.clientWidth:1);
   const base=this.frame?this.target:this.element.scrollLeft;

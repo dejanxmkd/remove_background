@@ -8,7 +8,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./login.css?v=mobile-back-home-7">
+  <link rel="stylesheet" href="./login.css">
+  <style>
+    /* ===== Unified page-transition — same tokens as the storefront ===== */
+    :root{--td-ease:cubic-bezier(.22,1,.36,1);--td-mid:.34s;--td-slow:.42s}
+    body{opacity:1;transform:none;transition:opacity var(--td-slow) var(--td-ease),transform var(--td-slow) var(--td-ease)}
+    body.td-pt-entering{opacity:0;transform:translateY(8px)}
+    body.td-pt-leaving{opacity:0;transform:translateY(-8px);transition:opacity var(--td-mid) var(--td-ease),transform var(--td-mid) var(--td-ease)}
+    @media(prefers-reduced-motion:reduce){
+      body,body.td-pt-entering,body.td-pt-leaving{opacity:1!important;transform:none!important;transition:none!important}
+    }
+  </style>
 </head>
 <body>
   <main class="auth-shell">
@@ -148,6 +158,40 @@
       }
       showStatus('registerStatus','Registration is a preview only. No account was created or details sent.');
     });
+
+    /* ===== Unified page transitions ===== */
+    (function(){
+      document.body.classList.add('td-pt-entering');
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ document.body.classList.remove('td-pt-entering'); });
+      });
+      setTimeout(function(){ document.body.classList.remove('td-pt-entering'); }, 600);
+      window.addEventListener('pageshow', function(e){
+        document.body.classList.remove('td-pt-leaving','td-pt-entering');
+        if(e.persisted){
+          document.body.classList.add('td-pt-entering');
+          requestAnimationFrame(function(){
+            requestAnimationFrame(function(){ document.body.classList.remove('td-pt-entering'); });
+          });
+        }
+      });
+      document.addEventListener('click', function(e){
+        var a = e.target.closest ? e.target.closest('a[href]') : null;
+        if(!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        if(a.target === '_blank' || a.hasAttribute('download')) return;
+        var href = a.getAttribute('href') || '';
+        if(!href || href.charAt(0) === '#' || href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0) return;
+        try { if(new URL(a.href, location.href).origin !== location.origin) return; } catch(_) { return; }
+        e.preventDefault();
+        document.body.classList.add('td-pt-leaving');
+        setTimeout(function(){ window.location.href = a.href; }, 260);
+      }, true);
+      /* Smooth fade-out on successful demo login */
+      var lf = document.getElementById('loginForm');
+      if(lf) lf.addEventListener('submit', function(){
+        document.body.classList.add('td-pt-leaving');
+      }, true);
+    })();
   </script>
 </body>
 </html>
