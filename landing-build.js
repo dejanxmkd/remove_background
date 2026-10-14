@@ -63,7 +63,7 @@
    position too, so the page behind the modal doesn't jump at all. */
 html{scrollbar-gutter:stable}
 body.td-locked{overflow:clip;touch-action:none}
-body.td-cart-open .site-header{position:sticky!important;top:0;z-index:7100!important;visibility:visible!important;opacity:1!important}
+body.td-cart-open .site-header{position:sticky!important;top:0;z-index:1000!important;visibility:visible!important;opacity:1!important}
 body.td-login-menu-open .site-header{position:sticky!important;top:0;z-index:2700!important;visibility:visible!important}
 body.td-login-menu-open .mobile-menu-toggle{position:relative!important;z-index:2701!important;display:inline-flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}
 body.td-login-menu-open .mobile-menu-toggle .mobile-menu-open-icon{display:none!important}
@@ -111,7 +111,7 @@ body.td-pt-leaving{opacity:0;transform:translateY(-8px);transition:opacity var(-
 .td-qty-submit:hover{background:#4b21a6}
 
 /* Cart drawer */
-.td-cart-drawer{position:fixed;inset:0;z-index:7000;visibility:hidden;pointer-events:none}
+.td-cart-drawer{position:fixed;inset:0;z-index:2147483647!important;visibility:hidden;pointer-events:none}
 .td-cart-drawer.is-open{visibility:visible;pointer-events:auto}
 .td-cart-backdrop{position:absolute;inset:0;background:rgba(8,7,11,.42);opacity:0;transition:opacity var(--td-fast) ease}
 .td-cart-drawer.is-open .td-cart-backdrop{opacity:1}
