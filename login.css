@@ -144,3 +144,8 @@ button{cursor:pointer}
 .auth-request-success p{max-width:390px;text-align:center;margin:0 auto}
 /* Keep right branding panel fixed in place as longer forms scroll on the left. */
 @media(min-width:761px){.auth-shell{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.auth-right{position:fixed;top:0;right:0;width:50%;height:100vh;height:100dvh;min-height:0}.auth-left{grid-column:1;min-height:100dvh}}
+
+/* Compact confirmation hierarchy */
+.auth-success-image{width:min(160px,46%)!important;margin-bottom:17px!important}
+.auth-request-success h2{font-size:clamp(23px,2.4vw,29px)!important;line-height:1.18!important;margin-bottom:12px!important;letter-spacing:-.035em!important}
+.auth-request-success p{max-width:400px!important;font-size:15px!important;line-height:1.7!important}
