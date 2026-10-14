@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./login.css?v=request-success-v1">
+  <link rel="stylesheet" href="./login.css?v=fixed-panel-centered-success-v2">
   <style>
     /* ===== Unified page-transition — same tokens as the storefront ===== */
     :root{--td-ease:cubic-bezier(.22,1,.36,1);--td-mid:.34s;--td-slow:.42s}
@@ -27,7 +27,7 @@
         <div class="auth-box">
           <div class="auth-tabs" role="tablist" aria-label="Account options">
             <button id="loginTab" class="auth-tab is-active" type="button" role="tab" aria-controls="loginPanel" aria-selected="true" tabindex="0">Login</button>
-            <button id="registerTab" class="auth-tab" type="button" role="tab" aria-controls="registerPanel" aria-selected="false" tabindex="-1">Request an Account</button>
+            <button id="registerTab" class="auth-tab" type="button" role="tab" aria-controls="registerPanel" aria-selected="false" tabindex="-1">Create Account</button>
           </div>
           <section id="loginPanel" class="auth-panel" role="tabpanel" aria-labelledby="loginTab">
             <h1>Welcome back</h1>
@@ -64,6 +64,7 @@
               <button class="auth-primary" type="submit">Submit Request</button>
             </form>
             <div class="auth-request-success" id="registerSuccess" role="status" aria-live="polite" hidden>
+              <img class="auth-success-image" src="./assets/request-success.svg" alt="" aria-hidden="true" width="240" height="240">
               <h2>Your request has been submitted successfully.</h2>
               <p>Our team will review your information and get back to you soon.</p>
             </div>
