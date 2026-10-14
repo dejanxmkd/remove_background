@@ -5,6 +5,9 @@
   const panel=document.getElementById('mobileMenuPanel');
   const content=document.getElementById('mobileMenuContent');
   const cartItems=[];
+  const productCarouselSelector='#productCarousel,#dealsProducts,#bestSellerProducts';
+  const productCardSelector='#productCarousel .card,#dealsProducts .card,#bestSellerProducts .card';
+  const addButtonSelector='#productCarousel .add,#dealsProducts .add,#bestSellerProducts .add';
 
   function isPreviewSignedIn(){
     try{return sessionStorage.getItem(sessionKey)==='true'}catch{return false}
@@ -88,14 +91,15 @@
   }
 
   function installProductPricing(){
-    document.querySelectorAll('#productCarousel .card').forEach((card,index)=>{
+    document.querySelectorAll(productCardSelector).forEach((card,index)=>{
       if(card.dataset.tdPricingReady==='true')return;
       card.dataset.tdPricingReady='true';
       const purchase=card.querySelector('.purchase');
       const request=card.querySelector('.request-price-link');
       if(!purchase || !request)return;
-      const oldPrice=(19.99 + index*1.75).toFixed(2);
-      const newPrice=(12.99 + index*1.35).toFixed(2);
+      const sectionOffset=card.closest('#dealsProducts')?100:card.closest('#bestSellerProducts')?200:0;
+      const oldPrice=(19.99 + (sectionOffset+index)*0.75).toFixed(2);
+      const newPrice=(12.99 + (sectionOffset+index)*0.55).toFixed(2);
       const prices=document.createElement('div');
       prices.className='prices td-product-prices';
       prices.innerHTML=`<span class="old">$${oldPrice}</span><span class="new-price" data-product-price>$${newPrice}</span>`;
@@ -116,7 +120,7 @@
 
   function syncProductAuthVisibility(){
     const signedIn=isPreviewSignedIn();
-    document.querySelectorAll('#productCarousel .card').forEach(card=>{
+    document.querySelectorAll(productCardSelector).forEach(card=>{
       const request=card.querySelector('.request-price-link');
       const add=card.querySelector('.add');
       const prices=card.querySelector('.prices');
@@ -127,6 +131,7 @@
         forceDisplay(add,'grid');
         forceDisplay(prices,'flex');
         if(prices)prices.style.setProperty('flex-direction','column','important');
+        if(prices)prices.style.setProperty('gap','4px','important');
         forceDisplay(old,'block');
         forceDisplay(current,'block');
       }else{
@@ -210,7 +215,7 @@
   function installCartDrawer(){
     ensureCartDrawer();
     document.addEventListener('click',event=>{
-      const add=event.target.closest('#productCarousel .add');
+      const add=event.target.closest(addButtonSelector);
       if(add){
         if(!isPreviewSignedIn())return;
         cartItems.push({
@@ -298,6 +303,7 @@
   if(panel){new MutationObserver(()=>{syncMenuClass();focusFirstMenuLink()}).observe(panel,{attributes:true,attributeFilter:['class','aria-hidden']});}
   const brandRail=document.getElementById('brandCarousel');
   if(brandRail){new MutationObserver(classifyBrandLogos).observe(brandRail,{childList:true,subtree:true});}
-  const productRail=document.getElementById('productCarousel');
-  if(productRail){new MutationObserver(()=>{installProductPricing();syncProductAuthVisibility();}).observe(productRail,{childList:true,subtree:true});}
+  document.querySelectorAll(productCarouselSelector).forEach(rail=>{
+    new MutationObserver(()=>{installProductPricing();syncProductAuthVisibility();}).observe(rail,{childList:true,subtree:true});
+  });
 })();
