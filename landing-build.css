@@ -106,3 +106,10 @@ body[data-auth-preview="true"] #bestSellerProducts .add svg{width:24px!important
 .td-qty-step svg{width:18px!important;height:18px!important}
 .td-cart-qty button svg{width:14px!important;height:14px!important}
 .td-cart-remove svg{width:17px!important;height:17px!important}
+
+/* Keep navigation visible when cart opens after scroll */
+body.td-cart-open .site-header{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:5100!important;transform:none!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+body.td-cart-open .site-nav{position:relative!important;z-index:5101!important;opacity:1!important;visibility:visible!important;transform:none!important}
+body.td-cart-open .td-cart-drawer{z-index:5000!important}
+body.td-cart-open .td-cart-backdrop{z-index:5000!important}
+body.td-cart-open .td-cart-panel{z-index:5200!important}
