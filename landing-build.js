@@ -37,12 +37,14 @@
    .td-page-transition{transition:opacity var(--td-slow) ease,transform var(--td-slow) var(--td-ease)!important;opacity:1!important}
    body.td-page-ready .td-page-transition{opacity:0!important;transform:translateY(-4px)!important}
    body.td-page-leaving .td-page-transition{opacity:1!important;transform:translateY(0)!important}
-   #brandProgress{width:0;transform:none!important;transition:width .22s linear!important}
-   .brands-carousel .brand-card .brand-logo-img{filter:grayscale(1) saturate(0) contrast(1.55) brightness(.62);opacity:.98;transition:filter .46s var(--td-ease),opacity .46s ease,transform .46s var(--td-ease);will-change:filter,opacity,transform}
-   .brands-carousel .brand-card:hover .brand-logo-img,.brands-carousel .brand-card:focus-within .brand-logo-img{filter:grayscale(0) saturate(1.22) contrast(1.08) brightness(1);opacity:1;transform:scale(1.018)}
-   .brands-carousel .brand-card{transition:border-color .34s var(--td-ease),box-shadow .34s var(--td-ease),transform .34s var(--td-ease)}
-   .brands-carousel .brand-card:hover{box-shadow:0 18px 40px rgba(8,7,11,.10);transform:translateY(-2px)}
-   @media(prefers-reduced-motion:reduce){.td-page-transition,.td-cart-backdrop,.td-cart-panel,.td-qty-backdrop,.td-qty-panel,.mobile-menu-panel.td-login-panel,.td-burger-link,#brandProgress,.brands-carousel .brand-card,.brands-carousel .brand-card .brand-logo-img{transition:none!important;transform:none!important}}
+   .brands-carousel{scroll-snap-type:none!important;scroll-behavior:auto!important}
+   .brands-carousel .brand-card{background:#fff!important;border-color:#fff!important;scroll-snap-align:none!important;transition:border-color .34s var(--td-ease),box-shadow .34s var(--td-ease),transform .34s var(--td-ease)!important}
+   .brands-carousel .brand-card:hover{box-shadow:0 18px 40px rgba(8,7,11,.10)!important;transform:translateY(-2px)!important}
+   .brands-carousel .brand-picture{background:#fff!important;background-color:#fff!important}
+   .brands-carousel .brand-logo-img{background:#fff!important;background-color:#fff!important;filter:grayscale(1) saturate(0) contrast(2.35) brightness(.50)!important;opacity:1!important;transition:filter .46s var(--td-ease),opacity .46s ease,transform .46s var(--td-ease)!important;will-change:filter,opacity,transform}
+   .brands-carousel .brand-card:hover .brand-logo-img,.brands-carousel .brand-card:focus-within .brand-logo-img{filter:grayscale(0) saturate(1.24) contrast(1.08) brightness(1)!important;opacity:1!important;transform:scale(1.018)!important}
+   #brandProgress{width:0;transform:none!important;transition:width .08s linear!important}
+   @media(prefers-reduced-motion:reduce){.td-page-transition,.td-cart-backdrop,.td-cart-panel,.td-qty-backdrop,.td-qty-panel,.mobile-menu-panel.td-login-panel,.td-burger-link,#brandProgress,.brands-carousel,.brands-carousel .brand-card,.brands-carousel .brand-card .brand-logo-img{transition:none!important;transform:none!important;scroll-behavior:auto!important}}
   `;
   document.head.append(s);
  }
@@ -152,12 +154,12 @@
   wrap.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')paused=true});
   wrap.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')paused=false});
   const loop=t=>{
-   if(!last)last=t;const dt=Math.min(48,t-last);last=t;
+   if(!last)last=t;const dt=Math.min(34,t-last);last=t;
    if(!paused&&!document.hidden){
     uniqueBrands();
     const max=Math.max(0,rail.scrollWidth-rail.clientWidth);
     if(max>1){
-     let next=rail.scrollLeft+(dir*0.052*dt);
+     let next=rail.scrollLeft+(dir*0.07*dt);
      if(next>=max){next=max;dir=-1}else if(next<=0){next=0;dir=1}
      rail.scrollLeft=next;updateBrandProgress();
     }
