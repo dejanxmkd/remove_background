@@ -92,6 +92,9 @@ body.td-pt-leaving{opacity:0;transform:translateY(-8px);transition:opacity var(-
 .td-qty-close{position:absolute;top:32px;right:34px;display:grid;place-items:center;width:32px;height:32px;padding:0;border:0;border-radius:0;background:transparent;color:var(--purple);cursor:pointer}
 .td-qty-close svg{width:26px;height:26px;stroke-width:2.5}
 .td-qty-title{margin:0 48px 0 0;min-height:32px;font:950 32px/1 var(--font);letter-spacing:-.055em}
+.td-qty-product-image{width:100%;height:170px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:18px;background:#f5f4f8}
+.td-qty-product-image .picture{width:100%;height:100%;min-height:0;flex:1;border:0;margin:0;border-radius:18px}
+.td-qty-product-image img{display:block;width:100%;height:100%;object-fit:contain}
 .td-qty-info-row{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;column-gap:12px;row-gap:8px;margin-top:18px;margin-bottom:6px}
 .td-qty-meta{margin:0;color:#6f6a78;font:750 13px/1.3 var(--font);letter-spacing:-.02em;white-space:nowrap}
 .td-qty-subtotal{margin:0 0 0 auto;display:flex;align-items:baseline;gap:6px;text-align:right;color:var(--ink);white-space:nowrap}
@@ -224,6 +227,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
       <section class="td-qty-panel" role="dialog" aria-modal="true">
         <button class="td-qty-close" type="button" data-close aria-label="Close">${icon.x}</button>
         <h2 class="td-qty-title">Product name</h2>
+        <div class="td-qty-product-image" aria-label="Product image"></div>
         <div class="td-qty-info-row">
           <p class="td-qty-meta"></p>
           <p class="td-qty-subtotal"><span>Subtotal:</span><strong>$0.00</strong></p>
@@ -270,6 +274,12 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
     m.dataset.item = btn.dataset.item || "Item";
     m.dataset.price = btn.dataset.price || "$0.00";
     $(".td-qty-title", m).textContent = m.dataset.name;
+    // Show the exact visual from the clicked product card, without inventing assets.
+    const imageHost = $(".td-qty-product-image", m);
+    const sourceVisual = btn.closest(".card")?.querySelector(".picture");
+    imageHost.replaceChildren();
+    if (sourceVisual) imageHost.append(sourceVisual.cloneNode(true));
+    imageHost.hidden = !sourceVisual;
     $(".td-qty-meta", m).textContent = `${m.dataset.item} · ${m.dataset.price}`;
     $(".td-qty-input", m).value = "1";
     updateSubtotal();
