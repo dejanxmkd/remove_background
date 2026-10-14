@@ -528,10 +528,19 @@ class LoopingBrandCarousel extends ProductCarousel {
   area.addEventListener('focusout',()=>{this.focusPaused=area.contains(document.activeElement)});
   area.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')this.touchUntil=performance.now()+3500});
   if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+   // Suspend animation while the brand rail is outside the viewport.
+   this.isVisible=false;
+   if('IntersectionObserver' in window){
+    const visibility=new IntersectionObserver(entries=>{
+     this.isVisible=entries[0]?.isIntersecting===true;
+     this.lastTick=0;
+    },{rootMargin:'100px 0px'});
+    visibility.observe(this.element);
+   }else{this.isVisible=true}
    const loop=now=>{
     if(!this.lastTick)this.lastTick=now;
     const elapsed=Math.min(64,now-this.lastTick);this.lastTick=now;
-    if(!document.hidden&&!this.hoverPaused&&!this.focusPaused&&!this.drag&&now>this.manualUntil&&now>this.touchUntil&&!this.frame){
+    if(this.isVisible&&!document.hidden&&!this.hoverPaused&&!this.focusPaused&&!this.drag&&now>this.manualUntil&&now>this.touchUntil&&!this.frame){
      this.element.scrollLeft+=elapsed*.085;
     }
     requestAnimationFrame(loop);
