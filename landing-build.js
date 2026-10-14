@@ -440,13 +440,27 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 
   /* ----- Page transitions ------------------------------------------- */
   const pageTransitions = () => {
-    // Enter: start hidden, clear on next frame so CSS animates it in.
+    // Wait for initial document resources and visible imagery, with a safety cap.
     document.body.classList.add("td-pt-entering");
-    requestAnimationFrame(() => {
+    let enteringDone = false;
+    const reveal = () => {
+      if (enteringDone) return;
+      enteringDone = true;
       requestAnimationFrame(() => document.body.classList.remove("td-pt-entering"));
-    });
-    // Safety: show the page after 600ms no matter what.
-    setTimeout(() => document.body.classList.remove("td-pt-entering"), 600);
+    };
+    const ready = () => {
+      const visibleImages = [...document.images].filter(img => {
+        const r = img.getBoundingClientRect();
+        return r.top < innerHeight && r.bottom > 0 && r.width > 0;
+      });
+      Promise.all(visibleImages.map(img => img.complete ? Promise.resolve() : new Promise(done => {
+        img.addEventListener("load", done, { once: true });
+        img.addEventListener("error", done, { once: true });
+      }))).then(reveal, reveal);
+    };
+    if (document.readyState === "complete") ready();
+    else window.addEventListener("load", ready, { once: true });
+    setTimeout(reveal, 2500);
 
     // Back-button / bfcache: reset state so returning doesn't show a stale fade.
     window.addEventListener("pageshow", (e) => {
