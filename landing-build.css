@@ -109,7 +109,8 @@ body[data-auth-preview="true"] #bestSellerProducts .add svg{width:24px!important
 
 /* Cart overlay topmost + unified motion */
 :root{--td-motion:.34s;--td-motion-fast:.22s;--td-ease:cubic-bezier(.22,1,.36,1)}
-body.td-cart-open .site-header,body.td-cart-open .site-nav{z-index:auto!important}
+body.td-cart-open .site-header,body.td-cart-open .site-nav{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:7100!important;transform:none!important;opacity:1!important;visibility:visible!important;pointer-events:none!important}
+body.td-cart-open .site-nav{position:relative!important;z-index:7101!important}
 body.td-cart-open .td-cart-drawer{z-index:7200!important}
 body.td-cart-open .td-cart-backdrop{z-index:7200!important}
 body.td-cart-open .td-cart-panel{z-index:7210!important}
