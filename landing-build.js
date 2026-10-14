@@ -34,3 +34,14 @@
  document.querySelectorAll(qs).forEach(r=>new MutationObserver(()=>{pricing();productState()}).observe(r,{childList:true,subtree:true}));
  const br=document.getElementById('brandCarousel');if(br)new MutationObserver(()=>{uniqueBrands();pngBrands()}).observe(br,{childList:true,subtree:true});
 })();
+(()=>{
+ const css='.td-burger-link{letter-spacing:-.025em!important}.td-burger-contact{margin-top:8px!important}';
+ const style=document.createElement('style');style.setAttribute('data-td-nav-tweak','true');style.textContent=css;document.head.append(style);
+ function addContact(){
+  const nav=document.querySelector('.td-burger-nav');if(!nav)return;
+  const login=nav.querySelector('.td-burger-login');if(!login||nav.querySelector('.td-burger-contact'))return;
+  const a=document.createElement('a');a.className='td-burger-link td-burger-contact';a.href='#footer';a.textContent='Contact us';nav.insertBefore(a,login);
+ }
+ addContact();
+ new MutationObserver(addContact).observe(document.body,{childList:true,subtree:true});
+})();
