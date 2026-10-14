@@ -39,12 +39,12 @@
    body.td-page-leaving .td-page-transition{opacity:1!important;transform:translateY(0)!important}
 
    .brands-carousel{scroll-snap-type:none!important;scroll-behavior:auto!important;overscroll-behavior-x:contain!important}
-   .brands-carousel .brand-card{background:#fff!important;border-color:#fff!important;scroll-snap-align:none!important;transition:border-color .34s var(--td-ease),box-shadow .34s var(--td-ease),transform .34s var(--td-ease)!important}
-   .brands-carousel .brand-card:hover{box-shadow:0 18px 40px rgba(8,7,11,.10)!important;transform:translateY(-2px)!important}
+   .brands-carousel .brand-card{background:#fff!important;background-color:#fff!important;border-color:#fff!important;scroll-snap-align:none!important;transition:box-shadow .34s var(--td-ease)!important;transform:none!important}
+   .brands-carousel .brand-card:hover,.brands-carousel .brand-card:focus-within{box-shadow:0 18px 40px rgba(8,7,11,.10)!important;transform:none!important}
    .brands-carousel .brand-picture{background:#fff!important;background-color:#fff!important;mix-blend-mode:normal!important;isolation:isolate!important}
-   .brands-carousel .brand-logo-img{background:#fff!important;background-color:#fff!important;mix-blend-mode:normal!important;filter:grayscale(1) saturate(0) contrast(2.8) brightness(.38)!important;opacity:1!important;transition:filter .46s var(--td-ease),opacity .46s ease,transform .46s var(--td-ease)!important;will-change:filter,opacity,transform}
+   .brands-carousel .brand-logo-img{background:#fff!important;background-color:#fff!important;mix-blend-mode:normal!important;filter:grayscale(1) saturate(0) contrast(2.25) brightness(1.04)!important;opacity:1!important;transition:filter .46s var(--td-ease),transform .46s var(--td-ease)!important;will-change:filter,transform}
    .brands-carousel .brand-card:hover .brand-logo-img,.brands-carousel .brand-card:focus-within .brand-logo-img{filter:grayscale(0) saturate(1.18) contrast(1.06) brightness(1)!important;opacity:1!important;transform:scale(1.018)!important}
-   #brandProgress{width:0;transform:none!important;transition:width .12s linear!important}
+   #brandProgress{width:0;transform:none!important;transition:width .08s linear!important}
    @media(prefers-reduced-motion:reduce){.td-page-transition,.td-cart-backdrop,.td-cart-panel,.td-qty-backdrop,.td-qty-panel,.mobile-menu-panel.td-login-panel,.td-burger-link,#brandProgress,.brands-carousel,.brands-carousel .brand-card,.brands-carousel .brand-card .brand-logo-img{transition:none!important;transform:none!important;scroll-behavior:auto!important}}
   `;
   document.head.append(s);
@@ -142,7 +142,7 @@
  function normalizeBrands(){
   const rail=document.getElementById('brandCarousel');if(!rail)return;
   rail.classList.remove('is-infinite-carousel');rail.removeAttribute('data-infinite');rail.style.scrollBehavior='auto';rail.style.scrollSnapType='none';rail.style.scrollPadding='0px';
-  rail.querySelectorAll('.brand-card').forEach(card=>{card.style.background='#fff';card.style.scrollSnapAlign='none';card.querySelectorAll('.brand-picture,.brand-logo-img').forEach(el=>{el.style.background='#fff';el.style.backgroundColor='#fff';el.style.mixBlendMode='normal'})});
+  rail.querySelectorAll('.brand-card').forEach(card=>{card.style.background='#fff';card.style.backgroundColor='#fff';card.style.scrollSnapAlign='none';card.style.transform='none';card.querySelectorAll('.brand-picture,.brand-logo-img').forEach(el=>{el.style.background='#fff';el.style.backgroundColor='#fff';el.style.mixBlendMode='normal'})});
  }
  function updateBrandProgress(){
   cancelAnimationFrame(brandProgressRaf);brandProgressRaf=requestAnimationFrame(()=>{
