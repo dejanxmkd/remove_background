@@ -131,3 +131,14 @@ body.td-cart-open .td-cart-panel{z-index:7210!important}
 .td-qty-close{top:22px!important;right:22px!important;width:48px!important;height:48px!important}
 @media(max-width:760px){.td-qty-panel{padding-top:28px!important}.td-qty-title{font-size:30px!important;margin-right:62px!important;min-height:50px!important}.td-qty-close{top:24px!important;right:22px!important;width:48px!important;height:48px!important}}
 @media(prefers-reduced-motion:reduce){.td-cart-drawer,.td-qty-modal,.td-cart-backdrop,.td-qty-backdrop,.td-cart-panel,.td-qty-panel,.td-page-transition,.mobile-menu-panel.td-login-panel,.td-burger-link{transition:none!important}}
+
+/* Brands final cleanup: no progress bar, white cards, dark grayscale logos */
+.brands-section .section-bottom{display:none!important}
+.brands-section .progress,.brands-section #brandProgress{display:none!important;visibility:hidden!important;width:0!important;height:0!important;opacity:0!important}
+body .brands-section .brands-carousel .brand-card,
+body .brands-section .brands-carousel .brand-picture{background:#fff!important;background-color:#fff!important;border-color:#fff!important;box-shadow:none!important}
+body .brands-section .brands-carousel .brand-card:hover,
+body .brands-section .brands-carousel .brand-card:focus-within{box-shadow:0 18px 40px rgba(8,7,11,.10)!important;transform:none!important}
+body .brands-section .brands-carousel .brand-card .brand-logo-img{background:#fff!important;background-color:#fff!important;mix-blend-mode:normal!important;filter:grayscale(1) saturate(0) contrast(1.9) brightness(.92)!important;opacity:1!important;transition:filter .42s cubic-bezier(.22,1,.36,1),transform .42s cubic-bezier(.22,1,.36,1)!important}
+body .brands-section .brands-carousel .brand-card:hover .brand-logo-img,
+body .brands-section .brands-carousel .brand-card:focus-within .brand-logo-img{filter:grayscale(0) saturate(1.16) contrast(1.06) brightness(1)!important;transform:scale(1.018)!important}
