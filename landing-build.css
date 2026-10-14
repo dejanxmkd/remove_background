@@ -99,9 +99,9 @@ body[data-auth-preview="true"] #bestSellerProducts .add svg{width:24px!important
 /* Icon centering and red trash remove */
 .td-qty-step,.td-cart-qty button,.td-cart-remove,.td-qty-close,.td-cart-close{display:grid!important;place-items:center!important;align-items:center!important;justify-items:center!important;line-height:0!important;padding:0!important}
 .td-qty-step svg,.td-cart-qty button svg,.td-cart-remove svg,.td-qty-close svg,.td-cart-close svg{display:block!important;margin:auto!important;flex:0 0 auto!important;position:relative!important;top:0!important;left:0!important;transform:none!important}
-.td-cart-remove{background:#fff1f1!important;color:#e13d3d!important;border:0!important}
-.td-cart-remove svg,.td-cart-remove svg *{stroke:#e13d3d!important;color:#e13d3d!important}
-.td-cart-remove:hover,.td-cart-remove:focus-visible{background:#e13d3d!important;color:#fff!important}
+.td-cart-remove{background:#e13d3d!important;color:#fff!important;border:0!important}
+.td-cart-remove svg,.td-cart-remove svg *{stroke:#fff!important;color:#fff!important}
+.td-cart-remove:hover,.td-cart-remove:focus-visible{background:#c92f2f!important;color:#fff!important}
 .td-cart-remove:hover svg,.td-cart-remove:hover svg *,.td-cart-remove:focus-visible svg,.td-cart-remove:focus-visible svg *{stroke:#fff!important;color:#fff!important}
 .td-qty-step svg{width:18px!important;height:18px!important}
 .td-cart-qty button svg{width:14px!important;height:14px!important}
