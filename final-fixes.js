@@ -2,6 +2,7 @@
 (()=>{
   const key='td-preview-auth-v1';
   const toastKey='td-auth-toast-v1';
+  const shownKey='td-login-ref-toast-shown-v1';
 
   function injectStableModalStyles(){
     if(document.getElementById('tdFinalFixesStyles'))return;
@@ -28,9 +29,21 @@
     notice._tdToastTimer=window.setTimeout(()=>notice.classList.remove('show'),2600);
   }
 
+  function isSigned(){
+    try{return sessionStorage.getItem(key)==='true'}catch{return false}
+  }
+
   function authToastOnLoad(){
     let msg='';
     try{msg=sessionStorage.getItem(toastKey)||'';sessionStorage.removeItem(toastKey)}catch{}
+    if(!msg&&isSigned()&&/login\.html(?:$|[?#])/i.test(document.referrer||'')){
+      try{
+        if(sessionStorage.getItem(shownKey)!=='true'){
+          msg='Successfully logged in';
+          sessionStorage.setItem(shownKey,'true');
+        }
+      }catch{msg='Successfully logged in'}
+    }
     if(msg)window.setTimeout(()=>showToast(msg),350);
   }
 
@@ -38,16 +51,17 @@
     document.addEventListener('click',event=>{
       const link=event.target.closest?.('.td-burger-login');
       if(!link)return;
-      let wasSigned=false;
-      try{wasSigned=sessionStorage.getItem(key)==='true'}catch{}
-      if(wasSigned)window.setTimeout(()=>showToast('Successfully logged out'),420);
+      if(isSigned()){
+        try{sessionStorage.removeItem(shownKey)}catch{}
+        window.setTimeout(()=>showToast('Successfully logged out'),420);
+      }
     },true);
   }
 
   function bindLoginToastFlag(){
     document.addEventListener('submit',event=>{
       if(event.target?.id!=='loginForm')return;
-      try{sessionStorage.setItem(toastKey,'Successfully logged in')}catch{}
+      try{sessionStorage.setItem(toastKey,'Successfully logged in');sessionStorage.removeItem(shownKey)}catch{}
     },true);
   }
 
