@@ -113,3 +113,10 @@ body.td-cart-open .site-nav{position:relative!important;z-index:5101!important;o
 body.td-cart-open .td-cart-drawer{z-index:5000!important}
 body.td-cart-open .td-cart-backdrop{z-index:5000!important}
 body.td-cart-open .td-cart-panel{z-index:5200!important}
+
+/* Quantity modal header cleanup */
+.td-qty-kicker{display:none!important}
+.td-qty-panel{padding-top:26px!important}
+.td-qty-title{margin:0 58px 2px 0!important;min-height:44px!important;display:flex!important;align-items:center!important;font-size:28px!important;line-height:1!important}
+.td-qty-close{top:22px!important;right:22px!important;width:48px!important;height:48px!important}
+@media(max-width:760px){.td-qty-panel{padding-top:28px!important}.td-qty-title{font-size:30px!important;margin-right:62px!important;min-height:50px!important}.td-qty-close{top:24px!important;right:22px!important;width:48px!important;height:48px!important}}
