@@ -1,8 +1,18 @@
 /* Landing build: purple burger nav + brand auto-rotation/logo balancing */
 (function(){
+  const sessionKey='td-preview-auth-v1';
   const toggle=document.getElementById('mobileMenuToggle');
   const panel=document.getElementById('mobileMenuPanel');
   const content=document.getElementById('mobileMenuContent');
+
+  function isPreviewSignedIn(){
+    try{return sessionStorage.getItem(sessionKey)==='true'}catch{return false}
+  }
+
+  function syncPreviewAuthState(){
+    document.body.dataset.authPreview=String(isPreviewSignedIn());
+    updateBurgerAuthState();
+  }
 
   function menuIsOpen(){
     return !!(panel?.classList.contains('is-open') || toggle?.getAttribute('aria-expanded')==='true');
@@ -13,12 +23,22 @@
     document.body.classList.toggle('td-login-menu-open',open);
     panel?.classList.toggle('td-login-panel',true);
     if(open) ensureBurgerNav();
+    updateBurgerAuthState();
+  }
+
+  function updateBurgerAuthState(){
+    const authLink=content?.querySelector('.td-burger-login');
+    if(!authLink)return;
+    const signedIn=isPreviewSignedIn();
+    authLink.textContent=signedIn?'Logout':'Login';
+    authLink.href=signedIn?'#logout':'./login.html';
+    authLink.setAttribute('aria-label',signedIn?'Log out and hide prices':'Open login page');
   }
 
   function ensureBurgerNav(){
     if(!content)return null;
     let nav=content.querySelector('.td-burger-nav');
-    if(nav)return nav;
+    if(nav){updateBurgerAuthState();return nav;}
     const oldAuth=document.getElementById('menuAuthLink');
     if(oldAuth)oldAuth.remove();
     nav=document.createElement('nav');
@@ -33,13 +53,24 @@
     nav.addEventListener('click',event=>{
       const link=event.target.closest('a');
       if(!link)return;
-      if(link.classList.contains('td-burger-login'))return;
+      if(link.classList.contains('td-burger-login')){
+        if(isPreviewSignedIn()){
+          event.preventDefault();
+          try{sessionStorage.removeItem(sessionKey)}catch{}
+          document.body.dataset.authPreview='false';
+          updateBurgerAuthState();
+          if(typeof setMobileMenuOpen==='function')setMobileMenuOpen(false);
+          syncMenuClass();
+        }
+        return;
+      }
       window.setTimeout(()=>{
         if(typeof setMobileMenuOpen==='function')setMobileMenuOpen(false);
         syncMenuClass();
       },0);
     });
     content.prepend(nav);
+    updateBurgerAuthState();
     return nav;
   }
 
@@ -119,6 +150,7 @@
   }
 
   ensureBurgerNav();
+  syncPreviewAuthState();
   syncMenuClass();
   classifyBrandLogos();
   installBrandAutoRotate();
