@@ -62,8 +62,11 @@
               <div class="field"><label for="registerCity">City *</label><input id="registerCity" name="city" type="text" autocomplete="address-level2" required></div>
               <div class="field"><label for="registerPostal">ZIP / Postal Code *</label><input id="registerPostal" name="postalCode" type="text" autocomplete="postal-code" required></div>
               <button class="auth-primary" type="submit">Submit Request</button>
-              <p class="auth-status" id="registerStatus" role="status" aria-live="polite" hidden></p>
             </form>
+            <div class="auth-request-success" id="registerSuccess" role="status" aria-live="polite" hidden>
+              <h2>Your request has been submitted successfully.</h2>
+              <p>Our team will review your information and get back to you soon.</p>
+            </div>
           </section>
         </div>
       </div>
@@ -125,8 +128,9 @@
     });
     document.getElementById('registerForm').addEventListener('submit',event=>{
       event.preventDefault();
-      // Frontend preview only. Connect a real request endpoint before going live.
-      showStatus('registerStatus','Your request has been submitted successfully. Our team will review your information and get back to you soon.');
+      document.getElementById('registerForm').hidden=true;
+      document.querySelector('#registerPanel > h1').hidden=true;
+      document.getElementById('registerSuccess').hidden=false;
     });
 
     /* ===== Unified page transitions ===== */
