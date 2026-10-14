@@ -1,18 +1,43 @@
 /* Landing build: purple burger nav + authenticated pricing/cart drawer + balanced brand logos */
 
 /* Auth product state: logged out shows Request Price only; logged in shows prices and plus. */
-body:not([data-auth-preview="true"]) #productCarousel .add{display:none!important}
+body:not([data-auth-preview="true"]) #productCarousel .add,
+body:not([data-auth-preview="true"]) #dealsProducts .add,
+body:not([data-auth-preview="true"]) #bestSellerProducts .add{display:none!important}
 body:not([data-auth-preview="true"]) #shoppingCart{display:none!important}
 body:not([data-auth-preview="true"]) #productCarousel .prices,
 body:not([data-auth-preview="true"]) #productCarousel .old,
 body:not([data-auth-preview="true"]) #productCarousel .new-price,
-body:not([data-auth-preview="true"]) #productCarousel [data-product-price]{display:none!important}
-body[data-auth-preview="true"] #productCarousel .request-price-link{display:none!important}
-body[data-auth-preview="true"] #productCarousel .prices{display:flex!important;flex-direction:column!important;gap:4px!important}
-body[data-auth-preview="true"] #productCarousel .old{display:block!important;font-size:12px!important;font-weight:600!important;color:#a5a1ae!important;text-decoration:line-through!important}
+body:not([data-auth-preview="true"]) #productCarousel [data-product-price],
+body:not([data-auth-preview="true"]) #dealsProducts .prices,
+body:not([data-auth-preview="true"]) #dealsProducts .old,
+body:not([data-auth-preview="true"]) #dealsProducts .new-price,
+body:not([data-auth-preview="true"]) #dealsProducts [data-product-price],
+body:not([data-auth-preview="true"]) #bestSellerProducts .prices,
+body:not([data-auth-preview="true"]) #bestSellerProducts .old,
+body:not([data-auth-preview="true"]) #bestSellerProducts .new-price,
+body:not([data-auth-preview="true"]) #bestSellerProducts [data-product-price]{display:none!important}
+body[data-auth-preview="true"] #productCarousel .request-price-link,
+body[data-auth-preview="true"] #dealsProducts .request-price-link,
+body[data-auth-preview="true"] #bestSellerProducts .request-price-link{display:none!important}
+body[data-auth-preview="true"] #productCarousel .prices,
+body[data-auth-preview="true"] #dealsProducts .prices,
+body[data-auth-preview="true"] #bestSellerProducts .prices{display:flex!important;flex-direction:column!important;gap:4px!important}
+body[data-auth-preview="true"] #productCarousel .old,
+body[data-auth-preview="true"] #dealsProducts .old,
+body[data-auth-preview="true"] #bestSellerProducts .old{display:block!important;font-size:12px!important;font-weight:600!important;color:#a5a1ae!important;text-decoration:line-through!important}
 body[data-auth-preview="true"] #productCarousel .new-price,
-body[data-auth-preview="true"] #productCarousel [data-product-price]{display:block!important;font-size:20px!important;letter-spacing:-.035em!important;font-weight:800!important;color:var(--ink)!important}
-body[data-auth-preview="true"] #productCarousel .add{display:grid!important}
+body[data-auth-preview="true"] #productCarousel [data-product-price],
+body[data-auth-preview="true"] #dealsProducts .new-price,
+body[data-auth-preview="true"] #dealsProducts [data-product-price],
+body[data-auth-preview="true"] #bestSellerProducts .new-price,
+body[data-auth-preview="true"] #bestSellerProducts [data-product-price]{display:block!important;font-size:20px!important;letter-spacing:-.035em!important;font-weight:800!important;color:var(--ink)!important}
+body[data-auth-preview="true"] #productCarousel .add,
+body[data-auth-preview="true"] #dealsProducts .add,
+body[data-auth-preview="true"] #bestSellerProducts .add{display:grid!important;background:var(--purple)!important;color:#fff!important;border-radius:50%!important}
+body[data-auth-preview="true"] #productCarousel .add svg,
+body[data-auth-preview="true"] #dealsProducts .add svg,
+body[data-auth-preview="true"] #bestSellerProducts .add svg{stroke:#fff!important}
 
 /* Cart drawer */
 body.td-cart-open{overflow:hidden}
