@@ -137,15 +137,10 @@
     /* ===== Unified page transitions ===== */
     (function(){
       document.body.classList.add('td-pt-entering');
-      var revealed=false;
-      function revealPage(){
-        if(revealed)return;
-        revealed=true;
-        requestAnimationFrame(function(){document.body.classList.remove('td-pt-entering');});
-      }
-      if(document.readyState==='complete')revealPage();
-      else window.addEventListener('load',revealPage,{once:true});
-      setTimeout(revealPage,2500);
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ document.body.classList.remove('td-pt-entering'); });
+      });
+      setTimeout(function(){ document.body.classList.remove('td-pt-entering'); }, 600);
       window.addEventListener('pageshow', function(e){
         document.body.classList.remove('td-pt-leaving','td-pt-entering');
         if(e.persisted){
