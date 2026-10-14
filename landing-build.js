@@ -37,14 +37,12 @@
    .td-page-transition{transition:opacity var(--td-slow) ease,transform var(--td-slow) var(--td-ease)!important;opacity:1!important}
    body.td-page-ready .td-page-transition{opacity:0!important;transform:translateY(-4px)!important}
    body.td-page-leaving .td-page-transition{opacity:1!important;transform:translateY(0)!important}
-   .td-micro-fade{opacity:0;transform:translate3d(0,18px,0);transition:opacity var(--td-slow) ease,transform var(--td-slow) var(--td-ease);will-change:opacity,transform}
-   .td-micro-fade.is-visible{opacity:1;transform:translate3d(0,0,0)}
    #brandProgress{width:0;transform:none!important;transition:width .22s linear!important}
    .brands-carousel .brand-card .brand-logo-img{filter:grayscale(1) saturate(0) contrast(1.55) brightness(.62);opacity:.98;transition:filter .46s var(--td-ease),opacity .46s ease,transform .46s var(--td-ease);will-change:filter,opacity,transform}
    .brands-carousel .brand-card:hover .brand-logo-img,.brands-carousel .brand-card:focus-within .brand-logo-img{filter:grayscale(0) saturate(1.22) contrast(1.08) brightness(1);opacity:1;transform:scale(1.018)}
    .brands-carousel .brand-card{transition:border-color .34s var(--td-ease),box-shadow .34s var(--td-ease),transform .34s var(--td-ease)}
    .brands-carousel .brand-card:hover{box-shadow:0 18px 40px rgba(8,7,11,.10);transform:translateY(-2px)}
-   @media(prefers-reduced-motion:reduce){.td-page-transition,.td-micro-fade,.td-cart-backdrop,.td-cart-panel,.td-qty-backdrop,.td-qty-panel,.mobile-menu-panel.td-login-panel,.td-burger-link,#brandProgress,.brands-carousel .brand-card,.brands-carousel .brand-card .brand-logo-img{transition:none!important;transform:none!important}.td-micro-fade{opacity:1!important}}
+   @media(prefers-reduced-motion:reduce){.td-page-transition,.td-cart-backdrop,.td-cart-panel,.td-qty-backdrop,.td-qty-panel,.mobile-menu-panel.td-login-panel,.td-burger-link,#brandProgress,.brands-carousel .brand-card,.brands-carousel .brand-card .brand-logo-img{transition:none!important;transform:none!important}}
   `;
   document.head.append(s);
  }
@@ -80,13 +78,7 @@
    e.preventDefault();document.body.classList.add('td-page-leaving');setTimeout(()=>{window.location.href=a.href},260);
   },true);
  }
- function microFade(){
-  const targets=[...document.querySelectorAll('.hero-video,.featured-panel,.new-section,.brands-section,.categories-section,.site-footer')];
-  targets.forEach(el=>el.classList.add('td-micro-fade'));
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches){targets.forEach(el=>el.classList.add('is-visible'));return}
-  const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -8% 0px'});
-  targets.forEach(el=>io.observe(el));
- }
+ function microFade(){}
 
  function isMenuOpen(){return !!(panel?.classList.contains('is-open')||toggle?.getAttribute('aria-expanded')==='true')}
  function closeMenuAnimated(){
@@ -175,7 +167,7 @@
   requestAnimationFrame(loop);
  }
 
- runtimeStyles();pageTransition();microFade();burger();pricing();drawer();qtyModal();sync();syncMenuClass();uniqueBrands();pngBrands();brandProgress();resetBrandProgress();autoBrands();setTimeout(resetBrandProgress,120);setTimeout(updateBrandProgress,700);
+ runtimeStyles();pageTransition();burger();pricing();drawer();qtyModal();sync();syncMenuClass();uniqueBrands();pngBrands();brandProgress();resetBrandProgress();autoBrands();setTimeout(resetBrandProgress,120);setTimeout(updateBrandProgress,700);
  toggle?.addEventListener('click',e=>{if(isMenuOpen()){e.preventDefault();e.stopImmediatePropagation();closeMenuAnimated();return}setTimeout(()=>{syncMenuClass();content?.querySelector('.td-burger-link')?.focus({preventScroll:true})},0)},true);
  document.addEventListener('click',e=>{const add=e.target.closest(addSel);if(add){e.preventDefault();e.stopImmediatePropagation();openQty(add);return}const cartBtn=e.target.closest('#shoppingCart');if(cartBtn){e.preventDefault();e.stopImmediatePropagation();openCart()}},true);
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&isMenuOpen())closeMenuAnimated()},true);
