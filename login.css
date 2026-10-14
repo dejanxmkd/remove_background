@@ -131,3 +131,8 @@ button{cursor:pointer}
 @media(prefers-reduced-motion:reduce){
   .back-home,.field input,.auth-primary,.auth-tab{transition:none}
 }
+/* Account request confirmation replaces the form after Submit Request. */
+#registerPanel [hidden]{display:none!important}
+.auth-request-success{padding:30px 0 18px}
+.auth-request-success h2{margin:0 0 16px;font-size:clamp(28px,3vw,38px);line-height:1.15;font-weight:900;letter-spacing:-.045em;color:var(--ink)}
+.auth-request-success p{margin:0;font-size:16px;line-height:1.65;color:#6f6a78}
