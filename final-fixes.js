@@ -1,21 +1,31 @@
-/* Final interaction fixes: stable quantity modal + auth toast */
+/* Final interaction fixes: stable quantity modal/cart + auth toast */
 (()=>{
   const key='td-preview-auth-v1';
   const toastKey='td-auth-toast-v1';
   const shownKey='td-login-ref-toast-shown-v1';
 
-  function injectStableModalStyles(){
+  function injectStableOverlayStyles(){
     if(document.getElementById('tdFinalFixesStyles'))return;
     const style=document.createElement('style');
     style.id='tdFinalFixesStyles';
     style.textContent=`
       html{scrollbar-gutter:stable!important}
-      body.td-qty-open{overflow:visible!important;padding-right:0!important;position:static!important;width:auto!important;top:auto!important}
+
+      body.td-qty-open,
+      body.td-cart-open,
+      body[data-td-cart-locked="true"]{overflow:visible!important;padding-right:0!important;position:static!important;width:auto!important;top:auto!important;touch-action:auto!important}
+
       body.td-qty-open .site-header{position:sticky!important;top:0!important;left:auto!important;right:auto!important;width:100%!important;z-index:5190!important;opacity:1!important;visibility:visible!important;transform:none!important;pointer-events:none!important}
       body.td-qty-open .site-nav{position:relative!important;z-index:5191!important;opacity:1!important;visibility:visible!important;transform:none!important}
       body.td-qty-open .td-qty-modal{position:fixed!important;inset:0!important;z-index:5200!important}
       body.td-qty-open .td-qty-backdrop{z-index:5200!important}
       body.td-qty-open .td-qty-panel{z-index:5210!important}
+
+      body.td-cart-open .site-header{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:7190!important;opacity:1!important;visibility:visible!important;transform:none!important;pointer-events:none!important}
+      body.td-cart-open .site-nav{position:relative!important;z-index:7191!important;opacity:1!important;visibility:visible!important;transform:none!important;pointer-events:none!important}
+      body.td-cart-open .td-cart-drawer{position:fixed!important;inset:0!important;z-index:7200!important;visibility:visible!important}
+      body.td-cart-open .td-cart-backdrop{z-index:7200!important}
+      body.td-cart-open .td-cart-panel{z-index:7210!important}
     `;
     document.head.append(style);
   }
@@ -65,7 +75,7 @@
     },true);
   }
 
-  injectStableModalStyles();
+  injectStableOverlayStyles();
   authToastOnLoad();
   bindLogoutToast();
   bindLoginToastFlag();
