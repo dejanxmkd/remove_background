@@ -89,14 +89,14 @@ body.td-pt-leaving{opacity:0;transform:translateY(-8px);transition:opacity var(-
 .td-qty-modal.is-open .td-qty-backdrop{opacity:1}
 .td-qty-panel{position:absolute;left:50%;top:50%;width:min(460px,calc(100vw - 44px));padding:34px;background:#fff;color:var(--ink);border-radius:26px;display:flex;flex-direction:column;gap:16px;opacity:0;transform:translate(-50%,-44%) scale(.97);box-shadow:0 26px 70px rgba(8,7,11,.24);transition:opacity var(--td-fast) ease,transform var(--td-mid) var(--td-ease)}
 .td-qty-modal.is-open .td-qty-panel{opacity:1;transform:translate(-50%,-50%) scale(1)}
-.td-qty-close{position:absolute;top:28px;right:28px;display:grid;place-items:center;width:52px;height:52px;border:0;border-radius:50%;background:#f2eff9;color:var(--purple);cursor:pointer}
-.td-qty-close svg{width:22px;height:22px;stroke-width:2.6}
-.td-qty-title{margin:0 70px 0 0;font:950 32px/1 var(--font);letter-spacing:-.055em}
-.td-qty-info-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:14px;margin-top:4px;margin-bottom:4px}
-.td-qty-meta{margin:0;color:#6f6a78;font:800 14px/1.2 var(--font);letter-spacing:-.02em}
-.td-qty-subtotal{margin:0;text-align:right;color:var(--ink);font:600 38px/1 var(--font);letter-spacing:-.04em;white-space:nowrap}
-.td-qty-subtotal span{display:none!important}
-.td-qty-subtotal strong{display:block;font:inherit;color:inherit}
+.td-qty-close{position:absolute;top:32px;right:34px;display:grid;place-items:center;width:32px;height:32px;padding:0;border:0;border-radius:0;background:transparent;color:var(--purple);cursor:pointer}
+.td-qty-close svg{width:26px;height:26px;stroke-width:2.5}
+.td-qty-title{margin:0 48px 0 0;min-height:32px;font:950 32px/1 var(--font);letter-spacing:-.055em}
+.td-qty-info-row{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;column-gap:12px;row-gap:8px;margin-top:18px;margin-bottom:6px}
+.td-qty-meta{margin:0;color:#6f6a78;font:750 13px/1.3 var(--font);letter-spacing:-.02em;white-space:nowrap}
+.td-qty-subtotal{margin:0 0 0 auto;display:flex;align-items:baseline;gap:6px;text-align:right;color:var(--ink);white-space:nowrap}
+.td-qty-subtotal span{display:inline;font:800 13px/1.2 var(--font);color:#6f6a78;letter-spacing:-.02em}
+.td-qty-subtotal strong{display:inline;font:850 27px/1 var(--font);letter-spacing:-.045em;color:var(--ink)}
 .td-qty-row{display:grid;grid-template-columns:58px minmax(0,1fr) 58px;gap:12px;margin-top:4px}
 .td-qty-step{display:grid;place-items:center;height:58px;border:0;border-radius:18px;background:var(--purple);color:#fff;cursor:pointer;transition:background var(--td-fast) ease}
 .td-qty-step:hover{background:#4b21a6}
@@ -160,7 +160,7 @@ body.td-login-menu-open .td-burger-link:nth-child(4){transition-delay:.20s}
 body.td-login-menu-open .td-burger-link:nth-child(5){transition-delay:.24s}
 body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .td-burger-link:hover,.td-burger-link:focus-visible{opacity:.75;outline:none}
-@media(max-width:760px){.td-burger-nav{gap:18px}.td-burger-link{font-size:38px}.td-cart-panel{width:100vw;padding:26px 22px}.td-qty-panel{left:0;right:0;top:auto;bottom:0;width:100%;max-width:none;border-radius:26px 26px 0 0;padding:30px 22px 28px;transform:translateY(105%);opacity:1}.td-qty-modal.is-open .td-qty-panel{transform:translateY(0)}.td-qty-title{font-size:28px;margin-right:60px}}
+@media(max-width:760px){.td-burger-nav{gap:18px}.td-burger-link{font-size:38px}.td-cart-panel{width:100vw;padding:26px 22px}.td-qty-panel{left:0;right:0;top:auto;bottom:0;width:100%;max-width:none;border-radius:26px 26px 0 0;padding:30px 22px 28px;transform:translateY(105%);opacity:1}.td-qty-modal.is-open .td-qty-panel{transform:translateY(0)}.td-qty-title{font-size:28px;margin-right:42px}.td-qty-close{top:29px;right:22px}.td-qty-info-row{margin-top:18px}.td-qty-meta{font-size:12px}.td-qty-subtotal span{font-size:12px}.td-qty-subtotal strong{font-size:24px}}
 @media(prefers-reduced-motion:reduce){.td-qty-backdrop,.td-qty-panel,.td-cart-backdrop,.td-cart-panel,.td-burger-link{transition:none!important}}
 `;
     document.head.append(s);
@@ -220,7 +220,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
         <h2 class="td-qty-title">Product name</h2>
         <div class="td-qty-info-row">
           <p class="td-qty-meta"></p>
-          <p class="td-qty-subtotal" aria-label="Subtotal"><strong>$0.00</strong></p>
+          <p class="td-qty-subtotal"><span>Subtotal:</span><strong>$0.00</strong></p>
         </div>
         <div class="td-qty-row">
           <button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease">${icon.minus}</button>
