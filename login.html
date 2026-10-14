@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./login.css?v=single-line-tabs-v4">
+  <link rel="stylesheet" href="./login.css?v=balanced-tabs-headings-v5">
   <style>
     /* ===== Unified page-transition — same tokens as the storefront ===== */
     :root{--td-ease:cubic-bezier(.22,1,.36,1);--td-mid:.34s;--td-slow:.42s}
@@ -137,10 +137,15 @@
     /* ===== Unified page transitions ===== */
     (function(){
       document.body.classList.add('td-pt-entering');
-      requestAnimationFrame(function(){
-        requestAnimationFrame(function(){ document.body.classList.remove('td-pt-entering'); });
-      });
-      setTimeout(function(){ document.body.classList.remove('td-pt-entering'); }, 600);
+      var revealed=false;
+      function revealPage(){
+        if(revealed)return;
+        revealed=true;
+        requestAnimationFrame(function(){document.body.classList.remove('td-pt-entering');});
+      }
+      if(document.readyState==='complete')revealPage();
+      else window.addEventListener('load',revealPage,{once:true});
+      setTimeout(revealPage,2500);
       window.addEventListener('pageshow', function(e){
         document.body.classList.remove('td-pt-leaving','td-pt-entering');
         if(e.persisted){
