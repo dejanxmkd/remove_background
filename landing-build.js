@@ -8,11 +8,37 @@
  const panel=document.getElementById('mobileMenuPanel');
  const content=document.getElementById('mobileMenuContent');
  const cart=[];
- let brandLock=false,closingMenu=false;
+ let brandLock=false,closingMenu=false,cartScrollY=0;
  const signed=()=>{try{return sessionStorage.getItem(key)==='true'}catch{return false}};
  const money=v=>Number(String(v).replace(/[^0-9.]/g,''))||0;
  const show=(el,v)=>el&&el.style.setProperty('display',v,'important');
  const toast=msg=>{if(typeof notify==='function')notify(msg);else{const n=document.getElementById('notice');if(n){n.textContent=msg;n.classList.add('show');setTimeout(()=>n.classList.remove('show'),2300)}}};
+ const lockCartScroll=()=>{
+  if(document.body.dataset.tdCartLocked==='true')return;
+  cartScrollY=window.scrollY||document.documentElement.scrollTop||0;
+  const gap=Math.max(0,window.innerWidth-document.documentElement.clientWidth);
+  document.body.dataset.tdCartLocked='true';
+  document.body.style.setProperty('--td-scrollbar-gap',gap+'px');
+  document.body.style.position='fixed';
+  document.body.style.top=`-${cartScrollY}px`;
+  document.body.style.left='0';
+  document.body.style.right='0';
+  document.body.style.width='100%';
+  if(gap)document.body.style.paddingRight=gap+'px';
+ };
+ const unlockCartScroll=()=>{
+  if(document.body.dataset.tdCartLocked!=='true')return;
+  const y=cartScrollY;
+  document.body.dataset.tdCartLocked='false';
+  document.body.style.position='';
+  document.body.style.top='';
+  document.body.style.left='';
+  document.body.style.right='';
+  document.body.style.width='';
+  document.body.style.paddingRight='';
+  document.body.style.removeProperty('--td-scrollbar-gap');
+  window.scrollTo(0,y);
+ };
  const icon={
   x:'<svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>',
   plus:'<svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>',
@@ -133,8 +159,8 @@
  function addCart(x){const old=cart.find(i=>i.key===x.key);old?old.qty+=x.qty:cart.push(x);renderCart();badge()}
  function badge(){const n=cart.reduce((s,i)=>s+i.qty,0),b=document.getElementById('cartCount'),btn=document.getElementById('shoppingCart');if(b){b.textContent=String(n);b.hidden=n===0}if(btn)btn.setAttribute('aria-label',`Shopping cart, ${n} ${n===1?'item':'items'}`)}
  function renderCart(){const d=drawer(),list=d.querySelector('.td-cart-items'),total=d.querySelector('.td-cart-total strong');if(!cart.length){list.innerHTML='<p class="td-cart-empty">Your cart is empty.</p>';total.textContent='$0.00';return}list.innerHTML=cart.map((i,x)=>`<div class="td-cart-item"><div class="td-cart-item-main"><strong>${i.name}</strong><span>${i.item}</span><div class="td-cart-qty"><button type="button" data-qty="${x}" data-step="-1" aria-label="Decrease quantity">${icon.minus}</button><em>${i.qty}</em><button type="button" data-qty="${x}" data-step="1" aria-label="Increase quantity">${icon.plus}</button></div></div><div class="td-cart-item-side"><button class="td-cart-remove" type="button" data-remove="${x}" aria-label="Remove item">${icon.trash}</button><b>$${(money(i.price)*i.qty).toFixed(2)}</b></div></div>`).join('');total.textContent='$'+cart.reduce((s,i)=>s+money(i.price)*i.qty,0).toFixed(2)}
- function openCart(){if(!signed()){location.assign('./login.html');return}const d=drawer();renderCart();d.classList.add('is-open');d.setAttribute('aria-hidden','false');document.body.classList.add('td-cart-open')}
- function closeCart(){const d=document.getElementById('tdCartDrawer');if(!d)return;d.classList.remove('is-open');d.setAttribute('aria-hidden','true');document.body.classList.remove('td-cart-open')}
+ function openCart(){if(!signed()){location.assign('./login.html');return}const d=drawer();renderCart();lockCartScroll();d.classList.add('is-open');d.setAttribute('aria-hidden','false');document.body.classList.add('td-cart-open')}
+ function closeCart(){const d=document.getElementById('tdCartDrawer');if(!d)return;d.classList.remove('is-open');d.setAttribute('aria-hidden','true');document.body.classList.remove('td-cart-open');unlockCartScroll()}
 
  function pngBrands(){document.querySelectorAll('.brand-logo-img').forEach(img=>{if(img.dataset.tdPngPreferred==='true')return;const src=img.getAttribute('src')||'';if(!src.includes('/assets/brands/v2/')||!src.endsWith('.webp'))return;const webp=src;img.dataset.tdPngPreferred='true';img.addEventListener('error',()=>{if(img.dataset.fallback)return;img.dataset.fallback='1';img.src=webp},{once:true});img.src=src.replace(/\.webp(\?.*)?$/,'.png$1')})}
  function uniqueBrands(){const rail=document.getElementById('brandCarousel');if(!rail||brandLock)return;const all=[...rail.querySelectorAll('.brand-card')];if(!all.length)return;brandLock=true;const seen=new Set();all.forEach(card=>{const name=(card.querySelector('.brand-name')?.textContent||card.textContent||'').trim().toLowerCase();if(seen.has(name))card.remove();else seen.add(name)});brandLock=false}
