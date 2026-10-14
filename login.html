@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#6633CC">
-  <title>Sign In or Create Account — True Distributors</title>
+  <title>Login or Request an Account — True Distributors</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
         <div class="auth-box">
           <div class="auth-tabs" role="tablist" aria-label="Account options">
             <button id="loginTab" class="auth-tab is-active" type="button" role="tab" aria-controls="loginPanel" aria-selected="true" tabindex="0">Login</button>
-            <button id="registerTab" class="auth-tab" type="button" role="tab" aria-controls="registerPanel" aria-selected="false" tabindex="-1">Create Account</button>
+            <button id="registerTab" class="auth-tab" type="button" role="tab" aria-controls="registerPanel" aria-selected="false" tabindex="-1">Request an Account</button>
           </div>
           <section id="loginPanel" class="auth-panel" role="tabpanel" aria-labelledby="loginTab">
             <h1>Welcome back</h1>
@@ -51,41 +51,17 @@
             </form>
           </section>
           <section id="registerPanel" class="auth-panel" role="tabpanel" aria-labelledby="registerTab" hidden>
-            <h1>Create account</h1>
+            <h1>Basic Company Registration</h1>
             <form id="registerForm" class="auth-form">
-              <div class="field">
-                <label for="registerName">Full name</label>
-                <input id="registerName" name="name" type="text" autocomplete="name" placeholder="Your full name" required>
-              </div>
-              <div class="field">
-                <label for="registerCompany">Company name</label>
-                <input id="registerCompany" name="company" type="text" autocomplete="organization" placeholder="Company name" required>
-              </div>
-              <div class="field">
-                <label for="registerEmail">Email address</label>
-                <input id="registerEmail" name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@company.com" required>
-              </div>
-              <div class="field">
-                <label for="registerPassword">Password</label>
-                <div class="password-field">
-                  <input id="registerPassword" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required>
-                  <button class="password-toggle" type="button" aria-label="Show password" aria-pressed="false" data-password="registerPassword">
-                    <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.06 12.34a1 1 0 0 1 0-.68 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .68 10.75 10.75 0 0 1-19.88 0Z"/><circle cx="12" cy="12" r="3"/></svg>
-                    <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 3 18 18"/><path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.88 5.09A10.7 10.7 0 0 1 12 4.88a10.75 10.75 0 0 1 9.94 6.78 1 1 0 0 1 0 .68 10.84 10.84 0 0 1-4.1 4.74"/><path d="M6.13 6.13a10.83 10.83 0 0 0-4.07 5.53 1 1 0 0 0 0 .68A10.75 10.75 0 0 0 12 19.12c1.02 0 2.01-.14 2.94-.4"/></svg>
-                  </button>
-                </div>
-              </div>
-              <div class="field">
-                <label for="registerConfirm">Confirm password</label>
-                <div class="password-field">
-                  <input id="registerConfirm" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Confirm password" required>
-                  <button class="password-toggle" type="button" aria-label="Show password" aria-pressed="false" data-password="registerConfirm">
-                    <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.06 12.34a1 1 0 0 1 0-.68 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .68 10.75 10.75 0 0 1-19.88 0Z"/><circle cx="12" cy="12" r="3"/></svg>
-                    <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 3 18 18"/><path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.88 5.09A10.7 10.7 0 0 1 12 4.88a10.75 10.75 0 0 1 9.94 6.78 1 1 0 0 1 0 .68 10.84 10.84 0 0 1-4.1 4.74"/><path d="M6.13 6.13a10.83 10.83 0 0 0-4.07 5.53 1 1 0 0 0 0 .68A10.75 10.75 0 0 0 12 19.12c1.02 0 2.01-.14 2.94-.4"/></svg>
-                  </button>
-                </div>
-              </div>
-              <button class="auth-primary" type="submit">Create Account</button>
+              <div class="field"><label for="registerFirstName">First Name *</label><input id="registerFirstName" name="firstName" type="text" autocomplete="given-name" required></div>
+              <div class="field"><label for="registerLastName">Last Name *</label><input id="registerLastName" name="lastName" type="text" autocomplete="family-name" required></div>
+              <div class="field"><label for="registerEmail">Email Address *</label><input id="registerEmail" name="email" type="email" autocomplete="email" required></div>
+              <div class="field"><label for="registerPhone">Phone Number *</label><input id="registerPhone" name="phone" type="tel" autocomplete="tel" required></div>
+              <div class="field"><label for="registerCompany">Company Name *</label><input id="registerCompany" name="company" type="text" autocomplete="organization" required></div>
+              <div class="field"><label for="registerAddress">Company Address *</label><input id="registerAddress" name="address" type="text" autocomplete="street-address" required></div>
+              <div class="field"><label for="registerCity">City *</label><input id="registerCity" name="city" type="text" autocomplete="address-level2" required></div>
+              <div class="field"><label for="registerPostal">ZIP / Postal Code *</label><input id="registerPostal" name="postalCode" type="text" autocomplete="postal-code" required></div>
+              <button class="auth-primary" type="submit">Submit Request</button>
               <p class="auth-status" id="registerStatus" role="status" aria-live="polite" hidden></p>
             </form>
           </section>
@@ -149,14 +125,8 @@
     });
     document.getElementById('registerForm').addEventListener('submit',event=>{
       event.preventDefault();
-      const password=document.getElementById('registerPassword').value;
-      const confirm=document.getElementById('registerConfirm').value;
-      if(password!==confirm){
-        showStatus('registerStatus','Passwords do not match.');
-        document.getElementById('registerConfirm').focus();
-        return;
-      }
-      showStatus('registerStatus','Registration is a preview only. No account was created or details sent.');
+      // Frontend preview only. Connect a real request endpoint before going live.
+      showStatus('registerStatus','Your request has been submitted successfully. Our team will review your information and get back to you soon. (Demo preview: no request has actually been sent.)');
     });
 
     /* ===== Unified page transitions ===== */
