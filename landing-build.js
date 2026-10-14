@@ -22,30 +22,17 @@
   const money = (v) => Number(String(v).replace(/[^0-9.]/g, "")) || 0;
   const show = (el, v) => el && el.style.setProperty("display", v, "important");
 
-  /* Body scroll lock that preserves the exact viewport position.
-     We pin the body with `position: fixed; top: -scrollY` so the page behind
-     any overlay (modal, cart, burger) never shifts, horizontally or
-     vertically. Reference-counted so independent overlays can nest without
-     releasing the lock early. */
-  let lockCount = 0;
-  let savedScrollY = 0;
+  /* Lock background scrolling without changing body positioning or
+     resetting scrollY. This keeps the sticky header in place. */
+  const lockedOverlays = new Set();
   const lockBody = (cls) => {
-    if (lockCount === 0) {
-      savedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
-      document.body.style.top = -savedScrollY + "px";
-      document.body.classList.add("td-locked");
-    }
-    lockCount++;
-    document.body.classList.add(cls);
+    lockedOverlays.add(cls);
+    document.body.classList.add(cls, "td-locked");
   };
   const unlockBody = (cls) => {
+    lockedOverlays.delete(cls);
     document.body.classList.remove(cls);
-    lockCount = Math.max(0, lockCount - 1);
-    if (lockCount === 0) {
-      document.body.classList.remove("td-locked");
-      document.body.style.top = "";
-      window.scrollTo(0, savedScrollY);
-    }
+    if (!lockedOverlays.size) document.body.classList.remove("td-locked");
   };
   const toast = (msg) => {
     if (typeof notify === "function") return notify(msg);
@@ -75,7 +62,12 @@
    overlay opens. The JS-managed body-lock below pins the vertical scroll
    position too, so the page behind the modal doesn't jump at all. */
 html{scrollbar-gutter:stable}
-body.td-locked{position:fixed;left:0;right:0;width:100%;overflow:hidden}
+body.td-locked{overflow:clip;touch-action:none}
+body.td-cart-open .site-header{position:sticky!important;top:0;z-index:7100!important;visibility:visible!important;opacity:1!important}
+body.td-login-menu-open .site-header{position:sticky!important;top:0;z-index:2700!important;visibility:visible!important}
+body.td-login-menu-open .mobile-menu-toggle{position:relative!important;z-index:2701!important;display:inline-flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}
+body.td-login-menu-open .mobile-menu-toggle .mobile-menu-open-icon{display:none!important}
+body.td-login-menu-open .mobile-menu-toggle .mobile-menu-close-icon{display:block!important}
 
 /* ===== Unified page-transition (fade + subtle lift) =====
    Same tokens used by every overlay so navigation feels consistent.
@@ -100,10 +92,10 @@ body.td-pt-leaving{opacity:0;transform:translateY(-8px);transition:opacity var(-
 .td-qty-close{position:absolute;top:28px;right:28px;display:grid;place-items:center;width:52px;height:52px;border:0;border-radius:50%;background:#f2eff9;color:var(--purple);cursor:pointer}
 .td-qty-close svg{width:22px;height:22px;stroke-width:2.6}
 .td-qty-title{margin:0 70px 0 0;font:950 32px/1 var(--font);letter-spacing:-.055em}
-.td-qty-info-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:18px;margin-top:4px;margin-bottom:4px}
-.td-qty-meta{margin:0;color:#6f6a78;font:850 14px/1.2 var(--font);letter-spacing:-.02em}
-.td-qty-subtotal{margin:0;text-align:right;color:var(--ink);line-height:1;font:500 32px var(--font);letter-spacing:-.04em;white-space:nowrap}
-.td-qty-subtotal span{display:block;font:900 11px/1 var(--font);text-transform:uppercase;letter-spacing:.08em;color:#8d8795;margin-bottom:6px}
+.td-qty-info-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:14px;margin-top:4px;margin-bottom:4px}
+.td-qty-meta{margin:0;color:#6f6a78;font:800 14px/1.2 var(--font);letter-spacing:-.02em}
+.td-qty-subtotal{margin:0;text-align:right;color:var(--ink);font:600 38px/1 var(--font);letter-spacing:-.04em;white-space:nowrap}
+.td-qty-subtotal span{display:none!important}
 .td-qty-subtotal strong{display:block;font:inherit;color:inherit}
 .td-qty-row{display:grid;grid-template-columns:58px minmax(0,1fr) 58px;gap:12px;margin-top:4px}
 .td-qty-step{display:grid;place-items:center;height:58px;border:0;border-radius:18px;background:var(--purple);color:#fff;cursor:pointer;transition:background var(--td-fast) ease}
@@ -228,7 +220,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
         <h2 class="td-qty-title">Product name</h2>
         <div class="td-qty-info-row">
           <p class="td-qty-meta"></p>
-          <p class="td-qty-subtotal"><span>Subtotal</span><strong>$0.00</strong></p>
+          <p class="td-qty-subtotal" aria-label="Subtotal"><strong>$0.00</strong></p>
         </div>
         <div class="td-qty-row">
           <button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease">${icon.minus}</button>
