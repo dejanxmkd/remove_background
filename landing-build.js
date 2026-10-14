@@ -13,6 +13,11 @@
  const money=v=>Number(String(v).replace(/[^0-9.]/g,''))||0;
  const show=(el,v)=>el&&el.style.setProperty('display',v,'important');
  const toast=msg=>{if(typeof notify==='function')notify(msg);else{const n=document.getElementById('notice');if(n){n.textContent=msg;n.classList.add('show');setTimeout(()=>n.classList.remove('show'),2300)}}};
+ const icon={
+  x:'<svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>',
+  plus:'<svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>',
+  minus:'<svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-minus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>'
+ };
 
  function pageTransition(){
   let t=document.querySelector('.td-page-transition');
@@ -101,7 +106,7 @@
  function qtyModal(){
   let m=document.getElementById('tdQuantityModal');if(m)return m;
   m=document.createElement('aside');m.id='tdQuantityModal';m.className='td-qty-modal';m.setAttribute('aria-hidden','true');
-  m.innerHTML='<div class="td-qty-backdrop" data-close></div><section class="td-qty-panel" role="dialog" aria-modal="true"><button class="td-qty-close" type="button" data-close>×</button><p class="td-qty-kicker">Add to cart</p><h2 class="td-qty-title">Product name</h2><p class="td-qty-meta"></p><div class="td-qty-row"><button class="td-qty-step" type="button" data-step="-1">−</button><input class="td-qty-input" type="number" min="1" step="1" value="1"><button class="td-qty-step" type="button" data-step="1">+</button></div><button class="td-qty-submit" type="button">Add to cart</button></section>';
+  m.innerHTML='<div class="td-qty-backdrop" data-close></div><section class="td-qty-panel" role="dialog" aria-modal="true"><button class="td-qty-close" type="button" data-close aria-label="Close">'+icon.x+'</button><p class="td-qty-kicker">Add to cart</p><h2 class="td-qty-title">Product name</h2><p class="td-qty-meta"></p><div class="td-qty-row"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease quantity">'+icon.minus+'</button><input class="td-qty-input" type="number" min="1" step="1" value="1"><button class="td-qty-step" type="button" data-step="1" aria-label="Increase quantity">'+icon.plus+'</button></div><button class="td-qty-submit" type="button">Add to cart</button></section>';
   document.body.append(m);
   m.addEventListener('click',e=>{
    if(e.target.closest('[data-close]'))closeQty();
@@ -118,7 +123,7 @@
  function drawer(){
   let d=document.getElementById('tdCartDrawer');if(d)return d;
   d=document.createElement('aside');d.id='tdCartDrawer';d.className='td-cart-drawer';d.setAttribute('aria-hidden','true');
-  d.innerHTML='<div class="td-cart-backdrop" data-close></div><section class="td-cart-panel" role="dialog" aria-modal="true"><button class="td-cart-close" type="button" data-close>×</button><h2>Cart</h2><div class="td-cart-items"></div><div class="td-cart-total"><span>Total</span><strong>$0.00</strong></div><button class="td-cart-checkout" type="button">Checkout</button></section>';
+  d.innerHTML='<div class="td-cart-backdrop" data-close></div><section class="td-cart-panel" role="dialog" aria-modal="true"><button class="td-cart-close" type="button" data-close aria-label="Close cart">'+icon.x+'</button><h2>Cart</h2><div class="td-cart-items"></div><div class="td-cart-total"><span>Total</span><strong>$0.00</strong></div><button class="td-cart-checkout" type="button">Checkout</button></section>';
   document.body.append(d);
   d.addEventListener('click',e=>{if(e.target.closest('[data-close]'))closeCart();const rm=e.target.closest('[data-remove]');if(rm){cart.splice(Number(rm.dataset.remove),1);renderCart();badge()}const q=e.target.closest('[data-qty]');if(q){const it=cart[Number(q.dataset.qty)];if(it){it.qty=Math.max(1,it.qty+Number(q.dataset.step));renderCart();badge()}}});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&d.classList.contains('is-open'))closeCart()});
@@ -126,7 +131,7 @@
  }
  function addCart(x){const old=cart.find(i=>i.key===x.key);old?old.qty+=x.qty:cart.push(x);renderCart();badge()}
  function badge(){const n=cart.reduce((s,i)=>s+i.qty,0),b=document.getElementById('cartCount'),btn=document.getElementById('shoppingCart');if(b){b.textContent=String(n);b.hidden=n===0}if(btn)btn.setAttribute('aria-label',`Shopping cart, ${n} ${n===1?'item':'items'}`)}
- function renderCart(){const d=drawer(),list=d.querySelector('.td-cart-items'),total=d.querySelector('.td-cart-total strong');if(!cart.length){list.innerHTML='<p class="td-cart-empty">Your cart is empty.</p>';total.textContent='$0.00';return}list.innerHTML=cart.map((i,x)=>`<div class="td-cart-item"><div class="td-cart-item-main"><strong>${i.name}</strong><span>${i.item}</span><div class="td-cart-qty"><button type="button" data-qty="${x}" data-step="-1">−</button><em>${i.qty}</em><button type="button" data-qty="${x}" data-step="1">+</button></div></div><div class="td-cart-item-side"><button class="td-cart-remove" type="button" data-remove="${x}">×</button><b>$${(money(i.price)*i.qty).toFixed(2)}</b></div></div>`).join('');total.textContent='$'+cart.reduce((s,i)=>s+money(i.price)*i.qty,0).toFixed(2)}
+ function renderCart(){const d=drawer(),list=d.querySelector('.td-cart-items'),total=d.querySelector('.td-cart-total strong');if(!cart.length){list.innerHTML='<p class="td-cart-empty">Your cart is empty.</p>';total.textContent='$0.00';return}list.innerHTML=cart.map((i,x)=>`<div class="td-cart-item"><div class="td-cart-item-main"><strong>${i.name}</strong><span>${i.item}</span><div class="td-cart-qty"><button type="button" data-qty="${x}" data-step="-1" aria-label="Decrease quantity">${icon.minus}</button><em>${i.qty}</em><button type="button" data-qty="${x}" data-step="1" aria-label="Increase quantity">${icon.plus}</button></div></div><div class="td-cart-item-side"><button class="td-cart-remove" type="button" data-remove="${x}" aria-label="Remove item">${icon.x}</button><b>$${(money(i.price)*i.qty).toFixed(2)}</b></div></div>`).join('');total.textContent='$'+cart.reduce((s,i)=>s+money(i.price)*i.qty,0).toFixed(2)}
  function openCart(){if(!signed()){location.assign('./login.html');return}const d=drawer();renderCart();d.classList.add('is-open');d.setAttribute('aria-hidden','false');document.body.classList.add('td-cart-open')}
  function closeCart(){const d=document.getElementById('tdCartDrawer');if(!d)return;d.classList.remove('is-open');d.setAttribute('aria-hidden','true');document.body.classList.remove('td-cart-open')}
 
