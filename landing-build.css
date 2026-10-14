@@ -78,15 +78,13 @@ body.td-login-menu-open .site-header{background:var(--purple)!important;border-b
 .td-qty-submit{width:100%!important}
 @media(max-width:760px){.td-qty-panel{width:100%!important;max-width:100%!important;overflow:hidden!important}.td-qty-row{grid-template-columns:52px minmax(0,1fr) 52px!important;gap:10px!important}}
 
-/* Contextual Lucide icon sizing */
-.td-qty-close svg{width:19px!important;height:19px!important;stroke-width:2.5!important}
-.td-cart-close svg{width:20px!important;height:20px!important;stroke-width:2.5!important}
+/* Context-based Lucide icon sizes */
+.td-qty-close svg{width:22px!important;height:22px!important;stroke-width:2.6!important}
+.td-cart-close svg{width:24px!important;height:24px!important;stroke-width:2.5!important}
 .td-qty-step svg{width:18px!important;height:18px!important;stroke-width:3!important}
-.td-cart-qty button svg{width:13px!important;height:13px!important;stroke-width:3!important}
-.td-cart-remove svg{width:15px!important;height:15px!important;stroke-width:2.75!important}
+.td-cart-qty button svg{width:14px!important;height:14px!important;stroke-width:3!important}
+.td-cart-remove svg{width:17px!important;height:17px!important;stroke-width:2.6!important}
 body[data-auth-preview="true"] #productCarousel .add svg,
 body[data-auth-preview="true"] #dealsProducts .add svg,
 body[data-auth-preview="true"] #bestSellerProducts .add svg{width:24px!important;height:24px!important;stroke-width:2.6!important}
-.td-qty-close,.td-cart-close,.td-qty-step,.td-cart-remove,.td-cart-qty button{display:grid!important;place-items:center!important}
-.td-qty-close svg,.td-cart-close svg,.td-qty-step svg,.td-cart-remove svg,.td-cart-qty button svg{display:block!important;flex:0 0 auto!important}
-@media(max-width:760px){.td-qty-close svg{width:18px!important;height:18px!important}.td-qty-step svg{width:17px!important;height:17px!important}.td-cart-qty button svg{width:12px!important;height:12px!important}}
+@media(max-width:760px){.td-qty-close svg{width:21px!important;height:21px!important}.td-cart-close svg{width:23px!important;height:23px!important}.td-qty-step svg{width:17px!important;height:17px!important}.td-cart-qty button svg{width:13px!important;height:13px!important}.td-cart-remove svg{width:16px!important;height:16px!important}}
