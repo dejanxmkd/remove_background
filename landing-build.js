@@ -120,6 +120,9 @@ body.td-pt-leaving{opacity:0;transform:translateY(-8px);transition:opacity var(-
 .td-cart-close{position:absolute;top:20px;right:22px;display:grid;place-items:center;width:42px;height:42px;border:0;border-radius:50%;background:#f2eff9;color:var(--purple);cursor:pointer}
 .td-cart-close svg{width:24px;height:24px;stroke-width:2.5}
 .td-cart-panel h2{margin:0 50px 4px 0;font:900 34px/1 var(--font);letter-spacing:-.055em}
+.td-cart-address-label{font:800 13px/1.2 var(--font);color:var(--ink)}
+.td-cart-address{width:100%;min-height:44px;padding:0 13px;border:1px solid #e5e0ed;border-radius:12px;background:#fff;color:var(--ink);font:750 14px var(--font)}
+.td-cart-address-help{margin:-12px 0 0;color:#77717f;font:550 11px/1.4 var(--font)}
 .td-cart-items{flex:1;display:flex;flex-direction:column;gap:12px;overflow:auto;min-height:0;padding-right:4px}
 .td-cart-empty{color:#77717f;font:650 14px/1.5 var(--font)}
 .td-cart-item{display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px solid #eeeaf3;border-radius:16px;padding:14px;background:#faf9fd}
@@ -297,7 +300,35 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   };
 
   /* ----- Cart drawer ------------------------------------------------- */
+  // Each delivery destination keeps its own persistent cart (prototype, browser-local).
+  const CART_STORE = "td-delivery-carts-v1";
+  const ADDRESS_STORE = "td-active-delivery-v1";
+  const destinations = ["Delivery Address 1", "Delivery Address 2"];
+  let savedCarts = {};
+  let activeAddress = "0";
+  try {
+    const stored = JSON.parse(localStorage.getItem(CART_STORE) || "{}");
+    if (stored && typeof stored === "object" && !Array.isArray(stored)) savedCarts = stored;
+    activeAddress = localStorage.getItem(ADDRESS_STORE) === "1" ? "1" : "0";
+  } catch {}
   const cart = [];
+  const restoreCart = () => {
+    cart.splice(0, cart.length);
+    const items = savedCarts[activeAddress];
+    if (Array.isArray(items)) items.forEach(i => {
+      if (i && typeof i.key === "string" && Number.isFinite(Number(i.qty)) && Number(i.qty) > 0) {
+        cart.push({key:i.key,name:String(i.name||"Product"),item:String(i.item||""),price:String(i.price||"0"),qty:Math.floor(Number(i.qty))});
+      }
+    });
+  };
+  const persistCart = () => {
+    savedCarts[activeAddress] = cart.map(i => ({...i}));
+    try {
+      localStorage.setItem(CART_STORE, JSON.stringify(savedCarts));
+      localStorage.setItem(ADDRESS_STORE, activeAddress);
+    } catch {}
+  };
+  restoreCart();
   let cartDrawer;
   const buildCart = () => {
     if (cartDrawer) return cartDrawer;
@@ -310,23 +341,39 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
       <section class="td-cart-panel" role="dialog" aria-modal="true">
         <button class="td-cart-close" type="button" data-close aria-label="Close cart">${icon.x}</button>
         <h2>Cart</h2>
+        <label class="td-cart-address-label" for="tdCartAddress">Delivery address</label>
+        <select class="td-cart-address" id="tdCartAddress" aria-label="Delivery address">
+          <option value="0">Delivery Address 1</option>
+          <option value="1">Delivery Address 2</option>
+        </select>
+        <p class="td-cart-address-help">Each delivery address has its own saved cart.</p>
         <div class="td-cart-items"></div>
         <div class="td-cart-total"><span>Total</span><strong>$0.00</strong></div>
         <button class="td-cart-checkout" type="button">Checkout</button>
       </section>`;
     document.body.append(cartDrawer);
+    $("#tdCartAddress", cartDrawer).value = activeAddress;
+    $("#tdCartAddress", cartDrawer).addEventListener("change", e => {
+      persistCart();
+      activeAddress = e.target.value === "1" ? "1" : "0";
+      restoreCart();
+      persistCart();
+      renderCart();
+      badge();
+    });
     cartDrawer.addEventListener("click", (e) => {
       if (e.target.closest("[data-close]")) return closeCart();
       const rm = e.target.closest("[data-remove]");
-      if (rm) { cart.splice(+rm.dataset.remove, 1); renderCart(); badge(); return; }
+      if (rm) { cart.splice(+rm.dataset.remove, 1); persistCart(); renderCart(); badge(); return; }
       const q = e.target.closest("[data-qty]");
-      if (q) { const it = cart[+q.dataset.qty]; if (it) { it.qty = Math.max(1, it.qty + +q.dataset.step); renderCart(); badge(); } }
+      if (q) { const it = cart[+q.dataset.qty]; if (it) { it.qty = Math.max(1, it.qty + +q.dataset.step); persistCart(); renderCart(); badge(); } }
     });
     return cartDrawer;
   };
   const addCart = (x) => {
     const found = cart.find((i) => i.key === x.key);
     if (found) found.qty += x.qty; else cart.push(x);
+    persistCart();
     renderCart();
     badge();
   };
@@ -362,6 +409,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   const openCart = () => {
     if (!signed()) { window.location.assign("./login.html"); return; }
     const d = buildCart();
+    $("#tdCartAddress", d).value = activeAddress;
     renderCart();
     d.classList.add("is-open");
     d.setAttribute("aria-hidden", "false");
