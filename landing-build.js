@@ -120,9 +120,6 @@ body.td-pt-leaving{opacity:0;transform:translateY(-8px);transition:opacity var(-
 .td-cart-close{position:absolute;top:20px;right:22px;display:grid;place-items:center;width:42px;height:42px;border:0;border-radius:50%;background:#f2eff9;color:var(--purple);cursor:pointer}
 .td-cart-close svg{width:24px;height:24px;stroke-width:2.5}
 .td-cart-panel h2{margin:0 50px 4px 0;font:900 34px/1 var(--font);letter-spacing:-.055em}
-.td-cart-address-label{font:800 13px/1.2 var(--font);color:var(--ink)}
-.td-cart-address{width:100%;min-height:44px;padding:0 13px;border:1px solid #e5e0ed;border-radius:12px;background:#fff;color:var(--ink);font:750 14px var(--font)}
-.td-cart-address-help{margin:-12px 0 0;color:#77717f;font:550 11px/1.4 var(--font)}
 .td-cart-items{flex:1;display:flex;flex-direction:column;gap:12px;overflow:auto;min-height:0;padding-right:4px}
 .td-cart-empty{color:#77717f;font:650 14px/1.5 var(--font)}
 .td-cart-item{display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px solid #eeeaf3;border-radius:16px;padding:14px;background:#faf9fd}
@@ -302,14 +299,18 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   /* ----- Cart drawer ------------------------------------------------- */
   // Each delivery destination keeps its own persistent cart (prototype, browser-local).
   const CART_STORE = "td-delivery-carts-v1";
-  const ADDRESS_STORE = "td-active-delivery-v1";
-  const destinations = ["Delivery Address 1", "Delivery Address 2"];
+  const ADDRESS_STORE = "td-active-shopping-for-v1";
+  const shoppingFor = $("#shoppingUser");
+  const getShoppingFor = () => shoppingFor?.value || "Fresh Market";
   let savedCarts = {};
-  let activeAddress = "0";
+  let activeAddress = getShoppingFor();
   try {
     const stored = JSON.parse(localStorage.getItem(CART_STORE) || "{}");
     if (stored && typeof stored === "object" && !Array.isArray(stored)) savedCarts = stored;
-    activeAddress = localStorage.getItem(ADDRESS_STORE) === "1" ? "1" : "0";
+    // Upgrade the earlier demo address carts to the matching Shopping For accounts.
+    if (Array.isArray(savedCarts["0"]) && !savedCarts["Fresh Market"]) savedCarts["Fresh Market"] = savedCarts["0"];
+    if (Array.isArray(savedCarts["1"]) && !savedCarts["City Grocers"]) savedCarts["City Grocers"] = savedCarts["1"];
+    activeAddress = getShoppingFor();
   } catch {}
   const cart = [];
   const restoreCart = () => {
@@ -329,6 +330,14 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
     } catch {}
   };
   restoreCart();
+  // The existing Shopping For selector owns the active cart context.
+  shoppingFor?.addEventListener("change", () => {
+    persistCart();
+    activeAddress = getShoppingFor();
+    restoreCart();
+    badge();
+    if (cartDrawer?.classList.contains("is-open")) renderCart();
+  });
   let cartDrawer;
   const buildCart = () => {
     if (cartDrawer) return cartDrawer;
@@ -341,27 +350,12 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
       <section class="td-cart-panel" role="dialog" aria-modal="true">
         <button class="td-cart-close" type="button" data-close aria-label="Close cart">${icon.x}</button>
         <h2>Cart</h2>
-        <label class="td-cart-address-label" for="tdCartAddress">Delivery address</label>
-        <select class="td-cart-address" id="tdCartAddress" aria-label="Delivery address">
-          <option value="0">Delivery Address 1</option>
-          <option value="1">Delivery Address 2</option>
-        </select>
-        <p class="td-cart-address-help">Each delivery address has its own saved cart.</p>
-        <div class="td-cart-items"></div>
+         <div class="td-cart-items"></div>
         <div class="td-cart-total"><span>Total</span><strong>$0.00</strong></div>
         <button class="td-cart-checkout" type="button">Checkout</button>
       </section>`;
     document.body.append(cartDrawer);
-    $("#tdCartAddress", cartDrawer).value = activeAddress;
-    $("#tdCartAddress", cartDrawer).addEventListener("change", e => {
-      persistCart();
-      activeAddress = e.target.value === "1" ? "1" : "0";
-      restoreCart();
-      persistCart();
-      renderCart();
-      badge();
-    });
-    cartDrawer.addEventListener("click", (e) => {
+     cartDrawer.addEventListener("click", (e) => {
       if (e.target.closest("[data-close]")) return closeCart();
       const rm = e.target.closest("[data-remove]");
       if (rm) { cart.splice(+rm.dataset.remove, 1); persistCart(); renderCart(); badge(); return; }
@@ -382,7 +376,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
     const b = $("#cartCount");
     const btn = $("#shoppingCart");
     if (b) { b.textContent = String(n); b.hidden = n === 0; }
-    if (btn) btn.setAttribute("aria-label", `Shopping cart, ${n} ${n === 1 ? "item" : "items"}`);
+    if (btn) btn.setAttribute("aria-label", `Shopping cart, ${n} ${n === 1 ? "item" : "items"} for ${activeAddress}`);
   };
   const renderCart = () => {
     const d = buildCart();
@@ -409,7 +403,6 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   const openCart = () => {
     if (!signed()) { window.location.assign("./login.html"); return; }
     const d = buildCart();
-    $("#tdCartAddress", d).value = activeAddress;
     renderCart();
     d.classList.add("is-open");
     d.setAttribute("aria-hidden", "false");
