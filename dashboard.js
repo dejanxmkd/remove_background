@@ -52,7 +52,16 @@
   }
   toggle?.addEventListener('click',()=>{
     const next=!panel.classList.contains('is-open');
-    if(next)setMenu(false);
+    if(next){
+      const burger=$('#mobileMenuToggle'),mobile=$('#mobileMenuPanel');
+      if(burger&&mobile){
+        burger.setAttribute('aria-expanded','false');
+        burger.setAttribute('aria-label','Open menu');
+        mobile.classList.remove('is-open');
+        mobile.setAttribute('aria-hidden','true');
+        mobile.inert=true;
+      }
+    }
     setHeaderSearchOpen(next);
   });
   panel?.addEventListener('click',event=>{
