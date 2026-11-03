@@ -1,20 +1,26 @@
 /* The dashboard uses the original storefront navbar markup and styling. */
 (function(){
-  const $=s=>document.querySelector(s),shop=$('#shoppingUser'),key='td-active-shopping-for-v1',cartKey='td-delivery-carts-v1';
+  const $=s=>document.querySelector(s),shop=$('#shoppingUser'),key='td-active-shopping-for-v1';
   if(!shop)return;
   try{const v=localStorage.getItem(key);if(v&&[...shop.options].some(o=>o.value===v))shop.value=v}catch{}
-  const count=$('#cartCount');
   function update(){
     const selected=shop.options[shop.selectedIndex]?.textContent||shop.value;
     if($('#mobileUserName'))$('#mobileUserName').textContent=selected;
     $('#mobileUserTrigger')?.setAttribute('aria-label','Switch shopping account: '+selected);
     try{localStorage.setItem(key,shop.value)}catch{}
-    let n=0;try{const carts=JSON.parse(localStorage.getItem(cartKey)||'{}');const items=carts?.[shop.value];if(Array.isArray(items))n=items.reduce((sum,i)=>sum+(Number(i.qty)||0),0)}catch{}
-    if(count){count.textContent=n;count.hidden=n===0}
-    $('#shoppingCart')?.setAttribute('aria-label','Shopping cart, '+n+' items for '+shop.value);
   }
   shop.addEventListener('change',update);update();
-  $('#shoppingCart')?.addEventListener('click',()=>location.assign('./index.html'));
+  const bell=$('#dashboardNotifications'),notifications=$('#dashboardNotificationsPanel');
+  function setNotifications(open){
+    if(!bell||!notifications)return;
+    notifications.hidden=!open;
+    bell.setAttribute('aria-expanded',String(open));
+  }
+  bell?.addEventListener('click',()=>setNotifications(notifications.hidden));
+  document.addEventListener('pointerdown',e=>{
+    if(!e.target.closest('.dashboard-notification-wrap'))setNotifications(false);
+  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')setNotifications(false)});
   /* Reuse the storefront search behavior: open/close class, responsive positioning,
      outside-click, Escape, mobile keyboard behavior and clear X. */
   const toggle=$('#headerSearchToggle'),panel=$('#headerSearchPanel'),field=$('#headerSearchInput'),clear=$('#headerSearchClear');
