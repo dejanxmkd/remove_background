@@ -231,6 +231,20 @@
   .dashboard-balance-column button.dashboard-action.hero-cta{width:100%}
 }
 </style>
+<style>
+/* Layout only: full-width Quick Reorder first, Account Balance and Tracking stacked below. */
+.dashboard-hero-content .dashboard-reorder-row{margin-top:0}
+.dashboard-balance-stack{width:30%;margin:32px 0 0 auto;display:flex;flex-direction:column;gap:32px;min-width:0}
+.dashboard-balance-stack .dashboard-tracking-column,.dashboard-balance-stack .dashboard-balance-column{width:100%;min-width:0}
+.dashboard-balance-stack .dashboard-tracking-heading{flex-direction:column;align-items:flex-start;gap:8px}
+.dashboard-balance-stack .dashboard-order-meta{justify-content:flex-start;text-align:left;white-space:normal}
+.dashboard-balance-stack .dashboard-tracking-steps li{font-size:clamp(9px,.85vw,12px)}
+.dashboard-balance-stack .dashboard-tracking-card{padding:22px 20px 20px}
+@media(max-width:900px){
+  .dashboard-balance-stack{width:100%;margin-top:26px;gap:26px}
+  .dashboard-balance-stack .dashboard-tracking-steps li{font-size:clamp(10px,2.6vw,14px)}
+}
+</style>
 </head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
@@ -291,43 +305,6 @@
   <main id="dashboard" aria-label="Dashboard">
   <section class="dashboard-purple-hero" aria-labelledby="orderTrackingTitle">
     <div class="dashboard-hero-content">
-      <div class="dashboard-overview-row">
-        <section class="dashboard-tracking-column" aria-labelledby="orderTrackingTitle">
-          <div class="dashboard-tracking-heading">
-          <h1 id="orderTrackingTitle">ORDER TRACKING</h1>
-          <p class="dashboard-order-meta"><strong>Order #88432</strong><span aria-hidden="true">·</span><span>Estimated: Today, 2:00 PM</span></p>
-          </div>
-          <div class="dashboard-tracking-card" aria-label="Order #88432 tracking progress">
-          <ol class="dashboard-tracking-steps">
-          <li class="is-complete">
-          <span class="dashboard-tracking-marker" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span>
-          <span>Ordered</span>
-          </li>
-          <li class="is-complete">
-          <span class="dashboard-tracking-marker" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span>
-          <span>Processing</span>
-          </li>
-          <li class="is-pending"><span class="dashboard-tracking-marker" aria-hidden="true"></span><span>Out for Delivery</span></li>
-          <li class="is-pending"><span class="dashboard-tracking-marker" aria-hidden="true"></span><span>Delivered</span></li>
-          </ol>
-          </div>
-        </section>
-        <section class="dashboard-balance-column" aria-labelledby="dashboardBalanceTitle">
-        <h2 class="dashboard-balance-heading" id="dashboardBalanceTitle">ACCOUNT BALANCE</h2>
-        <div class="dashboard-balance-card">
-        <div class="dashboard-balance-body">
-        <div class="dashboard-balance-summary">
-        <span class="dashboard-balance-label">Total Due</span>
-        <strong class="dashboard-balance-amount">$2,450.00</strong>
-        </div>
-        <div class="dashboard-balance-footer">
-        <p class="dashboard-balance-date"><span>Next Due Date</span><strong>Nov 15, 2026</strong></p>
-        <button class="dashboard-action dashboard-action-primary hero-cta" type="button">PAY INVOICES</button>
-        </div>
-        </div>
-        </div>
-        </section>
-      </div>
       <div class="dashboard-reorder-row">
         <section class="dashboard-reorder-column" aria-labelledby="dashboardReorderTitle">
         <h2 class="dashboard-balance-heading" id="dashboardReorderTitle">QUICK REORDER</h2>
@@ -361,6 +338,43 @@
         </div>
         </div>
         </div>
+        </section>
+      </div>
+      <div class="dashboard-balance-stack">
+        <section class="dashboard-balance-column" aria-labelledby="dashboardBalanceTitle">
+        <h2 class="dashboard-balance-heading" id="dashboardBalanceTitle">ACCOUNT BALANCE</h2>
+        <div class="dashboard-balance-card">
+        <div class="dashboard-balance-body">
+        <div class="dashboard-balance-summary">
+        <span class="dashboard-balance-label">Total Due</span>
+        <strong class="dashboard-balance-amount">$2,450.00</strong>
+        </div>
+        <div class="dashboard-balance-footer">
+        <p class="dashboard-balance-date"><span>Next Due Date</span><strong>Nov 15, 2026</strong></p>
+        <button class="dashboard-action dashboard-action-primary hero-cta" type="button">PAY INVOICES</button>
+        </div>
+        </div>
+        </div>
+        </section>
+        <section class="dashboard-tracking-column" aria-labelledby="orderTrackingTitle">
+          <div class="dashboard-tracking-heading">
+          <h1 id="orderTrackingTitle">ORDER TRACKING</h1>
+          <p class="dashboard-order-meta"><strong>Order #88432</strong><span aria-hidden="true">·</span><span>Estimated: Today, 2:00 PM</span></p>
+          </div>
+          <div class="dashboard-tracking-card" aria-label="Order #88432 tracking progress">
+          <ol class="dashboard-tracking-steps">
+          <li class="is-complete">
+          <span class="dashboard-tracking-marker" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span>
+          <span>Ordered</span>
+          </li>
+          <li class="is-complete">
+          <span class="dashboard-tracking-marker" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span>
+          <span>Processing</span>
+          </li>
+          <li class="is-pending"><span class="dashboard-tracking-marker" aria-hidden="true"></span><span>Out for Delivery</span></li>
+          <li class="is-pending"><span class="dashboard-tracking-marker" aria-hidden="true"></span><span>Delivered</span></li>
+          </ol>
+          </div>
         </section>
       </div>
     </div>
