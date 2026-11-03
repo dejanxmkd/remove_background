@@ -1,0 +1,19 @@
+/* Original storefront header CSS is loaded from styles.css. Only the five requested links are new. */
+.dashboard-purple-hero{display:block;width:100%;min-height:clamp(520px,68vw,740px);background:#6633cc}
+.dashboard-center-links{display:flex;align-items:center;gap:clamp(12px,1.7vw,27px);margin-left:clamp(8px,2.5vw,36px);white-space:nowrap;align-self:stretch}
+.dashboard-center-links a{position:relative;display:flex;align-items:center;font:750 12px var(--font);color:var(--ink);text-decoration:none}
+.dashboard-center-links a:hover,.dashboard-center-links a.is-active{color:var(--purple)}
+.dashboard-center-links a.is-active:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--purple);border-radius:2px 2px 0 0}
+@media(max-width:1200px){.dashboard-center-links{gap:13px;margin-left:0}.dashboard-center-links a{font-size:11px}.site-nav{gap:13px}.shopping-nav-controls{gap:10px}.site-nav-logo img{width:143px}}
+@media(max-width:990px){.dashboard-center-links{order:3;width:100%;min-height:44px;overflow-x:auto;gap:24px}.site-nav{flex-wrap:wrap;padding-top:10px}.shopping-nav-controls{margin-left:auto}.dashboard-center-links a.is-active:after{bottom:0}}
+@media(max-width:760px){.dashboard-purple-hero{min-height:570px}.site-nav{width:calc(100% - 36px)}.dashboard-center-links{min-height:42px;gap:21px}}
+
+/* Notification bell replaces the cart in the customer dashboard header. */
+.dashboard-notification-wrap{position:relative;display:flex;align-items:center;flex:none}
+.dashboard-notification-button{position:relative}
+.dashboard-notifications-panel{position:absolute;top:calc(100% + 12px);right:0;width:245px;padding:19px 20px;background:white;border:1px solid #e9e5ee;border-radius:14px;box-shadow:0 16px 36px rgba(29,12,62,.12);z-index:1100}
+.dashboard-notifications-panel[hidden]{display:none}
+.dashboard-notifications-panel strong{font:850 14px var(--font);color:var(--ink)}
+.dashboard-notifications-panel p{font:550 12px/1.5 var(--font);color:#77717f;margin:12px 0 0}
+
+
