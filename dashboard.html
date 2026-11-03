@@ -163,6 +163,56 @@
   .dashboard-hero-content button.dashboard-action.hero-cta{width:auto;min-width:0;min-height:48px;height:48px;padding:0 18px;gap:8px;font-size:13px}
 }
 </style>
+<style>
+/* Dashboard overview: align both headings/cards and use one consistent spacing rhythm. */
+@media(min-width:901px){
+  .dashboard-overview-row{align-items:stretch;column-gap:24px}
+  .dashboard-tracking-column,.dashboard-balance-column{display:flex;flex-direction:column;min-width:0}
+  .dashboard-tracking-column .dashboard-tracking-heading,
+  .dashboard-balance-column .dashboard-balance-heading{min-height:48px;margin-bottom:20px}
+  .dashboard-tracking-column .dashboard-tracking-card,
+  .dashboard-balance-column .dashboard-balance-card{flex:1 1 auto;min-height:224px}
+  .dashboard-tracking-column .dashboard-tracking-card{display:flex;align-items:center}
+  .dashboard-tracking-column .dashboard-tracking-steps{width:100%}
+}
+.dashboard-balance-column .dashboard-balance-heading{
+  font-size:clamp(23px,2.15vw,32px);
+  line-height:1.08;
+  letter-spacing:-.035em;
+}
+.dashboard-balance-column .dashboard-balance-card{
+  border-color:rgba(255,255,255,.82);
+  background:linear-gradient(120deg,#fff 0%,#fff 56%,#faf8ff 100%);
+}
+.dashboard-balance-column .dashboard-balance-body{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:20px;
+  padding:22px 24px;
+  height:100%;
+}
+.dashboard-balance-column .dashboard-balance-summary{gap:6px;margin:0}
+.dashboard-balance-column .dashboard-balance-amount{
+  font-size:clamp(32px,2.8vw,43px);
+  line-height:1.08;
+  letter-spacing:-.04em;
+}
+.dashboard-balance-column .dashboard-balance-footer{
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.dashboard-balance-column .dashboard-balance-date{gap:5px}
+.dashboard-balance-column .dashboard-balance-date strong{font-size:14px}
+.dashboard-reorder-row{margin-top:28px}
+@media(max-width:900px){
+  .dashboard-overview-row{gap:24px}
+  .dashboard-tracking-column .dashboard-tracking-heading,
+  .dashboard-balance-column .dashboard-balance-heading{margin-bottom:20px}
+  .dashboard-balance-column .dashboard-balance-body{padding:22px 20px}
+}
+</style>
 </head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
