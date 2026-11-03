@@ -98,7 +98,7 @@
 
 /* Quick Reorder: reuse storefront search field, CTA and quantity control treatments. */
 .dashboard-reorder-card{background:#fff;border:1px solid var(--line);border-radius:17px;overflow:hidden;box-shadow:0 8px 22px rgba(31,12,69,.11);color:var(--ink)}
-.dashboard-reorder-toolbar{display:flex;align-items:center;gap:14px;padding:20px 22px;border-bottom:1px solid var(--line)}
+.dashboard-reorder-toolbar{display:flex;align-items:center;gap:14px;padding:20px 24px;border-bottom:1px solid var(--line)}
 .dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner{flex:1;display:flex;align-items:center;gap:14px;min-width:0;width:auto;min-height:50px;height:50px;margin:0;padding:0 16px;border:1px solid #b8b4be;border-radius:12px;background:#fff;color:var(--ink)}
 .dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner:hover,.dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner:focus-within{border-color:#b8b4be}
 .dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner input{flex:1;min-width:0;width:100%;height:48px;padding:0;border:0;outline:0;background:transparent;color:var(--ink);font:500 15px var(--font)}
@@ -107,8 +107,8 @@
 .dashboard-reorder-tag{display:inline-flex;align-items:center;justify-content:center;height:50px;min-height:50px;padding:0 19px;border:1.5px solid var(--cyan);border-radius:12px;background:var(--cyan);color:var(--ink);font:700 13px var(--font);white-space:nowrap}
 .dashboard-reorder-table-wrap{width:100%;overflow-x:auto}
 .dashboard-reorder-table{width:100%;border-collapse:collapse;table-layout:fixed}
-.dashboard-reorder-table th{padding:16px 20px;text-align:left;font:800 13px var(--font);letter-spacing:.035em;color:var(--ink);background:#faf9fc}
-.dashboard-reorder-table td{padding:15px 20px;font:700 15px/1.5 var(--font);border-top:1px solid var(--line);vertical-align:middle}
+.dashboard-reorder-table th{padding:16px 24px;text-align:left;font:800 13px var(--font);letter-spacing:.035em;color:var(--ink);background:#faf9fc}
+.dashboard-reorder-table td{padding:15px 24px;font:700 15px/1.5 var(--font);border-top:1px solid var(--line);vertical-align:middle}
 .dashboard-reorder-table th:nth-child(2),.dashboard-reorder-table td:nth-child(2){width:188px;text-align:center}
 .dashboard-reorder-table th:nth-child(3),.dashboard-reorder-table td:nth-child(3){width:64px;text-align:center;padding-left:10px;padding-right:16px}
 .dashboard-reorder-table input[type=checkbox]{appearance:none;display:inline-grid;place-content:center;width:20px;height:20px;border:1.5px solid #aaa3b6;border-radius:5px;background:#fff;cursor:pointer;vertical-align:middle}
@@ -120,8 +120,14 @@
 .dashboard-reorder-quantity .td-qty-step:hover{background:#4b21a6}
 .dashboard-reorder-quantity .td-qty-step:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
 .dashboard-reorder-quantity output{min-width:25px;text-align:center;font:800 16px var(--font)}
-.dashboard-reorder-actions{min-height:80px;display:flex;align-items:center;justify-content:flex-end;gap:16px;padding:16px 22px;border-top:1px solid var(--line)}
+.dashboard-reorder-actions{min-height:88px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 24px;border-top:1px solid var(--line)}
 .dashboard-reorder-feedback{flex:1;min-width:0;font:600 13px/1.4 var(--font);color:#686375}
+.dashboard-reorder-action-buttons{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex:none}
+.dashboard-bulk-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:0 22px;border:1.5px solid rgba(8,7,11,.18);border-radius:12px;background:#fff;color:var(--ink);font:700 15px/1 var(--font);white-space:nowrap;cursor:pointer}
+.dashboard-bulk-button:hover{border-color:#b8b4be}
+.dashboard-bulk-button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.dashboard-bulk-button .lucide-icon{width:20px;height:20px}
+.dashboard-reorder-action-buttons .dashboard-balance-button.td-qty-submit{min-height:48px}
 @media(max-width:760px){
   .dashboard-reorder-toolbar{padding:15px;gap:9px}
   .dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner{height:48px;min-height:48px;padding:0 12px;gap:8px}
@@ -135,7 +141,11 @@
   .dashboard-reorder-quantity{gap:5px}
   .dashboard-reorder-quantity .td-qty-step{width:29px;height:32px;border-radius:10px;font-size:17px}
   .dashboard-reorder-quantity output{min-width:21px;font-size:14px}
-  .dashboard-reorder-actions{padding:14px}
+  .dashboard-reorder-actions{padding:14px 15px;gap:10px;flex-wrap:wrap}
+  .dashboard-reorder-action-buttons{gap:9px;margin-left:auto}
+  .dashboard-bulk-button{min-height:44px;padding:0 12px;gap:6px;font-size:13px}
+  .dashboard-bulk-button .lucide-icon{width:17px;height:17px}
+  .dashboard-reorder-action-buttons .dashboard-balance-button.td-qty-submit{min-height:44px;padding:0 16px;font-size:13px}
 }
 </style>
 </head>
@@ -240,7 +250,14 @@
             </div>
             <div class="dashboard-reorder-actions">
               <span class="dashboard-reorder-feedback" id="dashboardReorderFeedback" role="status" aria-live="polite"></span>
-              <button class="dashboard-balance-button td-qty-submit" type="button" id="dashboardReorderAdd">ADD TO CART</button>
+              <div class="dashboard-reorder-action-buttons">
+                <button class="dashboard-bulk-button" type="button" id="dashboardBulkUpload" aria-label="Bulk Upload file">
+                  <span>Bulk Upload</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-down" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <input type="file" id="dashboardBulkUploadFile" accept=".csv,.xlsx,.xls" hidden aria-label="Select bulk upload file">
+                <button class="dashboard-balance-button td-qty-submit" type="button" id="dashboardReorderAdd">ADD TO CART</button>
+              </div>
             </div>
           </div>
         </section>
@@ -372,6 +389,13 @@
       const count=row.querySelector('output');
       count.textContent=String(Math.max(1,Math.min(999,Number(count.textContent)+Number(button.dataset.step))));
     }));
+  });
+  const bulkButton=document.getElementById('dashboardBulkUpload');
+  const bulkInput=document.getElementById('dashboardBulkUploadFile');
+  bulkButton.addEventListener('click',()=>bulkInput.click());
+  bulkInput.addEventListener('change',()=>{
+    const file=bulkInput.files&&bulkInput.files[0];
+    if(file)feedback.textContent=file.name+' selected — upload preview only.';
   });
   document.getElementById('dashboardReorderAdd').addEventListener('click',()=>{
     const items=rows.filter(row=>row.querySelector('input[type=checkbox]').checked);
