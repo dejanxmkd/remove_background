@@ -9,6 +9,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css?v=nav-nohover-v4">
+<style>
+/* Dashboard-only layout: original storefront components, right aligned. */
+.site-nav{display:flex;align-items:center}
+.shopping-nav-controls{margin-left:auto;justify-content:flex-end}
+@media(max-width:760px){
+  .site-nav{display:flex;flex-wrap:nowrap;align-items:center;gap:10px;min-height:66px}
+  .site-nav-logo{flex:none;width:auto}
+  .shopping-nav-controls{display:flex;flex:1;min-width:0;width:auto;margin-left:auto;align-items:center;justify-content:flex-end;gap:clamp(7px,2vw,15px)}
+  .shopping-user{display:flex;flex:none;min-width:0}
+  .shopping-user-details{min-width:0}
+  .mobile-user-trigger{max-width:150px}
+  .mobile-user-trigger-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+}
+@media(max-width:380px){
+  .site-nav-logo img{width:108px}
+  .shopping-nav-controls{gap:4px}
+}
+</style>
 </head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
@@ -20,11 +38,10 @@
       <button class="header-search-toggle" id="headerSearchToggle" type="button" aria-label="Open search" aria-expanded="false" aria-controls="headerSearchPanel">
         <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-search header-search-open-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x header-search-close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
       </button>
-      <span class="shopping-cart-button" role="img" aria-label="Notifications">
+      <span class="shopping-cart-button" role="img" aria-label="Notifications, 3 unread">
         <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-bell" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg>
+        <span class="shopping-cart-count" aria-label="3 unread notifications">3</span>
       </span>
-      <a class="quick-shop-button" href="./index.html#new-title">Quick Shop</a>
-      <span class="shopping-nav-separator" aria-hidden="true"></span>
       <div class="shopping-user">
         <div class="shopping-user-details">
           <label for="shoppingUser" class="shopping-user-label">Shopping for</label>
@@ -44,17 +61,8 @@
           </button>
         </div>
       </div>
-      <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenuPanel">
-        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-menu mobile-menu-open-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x mobile-menu-close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-      </button>
     </div>
   </nav>
-  <div class="mobile-menu-panel" id="mobileMenuPanel" aria-hidden="true" inert>
-    <div class="mobile-menu-reveal">
-      <div class="mobile-menu-content" id="mobileMenuContent"><a class="menu-auth-link" id="menuAuthLink" href="./login.html">Login / Create Account<svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
-    </div>
-  </div>
   <div class="header-search-panel" id="headerSearchPanel" role="search" aria-hidden="true" inert>
     <div class="header-search-reveal">
       <div class="header-search-inner">
@@ -77,154 +85,85 @@
 </div>
   <main id="dashboard" aria-label="Dashboard"></main>
 <script>
-/* Self-contained header interactions; original storefront CSS and markup. */
-(function () {
+/* Dashboard header. Existing storefront UI styles, no Quick Shop or burger. */
+(function(){
   'use strict';
-  const $ = (selector) => document.querySelector(selector);
-  const select = $('#shoppingUser');
-  const controls = $('.shopping-nav-controls');
-  const burger = $('#mobileMenuToggle');
-  const menu = $('#mobileMenuPanel');
-  const menuContent = $('#mobileMenuContent');
-  const quickShop = $('.quick-shop-button');
-  const separator = $('.shopping-nav-separator');
-  const shoppingUser = $('.shopping-user');
-  const mobileMedia = window.matchMedia('(max-width:760px)');
-  const searchToggle = $('#headerSearchToggle');
-  const searchPanel = $('#headerSearchPanel');
-  const searchInput = $('#headerSearchInput');
-  const searchClear = $('#headerSearchClear');
-  const mobileSheet = $('#mobileUserSheet');
-  const mobileTrigger = $('#mobileUserTrigger');
-  const mobileOptions = $('#mobileUserOptions');
-  const storageKey = 'td-active-shopping-for-v1';
-
-  function setMenuOpen(open) {
-    if (!menu || !burger) return;
-    menu.classList.toggle('is-open',open);
-    menu.inert = !open;
-    menu.setAttribute('aria-hidden',String(!open));
-    burger.setAttribute('aria-expanded',String(open));
-    burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+  const $=selector=>document.querySelector(selector);
+  const select=$('#shoppingUser'),storageKey='td-active-shopping-for-v1';
+  const searchToggle=$('#headerSearchToggle'),searchPanel=$('#headerSearchPanel');
+  const searchInput=$('#headerSearchInput'),searchClear=$('#headerSearchClear');
+  const mobileMedia=window.matchMedia('(max-width:760px)');
+  const mobileSheet=$('#mobileUserSheet'),mobileTrigger=$('#mobileUserTrigger'),mobileOptions=$('#mobileUserOptions');
+  function updateMobileSearchTop(){
+    if(!mobileMedia.matches)return;
+    const nav=$('.site-nav');
+    if(nav)document.documentElement.style.setProperty('--mobile-search-top',Math.max(0,Math.round(nav.getBoundingClientRect().bottom))+'px');
   }
-  function setSearchOpen(open, restoreFocus) {
-    if (!searchPanel || !searchToggle) return;
-    if (open && mobileMedia.matches) updateMobileSearchTop();
+  function setSearchOpen(open,restoreFocus=false){
+    if(open&&mobileMedia.matches)updateMobileSearchTop();
     searchPanel.classList.toggle('is-open',open);
-    searchPanel.inert = !open;
+    searchPanel.inert=!open;
     searchPanel.setAttribute('aria-hidden',String(!open));
     searchToggle.setAttribute('aria-expanded',String(open));
     searchToggle.setAttribute('aria-label',open?'Close search':'Open search');
-    if (open) {
-      if (!mobileMedia.matches) searchInput.focus({preventScroll:true});
-    } else {
-      if (searchPanel.contains(document.activeElement)) document.activeElement.blur();
-      if (restoreFocus) searchToggle.focus({preventScroll:true});
+    if(open){if(!mobileMedia.matches)searchInput.focus({preventScroll:true});}
+    else{
+      if(searchPanel.contains(document.activeElement))document.activeElement.blur();
+      if(restoreFocus)searchToggle.focus({preventScroll:true});
     }
   }
-  function updateMobileSearchTop() {
-    if (!mobileMedia.matches) return;
-    const nav = $('.site-nav');
-    if (nav) document.documentElement.style.setProperty('--mobile-search-top',Math.max(0,Math.round(nav.getBoundingClientRect().bottom))+'px');
-  }
-  function syncResponsiveNav() {
-    setMenuOpen(false);
-    if (mobileMedia.matches) menuContent.append(shoppingUser,quickShop,separator);
-    else {
-      controls.insertBefore(quickShop,burger);
-      controls.insertBefore(separator,burger);
-      controls.insertBefore(shoppingUser,burger);
-    }
-    updateMobileSearchTop();
-  }
-  function syncAccount() {
-    const label=select.selectedOptions[0]?.textContent || select.value;
-    $('#mobileUserName').textContent=label;
-    mobileTrigger.setAttribute('aria-label','Switch shopping account: '+label);
-    try {localStorage.setItem(storageKey,select.value);}catch(e){}
-  }
-  try {
-    const saved=localStorage.getItem(storageKey);
-    if(saved && Array.from(select.options).some(option=>option.value===saved))select.value=saved;
-  } catch(e) {}
-  select.addEventListener('change',syncAccount);
-  syncAccount();
-  mobileMedia.addEventListener('change',syncResponsiveNav);
   window.addEventListener('resize',updateMobileSearchTop,{passive:true});
   window.addEventListener('scroll',updateMobileSearchTop,{passive:true});
-  syncResponsiveNav();
-  burger.addEventListener('click',()=>{
-    const open=burger.getAttribute('aria-expanded')!=='true';
-    if(open)setSearchOpen(false);
-    setMenuOpen(open);
+  mobileMedia.addEventListener('change',updateMobileSearchTop);
+  window.visualViewport?.addEventListener('resize',updateMobileSearchTop,{passive:true});
+  updateMobileSearchTop();
+  searchToggle.addEventListener('click',()=>setSearchOpen(!searchPanel.classList.contains('is-open')));
+  searchPanel.addEventListener('click',e=>{
+    if(!e.target.closest('button')&&e.target!==searchInput)searchInput.focus({preventScroll:true});
   });
-  searchToggle.addEventListener('click',()=>{
-    const open=!searchPanel.classList.contains('is-open');
-    if(open)setMenuOpen(false);
-    setSearchOpen(open);
-  });
-  searchPanel.addEventListener('click',(e)=>{
-    if(!e.target.closest('button') && e.target!==searchInput)searchInput.focus({preventScroll:true});
-  });
-  searchInput.addEventListener('input',()=>{searchClear.hidden=searchInput.value.length===0});
+  searchInput.addEventListener('input',()=>{searchClear.hidden=!searchInput.value.length;});
   searchInput.addEventListener('keydown',e=>{
-    if(e.key==='Enter'){e.preventDefault();window.location.assign('./index.html#new-title');}
+    if(e.key==='Enter'){e.preventDefault();location.assign('./index.html#new-title');}
   });
-  searchClear.addEventListener('click',()=>{searchInput.value='';searchClear.hidden=true;searchInput.focus()});
+  searchClear.addEventListener('click',()=>{searchInput.value='';searchClear.hidden=true;searchInput.focus();});
   document.addEventListener('pointerdown',e=>{
     if(searchPanel.classList.contains('is-open')&&!searchPanel.contains(e.target)&&!searchToggle.contains(e.target))setSearchOpen(false);
-    if(menu.classList.contains('is-open')&&!menu.contains(e.target)&&!burger.contains(e.target))setMenuOpen(false);
   });
-  function closeSheet() {
-    mobileSheet.classList.remove('is-open');
-    mobileSheet.inert=true;
-    mobileSheet.setAttribute('aria-hidden','true');
-    document.body.classList.remove('mobile-user-sheet-active');
+  function syncAccount(){
+    const label=select.selectedOptions[0]?.textContent||select.value;
+    $('#mobileUserName').textContent=label;
+    mobileTrigger.setAttribute('aria-label','Switch shopping account: '+label);
+    try{localStorage.setItem(storageKey,select.value);}catch(e){}
+  }
+  try{
+    const saved=localStorage.getItem(storageKey);
+    if(saved&&Array.from(select.options).some(o=>o.value===saved))select.value=saved;
+  }catch(e){}
+  select.addEventListener('change',syncAccount);syncAccount();
+  function closeSheet(){
+    mobileSheet.classList.remove('is-open');mobileSheet.inert=true;
+    mobileSheet.setAttribute('aria-hidden','true');document.body.classList.remove('mobile-user-sheet-active');
   }
   mobileTrigger.addEventListener('click',()=>{
     mobileOptions.replaceChildren();
     Array.from(select.options).forEach(option=>{
-      const button=document.createElement('button');
-      button.type='button';
-      button.textContent=option.textContent;
-      button.dataset.account=option.value;
-      button.setAttribute('aria-pressed',String(option.value===select.value));
-      mobileOptions.append(button);
+      const button=document.createElement('button');button.type='button';
+      button.textContent=option.textContent;button.dataset.account=option.value;
+      button.setAttribute('aria-pressed',String(option.value===select.value));mobileOptions.append(button);
     });
-    mobileSheet.classList.add('is-open');
-    mobileSheet.inert=false;
-    mobileSheet.setAttribute('aria-hidden','false');
-    document.body.classList.add('mobile-user-sheet-active');
+    mobileSheet.classList.add('is-open');mobileSheet.inert=false;
+    mobileSheet.setAttribute('aria-hidden','false');document.body.classList.add('mobile-user-sheet-active');
   });
   mobileOptions.addEventListener('click',e=>{
-    const btn=e.target.closest('[data-account]');
-    if(!btn)return;
-    select.value=btn.dataset.account;
-    select.dispatchEvent(new Event('change',{bubbles:true}));
-    closeSheet();
+    const btn=e.target.closest('[data-account]');if(!btn)return;
+    select.value=btn.dataset.account;select.dispatchEvent(new Event('change',{bubbles:true}));closeSheet();
   });
   $('#mobileUserBackdrop').addEventListener('click',closeSheet);
   document.addEventListener('keydown',e=>{
-    if(e.key==='Escape') {
-      if(mobileSheet.classList.contains('is-open'))closeSheet();
-      else if(searchPanel.classList.contains('is-open'))setSearchOpen(false,true);
-      else setMenuOpen(false);
-    }
+    if(e.key!=='Escape')return;
+    if(mobileSheet.classList.contains('is-open'))closeSheet();
+    else if(searchPanel.classList.contains('is-open'))setSearchOpen(false,true);
   });
-  const menuAuth=$('#menuAuthLink');
-  if(menuAuth){
-    let signed=false;
-    try{signed=sessionStorage.getItem('td-preview-auth-v1')==='true';}catch(e){}
-    if(signed){
-      menuAuth.firstChild.textContent='Log out (demo)';
-      menuAuth.href='./index.html';
-      menuAuth.addEventListener('click',e=>{
-        e.preventDefault();
-        try{sessionStorage.removeItem('td-preview-auth-v1');}catch(err){}
-        window.location.assign('./index.html');
-      });
-    }
-  }
 })();
 </script>
 </body>
