@@ -84,9 +84,6 @@
 .dashboard-balance-footer{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .dashboard-balance-date{display:flex;flex-direction:column;gap:5px;margin:0;font-size:12px;font-weight:600;color:#686375}
 .dashboard-balance-date strong{font-size:15px;font-weight:800;color:var(--ink)}
-.dashboard-balance-button.td-qty-submit{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border:0;border-radius:999px;background:var(--purple);color:#fff;font:900 15px/1 var(--font);letter-spacing:.055em;text-transform:uppercase;white-space:nowrap;margin:0;cursor:pointer}
-.dashboard-balance-button.td-qty-submit:hover{background:#4b21a6}
-.dashboard-balance-button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
 @media(max-width:900px){.dashboard-balance-row{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:760px){
   .dashboard-balance-row{margin-top:18px}
@@ -122,34 +119,30 @@
 .dashboard-reorder-actions{min-height:88px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 24px;border-top:1px solid var(--line)}
 .dashboard-reorder-feedback{flex:1;min-width:0;font:600 13px/1.4 var(--font);color:#686375}
 .dashboard-reorder-action-buttons{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex:none}
-.dashboard-bulk-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:0 22px;border:1.5px solid rgba(8,7,11,.18);border-radius:12px;background:#fff;color:var(--ink);font:700 15px/1 var(--font);white-space:nowrap;cursor:pointer}
-.dashboard-bulk-button:hover{border-color:#b8b4be}
-.dashboard-bulk-button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
-.dashboard-bulk-button .lucide-icon{width:20px;height:20px}
-.dashboard-reorder-action-buttons .dashboard-balance-button.td-qty-submit{min-height:48px}
-/* Both actions inherit the storefront Hero CTA's capsule shape and typography. */
-.dashboard-reorder-action-buttons .dashboard-hero-action.hero-cta{
-  display:inline-flex;align-items:center;justify-content:center;gap:12px;
-  min-height:54px;height:54px;padding:0 25px;border-radius:999px;
-  font:800 14px/1 var(--font);letter-spacing:0;white-space:nowrap;
-  margin:0;text-transform:none;transform:none;box-shadow:none;
+/* Dashboard CTA variants use the Home hero button's radius, padding and typography. */
+.dashboard-hero-content .dashboard-action.hero-cta{
+  display:inline-flex;align-items:center;justify-content:center;gap:18px;
+  min-height:54px;padding:16px 25px;border-radius:999px;
+  font:800 14px/1.25 var(--font);letter-spacing:0;text-transform:none;
+  white-space:nowrap;cursor:pointer;margin:0;
+  transform:none;box-shadow:none;transition:none;
 }
-.dashboard-reorder-action-buttons .dashboard-bulk-button.dashboard-hero-action.hero-cta{
-  border:2px solid var(--purple);background:#fff;color:var(--purple);
+.dashboard-hero-content .dashboard-action-primary.hero-cta{
+  background:var(--purple);border:1.5px solid var(--purple);color:#fff;
 }
-.dashboard-reorder-action-buttons .dashboard-balance-button.dashboard-hero-action.hero-cta{
-  border:2px solid var(--purple);background:var(--purple);color:#fff;
-  text-transform:uppercase;
+.dashboard-hero-content .dashboard-action-secondary.hero-cta{
+  background:rgba(255,255,255,.8);border:1.5px solid rgba(102,51,204,.8);color:var(--purple);
 }
-.dashboard-reorder-action-buttons .dashboard-bulk-button.dashboard-hero-action.hero-cta:hover{
-  background:#fff;border-color:var(--purple);color:var(--purple);transform:none;box-shadow:none;
-}
-.dashboard-reorder-action-buttons .dashboard-balance-button.dashboard-hero-action.hero-cta:hover{
+.dashboard-hero-content .dashboard-action-primary.hero-cta:hover{
   background:var(--purple);border-color:var(--purple);color:#fff;transform:none;box-shadow:none;
 }
-.dashboard-reorder-action-buttons .dashboard-hero-action.hero-cta:focus-visible{
+.dashboard-hero-content .dashboard-action-secondary.hero-cta:hover{
+  background:rgba(255,255,255,.8);border-color:rgba(102,51,204,.8);color:var(--purple);transform:none;box-shadow:none;
+}
+.dashboard-hero-content .dashboard-action.hero-cta:focus-visible{
   outline:2px solid var(--cyan);outline-offset:3px;
 }
+.dashboard-hero-content .dashboard-action .lucide-icon{width:20px;height:20px;flex:none}
 @media(max-width:760px){
   .dashboard-reorder-toolbar{padding:24px}
   .dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner{height:48px;min-height:48px;padding:0 12px;gap:8px}
@@ -164,10 +157,7 @@
   .dashboard-reorder-quantity output{min-width:21px;font-size:14px}
   .dashboard-reorder-actions{padding:14px 15px;gap:10px;flex-wrap:wrap}
   .dashboard-reorder-action-buttons{gap:9px;margin-left:auto}
-  .dashboard-bulk-button{min-height:44px;padding:0 12px;gap:6px;font-size:13px}
-  .dashboard-bulk-button .lucide-icon{width:17px;height:17px}
-  .dashboard-reorder-action-buttons .dashboard-balance-button.td-qty-submit{min-height:44px;padding:0 16px;font-size:13px}
-  .dashboard-reorder-action-buttons .dashboard-hero-action.hero-cta{height:48px;min-height:48px;padding:0 16px;font-size:13px}
+  .dashboard-hero-content .dashboard-action.hero-cta{min-height:48px;padding:13px 16px;gap:8px;font-size:13px}
 }
 </style>
 </head>
@@ -272,12 +262,12 @@
             <div class="dashboard-reorder-actions">
               <span class="dashboard-reorder-feedback" id="dashboardReorderFeedback" role="status" aria-live="polite"></span>
               <div class="dashboard-reorder-action-buttons">
-                <button class="dashboard-bulk-button dashboard-hero-action hero-cta" type="button" id="dashboardBulkUpload" aria-label="Bulk Upload file">
+                <button class="dashboard-action dashboard-action-secondary hero-cta" type="button" id="dashboardBulkUpload" aria-label="Bulk Upload file">
                   <span>Bulk Upload</span>
                   <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-down" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                 </button>
                 <input type="file" id="dashboardBulkUploadFile" accept=".csv,.xlsx,.xls" hidden aria-label="Select bulk upload file">
-                <button class="dashboard-balance-button td-qty-submit dashboard-hero-action hero-cta" type="button" id="dashboardReorderAdd">ADD TO CART</button>
+                <button class="dashboard-action dashboard-action-primary hero-cta" type="button" id="dashboardReorderAdd">ADD TO CART</button>
               </div>
             </div>
           </div>
@@ -292,7 +282,7 @@
             </div>
             <div class="dashboard-balance-footer">
               <p class="dashboard-balance-date"><span>Next Due Date</span><strong>Nov 15, 2026</strong></p>
-              <button class="dashboard-balance-button td-qty-submit" type="button">PAY INVOICES</button>
+              <button class="dashboard-action dashboard-action-primary hero-cta" type="button">PAY INVOICES</button>
             </div>
             </div>
           </div>
