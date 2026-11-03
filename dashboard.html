@@ -10,7 +10,237 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css?v=nav-nohover-v4">
 </head>
-<body>
+<body data-auth-preview="true">
+<header class="site-header" id="top">
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="./index.html" class="site-nav-logo" aria-label="True Distributors — back to top">
+      <img src="./td_logo.svg" alt="True Distributors" width="128" height="27">
+    </a>
+    <div class="shopping-nav-controls">
+      <button class="header-search-toggle" id="headerSearchToggle" type="button" aria-label="Open search" aria-expanded="false" aria-controls="headerSearchPanel">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-search header-search-open-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x header-search-close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <button class="shopping-cart-button" id="shoppingCart" type="button" aria-label="Shopping cart, 0 items">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-shopping-cart" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.72a2 2 0 0 0 2-1.61L22 7H5"/></svg>
+        <span class="shopping-cart-count" id="cartCount" aria-live="polite" hidden>0</span>
+      </button>
+      <a class="quick-shop-button" href="./index.html#new-title">Quick Shop</a>
+      <span class="shopping-nav-separator" aria-hidden="true"></span>
+      <div class="shopping-user">
+        <div class="shopping-user-details">
+          <label for="shoppingUser" class="shopping-user-label">Shopping for</label>
+          <div class="shopping-user-select">
+            <select id="shoppingUser" aria-label="Switch shopping user">
+              <option value="Fresh Market" selected>Fresh Market</option>
+              <option value="City Grocers">City Grocers</option>
+            </select>
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+          <button class="mobile-user-trigger" id="mobileUserTrigger" type="button" aria-label="Switch shopping account: Fresh Market" aria-haspopup="dialog" aria-controls="mobileUserSheet">
+            <span class="mobile-user-trigger-copy">
+              <span class="mobile-user-trigger-label">Shopping for</span>
+              <strong class="mobile-user-trigger-name" id="mobileUserName">Fresh Market</strong>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenuPanel">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-menu mobile-menu-open-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x mobile-menu-close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu-panel" id="mobileMenuPanel" aria-hidden="true" inert>
+    <div class="mobile-menu-reveal">
+      <div class="mobile-menu-content" id="mobileMenuContent"><a class="menu-auth-link" id="menuAuthLink" href="./login.html">Login / Create Account<svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+    </div>
+  </div>
+  <div class="header-search-panel" id="headerSearchPanel" role="search" aria-hidden="true" inert>
+    <div class="header-search-reveal">
+      <div class="header-search-inner">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-search" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="headerSearchInput" type="search" aria-label="Search products" placeholder="Search products..." autocomplete="off" enterkeyhint="search">
+        <button class="header-search-clear" id="headerSearchClear" type="button" aria-label="Clear search" hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="mobile-user-sheet" id="mobileUserSheet" aria-hidden="true" inert>
+  <button class="mobile-user-sheet-backdrop" id="mobileUserBackdrop" type="button" tabindex="-1" aria-label="Close shopping account selector"></button>
+  <section class="mobile-user-sheet-dialog" role="dialog" aria-modal="true" aria-labelledby="mobileUserSheetTitle" tabindex="-1">
+    <div class="mobile-user-sheet-grab" aria-hidden="true"></div>
+    <div class="mobile-user-sheet-header"><div><h2 id="mobileUserSheetTitle">Select a store</h2></div></div>
+    <div class="mobile-user-sheet-options" id="mobileUserOptions" role="group" aria-label="Available shopping accounts"></div>
+  </section>
+</div>
   <main id="dashboard" aria-label="Dashboard"></main>
+<script>
+/* Self-contained header interactions; original storefront CSS and markup. */
+(function () {
+  'use strict';
+  const $ = (selector) => document.querySelector(selector);
+  const select = $('#shoppingUser');
+  const controls = $('.shopping-nav-controls');
+  const burger = $('#mobileMenuToggle');
+  const menu = $('#mobileMenuPanel');
+  const menuContent = $('#mobileMenuContent');
+  const quickShop = $('.quick-shop-button');
+  const separator = $('.shopping-nav-separator');
+  const shoppingUser = $('.shopping-user');
+  const mobileMedia = window.matchMedia('(max-width:760px)');
+  const searchToggle = $('#headerSearchToggle');
+  const searchPanel = $('#headerSearchPanel');
+  const searchInput = $('#headerSearchInput');
+  const searchClear = $('#headerSearchClear');
+  const mobileSheet = $('#mobileUserSheet');
+  const mobileTrigger = $('#mobileUserTrigger');
+  const mobileOptions = $('#mobileUserOptions');
+  const storageKey = 'td-active-shopping-for-v1';
+  const cartKey = 'td-delivery-carts-v1';
+
+  function setMenuOpen(open) {
+    if (!menu || !burger) return;
+    menu.classList.toggle('is-open',open);
+    menu.inert = !open;
+    menu.setAttribute('aria-hidden',String(!open));
+    burger.setAttribute('aria-expanded',String(open));
+    burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+  }
+  function setSearchOpen(open, restoreFocus) {
+    if (!searchPanel || !searchToggle) return;
+    if (open && mobileMedia.matches) updateMobileSearchTop();
+    searchPanel.classList.toggle('is-open',open);
+    searchPanel.inert = !open;
+    searchPanel.setAttribute('aria-hidden',String(!open));
+    searchToggle.setAttribute('aria-expanded',String(open));
+    searchToggle.setAttribute('aria-label',open?'Close search':'Open search');
+    if (open) {
+      if (!mobileMedia.matches) searchInput.focus({preventScroll:true});
+    } else {
+      if (searchPanel.contains(document.activeElement)) document.activeElement.blur();
+      if (restoreFocus) searchToggle.focus({preventScroll:true});
+    }
+  }
+  function updateMobileSearchTop() {
+    if (!mobileMedia.matches) return;
+    const nav = $('.site-nav');
+    if (nav) document.documentElement.style.setProperty('--mobile-search-top',Math.max(0,Math.round(nav.getBoundingClientRect().bottom))+'px');
+  }
+  function syncResponsiveNav() {
+    setMenuOpen(false);
+    if (mobileMedia.matches) menuContent.append(shoppingUser,quickShop,separator);
+    else {
+      controls.insertBefore(quickShop,burger);
+      controls.insertBefore(separator,burger);
+      controls.insertBefore(shoppingUser,burger);
+    }
+    updateMobileSearchTop();
+  }
+  function syncCart() {
+    let n = 0;
+    try {
+      const carts=JSON.parse(localStorage.getItem(cartKey)||'{}');
+      const items=carts && carts[select.value];
+      if(Array.isArray(items)) n=items.reduce((sum,item)=>sum+(Number(item.qty)||0),0);
+    } catch(e) {}
+    const count=$('#cartCount');
+    if(count){count.textContent=String(n);count.hidden=n===0;}
+    $('#shoppingCart').setAttribute('aria-label','Shopping cart, '+n+' items');
+  }
+  function syncAccount() {
+    const label=select.selectedOptions[0]?.textContent || select.value;
+    $('#mobileUserName').textContent=label;
+    mobileTrigger.setAttribute('aria-label','Switch shopping account: '+label);
+    try {localStorage.setItem(storageKey,select.value);}catch(e){}
+    syncCart();
+  }
+  try {
+    const saved=localStorage.getItem(storageKey);
+    if(saved && Array.from(select.options).some(option=>option.value===saved))select.value=saved;
+  } catch(e) {}
+  select.addEventListener('change',syncAccount);
+  syncAccount();
+  $('#shoppingCart').addEventListener('click',()=>window.location.assign('./index.html'));
+  mobileMedia.addEventListener('change',syncResponsiveNav);
+  window.addEventListener('resize',updateMobileSearchTop,{passive:true});
+  window.addEventListener('scroll',updateMobileSearchTop,{passive:true});
+  syncResponsiveNav();
+  burger.addEventListener('click',()=>{
+    const open=burger.getAttribute('aria-expanded')!=='true';
+    if(open)setSearchOpen(false);
+    setMenuOpen(open);
+  });
+  searchToggle.addEventListener('click',()=>{
+    const open=!searchPanel.classList.contains('is-open');
+    if(open)setMenuOpen(false);
+    setSearchOpen(open);
+  });
+  searchPanel.addEventListener('click',(e)=>{
+    if(!e.target.closest('button') && e.target!==searchInput)searchInput.focus({preventScroll:true});
+  });
+  searchInput.addEventListener('input',()=>{searchClear.hidden=searchInput.value.length===0});
+  searchInput.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){e.preventDefault();window.location.assign('./index.html#new-title');}
+  });
+  searchClear.addEventListener('click',()=>{searchInput.value='';searchClear.hidden=true;searchInput.focus()});
+  document.addEventListener('pointerdown',e=>{
+    if(searchPanel.classList.contains('is-open')&&!searchPanel.contains(e.target)&&!searchToggle.contains(e.target))setSearchOpen(false);
+    if(menu.classList.contains('is-open')&&!menu.contains(e.target)&&!burger.contains(e.target))setMenuOpen(false);
+  });
+  function closeSheet() {
+    mobileSheet.classList.remove('is-open');
+    mobileSheet.inert=true;
+    mobileSheet.setAttribute('aria-hidden','true');
+    document.body.classList.remove('mobile-user-sheet-active');
+  }
+  mobileTrigger.addEventListener('click',()=>{
+    mobileOptions.replaceChildren();
+    Array.from(select.options).forEach(option=>{
+      const button=document.createElement('button');
+      button.type='button';
+      button.textContent=option.textContent;
+      button.dataset.account=option.value;
+      button.setAttribute('aria-pressed',String(option.value===select.value));
+      mobileOptions.append(button);
+    });
+    mobileSheet.classList.add('is-open');
+    mobileSheet.inert=false;
+    mobileSheet.setAttribute('aria-hidden','false');
+    document.body.classList.add('mobile-user-sheet-active');
+  });
+  mobileOptions.addEventListener('click',e=>{
+    const btn=e.target.closest('[data-account]');
+    if(!btn)return;
+    select.value=btn.dataset.account;
+    select.dispatchEvent(new Event('change',{bubbles:true}));
+    closeSheet();
+  });
+  $('#mobileUserBackdrop').addEventListener('click',closeSheet);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape') {
+      if(mobileSheet.classList.contains('is-open'))closeSheet();
+      else if(searchPanel.classList.contains('is-open'))setSearchOpen(false,true);
+      else setMenuOpen(false);
+    }
+  });
+  const menuAuth=$('#menuAuthLink');
+  if(menuAuth){
+    let signed=false;
+    try{signed=sessionStorage.getItem('td-preview-auth-v1')==='true';}catch(e){}
+    if(signed){
+      menuAuth.firstChild.textContent='Log out (demo)';
+      menuAuth.href='./index.html';
+      menuAuth.addEventListener('click',e=>{
+        e.preventDefault();
+        try{sessionStorage.removeItem('td-preview-auth-v1');}catch(err){}
+        window.location.assign('./index.html');
+      });
+    }
+  }
+})();
+</script>
 </body>
 </html>
