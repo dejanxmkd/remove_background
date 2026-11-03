@@ -73,8 +73,8 @@
 </style>
 <style>
 /* Account Balance card beneath tracking, aligned to the right (~40%). */
-.dashboard-balance-row{display:flex;justify-content:flex-end;margin-top:28px}
-.dashboard-balance-column{width:40%;min-width:0}
+.dashboard-balance-row{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);align-items:start;gap:24px;margin-top:28px}
+.dashboard-balance-column,.dashboard-reorder-column{min-width:0}
 .dashboard-balance-card{width:100%;min-width:0;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:17px;overflow:hidden;box-shadow:0 8px 22px rgba(31,12,69,.11)}
 .dashboard-balance-heading{margin:0 0 22px;color:#fff;font:900 clamp(26px,2.25vw,34px)/1.08 var(--font);letter-spacing:-.035em}
 .dashboard-balance-body{padding:24px 25px 26px}
@@ -87,14 +87,49 @@
 .dashboard-balance-button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 19px;border:0;border-radius:12px;background:var(--purple);color:#fff;font:800 12px/1 var(--font);letter-spacing:.035em;white-space:nowrap}
 .dashboard-balance-button:hover{background:#5228a6}
 .dashboard-balance-button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
-@media(max-width:900px){.dashboard-balance-column{width:55%}}
+@media(max-width:900px){.dashboard-balance-row{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:760px){
   .dashboard-balance-row{margin-top:18px}
-  .dashboard-balance-column{width:100%}
   .dashboard-balance-heading{margin-bottom:20px;font-size:clamp(24px,6.4vw,30px)}
   .dashboard-balance-body{padding:22px 20px}
   .dashboard-balance-summary{margin-bottom:22px}
   .dashboard-balance-amount{font-size:40px}
+}
+
+/* Quick Reorder card: same storefront tokens and card radius as Account Balance. */
+.dashboard-reorder-card{background:#fff;border:1px solid var(--line);border-radius:17px;overflow:hidden;box-shadow:0 8px 22px rgba(31,12,69,.11);color:var(--ink)}
+.dashboard-reorder-toolbar{display:flex;align-items:center;gap:14px;padding:20px 22px;border-bottom:1px solid var(--line)}
+.dashboard-reorder-search{flex:1;min-width:0;display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:11px;padding:0 13px;height:44px;color:#686375}
+.dashboard-reorder-search:focus-within{border-color:var(--purple)}
+.dashboard-reorder-search input{font:500 13px var(--font);outline:0;border:0;background:transparent;width:100%;min-width:0;color:var(--ink)}
+.dashboard-reorder-search input::placeholder{color:#8a8494}
+.dashboard-reorder-tag{border:1px solid var(--line);border-radius:999px;padding:9px 15px;white-space:nowrap;font:800 11px var(--font);color:var(--purple)}
+.dashboard-reorder-table-wrap{width:100%;overflow-x:auto}
+.dashboard-reorder-table{width:100%;border-collapse:collapse;table-layout:fixed}
+.dashboard-reorder-table th{padding:13px 20px;text-align:left;font:800 11px var(--font);letter-spacing:.04em;color:#686375;background:#faf9fc}
+.dashboard-reorder-table td{padding:13px 20px;font:600 13px/1.4 var(--font);border-top:1px solid var(--line);vertical-align:middle}
+.dashboard-reorder-table th:nth-child(2),.dashboard-reorder-table td:nth-child(2){width:166px;text-align:center}
+.dashboard-reorder-table th:nth-child(3),.dashboard-reorder-table td:nth-child(3){width:60px;text-align:center;padding-left:10px;padding-right:16px}
+.dashboard-reorder-table input[type=checkbox]{appearance:none;display:inline-grid;place-content:center;width:18px;height:18px;border:1.5px solid #aaa3b6;border-radius:5px;background:#fff;cursor:pointer;vertical-align:middle}
+.dashboard-reorder-table input[type=checkbox]:checked{background:var(--purple);border-color:var(--purple)}
+.dashboard-reorder-table input[type=checkbox]:checked::after{content:"";width:8px;height:4px;border:solid #fff;border-width:0 0 2px 2px;transform:rotate(-45deg) translate(1px,-1px)}
+.dashboard-reorder-table input[type=checkbox]:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.dashboard-reorder-quantity{display:flex;align-items:center;justify-content:center;gap:7px}
+.dashboard-reorder-quantity button{display:grid;place-items:center;width:28px;height:28px;padding:0;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font:700 18px var(--font)}
+.dashboard-reorder-quantity button:hover{border-color:var(--purple);color:var(--purple)}
+.dashboard-reorder-quantity output{min-width:20px;text-align:center;font:700 13px var(--font)}
+.dashboard-reorder-actions{min-height:77px;display:flex;align-items:center;justify-content:flex-end;gap:16px;padding:16px 22px;border-top:1px solid var(--line)}
+.dashboard-reorder-feedback{flex:1;min-width:0;font:600 12px/1.4 var(--font);color:#686375}
+@media(max-width:760px){
+  .dashboard-reorder-toolbar{padding:15px;gap:10px}
+  .dashboard-reorder-tag{padding:8px 10px;font-size:10px}
+  .dashboard-reorder-table th{padding:11px 12px;font-size:10px}
+  .dashboard-reorder-table td{padding:12px;font-size:12px}
+  .dashboard-reorder-table th:nth-child(2),.dashboard-reorder-table td:nth-child(2){width:124px}
+  .dashboard-reorder-table th:nth-child(3),.dashboard-reorder-table td:nth-child(3){width:38px;padding:8px}
+  .dashboard-reorder-quantity{gap:3px}
+  .dashboard-reorder-quantity button{width:25px;height:27px}
+  .dashboard-reorder-actions{padding:14px}
 }
 </style>
 </head>
@@ -176,6 +211,33 @@
         </ol>
       </div>
       <div class="dashboard-balance-row">
+        <section class="dashboard-reorder-column" aria-labelledby="dashboardReorderTitle">
+          <h2 class="dashboard-balance-heading" id="dashboardReorderTitle">QUICK REORDER</h2>
+          <div class="dashboard-reorder-card">
+            <div class="dashboard-reorder-toolbar">
+              <label class="dashboard-reorder-search">
+                <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                <input id="dashboardReorderSearch" type="search" placeholder="Search products..." aria-label="Search quick reorder products" autocomplete="off">
+              </label>
+              <span class="dashboard-reorder-tag">Quick Shop</span>
+            </div>
+            <div class="dashboard-reorder-table-wrap">
+              <table class="dashboard-reorder-table">
+                <thead><tr><th scope="col">PRODUCT</th><th scope="col">QUANTITY</th><th scope="col"><input type="checkbox" id="dashboardSelectAll" aria-label="Select all products"></th></tr></thead>
+                <tbody id="dashboardReorderProducts">
+                  <tr><td>Soda Cases 24pk</td><td><div class="dashboard-reorder-quantity"><button type="button" data-step="-1" aria-label="Decrease Soda Cases 24pk quantity">−</button><output>10</output><button type="button" data-step="1" aria-label="Increase Soda Cases 24pk quantity">+</button></div></td><td><input type="checkbox" aria-label="Select Soda Cases 24pk"></td></tr>
+                  <tr><td>Chips Variety 30pk</td><td><div class="dashboard-reorder-quantity"><button type="button" data-step="-1" aria-label="Decrease Chips Variety 30pk quantity">−</button><output>10</output><button type="button" data-step="1" aria-label="Increase Chips Variety 30pk quantity">+</button></div></td><td><input type="checkbox" aria-label="Select Chips Variety 30pk"></td></tr>
+                  <tr><td>Candy Bars Box (Snickers, etc.)</td><td><div class="dashboard-reorder-quantity"><button type="button" data-step="-1" aria-label="Decrease Candy Bars Box quantity">−</button><output>10</output><button type="button" data-step="1" aria-label="Increase Candy Bars Box quantity">+</button></div></td><td><input type="checkbox" aria-label="Select Candy Bars Box (Snickers, etc.)"></td></tr>
+                  <tr><td>Candy Bars Box</td><td><div class="dashboard-reorder-quantity"><button type="button" data-step="-1" aria-label="Decrease Candy Bars Box quantity">−</button><output>10</output><button type="button" data-step="1" aria-label="Increase Candy Bars Box quantity">+</button></div></td><td><input type="checkbox" aria-label="Select Candy Bars Box"></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="dashboard-reorder-actions">
+              <span class="dashboard-reorder-feedback" id="dashboardReorderFeedback" role="status" aria-live="polite"></span>
+              <button class="dashboard-balance-button" type="button" id="dashboardReorderAdd">ADD TO CART</button>
+            </div>
+          </div>
+        </section>
         <section class="dashboard-balance-column" aria-labelledby="dashboardBalanceTitle">
           <h2 class="dashboard-balance-heading" id="dashboardBalanceTitle">ACCOUNT BALANCE</h2>
           <div class="dashboard-balance-card">
@@ -275,6 +337,41 @@
     if(mobileSheet.classList.contains('is-open'))closeSheet();
     else if(searchPanel.classList.contains('is-open'))setSearchOpen(false,true);
   });
+})();
+</script>
+<script>
+(function(){
+  const rows=[...document.querySelectorAll('#dashboardReorderProducts tr')];
+  const search=document.getElementById('dashboardReorderSearch');
+  const all=document.getElementById('dashboardSelectAll');
+  const feedback=document.getElementById('dashboardReorderFeedback');
+  function sync(){
+    const visible=rows.filter(row=>!row.hidden);
+    const selected=visible.filter(row=>row.querySelector('input[type=checkbox]').checked);
+    all.checked=visible.length>0&&selected.length===visible.length;
+    all.indeterminate=selected.length>0&&selected.length<visible.length;
+  }
+  search.addEventListener('input',()=>{
+    const term=search.value.trim().toLowerCase();
+    rows.forEach(row=>{row.hidden=!row.cells[0].textContent.toLowerCase().includes(term);});
+    sync();
+  });
+  all.addEventListener('change',()=>{
+    rows.filter(row=>!row.hidden).forEach(row=>row.querySelector('input[type=checkbox]').checked=all.checked);
+    sync();
+  });
+  rows.forEach(row=>{
+    row.querySelector('input[type=checkbox]').addEventListener('change',sync);
+    row.querySelectorAll('[data-step]').forEach(button=>button.addEventListener('click',()=>{
+      const count=row.querySelector('output');
+      count.textContent=String(Math.max(1,Math.min(999,Number(count.textContent)+Number(button.dataset.step))));
+    }));
+  });
+  document.getElementById('dashboardReorderAdd').addEventListener('click',()=>{
+    const items=rows.filter(row=>row.querySelector('input[type=checkbox]').checked);
+    feedback.textContent=items.length?items.length+' selected product(s) — prototype preview only.':'Select products to add to cart.';
+  });
+  sync();
 })();
 </script>
 </body>
