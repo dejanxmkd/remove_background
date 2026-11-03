@@ -37,6 +37,7 @@
 .dashboard-hero-content{width:min(1440px,calc(100% - 96px));margin:0 auto;padding:48px 0 68px}
 .dashboard-tracking-heading{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:22px;color:#fff}
 .dashboard-tracking-heading h1{margin:0;font-size:clamp(26px,2.25vw,34px);font-weight:900;line-height:1.08;letter-spacing:-.035em}
+@media(max-width:1300px) and (min-width:901px){.dashboard-tracking-column .dashboard-tracking-heading{align-items:flex-start;flex-direction:column;gap:9px}.dashboard-tracking-column .dashboard-order-meta{justify-content:flex-start}}
 .dashboard-order-meta{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:12px;margin:0;color:#fff;font-size:clamp(13px,1.15vw,16px);font-weight:500;line-height:1.5}
 .dashboard-order-meta strong{font-weight:800}
 .dashboard-tracking-card{width:100%;padding:26px 30px 24px;border:1px solid rgba(255,255,255,.82);border-radius:17px;background:linear-gradient(120deg,#fff 0%,#fff 56%,#faf8ff 100%);box-shadow:0 8px 22px rgba(31,12,69,.11);color:var(--ink)}
@@ -73,7 +74,10 @@
 </style>
 <style>
 /* Account Balance card beneath tracking, aligned to the right (~40%). */
-.dashboard-balance-row{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,3fr);align-items:start;gap:24px;margin-top:28px}
+.dashboard-overview-row{display:grid;grid-template-columns:minmax(0,60%) minmax(0,30%);justify-content:space-between;align-items:start;gap:24px}
+.dashboard-tracking-column{min-width:0}
+.dashboard-reorder-row{margin-top:28px}
+.dashboard-reorder-row .dashboard-reorder-column{width:100%}
 .dashboard-balance-column,.dashboard-reorder-column{min-width:0}
 .dashboard-balance-card{width:100%;min-width:0;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:17px;overflow:hidden;box-shadow:0 8px 22px rgba(31,12,69,.11)}
 .dashboard-balance-heading{margin:0 0 22px;color:#fff;font:900 clamp(26px,2.25vw,34px)/1.08 var(--font);letter-spacing:-.035em}
@@ -84,9 +88,10 @@
 .dashboard-balance-footer{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .dashboard-balance-date{display:flex;flex-direction:column;gap:5px;margin:0;font-size:12px;font-weight:600;color:#686375}
 .dashboard-balance-date strong{font-size:15px;font-weight:800;color:var(--ink)}
-@media(max-width:900px){.dashboard-balance-row{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:900px){.dashboard-overview-row{grid-template-columns:minmax(0,1fr);gap:28px}.dashboard-reorder-row{margin-top:28px}}
 @media(max-width:760px){
-  .dashboard-balance-row{margin-top:18px}
+  .dashboard-overview-row{gap:22px}
+  .dashboard-reorder-row{margin-top:22px}
   .dashboard-balance-heading{margin-bottom:20px;font-size:clamp(24px,6.4vw,30px)}
   .dashboard-balance-body{padding:22px 20px}
   .dashboard-balance-summary{margin-bottom:22px}
@@ -218,72 +223,76 @@
   <main id="dashboard" aria-label="Dashboard">
   <section class="dashboard-purple-hero" aria-labelledby="orderTrackingTitle">
     <div class="dashboard-hero-content">
-      <div class="dashboard-tracking-heading">
-        <h1 id="orderTrackingTitle">ORDER TRACKING</h1>
-        <p class="dashboard-order-meta"><strong>Order #88432</strong><span aria-hidden="true">·</span><span>Estimated: Today, 2:00 PM</span></p>
-      </div>
-      <div class="dashboard-tracking-card" aria-label="Order #88432 tracking progress">
-        <ol class="dashboard-tracking-steps">
+      <div class="dashboard-overview-row">
+        <section class="dashboard-tracking-column" aria-labelledby="orderTrackingTitle">
+          <div class="dashboard-tracking-heading">
+          <h1 id="orderTrackingTitle">ORDER TRACKING</h1>
+          <p class="dashboard-order-meta"><strong>Order #88432</strong><span aria-hidden="true">·</span><span>Estimated: Today, 2:00 PM</span></p>
+          </div>
+          <div class="dashboard-tracking-card" aria-label="Order #88432 tracking progress">
+          <ol class="dashboard-tracking-steps">
           <li class="is-complete">
-            <span class="dashboard-tracking-marker" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span>
-            <span>Ordered</span>
+          <span class="dashboard-tracking-marker" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span>
+          <span>Ordered</span>
           </li>
           <li class="is-complete">
-            <span class="dashboard-tracking-marker" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span>
-            <span>Processing</span>
+          <span class="dashboard-tracking-marker" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span>
+          <span>Processing</span>
           </li>
           <li class="is-pending"><span class="dashboard-tracking-marker" aria-hidden="true"></span><span>Out for Delivery</span></li>
           <li class="is-pending"><span class="dashboard-tracking-marker" aria-hidden="true"></span><span>Delivered</span></li>
-        </ol>
-      </div>
-      <div class="dashboard-balance-row">
-        <section class="dashboard-reorder-column" aria-labelledby="dashboardReorderTitle">
-          <h2 class="dashboard-balance-heading" id="dashboardReorderTitle">QUICK REORDER</h2>
-          <div class="dashboard-reorder-card">
-            <div class="dashboard-reorder-toolbar">
-              <label class="dashboard-reorder-search header-search-inner">
-                <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                <input id="dashboardReorderSearch" type="search" placeholder="Search products..." aria-label="Search quick reorder products" autocomplete="off">
-              </label>
-            </div>
-            <div class="dashboard-reorder-table-wrap">
-              <table class="dashboard-reorder-table">
-                <thead><tr><th scope="col"><input type="checkbox" id="dashboardSelectAll" aria-label="Select all products"></th><th scope="col">PRODUCT</th><th scope="col">QUANTITY</th></tr></thead>
-                <tbody id="dashboardReorderProducts">
-                  <tr><td><input type="checkbox" aria-label="Select Soda Cases 24pk"></td><td>Soda Cases 24pk</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Soda Cases 24pk quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Soda Cases 24pk quantity">+</button></div></td></tr>
-                  <tr><td><input type="checkbox" aria-label="Select Chips Variety 30pk"></td><td>Chips Variety 30pk</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Chips Variety 30pk quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Chips Variety 30pk quantity">+</button></div></td></tr>
-                  <tr><td><input type="checkbox" aria-label="Select Candy Bars Box (Snickers, etc.)"></td><td>Candy Bars Box (Snickers, etc.)</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Candy Bars Box quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Candy Bars Box quantity">+</button></div></td></tr>
-                  <tr><td><input type="checkbox" aria-label="Select Candy Bars Box"></td><td>Candy Bars Box</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Candy Bars Box quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Candy Bars Box quantity">+</button></div></td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="dashboard-reorder-actions">
-              <span class="dashboard-reorder-feedback" id="dashboardReorderFeedback" role="status" aria-live="polite"></span>
-              <div class="dashboard-reorder-action-buttons">
-                <button class="dashboard-action dashboard-action-secondary hero-cta" type="button" id="dashboardBulkUpload" aria-label="Bulk Upload file">
-                  <span>Bulk Upload</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-down" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-                </button>
-                <input type="file" id="dashboardBulkUploadFile" accept=".csv,.xlsx,.xls" hidden aria-label="Select bulk upload file">
-                <button class="dashboard-action dashboard-action-primary hero-cta" type="button" id="dashboardReorderAdd">ADD TO CART</button>
-              </div>
-            </div>
+          </ol>
           </div>
         </section>
         <section class="dashboard-balance-column" aria-labelledby="dashboardBalanceTitle">
-          <h2 class="dashboard-balance-heading" id="dashboardBalanceTitle">ACCOUNT BALANCE</h2>
-          <div class="dashboard-balance-card">
-            <div class="dashboard-balance-body">
-            <div class="dashboard-balance-summary">
-              <span class="dashboard-balance-label">Total Due</span>
-              <strong class="dashboard-balance-amount">$2,450.00</strong>
-            </div>
-            <div class="dashboard-balance-footer">
-              <p class="dashboard-balance-date"><span>Next Due Date</span><strong>Nov 15, 2026</strong></p>
-              <button class="dashboard-action dashboard-action-primary hero-cta" type="button">PAY INVOICES</button>
-            </div>
-            </div>
-          </div>
+        <h2 class="dashboard-balance-heading" id="dashboardBalanceTitle">ACCOUNT BALANCE</h2>
+        <div class="dashboard-balance-card">
+        <div class="dashboard-balance-body">
+        <div class="dashboard-balance-summary">
+        <span class="dashboard-balance-label">Total Due</span>
+        <strong class="dashboard-balance-amount">$2,450.00</strong>
+        </div>
+        <div class="dashboard-balance-footer">
+        <p class="dashboard-balance-date"><span>Next Due Date</span><strong>Nov 15, 2026</strong></p>
+        <button class="dashboard-action dashboard-action-primary hero-cta" type="button">PAY INVOICES</button>
+        </div>
+        </div>
+        </div>
+        </section>
+      </div>
+      <div class="dashboard-reorder-row">
+        <section class="dashboard-reorder-column" aria-labelledby="dashboardReorderTitle">
+        <h2 class="dashboard-balance-heading" id="dashboardReorderTitle">QUICK REORDER</h2>
+        <div class="dashboard-reorder-card">
+        <div class="dashboard-reorder-toolbar">
+        <label class="dashboard-reorder-search header-search-inner">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="dashboardReorderSearch" type="search" placeholder="Search products..." aria-label="Search quick reorder products" autocomplete="off">
+        </label>
+        </div>
+        <div class="dashboard-reorder-table-wrap">
+        <table class="dashboard-reorder-table">
+        <thead><tr><th scope="col"><input type="checkbox" id="dashboardSelectAll" aria-label="Select all products"></th><th scope="col">PRODUCT</th><th scope="col">QUANTITY</th></tr></thead>
+        <tbody id="dashboardReorderProducts">
+        <tr><td><input type="checkbox" aria-label="Select Soda Cases 24pk"></td><td>Soda Cases 24pk</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Soda Cases 24pk quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Soda Cases 24pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Chips Variety 30pk"></td><td>Chips Variety 30pk</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Chips Variety 30pk quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Chips Variety 30pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Candy Bars Box (Snickers, etc.)"></td><td>Candy Bars Box (Snickers, etc.)</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Candy Bars Box quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Candy Bars Box quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Candy Bars Box"></td><td>Candy Bars Box</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Candy Bars Box quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Candy Bars Box quantity">+</button></div></td></tr>
+        </tbody>
+        </table>
+        </div>
+        <div class="dashboard-reorder-actions">
+        <span class="dashboard-reorder-feedback" id="dashboardReorderFeedback" role="status" aria-live="polite"></span>
+        <div class="dashboard-reorder-action-buttons">
+        <button class="dashboard-action dashboard-action-secondary hero-cta" type="button" id="dashboardBulkUpload" aria-label="Bulk Upload file">
+        <span>Bulk Upload</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-down" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <input type="file" id="dashboardBulkUploadFile" accept=".csv,.xlsx,.xls" hidden aria-label="Select bulk upload file">
+        <button class="dashboard-action dashboard-action-primary hero-cta" type="button" id="dashboardReorderAdd">ADD TO CART</button>
+        </div>
+        </div>
+        </div>
         </section>
       </div>
     </div>
