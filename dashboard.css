@@ -172,3 +172,38 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
  #reorderSubmit{min-height:50px;padding:0 19px;font-size:11px}
  .reorder-heading>a,.mini-link,.all-deals,.promo-cta{font-size:11px}
 }
+
+/* Promotional placeholders, inspired by the three offer banners in the sketch. */
+.promo-grid{gap:20px}
+.promo-banner{background:#fff;border:1px solid #e9e5ef;border-radius:17px;box-shadow:0 3px 9px rgba(30,12,52,.025);overflow:hidden}
+.promo-banner:hover{border-color:#bda5e5;box-shadow:0 13px 28px rgba(44,20,70,.075)}
+.promo-banner .promo-art{position:relative;isolation:isolate;overflow:hidden;height:215px;background:linear-gradient(128deg,#eee7fb 0%,#eee7fb 56%,#d5c2f4 56%,#f8f5fd 100%)}
+.promo-banner .promo-art:before{content:"";position:absolute;width:260px;height:260px;border:48px solid rgba(255,255,255,.16);border-radius:50%;right:-112px;top:-96px;z-index:-1}
+.promo-banner .promo-art img{position:absolute;object-fit:contain;width:68%;height:88%;bottom:0;right:1%;filter:drop-shadow(0 12px 13px rgba(38,18,71,.15));transition:transform .25s ease}
+.promo-banner:hover .promo-art img{transform:translateY(-4px) scale(1.03)}
+.promo-banner .promo-offer{position:absolute;left:24px;top:26px;color:var(--purple);font-size:clamp(20px,2.2vw,32px);font-weight:900;letter-spacing:-.06em;line-height:1.05;max-width:48%;z-index:2}
+.promo-banner .promo-watermark{position:absolute;right:12px;top:0;font-size:110px;line-height:1.3;font-weight:900;letter-spacing:-.12em;color:rgba(102,51,204,.065);pointer-events:none}
+.promo-banner .promo-copy{display:flex;flex-direction:column;align-items:flex-start;flex:1;padding:21px 23px 23px}
+.promo-banner .promo-copy h3{font-size:19px;letter-spacing:-.04em;font-weight:900;margin:10px 0 8px;line-height:1.18}
+.promo-banner .promo-copy p{color:#817985;font-size:11px;line-height:1.55;font-weight:600;margin:0}
+.promo-banner .promo-tag{font-size:9px;letter-spacing:.08em;color:var(--purple);font-weight:900}
+.promo-banner .promo-cta{margin-top:auto;padding-top:17px;font-size:12px;font-weight:850;color:#08070b}
+.promo-banner .promo-cta span{color:var(--purple)}
+.promo-banner.deal-snacks .promo-art{background:linear-gradient(130deg,#ece5fa 0 54%,#b79ae6 54% 59%,#f7f4fa 59%)}
+.promo-banner.deal-beverages .promo-art{background:linear-gradient(135deg,#421588 0%,#6633cc 65%,#6bdaea 65%,#76e1ee 100%)}
+.promo-banner.deal-beverages .promo-offer{color:#fff;max-width:56%;font-size:clamp(25px,2.8vw,40px)}
+.promo-banner.deal-beverages .promo-watermark{color:rgba(255,255,255,.09)}
+.promo-banner.deal-beverages .promo-art img{width:52%;height:74%;right:0;bottom:-8%;filter:drop-shadow(0 11px 12px rgba(0,0,0,.2))}
+.promo-banner.deal-candy .promo-art{background:linear-gradient(130deg,#bff4f8 0 46%,#e7fbfd 46% 62%,#a1e6f0 62%)}
+.promo-banner.deal-chocolate .promo-art{background:linear-gradient(132deg,#f5e8fa 0%,#e8d5f1 61%,#fdf5ff 61%)}
+.promo-banner.deal-coffee .promo-art{background:linear-gradient(135deg,#f0eafb 0%,#e3def6 58%,#d5f2f7 58%)}
+.promo-banner.deal-europe .promo-art{background:linear-gradient(140deg,#e6fafb 0%,#f0e9fa 60%,#ded1f4 60%)}
+.promo-banner.deal-variety .promo-art{background:linear-gradient(135deg,#4e21a5 0%,#6935ce 65%,#a9e8f4 65%)}
+.promo-banner.deal-variety .promo-offer,.promo-banner.deal-variety .promo-watermark{color:#fff}
+.promo-banner.deal-variety .promo-watermark{opacity:.14}
+.promo-banner.deal-cleaning .promo-art{background:linear-gradient(135deg,#def6fa 0%,#c5ecf4 57%,#e9f9fb 57%)}
+.promo-banner.deal-wellness .promo-art{background:linear-gradient(135deg,#ebe6fb 0%,#d7eaf8 60%,#e8f7fb 60%)}
+@media(max-width:1080px){.promo-banner .promo-art{height:185px}.promo-banner .promo-offer{left:17px;top:22px;font-size:23px}.promo-banner .promo-copy{padding:18px}.promo-banner .promo-copy h3{font-size:17px}}
+@media(max-width:800px){.promo-banner .promo-art{height:205px}}
+@media(max-width:540px){.promo-banner .promo-art{height:225px}.promo-banner .promo-offer{font-size:29px;left:23px;top:25px}.promo-banner .promo-copy{padding:21px 23px}.promo-banner .promo-copy h3{font-size:20px}}
+@media(prefers-reduced-motion:reduce){.promo-banner .promo-art img{transition:none}}
