@@ -9,23 +9,75 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./styles.css?v=nav-nohover-v4">
-<link rel="stylesheet" href="./dashboard.css?v=promo-placeholders-v6">
+<link rel="stylesheet" href="./dashboard.css?v=storefront-reuse-v7">
 </head>
 <body>
-<header class="site-header" id="top">
+<header class="site-header dashboard-header" id="top">
   <nav class="site-nav" aria-label="Main navigation">
-    <a class="site-nav-logo" href="./index.html" aria-label="True Distributors homepage"><img src="./td_logo.svg" width="160" height="34" alt="True Distributors"></a>
-    <div class="dashboard-nav-links"><a class="is-current" href="./dashboard.html" aria-current="page">Dashboard</a><a href="./index.html#new-title">Products</a><a href="#order-status">Orders</a><a href="#invoices">Invoices</a></div>
+    <a href="./index.html" class="site-nav-logo" aria-label="True Distributors — back to top">
+      <img src="./td_logo.svg" alt="True Distributors" width="128" height="27">
+    </a>
     <div class="shopping-nav-controls">
-      <button class="header-search-toggle" id="dashSearchToggle" type="button" aria-label="Search products" aria-expanded="false" aria-controls="dashHeaderSearch"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
-      <a class="shopping-cart-button" href="./index.html" aria-label="Open shopping cart in storefront"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.72a2 2 0 0 0 2-1.61L22 7H5"/></svg><span class="shopping-cart-count" id="dashCartCount" hidden>0</span></a>
+      <button class="header-search-toggle" id="dashSearchToggle" type="button" aria-label="Open search" aria-expanded="false" aria-controls="dashHeaderSearch">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-search header-search-open-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x header-search-close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <button class="shopping-cart-button" id="dashCartButton" type="button" aria-label="Shopping cart, 0 items">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-shopping-cart" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.72a2 2 0 0 0 2-1.61L22 7H5"/></svg>
+        <span class="shopping-cart-count" id="dashCartCount" aria-live="polite" hidden>0</span>
+      </button>
       <a class="quick-shop-button" href="./index.html#new-title">Quick Shop</a>
       <span class="shopping-nav-separator" aria-hidden="true"></span>
-      <div class="shopping-user"><div class="shopping-user-details"><label class="shopping-user-label" for="shoppingUser">Shopping for</label><div class="shopping-user-select"><select id="shoppingUser" aria-label="Switch shopping account"><option value="Fresh Market">Fresh Market</option><option value="City Grocers">City Grocers</option></select><span class="nav-chevron" aria-hidden="true">⌄</span></div></div></div>
+      <div class="shopping-user">
+        <div class="shopping-user-details">
+          <label for="shoppingUser" class="shopping-user-label">Shopping for</label>
+          <div class="shopping-user-select">
+            <select id="shoppingUser" aria-label="Switch shopping user">
+              <option value="Fresh Market" selected>Fresh Market</option>
+              <option value="City Grocers">City Grocers</option>
+            </select>
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+          <button class="mobile-user-trigger" id="mobileUserTrigger" type="button" aria-label="Switch shopping account: Fresh Market" aria-haspopup="dialog" aria-controls="mobileUserSheet">
+            <span class="mobile-user-trigger-copy">
+              <span class="mobile-user-trigger-label">Shopping for</span>
+              <strong class="mobile-user-trigger-name" id="mobileUserName">Fresh Market</strong>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenuPanel">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-menu mobile-menu-open-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x mobile-menu-close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
     </div>
   </nav>
-  <div class="dash-header-search" id="dashHeaderSearch" hidden><div class="dash-header-search-inner"><label for="dashSiteSearch">Search products</label><input type="search" id="dashSiteSearch" placeholder="Search products or SKUs..."><a href="./index.html#new-title">Browse all products ↗</a></div></div>
+  <div class="mobile-menu-panel" id="mobileMenuPanel" aria-hidden="true" inert>
+    <div class="mobile-menu-reveal">
+      <div class="mobile-menu-content" id="mobileMenuContent"><a class="menu-auth-link" id="menuAuthLink" href="./index.html">Go to storefront<svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+    </div>
+  </div>
+  <div class="header-search-panel" id="dashHeaderSearch" role="search" aria-hidden="true" inert>
+    <div class="header-search-reveal">
+      <div class="header-search-inner">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-search" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="dashSiteSearch" type="search" aria-label="Search products" placeholder="Search products..." autocomplete="off" enterkeyhint="search">
+        <button class="header-search-clear" id="dashSearchClear" type="button" aria-label="Clear search" hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
 </header>
+<div class="mobile-user-sheet" id="mobileUserSheet" aria-hidden="true" inert>
+  <button class="mobile-user-sheet-backdrop" id="mobileUserBackdrop" type="button" tabindex="-1" aria-label="Close shopping account selector"></button>
+  <section class="mobile-user-sheet-dialog" role="dialog" aria-modal="true" aria-labelledby="mobileUserSheetTitle" tabindex="-1">
+    <div class="mobile-user-sheet-grab" aria-hidden="true"></div>
+    <div class="mobile-user-sheet-header"><div><h2 id="mobileUserSheetTitle">Select a store</h2></div></div>
+    <div class="mobile-user-sheet-options" id="mobileUserOptions" role="group" aria-label="Available shopping accounts"></div>
+  </section>
+</div>
+
 <main class="dashboard">
   <section class="dash-summary" aria-label="Customer account and quick reorder">
   <div class="dash-summary-inner">
@@ -45,45 +97,72 @@
 <section class="invoice-anchor" id="invoices" aria-label="Invoice information"><span>Latest invoice activity <strong>INV-2048</strong> · Oct 28, 2026</span><a href="#balance">Outstanding balance ↗</a></section>
   <section class="promos" id="featured-deals" aria-labelledby="promos-heading">
     <div class="promos-heading">
-      <div><span class="dash-kicker">CURATED FOR YOUR BUSINESS</span><h2 id="promos-heading">Current deals & promotions<span class="dash-period">.</span></h2><p>A preview of the offers and featured items you can highlight here.</p></div>
+      <div><span class="dash-kicker">CURATED FOR YOUR BUSINESS</span><h2 id="promos-heading">Featured for your store<span class="dash-period">.</span></h2><p>Explore curated products and best-selling categories.</p></div>
       <a class="all-deals" href="./index.html#categories-title">Explore all products <span aria-hidden="true">↗</span></a>
     </div>
     <div class="promo-grid">
-      <a class="promo-card promo-banner deal-snacks" href="./index.html#categories-title" aria-label="BUY 5, GET 1 FREE — Shop snacks">
-        <div class="promo-art"><span class="promo-watermark" aria-hidden="true">01</span><span class="promo-offer">5 + 1</span><img src="./assets/categories/02-chips-snacks.webp" alt="Snack assortment" loading="lazy"></div>
-        <div class="promo-copy"><span class="promo-tag">MULTIBUY DEAL · PLACEHOLDER</span><h3>BUY 5, GET 1 FREE</h3><p>Snacking brands · Mix & match your favorites</p><span class="promo-cta">Shop snacks <span aria-hidden="true">↗</span></span></div>
+      <a class="dash-category-link" href="./index.html#categories-title" aria-label="Browse Candy">
+        <article class="card category-card">
+          <div class="category-visual"><img class="category-image" src="./assets/categories/01-candy.webp" alt="Candy" loading="lazy" decoding="async" width="480" height="480"></div>
+          <div class="category-footer"><span>Candy</span></div>
+        </article>
+        <div class="dash-category-caption"><span>CUSTOMER FAVORITES</span><p>Best-selling sweets and candy assortments.</p><strong>Explore collection <span aria-hidden="true">↗</span></strong></div>
       </a>
-      <a class="promo-card promo-banner deal-beverages" href="./index.html#categories-title" aria-label="15% OFF BEVERAGES — View offer">
-        <div class="promo-art"><span class="promo-watermark" aria-hidden="true">02</span><span class="promo-offer">15% OFF</span><img src="./assets/categories/06-grocery.webp" alt="Grocery products representing beverage promotion" loading="lazy"></div>
-        <div class="promo-copy"><span class="promo-tag">PROMOTION · PLACEHOLDER</span><h3>15% OFF BEVERAGES</h3><p>A refreshing offer for your next restock</p><span class="promo-cta">View offer <span aria-hidden="true">↗</span></span></div>
+      <a class="dash-category-link" href="./index.html#categories-title" aria-label="Browse Chips & Snacks">
+        <article class="card category-card">
+          <div class="category-visual"><img class="category-image" src="./assets/categories/02-chips-snacks.webp" alt="Chips & Snacks" loading="lazy" decoding="async" width="480" height="480"></div>
+          <div class="category-footer"><span>Chips & Snacks</span></div>
+        </article>
+        <div class="dash-category-caption"><span>FEATURED PRODUCTS</span><p>Top snack picks for your shelves.</p><strong>Explore collection <span aria-hidden="true">↗</span></strong></div>
       </a>
-      <a class="promo-card promo-banner deal-candy" href="./index.html#categories-title" aria-label="BULK CANDY SPECIAL — Explore candy">
-        <div class="promo-art"><span class="promo-watermark" aria-hidden="true">03</span><span class="promo-offer">BULK DEAL</span><img src="./assets/categories/01-candy.webp" alt="Candy assortment" loading="lazy"></div>
-        <div class="promo-copy"><span class="promo-tag">BULK SPECIAL · PLACEHOLDER</span><h3>BULK CANDY SPECIAL</h3><p>Big variety. Better shelf appeal.</p><span class="promo-cta">Explore candy <span aria-hidden="true">↗</span></span></div>
+      <a class="dash-category-link" href="./index.html#categories-title" aria-label="Browse Chocolate">
+        <article class="card category-card">
+          <div class="category-visual"><img class="category-image" src="./assets/categories/03-chocolate.webp" alt="Chocolate" loading="lazy" decoding="async" width="480" height="480"></div>
+          <div class="category-footer"><span>Chocolate</span></div>
+        </article>
+        <div class="dash-category-caption"><span>POPULAR PICKS</span><p>Chocolate favorites for every occasion.</p><strong>Explore collection <span aria-hidden="true">↗</span></strong></div>
       </a>
-      <a class="promo-card promo-banner deal-chocolate" href="./index.html#categories-title" aria-label="SWEET SAVINGS — Shop chocolate">
-        <div class="promo-art"><span class="promo-watermark" aria-hidden="true">04</span><span class="promo-offer">SPECIAL</span><img src="./assets/categories/03-chocolate.webp" alt="Chocolate assortment" loading="lazy"></div>
-        <div class="promo-copy"><span class="promo-tag">LIMITED OFFER · PLACEHOLDER</span><h3>SWEET SAVINGS</h3><p>Chocolate displays & everyday bestsellers</p><span class="promo-cta">Shop chocolate <span aria-hidden="true">↗</span></span></div>
+      <a class="dash-category-link" href="./index.html#categories-title" aria-label="Browse Coffee">
+        <article class="card category-card">
+          <div class="category-visual"><img class="category-image" src="./assets/categories/04-coffee.webp" alt="Coffee" loading="lazy" decoding="async" width="480" height="480"></div>
+          <div class="category-footer"><span>Coffee</span></div>
+        </article>
+        <div class="dash-category-caption"><span>STOCK UP</span><p>Everyday coffee essentials.</p><strong>Explore collection <span aria-hidden="true">↗</span></strong></div>
       </a>
-      <a class="promo-card promo-banner deal-coffee" href="./index.html#categories-title" aria-label="COFFEE CORNER — Shop coffee">
-        <div class="promo-art"><span class="promo-watermark" aria-hidden="true">05</span><span class="promo-offer">BEST PICKS</span><img src="./assets/categories/04-coffee.webp" alt="Coffee assortment" loading="lazy"></div>
-        <div class="promo-copy"><span class="promo-tag">FEATURED COLLECTION</span><h3>COFFEE CORNER</h3><p>Keep the morning rush stocked</p><span class="promo-cta">Shop coffee <span aria-hidden="true">↗</span></span></div>
+      <a class="dash-category-link" href="./index.html#categories-title" aria-label="Browse European Products">
+        <article class="card category-card">
+          <div class="category-visual"><img class="category-image" src="./assets/categories/05-european-products.webp" alt="European Products" loading="lazy" decoding="async" width="480" height="480"></div>
+          <div class="category-footer"><span>European Products</span></div>
+        </article>
+        <div class="dash-category-caption"><span>DISCOVER MORE</span><p>European imports for your assortment.</p><strong>Explore collection <span aria-hidden="true">↗</span></strong></div>
       </a>
-      <a class="promo-card promo-banner deal-europe" href="./index.html#categories-title" aria-label="IMPORTED FAVORITES — Explore imports">
-        <div class="promo-art"><span class="promo-watermark" aria-hidden="true">06</span><span class="promo-offer">NEW FINDS</span><img src="./assets/categories/05-european-products.webp" alt="European grocery products" loading="lazy"></div>
-        <div class="promo-copy"><span class="promo-tag">DISCOVER MORE</span><h3>IMPORTED FAVORITES</h3><p>European products worth discovering</p><span class="promo-cta">Explore imports <span aria-hidden="true">↗</span></span></div>
+      <a class="dash-category-link" href="./index.html#categories-title" aria-label="Browse Grocery">
+        <article class="card category-card">
+          <div class="category-visual"><img class="category-image" src="./assets/categories/06-grocery.webp" alt="Grocery" loading="lazy" decoding="async" width="480" height="480"></div>
+          <div class="category-footer"><span>Grocery</span></div>
+        </article>
+        <div class="dash-category-caption"><span>STORE ESSENTIALS</span><p>Products your customers need every day.</p><strong>Explore collection <span aria-hidden="true">↗</span></strong></div>
       </a>
-      <a class="promo-card promo-banner deal-variety" href="./index.html#categories-title" aria-label="STOCK UP & SAVE — Shop packs">
-        <div class="promo-art"><span class="promo-watermark" aria-hidden="true">07</span><span class="promo-offer">BULK PICKS</span><img src="./assets/categories/07-variety-packs-purple.webp" alt="Bulk variety assortment" loading="lazy"></div>
-        <div class="promo-copy"><span class="promo-tag">BULK BUYING · PLACEHOLDER</span><h3>STOCK UP & SAVE</h3><p>Variety packs that make ordering easier</p><span class="promo-cta">Shop packs <span aria-hidden="true">↗</span></span></div>
+      <a class="dash-category-link" href="./index.html#categories-title" aria-label="Browse Variety Packs">
+        <article class="card category-card">
+          <div class="category-visual"><img class="category-image" src="./assets/categories/07-variety-packs-purple.webp" alt="Variety Packs" loading="lazy" decoding="async" width="480" height="480"></div>
+          <div class="category-footer"><span>Variety Packs</span></div>
+        </article>
+        <div class="dash-category-caption"><span>BULK BUYING</span><p>Convenient multipacks for restocking.</p><strong>Explore collection <span aria-hidden="true">↗</span></strong></div>
       </a>
-      <a class="promo-card promo-banner deal-cleaning" href="./index.html#categories-title" aria-label="DAILY ESSENTIALS — Shop essentials">
-        <div class="promo-art"><span class="promo-watermark" aria-hidden="true">08</span><span class="promo-offer">TOP ITEMS</span><img src="./assets/categories/11-cleaning.webp" alt="Cleaning supplies" loading="lazy"></div>
-        <div class="promo-copy"><span class="promo-tag">STORE ESSENTIALS</span><h3>DAILY ESSENTIALS</h3><p>Stay stocked with cleaning supplies</p><span class="promo-cta">Shop essentials <span aria-hidden="true">↗</span></span></div>
+      <a class="dash-category-link" href="./index.html#categories-title" aria-label="Browse Cleaning">
+        <article class="card category-card">
+          <div class="category-visual"><img class="category-image" src="./assets/categories/11-cleaning.webp" alt="Cleaning" loading="lazy" decoding="async" width="480" height="480"></div>
+          <div class="category-footer"><span>Cleaning</span></div>
+        </article>
+        <div class="dash-category-caption"><span>EVERYDAY SUPPLIES</span><p>Household and store essentials.</p><strong>Explore collection <span aria-hidden="true">↗</span></strong></div>
       </a>
-      <a class="promo-card promo-banner deal-wellness" href="./index.html#categories-title" aria-label="WELLNESS PICKS — Discover more">
-        <div class="promo-art"><span class="promo-watermark" aria-hidden="true">09</span><span class="promo-offer">TRENDING</span><img src="./assets/categories/13-nutrition.webp" alt="Nutrition products" loading="lazy"></div>
-        <div class="promo-copy"><span class="promo-tag">TRENDING PRODUCTS</span><h3>WELLNESS PICKS</h3><p>More choices for health-minded customers</p><span class="promo-cta">Discover more <span aria-hidden="true">↗</span></span></div>
+      <a class="dash-category-link" href="./index.html#categories-title" aria-label="Browse Nutrition">
+        <article class="card category-card">
+          <div class="category-visual"><img class="category-image" src="./assets/categories/13-nutrition.webp" alt="Nutrition" loading="lazy" decoding="async" width="480" height="480"></div>
+          <div class="category-footer"><span>Nutrition</span></div>
+        </article>
+        <div class="dash-category-caption"><span>MORE TO EXPLORE</span><p>Discover our nutrition selection.</p><strong>Explore collection <span aria-hidden="true">↗</span></strong></div>
       </a>
     </div>
   </section>
@@ -123,7 +202,18 @@
 })();
 </script>
 </body></html>+x.price.toFixed(2),qty:x.qty});});carts[address]=items;try{localStorage.setItem(store,JSON.stringify(carts));localStorage.setItem('td-active-shopping-for-v1',address);feedback.textContent='Products added to the '+address+' cart.';}catch(e){feedback.textContent='Unable to save cart in this browser.';return;}keys.clear();render();updateCount();});
-  var toggle=document.getElementById('dashSearchToggle'),panel=document.getElementById('dashHeaderSearch');toggle.addEventListener('click',function(){var open=panel.hidden;panel.hidden=!open;toggle.setAttribute('aria-expanded',String(open));if(open)document.getElementById('dashSiteSearch').focus();});document.getElementById('dashSiteSearch').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();window.location.assign('./index.html#new-title');}});
+  var toggle=document.getElementById('dashSearchToggle'),panel=document.getElementById('dashHeaderSearch'),input=document.getElementById('dashSiteSearch'),clear=document.getElementById('dashSearchClear');
+  toggle.addEventListener('click',function(){var open=panel.getAttribute('aria-hidden')==='true';panel.setAttribute('aria-hidden',String(!open));panel.inert=!open;toggle.setAttribute('aria-expanded',String(open));if(open)input.focus();});
+  clear.addEventListener('click',function(){input.value='';input.focus();clear.hidden=true});
+  input.addEventListener('input',function(){clear.hidden=!input.value});
+  input.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();window.location.assign('./index.html#new-title');}else if(e.key==='Escape'){panel.setAttribute('aria-hidden','true');panel.inert=true;toggle.setAttribute('aria-expanded','false');toggle.focus()}});
+  var burger=document.getElementById('mobileMenuToggle'),menu=document.getElementById('mobileMenuPanel');
+  if(burger&&menu)burger.addEventListener('click',function(){var open=burger.getAttribute('aria-expanded')!=='true';burger.setAttribute('aria-expanded',String(open));burger.setAttribute('aria-label',open?'Close menu':'Open menu');menu.classList.toggle('is-open',open);menu.setAttribute('aria-hidden',String(!open));menu.inert=!open;document.body.classList.toggle('td-login-menu-open',open)});
+  var mobileTrigger=document.getElementById('mobileUserTrigger'),sheet=document.getElementById('mobileUserSheet'),optionHost=document.getElementById('mobileUserOptions'),mobileLabel=document.getElementById('mobileUserName');
+  function syncMobile(){if(mobileLabel)mobileLabel.textContent=shop.options[shop.selectedIndex].textContent;mobileTrigger?.setAttribute('aria-label','Switch shopping account: '+shop.value);}
+  function closeSheet(){if(!sheet)return;sheet.classList.remove('is-open');sheet.setAttribute('aria-hidden','true');sheet.inert=true;mobileTrigger?.focus();}
+  if(mobileTrigger&&sheet&&optionHost){mobileTrigger.addEventListener('click',function(){optionHost.innerHTML=Array.from(shop.options).map(function(o){return '<button type="button" data-user="'+o.value+'" aria-pressed="'+(o.value===shop.value)+'">'+o.textContent+'</button>'}).join('');sheet.classList.add('is-open');sheet.setAttribute('aria-hidden','false');sheet.inert=false});optionHost.addEventListener('click',function(e){var btn=e.target.closest('[data-user]');if(!btn)return;shop.value=btn.dataset.user;shop.dispatchEvent(new Event('change',{bubbles:true}));closeSheet()});document.getElementById('mobileUserBackdrop')?.addEventListener('click',closeSheet);shop.addEventListener('change',syncMobile);syncMobile();}
+  document.getElementById('dashCartButton')?.addEventListener('click',function(){window.location.assign('./index.html')});
   render();
 })();
 </script>
