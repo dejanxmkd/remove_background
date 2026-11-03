@@ -263,6 +263,68 @@
   .dashboard-hero-content .dashboard-main-grid > .dashboard-balance-stack{gap:26px}
 }
 </style>
+<style>
+/* Vertical order progress inside the right-hand dashboard column. */
+.dashboard-balance-stack .dashboard-tracking-steps{
+  --tracking-marker-size:34px;
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  row-gap:20px;
+  min-height:0;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.dashboard-balance-stack .dashboard-tracking-steps::before,
+.dashboard-balance-stack .dashboard-tracking-steps::after{
+  content:"";
+  position:absolute;
+  left:calc(var(--tracking-marker-size) / 2 - 1px);
+  right:auto;
+  top:calc(var(--tracking-marker-size) / 2);
+  width:2px;
+  border-radius:99px;
+  pointer-events:none;
+}
+.dashboard-balance-stack .dashboard-tracking-steps::before{
+  height:calc(100% - var(--tracking-marker-size));
+  background:#e7e2ee;
+}
+.dashboard-balance-stack .dashboard-tracking-steps::after{
+  height:calc((100% - var(--tracking-marker-size)) / 3);
+  background:var(--purple);
+}
+.dashboard-balance-stack .dashboard-tracking-steps li,
+.dashboard-balance-stack .dashboard-tracking-steps li:first-child,
+.dashboard-balance-stack .dashboard-tracking-steps li:nth-child(2),
+.dashboard-balance-stack .dashboard-tracking-steps li:nth-child(3),
+.dashboard-balance-stack .dashboard-tracking-steps li:last-child{
+  position:relative;
+  left:auto;
+  right:auto;
+  top:auto;
+  transform:none;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:flex-start;
+  gap:14px;
+  min-height:var(--tracking-marker-size);
+  white-space:normal;
+  font-size:14px;
+  line-height:1.35;
+  text-align:left;
+}
+.dashboard-balance-stack .dashboard-tracking-steps .dashboard-tracking-marker{
+  width:var(--tracking-marker-size);
+  height:var(--tracking-marker-size);
+}
+@media(max-width:760px){
+  .dashboard-balance-stack .dashboard-tracking-steps{--tracking-marker-size:28px}
+  .dashboard-balance-stack .dashboard-tracking-steps li{font-size:13px}
+}
+</style>
 </head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
