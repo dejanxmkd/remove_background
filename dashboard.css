@@ -15,3 +15,5 @@
 .dashboard-notifications-panel[hidden]{display:none}
 .dashboard-notifications-panel strong{font:850 14px var(--font);color:var(--ink)}
 .dashboard-notifications-panel p{font:550 12px/1.5 var(--font);color:#77717f;margin:12px 0 0}
+
+.dashboard-notification-count{position:absolute;top:-1px;right:-3px;display:grid;place-items:center;min-width:19px;height:19px;padding:0 4px;border:2px solid #fff;border-radius:999px;background:var(--purple);color:#fff;font:800 10px/1 var(--font);pointer-events:none}
