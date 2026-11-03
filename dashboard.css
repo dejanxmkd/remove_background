@@ -133,3 +133,42 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 @media(max-width:800px){.site-nav,.dash-summary-inner,.promos,.invoice-anchor,.dash-bottom,.dash-header-search-inner{width:calc(100% - 36px)}.site-nav{min-height:69px}.site-nav-logo img{width:145px}.quick-shop-button{display:none}.shopping-nav-separator{display:none}.shopping-user-label{font-size:9px}.shopping-user-select select{font-size:11px;max-width:120px}.shopping-nav-controls{gap:8px}.header-search-toggle,.shopping-cart-button{width:33px}.dash-summary{padding:28px 0 37px}.dash-summary-inner{grid-template-columns:1fr}.account-side{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto;gap:13px}.account-mini{min-height:260px}.reorder-card{min-height:490px}.order-timeline{margin-top:33px}.promo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.promo-image{height:185px}.promos{padding-top:53px}}
 @media(max-width:540px){.site-nav{flex-wrap:wrap;gap:6px;padding:13px 0;justify-content:space-between}.site-nav-logo img{width:133px}.shopping-user{flex:none}.shopping-nav-controls{gap:4px}.shopping-user-details{gap:1px}.shopping-user-select select{font-size:11px;max-width:97px}.header-search-toggle,.shopping-cart-button{width:30px;height:33px}.site-nav{min-height:62px}.reorder-heading{padding:22px 17px 17px}.reorder-heading h2{font-size:25px}.reorder-heading>a{font-size:10px}.reorder-search{margin:0 17px 15px}.reorder-table{min-width:500px}.reorder-footer{padding:17px 17px 9px}.reorder-feedback{padding-left:17px}.account-side{grid-template-columns:1fr}.account-mini{min-height:235px}.promos-heading{align-items:flex-start;flex-direction:column}.promos-heading h2{font-size:33px}.promo-grid{grid-template-columns:1fr}.promo-image{height:230px}.promo-card.featured>img{height:185px}.invoice-anchor{flex-direction:column;align-items:flex-start}.dash-bottom{flex-direction:column}.dash-header-search-inner{flex-wrap:wrap}.dash-header-search-inner a{width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.promo-card{transition:none}}
+
+/* Shared storefront button language: rounded violet actions, cyan quick-shop,
+   simple bold text links, and circular quantity controls. */
+#reorderSubmit{
+  min-height:54px;border:0;border-radius:999px;
+  background:var(--purple);color:#fff;
+  padding:0 27px;font:900 13px var(--font);
+  letter-spacing:.04em;text-transform:uppercase;
+  transition:background .18s ease;
+}
+#reorderSubmit:not(:disabled):hover{background:#4b21a6}
+#reorderSubmit:disabled{opacity:.45;cursor:not-allowed}
+.reorder-heading>a,.mini-link,.all-deals,.promo-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  color:#08070b;font-family:var(--font);
+  font-size:13px;font-weight:800;
+  text-decoration:none;
+}
+.reorder-heading>a:hover,.mini-link:hover,.all-deals:hover,.promo-cta:hover{color:var(--purple);text-decoration:none}
+.reorder-heading>a span,.mini-link span,.all-deals span,.promo-cta span{font-size:21px;color:var(--purple)}
+.qr-qty{border:0;padding:0;gap:10px;min-width:110px}
+.qr-qty button{
+  width:29px;height:29px;border:0;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--purple);color:#fff;
+  font-size:18px;font-weight:700;
+}
+.qr-qty button:hover{background:#4b21a6}
+.promo-card.featured .promo-cta{
+  border-radius:999px;background:var(--purple);
+  color:#fff;padding:13px 20px;
+  font-size:12px;font-weight:900;
+}
+.promo-card.featured .promo-cta span{color:#fff}
+.promo-card.featured .promo-cta:hover{background:#4b21a6;color:#fff}
+@media(max-width:540px){
+ #reorderSubmit{min-height:50px;padding:0 19px;font-size:11px}
+ .reorder-heading>a,.mini-link,.all-deals,.promo-cta{font-size:11px}
+}
