@@ -310,8 +310,6 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
     // Upgrade the earlier demo address carts to the matching Shopping For accounts.
     if (Array.isArray(savedCarts["0"]) && !savedCarts["Fresh Market"]) savedCarts["Fresh Market"] = savedCarts["0"];
     if (Array.isArray(savedCarts["1"]) && !savedCarts["City Grocers"]) savedCarts["City Grocers"] = savedCarts["1"];
-    const preferred = localStorage.getItem(ADDRESS_STORE);
-    if (shoppingFor && preferred && [...shoppingFor.options].some(option => option.value === preferred)) shoppingFor.value = preferred;
     activeAddress = getShoppingFor();
   } catch {}
   const cart = [];
