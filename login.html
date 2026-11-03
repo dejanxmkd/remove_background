@@ -123,9 +123,9 @@
       event.preventDefault();
       // Demo mode only: this site has no authentication backend.
       // Never retain or transmit entered email and password.
-      showStatus('loginStatus','Demo preview enabled. No credentials were sent or verified. Opening the homepage...');
+      showStatus('loginStatus','Demo preview enabled. No credentials were sent or verified. Opening your dashboard...');
       try{sessionStorage.setItem('td-preview-auth-v1','true')}catch{}
-      window.setTimeout(()=>window.location.assign('./index.html'),500);
+      window.setTimeout(()=>window.location.assign('./dashboard.html'),500);
     });
     document.getElementById('registerForm').addEventListener('submit',event=>{
       event.preventDefault();
