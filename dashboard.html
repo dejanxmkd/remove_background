@@ -8,55 +8,41 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./dashboard.css?v=minimal-layout-v3">
+<link rel="stylesheet" href="./styles.css?v=nav-nohover-v4">
+<link rel="stylesheet" href="./dashboard.css?v=quick-reorder-layout-v4">
 </head>
 <body>
-<header class="dash-header">
-  <div class="dash-nav">
-    <a class="dash-logo" href="./index.html" aria-label="True Distributors homepage"><img src="./td_logo.svg" alt="True Distributors" width="174" height="38"></a>
-    <nav class="dash-links" aria-label="Dashboard navigation">
-      <a class="active" href="./dashboard.html" aria-current="page">Dashboard</a>
-      <a href="./index.html#new-title">Products</a>
-      <a href="#order-status">Orders</a>
-      <a href="#invoices">Invoices</a>
-    </nav>
-    <div class="dash-actions">
-      <a href="./index.html#new-title" class="dash-shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span>Shop products</span></a>
-      <a href="./index.html" class="dash-home" aria-label="Open storefront"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10H3z"/><path d="M9 20v-7h6v7"/></svg></a>
+<header class="site-header" id="top">
+  <nav class="site-nav" aria-label="Main navigation">
+    <a class="site-nav-logo" href="./index.html" aria-label="True Distributors homepage"><img src="./td_logo.svg" width="160" height="34" alt="True Distributors"></a>
+    <div class="dashboard-nav-links"><a class="is-current" href="./dashboard.html" aria-current="page">Dashboard</a><a href="./index.html#new-title">Products</a><a href="#order-status">Orders</a><a href="#invoices">Invoices</a></div>
+    <div class="shopping-nav-controls">
+      <button class="header-search-toggle" id="dashSearchToggle" type="button" aria-label="Search products" aria-expanded="false" aria-controls="dashHeaderSearch"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+      <a class="shopping-cart-button" href="./index.html" aria-label="Open shopping cart in storefront"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.72a2 2 0 0 0 2-1.61L22 7H5"/></svg><span class="shopping-cart-count" id="dashCartCount" hidden>0</span></a>
+      <a class="quick-shop-button" href="./index.html#new-title">Quick Shop</a>
+      <span class="shopping-nav-separator" aria-hidden="true"></span>
+      <div class="shopping-user"><div class="shopping-user-details"><label class="shopping-user-label" for="shoppingUser">Shopping for</label><div class="shopping-user-select"><select id="shoppingUser" aria-label="Switch shopping account"><option value="Fresh Market">Fresh Market</option><option value="City Grocers">City Grocers</option></select><span class="nav-chevron" aria-hidden="true">⌄</span></div></div></div>
     </div>
-  </div>
+  </nav>
+  <div class="dash-header-search" id="dashHeaderSearch" hidden><div class="dash-header-search-inner"><label for="dashSiteSearch">Search products</label><input type="search" id="dashSiteSearch" placeholder="Search products or SKUs..."><a href="./index.html#new-title">Browse all products ↗</a></div></div>
 </header>
 <main class="dashboard">
-  <div class="dash-welcome">
-    <div>
-      <span class="dash-kicker"><span class="dash-kicker-dot"></span> YOUR CUSTOMER WORKSPACE</span>
-      <h1>Welcome back<span class="dash-period">.</span></h1>
-      <p>Your account at a glance. Stay on top of invoices, balances and deliveries.</p>
+  <section class="dash-summary" aria-label="Customer account and quick reorder">
+  <div class="dash-summary-inner">
+    <section class="reorder-card" id="quick-reorder" aria-labelledby="reorder-heading">
+      <div class="reorder-heading"><div><span class="reorder-eyebrow">YOUR FASTEST WAY TO RESTOCK</span><h2 id="reorder-heading">Quick Reorder</h2></div><a href="./index.html#new-title">Browse products <span aria-hidden="true">↗</span></a></div>
+      <div class="reorder-search"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><input id="reorderSearch" type="search" autocomplete="off" placeholder="Search your frequently ordered products..." aria-label="Search quick reorder products"></div>
+      <div class="reorder-table-scroll"><table class="reorder-table"><thead><tr><th scope="col">PRODUCT</th><th scope="col">PRICE</th><th scope="col">QUANTITY</th><th scope="col"><input type="checkbox" id="selectAllReorder" aria-label="Select all products"></th></tr></thead><tbody id="reorderRows"></tbody></table></div>
+      <div class="reorder-footer"><div class="reorder-selection"><strong id="reorderSelected">0 items selected</strong><span>Ready to add to your cart</span></div><button type="button" id="reorderSubmit" disabled>Add to Cart <span aria-hidden="true">↗</span></button></div>
+      <div class="reorder-feedback" id="reorderFeedback" role="status" aria-live="polite"></div>
+    </section>
+    <div class="account-side">
+      <article class="account-mini balance-mini" id="balance"><div class="mini-heading"><div><span class="mini-eyebrow">YOUR ACCOUNT</span><h2>Account Balance</h2></div><span class="mini-icon" aria-hidden="true">$</span></div><div class="mini-balance"><span>Total outstanding</span><strong>$2,450<span>.00</span></strong></div><div class="mini-bottom"><span class="mini-pending"><i></i> Payment pending</span><span>Due Nov 15, 2026</span></div><a class="mini-link" href="#invoices">View invoices <span aria-hidden="true">↗</span></a></article>
+      <article class="account-mini order-mini" id="order-status"><div class="mini-heading"><div><span class="mini-eyebrow">LATEST ORDER · #88432</span><h2>Order Tracking</h2></div><span class="mini-status"><i></i> Processing</span></div><div class="order-timeline"><div class="timeline-step is-done"><span class="timeline-point">✓</span><span>Ordered</span></div><div class="timeline-step is-done"><span class="timeline-point">✓</span><span>Processing</span></div><div class="timeline-step"><span class="timeline-point"></span><span>Out for delivery</span></div><div class="timeline-step"><span class="timeline-point"></span><span>Delivered</span></div></div><div class="mini-eta">Estimated delivery <strong>Nov 6, 2026</strong></div></article>
     </div>
-    <a href="./index.html#new-title" class="dash-primary">Explore Products <span aria-hidden="true">↗</span></a>
   </div>
-  <section class="dash-summary" aria-label="Account overview">
-    <article class="summary-card invoice-card" id="invoices">
-      <div class="summary-head"><span class="summary-label">LATEST INVOICES</span><span class="summary-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></span></div>
-      <h2>Recent activity</h2>
-      <div class="invoice-row"><span><strong>INV-2048</strong><small>Oct 28, 2026</small></span><span class="invoice-money">$1,284.00</span></div>
-      <div class="invoice-row"><span><strong>INV-2037</strong><small>Oct 14, 2026</small></span><span class="invoice-money">$846.50</span></div>
-      <a class="summary-link" href="./dashboard.html#invoices">View invoices <span aria-hidden="true">↗</span></a>
-    </article>
-    <article class="summary-card balance-card" id="balance">
-      <div class="summary-head"><span class="summary-label">OUTSTANDING BALANCE</span><span class="summary-icon cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18M7 15h4"/></svg></span></div>
-      <p class="balance-caption">Total amount due</p>
-      <h2 class="balance-amount">$2,450<span>.00</span></h2>
-      <div class="balance-bottom"><span><i></i> Payment pending</span><strong>Due Nov 15, 2026</strong></div>
-      <a class="summary-link" href="./dashboard.html#balance">View balance <span aria-hidden="true">↗</span></a>
-    </article>
-    <article class="summary-card tracking-card" id="order-status">
-      <div class="summary-head"><span class="summary-label">ORDER STATUS</span><span class="summary-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7.5" cy="18" r="1.7"/><circle cx="17.5" cy="18" r="1.7"/></svg></span></div>
-      <div class="order-meta"><strong>Order #88432</strong><span class="status-chip"><i></i> Processing</span></div>
-      <div class="order-steps"><div class="step done"><span>✓</span><small>Ordered</small></div><div class="step done"><span>✓</span><small>Processing</small></div><div class="step"><span></span><small>Shipping</small></div><div class="step"><span></span><small>Delivered</small></div></div>
-      <div class="order-footer">Estimated delivery <strong>Nov 6, 2026</strong></div>
-    </article>
-  </section>
+</section>
+<section class="invoice-anchor" id="invoices" aria-label="Invoice information"><span>Latest invoice activity <strong>INV-2048</strong> · Oct 28, 2026</span><a href="#balance">Outstanding balance ↗</a></section>
   <section class="promos" id="featured-deals" aria-labelledby="promos-heading">
     <div class="promos-heading">
       <div><span class="dash-kicker">CURATED FOR YOUR BUSINESS</span><h2 id="promos-heading">Deals worth a look<span class="dash-period">.</span></h2><p>Discover trending categories, bulk savings and products picked for your store.</p></div>
@@ -76,6 +62,44 @@
   </section>
   <div class="dash-bottom"><span>TRUE DISTRIBUTORS <b>© 2026</b></span><a href="./index.html">Return to storefront <span aria-hidden="true">↗</span></a></div>
 </main>
+<script>
+(function(){
+  var data=[
+    {key:"qr-soda-cases-24",name:"Soda Cases 24pk",sku:"TD-10024",price:24.90,qty:10},
+    {key:"qr-chips-variety-30",name:"Chips Variety 30pk",sku:"TD-20330",price:38.50,qty:10},
+    {key:"qr-candy-assorted-box",name:"Candy Bars Box (Assorted)",sku:"TD-30218",price:29.75,qty:10},
+    {key:"qr-chocolate-display",name:"Chocolate Display Box",sku:"TD-40312",price:42.00,qty:10},
+    {key:"qr-coffee-case",name:"Coffee Variety Case",sku:"TD-50414",price:35.25,qty:10}
+  ];
+  var keys=new Set(),body=document.getElementById('reorderRows'),search=document.getElementById('reorderSearch'),all=document.getElementById('selectAllReorder'),selected=document.getElementById('reorderSelected'),submit=document.getElementById('reorderSubmit'),feedback=document.getElementById('reorderFeedback');
+  function visible(){var q=search.value.trim().toLowerCase();return data.filter(x=>x.name.toLowerCase().includes(q)||x.sku.toLowerCase().includes(q));}
+  function update(){var n=keys.size;selected.textContent=n+' '+(n===1?'item':'items')+' selected';submit.disabled=!n;var v=visible();all.checked=v.length>0&&v.every(x=>keys.has(x.key));all.indeterminate=v.some(x=>keys.has(x.key))&&!all.checked;}
+  function render(){var v=visible();body.innerHTML=v.length?v.map(x=>'<tr data-key="'+x.key+'"><td><strong>'+x.name+'</strong><small>'+x.sku+'</small></td><td class="qr-price"> visually consistent with the existing storefront.
+  document.body.classList.add('dash-enter');
+  requestAnimationFrame(function(){requestAnimationFrame(function(){document.body.classList.remove('dash-enter')})});
+  setTimeout(function(){document.body.classList.remove('dash-enter')},600);
+})();
+</script>
+</body></html>+x.price.toFixed(2)+'</td><td><div class="qr-qty"><button type="button" data-step="-1" aria-label="Decrease '+x.name+' quantity">−</button><output>'+x.qty+'</output><button type="button" data-step="1" aria-label="Increase '+x.name+' quantity">+</button></div></td><td><input type="checkbox" aria-label="Select '+x.name+'" '+(keys.has(x.key)?'checked':'')+'></td></tr>').join(''):'<tr><td colspan="4" class="qr-empty">No products match your search.</td></tr>';update();}
+  body.addEventListener('click',function(e){var btn=e.target.closest('button[data-step]');if(!btn)return;var tr=btn.closest('tr'),x=data.find(i=>i.key===tr.dataset.key);if(!x)return;x.qty=Math.max(1,Math.min(999,x.qty+Number(btn.dataset.step)));tr.querySelector('output').textContent=x.qty;});
+  body.addEventListener('change',function(e){if(e.target.type!=='checkbox')return;var key=e.target.closest('tr').dataset.key;e.target.checked?keys.add(key):keys.delete(key);update();});
+  search.addEventListener('input',render);all.addEventListener('change',function(){visible().forEach(x=>all.checked?keys.add(x.key):keys.delete(x.key));render();});
+  var shop=document.getElementById('shoppingUser'),count=document.getElementById('dashCartCount'),store='td-delivery-carts-v1';
+  function cartData(){try{var x=JSON.parse(localStorage.getItem(store)||'{}');return x&&typeof x==='object'&&!Array.isArray(x)?x:{}}catch(e){return {}}}
+  function updateCount(){var carts=cartData(),items=carts[shop.value]||[];var qty=items.reduce((sum,x)=>sum+(Number(x.qty)||0),0);count.textContent=qty;count.hidden=!qty;}
+  try{var selectedShop=localStorage.getItem('td-active-shopping-for-v1');if(selectedShop&&Array.from(shop.options).some(x=>x.value===selectedShop))shop.value=selectedShop;}catch(e){}
+  shop.addEventListener('change',function(){try{localStorage.setItem('td-active-shopping-for-v1',shop.value)}catch(e){}updateCount()});updateCount();
+  submit.addEventListener('click',function(){if(!keys.size)return;var carts=cartData(),address=shop.value,items=Array.isArray(carts[address])?carts[address]:[];data.filter(x=>keys.has(x.key)).forEach(x=>{var item=items.find(i=>i.key===x.key);if(item)item.qty=(Number(item.qty)||0)+x.qty;else items.push({key:x.key,name:x.name,item:x.sku,price:' visually consistent with the existing storefront.
+  document.body.classList.add('dash-enter');
+  requestAnimationFrame(function(){requestAnimationFrame(function(){document.body.classList.remove('dash-enter')})});
+  setTimeout(function(){document.body.classList.remove('dash-enter')},600);
+})();
+</script>
+</body></html>+x.price.toFixed(2),qty:x.qty});});carts[address]=items;try{localStorage.setItem(store,JSON.stringify(carts));localStorage.setItem('td-active-shopping-for-v1',address);feedback.textContent='Products added to the '+address+' cart.';}catch(e){feedback.textContent='Unable to save cart in this browser.';return;}keys.clear();render();updateCount();});
+  var toggle=document.getElementById('dashSearchToggle'),panel=document.getElementById('dashHeaderSearch');toggle.addEventListener('click',function(){var open=panel.hidden;panel.hidden=!open;toggle.setAttribute('aria-expanded',String(open));if(open)document.getElementById('dashSiteSearch').focus();});document.getElementById('dashSiteSearch').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();window.location.assign('./index.html#new-title');}});
+  render();
+})();
+</script>
 <script>
 (function(){
   // Keep transitions visually consistent with the existing storefront.
