@@ -164,53 +164,59 @@
 }
 </style>
 <style>
-/* Dashboard overview: align both headings/cards and use one consistent spacing rhythm. */
-@media(min-width:901px){
-  .dashboard-overview-row{align-items:stretch;column-gap:24px}
-  .dashboard-tracking-column,.dashboard-balance-column{display:flex;flex-direction:column;min-width:0}
-  .dashboard-tracking-column .dashboard-tracking-heading,
-  .dashboard-balance-column .dashboard-balance-heading{min-height:48px;margin-bottom:20px}
-  .dashboard-tracking-column .dashboard-tracking-card,
-  .dashboard-balance-column .dashboard-balance-card{flex:1 1 auto;min-height:224px}
-  .dashboard-tracking-column .dashboard-tracking-card{display:flex;align-items:center}
-  .dashboard-tracking-column .dashboard-tracking-steps{width:100%}
-}
+/* Account Balance only: match the existing Order Tracking panel. */
 .dashboard-balance-column .dashboard-balance-heading{
-  font-size:clamp(23px,2.15vw,32px);
-  line-height:1.08;
+  margin:0 0 22px;
+  color:#fff;
+  font:900 clamp(26px,2.25vw,34px)/1.08 var(--font);
   letter-spacing:-.035em;
 }
 .dashboard-balance-column .dashboard-balance-card{
-  border-color:rgba(255,255,255,.82);
   background:linear-gradient(120deg,#fff 0%,#fff 56%,#faf8ff 100%);
+  border:1px solid rgba(255,255,255,.82);
+  border-radius:17px;
+  box-shadow:0 8px 22px rgba(31,12,69,.11);
+  min-height:117px;
 }
 .dashboard-balance-column .dashboard-balance-body{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:20px;
-  padding:22px 24px;
-  height:100%;
+  padding:16px 18px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:14px;
+  align-items:center;
 }
-.dashboard-balance-column .dashboard-balance-summary{gap:6px;margin:0}
+.dashboard-balance-column .dashboard-balance-summary{gap:7px;margin:0}
+.dashboard-balance-column .dashboard-balance-label{font-size:12px}
 .dashboard-balance-column .dashboard-balance-amount{
-  font-size:clamp(32px,2.8vw,43px);
+  font-size:clamp(25px,2.3vw,34px);
+  letter-spacing:-.045em;
   line-height:1.08;
-  letter-spacing:-.04em;
 }
 .dashboard-balance-column .dashboard-balance-footer{
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:center;
+  gap:10px;
 }
-.dashboard-balance-column .dashboard-balance-date{gap:5px}
-.dashboard-balance-column .dashboard-balance-date strong{font-size:14px}
-.dashboard-reorder-row{margin-top:28px}
+.dashboard-balance-column .dashboard-balance-date{font-size:11px;gap:3px}
+.dashboard-balance-column .dashboard-balance-date strong{font-size:12px}
+.dashboard-balance-column button.dashboard-action.hero-cta{
+  min-height:40px;height:40px;width:100%;min-width:0;
+  padding:0 12px;font-size:12px;
+}
+@media(max-width:1150px) and (min-width:901px){
+  .dashboard-balance-column .dashboard-balance-body{grid-template-columns:1fr;gap:12px}
+  .dashboard-balance-column .dashboard-balance-footer{flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .dashboard-balance-column button.dashboard-action.hero-cta{width:auto}
+}
 @media(max-width:900px){
-  .dashboard-overview-row{gap:24px}
-  .dashboard-tracking-column .dashboard-tracking-heading,
-  .dashboard-balance-column .dashboard-balance-heading{margin-bottom:20px}
-  .dashboard-balance-column .dashboard-balance-body{padding:22px 20px}
+  .dashboard-balance-column .dashboard-balance-body{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+}
+@media(max-width:480px){
+  .dashboard-balance-column .dashboard-balance-body{grid-template-columns:1fr}
+  .dashboard-balance-column .dashboard-balance-footer{flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .dashboard-balance-column button.dashboard-action.hero-cta{width:auto}
 }
 </style>
 </head>
