@@ -27,6 +27,11 @@
   .shopping-nav-controls{gap:4px}
 }
 </style>
+<style>
+/* Dashboard-only solid purple block: exactly the Home hero minimum heights. */
+.dashboard-purple-hero{width:100%;min-height:clamp(520px,68vw,740px);background:var(--purple,#6633CC)}
+@media(max-width:760px){.dashboard-purple-hero{min-height:570px}}
+</style>
 </head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
@@ -84,7 +89,7 @@
     <div class="mobile-user-sheet-options" id="mobileUserOptions" role="group" aria-label="Available shopping accounts"></div>
   </section>
 </div>
-  <main id="dashboard" aria-label="Dashboard"></main>
+  <main id="dashboard" aria-label="Dashboard"><section class="dashboard-purple-hero" aria-label="Dashboard hero"></section></main>
 <script>
 /* Dashboard header. Existing storefront UI styles, no Quick Shop or burger. */
 (function(){
