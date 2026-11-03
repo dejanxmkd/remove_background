@@ -245,6 +245,24 @@
   .dashboard-balance-stack .dashboard-tracking-steps li{font-size:clamp(10px,2.6vw,14px)}
 }
 </style>
+<style>
+/* Quick Reorder 60% left; Balance and Order Tracking stack at 30% right. */
+.dashboard-hero-content .dashboard-main-grid{
+  display:grid;
+  grid-template-columns:minmax(0,60%) minmax(0,30%);
+  align-items:start;
+  justify-content:space-between;
+  gap:24px;
+}
+.dashboard-hero-content .dashboard-main-grid > .dashboard-reorder-row{min-width:0;width:100%;margin:0}
+.dashboard-hero-content .dashboard-main-grid > .dashboard-balance-stack{
+  min-width:0;width:100%;margin:0;gap:28px;
+}
+@media(max-width:900px){
+  .dashboard-hero-content .dashboard-main-grid{grid-template-columns:minmax(0,1fr);gap:26px}
+  .dashboard-hero-content .dashboard-main-grid > .dashboard-balance-stack{gap:26px}
+}
+</style>
 </head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
@@ -305,6 +323,7 @@
   <main id="dashboard" aria-label="Dashboard">
   <section class="dashboard-purple-hero" aria-labelledby="orderTrackingTitle">
     <div class="dashboard-hero-content">
+      <div class="dashboard-main-grid">
       <div class="dashboard-reorder-row">
         <section class="dashboard-reorder-column" aria-labelledby="dashboardReorderTitle">
         <h2 class="dashboard-balance-heading" id="dashboardReorderTitle">QUICK REORDER</h2>
@@ -375,6 +394,7 @@
           </ol>
           </div>
         </section>
+      </div>
       </div>
     </div>
   </section>
