@@ -386,6 +386,22 @@
   .dashboard-main-grid .dashboard-reorder-table-region::after{display:none}
 }
 </style>
+<style>
+/* Standalone promotions section under the dashboard cards. */
+.dashboard-promotions{background:#fff;padding:32px 0 80px;color:var(--ink)}
+.dashboard-promotions-inner{width:min(1440px,calc(100% - 96px));margin:0 auto}
+.dashboard-promotions-heading{margin:0 0 24px;color:var(--ink);font:900 clamp(26px,2.25vw,34px)/1.1 var(--font);letter-spacing:-.035em}
+.dashboard-promotions-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.dashboard-promo-card{min-width:0;background:#fff;border:1px solid #e8e4ee;border-radius:17px;overflow:hidden;box-shadow:0 8px 22px rgba(31,12,69,.11);display:flex;flex-direction:column}
+.dashboard-promo-art{position:relative;aspect-ratio:2.45/1;width:100%;overflow:hidden;background:#f0ebfb}
+.dashboard-promo-art svg{display:block;width:100%;height:100%}
+.dashboard-promo-text{padding:18px 22px 20px;min-height:88px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.dashboard-promo-text h3{margin:0;font:900 18px/1.25 var(--font);letter-spacing:-.02em;color:var(--ink)}
+.dashboard-promo-text p{margin:0;font:500 14px/1.5 var(--font);color:#686375}
+@media(max-width:900px){.dashboard-promotions-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
+@media(max-width:760px){.dashboard-promotions{padding:24px 0 54px}.dashboard-promotions-inner{width:calc(100% - 36px)}.dashboard-promotions-heading{font-size:clamp(24px,6.4vw,30px);margin-bottom:20px}}
+@media(max-width:560px){.dashboard-promotions-grid{grid-template-columns:1fr}.dashboard-promo-text{padding:16px 18px}.dashboard-promo-text h3{font-size:17px}}
+</style>
 </head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
@@ -532,6 +548,48 @@
           </div>
         </section>
       </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dashboard-promotions" aria-labelledby="dashboardPromotionsTitle">
+    <div class="dashboard-promotions-inner">
+      <h2 class="dashboard-promotions-heading" id="dashboardPromotionsTitle">CURRENT DEALS &amp; PROMOTIONS</h2>
+      <div class="dashboard-promotions-grid">
+        <article class="dashboard-promo-card">
+          <div class="dashboard-promo-art" role="img" aria-label="Colorful assortment of packaged wholesale snack products">
+            <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs><linearGradient id="sn-bg" x2="1" y2="1"><stop stop-color="#f1ecfb"/><stop offset="1" stop-color="#e3e9f6"/></linearGradient><linearGradient id="sn-red" x2="1" y2="1"><stop stop-color="#fc6956"/><stop offset="1" stop-color="#c82d32"/></linearGradient><linearGradient id="sn-green" x2="1" y2="1"><stop stop-color="#66d672"/><stop offset="1" stop-color="#168c39"/></linearGradient><linearGradient id="sn-orange" x2="1" y2="1"><stop stop-color="#ffc54a"/><stop offset="1" stop-color="#e2791b"/></linearGradient><filter id="sn-shadow"><feGaussianBlur stdDeviation="8"/></filter></defs>
+              <rect width="640" height="260" fill="url(#sn-bg)"/><path d="M0 0h96L0 96zM640 260h-115l115-115z" fill="#6633cc"/><ellipse cx="315" cy="226" rx="240" ry="17" fill="#503a69" opacity=".15" filter="url(#sn-shadow)"/>
+              <g transform="translate(62 60)"><path d="M12 25 167 0 209 24 51 53z" fill="#f77d64"/><path d="M12 25 51 53v140L12 159z" fill="#a92e30"/><path d="M51 53 209 24v140L51 193z" fill="url(#sn-red)"/><path d="M68 70 191 49v17L68 88z" fill="#9f2430"/><circle cx="139" cy="119" r="45" fill="#ffe6a2"/><path d="M118 100q35-20 43 9t-22 31q-25-7-21-40" fill="#f6c851"/></g>
+              <g transform="translate(253 25) rotate(-4 72 118)"><path d="M25 0h122l-9 24 10 176-16 30H26l-12-30 12-176z" fill="url(#sn-green)" stroke="#168938" stroke-width="3"/><path d="M24 25h116M21 202h118" stroke="#b6f4a5" stroke-width="8" opacity=".6"/><ellipse cx="82" cy="116" rx="52" ry="60" fill="#fff6aa"/><path d="M55 118q27-50 55-5-4 40-36 48" fill="#f4bc47"/></g>
+              <g transform="translate(390 47) rotate(7 70 110)"><path d="M19 0h122l-8 19 9 177-12 25H30l-13-25 9-177z" fill="url(#sn-orange)"/><ellipse cx="82" cy="120" rx="43" ry="48" fill="#fff1bd"/><path d="M63 107q36-18 47 15-2 24-36 30-24-17-11-45" fill="#d5992c"/></g>
+              <g transform="translate(500 73) rotate(10 48 83)"><path d="M9 0h89l-8 17 10 126-13 19H21L10 143 16 17z" fill="#2ea6d6"/><path d="M23 23h62v13H23z" fill="#145a9f"/><circle cx="54" cy="96" r="32" fill="#fff6bc"/><path d="M36 84l37 20-23 11z" fill="#e39b30"/></g>
+            </svg>
+          </div>
+          <div class="dashboard-promo-text"><h3>BUY 5 GET 1 FREE</h3><p>Snacking Brands</p></div>
+        </article>
+        <article class="dashboard-promo-card">
+          <div class="dashboard-promo-art" role="img" aria-label="Assorted refreshing beverages and chilled drinks on a purple background">
+            <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs><linearGradient id="bev-bg" x2="1" y2="1"><stop stop-color="#7130c9"/><stop offset="1" stop-color="#421287"/></linearGradient><linearGradient id="bev-glass" x2="0" y2="1"><stop stop-color="#f3f8fd" stop-opacity=".78"/><stop offset="1" stop-color="#b8e5ef" stop-opacity=".28"/></linearGradient></defs>
+              <rect width="640" height="260" fill="url(#bev-bg)"/><path d="M0 0h95L0 95zM640 260h-120l120-120z" fill="#47b9d7"/><circle cx="470" cy="55" r="98" fill="#ffffff" opacity=".07"/><circle cx="565" cy="207" r="95" fill="#ffffff" opacity=".06"/>
+              <g transform="translate(60 24)"><path d="M55 37h112l-17 187H72z" fill="url(#bev-glass)" stroke="#dcf6fa" stroke-width="5"/><path d="M65 80h94l-12 132H78z" fill="#a64422" opacity=".88"/><ellipse cx="111" cy="82" rx="47" ry="12" fill="#c77640"/><g fill="#f4d8aa" opacity=".75"><rect x="75" y="94" width="28" height="29" rx="4" transform="rotate(20 75 94)"/><rect x="112" y="138" width="30" height="28" rx="5" transform="rotate(-15 112 138)"/><rect x="83" y="168" width="25" height="22" rx="5"/></g><path d="M117 41 140 0" stroke="#fff" stroke-width="9" stroke-linecap="round"/></g>
+              <g transform="translate(270 18)"><rect x="8" y="44" width="102" height="192" rx="15" fill="#ff934e"/><rect x="16" y="28" width="86" height="31" rx="8" fill="#eaf7ff"/><path d="M14 96h90v86H14z" fill="#ffd36e"/><circle cx="57" cy="138" r="30" fill="#ffaf2d"/><circle cx="57" cy="138" r="18" fill="#fff5c3"/></g>
+              <g transform="translate(430 25)"><rect x="15" y="32" width="92" height="191" rx="18" fill="#2cc8cb"/><rect x="25" y="21" width="72" height="21" rx="7" fill="#d6f5f0"/><path d="M20 98h82v85H20z" fill="#6ce2d5"/><circle cx="61" cy="140" r="29" fill="#f3fbcc"/><path d="m44 141 15-18 17 16-17 16z" fill="#caff69"/></g>
+            </svg>
+          </div>
+          <div class="dashboard-promo-text"><h3>15% OFF ALL BEVERAGES</h3><p>Use Code: <strong>BEV15</strong></p></div>
+        </article>
+        <article class="dashboard-promo-card">
+          <div class="dashboard-promo-art" role="img" aria-label="Bright assorted wrapped candies and colorful sweets">
+            <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs><linearGradient id="candy-bg" x2="1" y2="1"><stop stop-color="#47c4d7"/><stop offset="1" stop-color="#f8d7d5"/></linearGradient><pattern id="candies" width="117" height="89" patternUnits="userSpaceOnUse"><circle cx="21" cy="21" r="18" fill="#ff476f"/><circle cx="72" cy="29" r="20" fill="#ffcf3c"/><circle cx="107" cy="61" r="21" fill="#3acb7c"/><circle cx="43" cy="76" r="14" fill="#a253e2"/><circle cx="92" cy="5" r="13" fill="#ff793f"/><circle cx="8" cy="77" r="12" fill="#f9a2d4"/><path d="M10 18q12-17 22 0" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="6"/></pattern><filter id="candy-sh"><feGaussianBlur stdDeviation="6"/></filter></defs>
+              <rect width="640" height="260" fill="url(#candy-bg)"/><rect width="640" height="260" fill="url(#candies)"/><path d="M0 0h93L0 93z" fill="#6533cc"/><ellipse cx="440" cy="182" rx="188" ry="56" fill="#272040" opacity=".3" filter="url(#candy-sh)"/><g transform="translate(255 24) rotate(8 165 113)"><path d="M16 56 285 4l46 165-259 57z" fill="#fff8f0"/><path d="M39 64 276 18l35 140-230 51z" fill="#efc2da"/><circle cx="93" cy="89" r="22" fill="#ffec5a"/><circle cx="164" cy="52" r="22" fill="#9cdc51"/><circle cx="244" cy="87" r="25" fill="#fd6994"/><circle cx="131" cy="143" r="24" fill="#9d78e9"/><circle cx="226" cy="151" r="20" fill="#ffad32"/><circle cx="69" cy="161" r="16" fill="#49d3d6"/><path d="M25 54 285 4l47 14L68 73z" fill="#fff"/><path d="M285 4 332 18v162l-47-14z" fill="#e8e2f2"/></g>
+            </svg>
+          </div>
+          <div class="dashboard-promo-text"><h3>BULK CANDY SPECIAL</h3><p>Sweet deals on bulk candy</p></div>
+        </article>
       </div>
     </div>
   </section>
