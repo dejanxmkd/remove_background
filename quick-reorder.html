@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6633CC">
+  <title>Quick Reorder — True Distributors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css?v=dashboard-menu-exact-20261104">
+<style>
+/* Dashboard-only layout: original storefront components, right aligned. */
+.site-nav{display:flex;align-items:center}
+.shopping-nav-controls{margin-left:auto;justify-content:flex-end}
+@media(max-width:760px){
+  .site-nav{display:flex;flex-wrap:nowrap;align-items:center;gap:10px;min-height:66px}
+  .site-nav-logo{flex:none;width:auto}
+  .shopping-nav-controls{display:flex;flex:1;min-width:0;width:auto;margin-left:auto;align-items:center;justify-content:flex-end;gap:clamp(7px,2vw,15px)}
+  .shopping-user{display:flex;flex:none;min-width:0}
+  .shopping-user-details{min-width:0}
+  .mobile-user-trigger{max-width:150px}
+  .mobile-user-trigger-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+}
+@media(max-width:380px){
+  .site-nav-logo img{width:108px}
+  .shopping-nav-controls{gap:4px}
+}
+</style>
+<style>
+/* Dashboard-only solid purple block: exactly the Home hero minimum heights. */
+.dashboard-purple-hero{width:100%;min-height:clamp(520px,68vw,740px);background:linear-gradient(to bottom,var(--purple,#6633CC) 0%,var(--purple,#6633CC) var(--dashboard-purple-stop,70%),#fff var(--dashboard-purple-stop,70%),#fff 100%)}
+@media(max-width:760px){.dashboard-purple-hero{min-height:570px}}
+</style>
+<style>
+/* Dashboard-only tracking, using the original storefront tokens. */
+.dashboard-hero-content{width:min(1440px,calc(100% - 96px));margin:0 auto;padding:48px 0 68px}
+.dashboard-tracking-heading{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:22px;color:#fff}
+.dashboard-tracking-heading h1{margin:0;font-size:clamp(26px,2.25vw,34px);font-weight:900;line-height:1.08;letter-spacing:-.035em}
+@media(max-width:1300px) and (min-width:901px){.dashboard-tracking-column .dashboard-tracking-heading{align-items:flex-start;flex-direction:column;gap:9px}.dashboard-tracking-column .dashboard-order-meta{justify-content:flex-start}}
+.dashboard-order-meta{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:12px;margin:0;color:#fff;font-size:clamp(13px,1.15vw,16px);font-weight:500;line-height:1.5}
+.dashboard-order-meta strong{font-weight:800}
+.dashboard-tracking-card{width:100%;padding:26px 30px 24px;border:1px solid rgba(255,255,255,.82);border-radius:17px;background:linear-gradient(120deg,#fff 0%,#fff 56%,#faf8ff 100%);box-shadow:0 8px 22px rgba(31,12,69,.11);color:var(--ink)}
+.dashboard-tracking-steps{position:relative;display:block;min-height:65px;margin:0;padding:0;list-style:none}
+.dashboard-tracking-steps::before,.dashboard-tracking-steps::after{content:"";position:absolute;top:16px;left:17px;height:2px;border-radius:999px;pointer-events:none}
+.dashboard-tracking-steps::before{right:17px;background:#e7e2ee}
+.dashboard-tracking-steps::after{width:calc(33.3333% - 11.3333px);background:var(--purple)}
+.dashboard-tracking-steps li{position:absolute;top:0;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px;min-width:0;white-space:nowrap;font-size:clamp(12px,1.1vw,15px);line-height:1.35;font-weight:700;text-align:center;transform:translateX(-50%)}
+.dashboard-tracking-steps li:first-child{left:0;transform:none}
+.dashboard-tracking-steps li:nth-child(2){left:calc(33.3333% + 5.6667px)}
+.dashboard-tracking-steps li:nth-child(3){left:calc(66.6667% - 5.6667px)}
+.dashboard-tracking-steps li:last-child{left:auto;right:0;transform:none}
+.dashboard-tracking-marker{width:34px;height:34px;border:2px solid #b7afc1;border-radius:50%;flex:none;background:#fff;display:grid;place-items:center;position:relative;z-index:1;color:#fff;box-shadow:0 0 0 4px #fff}
+.dashboard-tracking-steps .is-complete .dashboard-tracking-marker{background:var(--purple);border-color:var(--purple);box-shadow:0 0 0 4px #f0eafb}
+.dashboard-tracking-steps .is-pending .dashboard-tracking-marker{background:#fff;border-color:#e7e2ee}
+.dashboard-tracking-steps .is-pending{color:#565160}
+@media(max-width:760px){
+  .dashboard-hero-content{width:calc(100% - 36px);padding:32px 0 48px}
+  .dashboard-tracking-heading{align-items:flex-start;flex-direction:column;gap:12px;margin-bottom:20px}
+  .dashboard-tracking-heading h1{font-size:clamp(24px,6.4vw,30px)}
+  .dashboard-order-meta{justify-content:flex-start;gap:8px;font-size:13px}
+  .dashboard-tracking-card{padding:21px 15px 20px}
+  .dashboard-tracking-steps{min-height:66px}
+  .dashboard-tracking-steps li{gap:10px;font-size:clamp(9px,2.6vw,12px)}
+  .dashboard-tracking-marker{width:28px;height:28px;box-shadow:0 0 0 3px #fff}
+  .dashboard-tracking-steps .is-complete .dashboard-tracking-marker{box-shadow:0 0 0 3px #f0eafb}
+  .dashboard-tracking-marker svg{width:16px;height:16px}
+  .dashboard-tracking-steps::before,.dashboard-tracking-steps::after{top:13px;left:14px;height:2px}
+  .dashboard-tracking-steps::before{right:14px}
+  .dashboard-tracking-steps::after{width:calc(33.3333% - 9.3333px)}
+  .dashboard-tracking-steps li:nth-child(2){left:calc(33.3333% + 4.6667px)}
+  .dashboard-tracking-steps li:nth-child(3){left:calc(66.6667% - 4.6667px)}
+}
+</style>
+<style>
+/* Account Balance card beneath tracking, aligned to the right (~40%). */
+.dashboard-overview-row{display:grid;grid-template-columns:minmax(0,60%) minmax(0,30%);justify-content:space-between;align-items:start;gap:24px}
+.dashboard-tracking-column{min-width:0}
+.dashboard-reorder-row{margin-top:28px}
+.dashboard-reorder-row .dashboard-reorder-column{width:100%}
+.dashboard-balance-column,.dashboard-reorder-column{min-width:0}
+.dashboard-balance-card{width:100%;min-width:0;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:17px;overflow:hidden;box-shadow:0 8px 22px rgba(31,12,69,.11)}
+.dashboard-balance-heading{margin:0 0 22px;color:#fff;font:900 clamp(26px,2.25vw,34px)/1.08 var(--font);letter-spacing:-.035em}
+.dashboard-balance-body{padding:24px 25px 26px}
+.dashboard-balance-summary{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.dashboard-balance-label{font-size:14px;font-weight:600;color:#686375}
+.dashboard-balance-amount{font-size:clamp(38px,3.2vw,49px);font-weight:900;letter-spacing:-.045em;line-height:1}
+.dashboard-balance-footer{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.dashboard-balance-date{display:flex;flex-direction:column;gap:5px;margin:0;font-size:12px;font-weight:600;color:#686375}
+.dashboard-balance-date strong{font-size:15px;font-weight:800;color:var(--ink)}
+@media(max-width:900px){.dashboard-overview-row{grid-template-columns:minmax(0,1fr);gap:28px}.dashboard-reorder-row{margin-top:28px}}
+@media(max-width:760px){
+  .dashboard-overview-row{gap:22px}
+  .dashboard-reorder-row{margin-top:22px}
+  .dashboard-balance-heading{margin-bottom:20px;font-size:clamp(24px,6.4vw,30px)}
+  .dashboard-balance-body{padding:22px 20px}
+  .dashboard-balance-summary{margin-bottom:22px}
+  .dashboard-balance-amount{font-size:40px}
+}
+
+/* Quick Reorder: reuse storefront search field, CTA and quantity control treatments. */
+.dashboard-reorder-card{background:linear-gradient(120deg,#fff 0%,#fff 56%,#faf8ff 100%);border:1px solid rgba(255,255,255,.82);border-radius:17px;overflow:hidden;box-shadow:0 8px 22px rgba(31,12,69,.11);color:var(--ink)}
+.dashboard-reorder-toolbar{display:flex;align-items:center;padding:24px;border-bottom:1px solid var(--line)}
+.dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner{flex:1 1 100%;display:flex;align-items:center;gap:14px;box-sizing:border-box;min-width:0;max-width:none;width:100%;min-height:50px;height:50px;margin:0;padding:0 16px;border:1px solid rgba(8,7,11,.18);border-radius:12px;background:#fff;color:var(--ink);transform:none;transition:none}
+.dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner:hover,.dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner:focus-within{border-color:rgba(8,7,11,.18)}
+.dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner input{flex:1;min-width:0;width:100%;height:48px;padding:0;border:0;outline:0;background:transparent;color:var(--ink);font:500 15px var(--font)}
+.dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner input::placeholder{color:#777;opacity:1}
+.dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner svg{width:24px;height:24px;flex:none}
+.dashboard-reorder-table-wrap{width:100%;overflow-x:auto}
+.dashboard-reorder-table{width:100%;border-collapse:collapse;table-layout:fixed}
+.dashboard-reorder-table th{padding:16px 24px;text-align:left;font:800 13px var(--font);letter-spacing:.035em;color:var(--ink);background:#faf9fc}
+.dashboard-reorder-table td{padding:15px 24px;font:700 15px/1.5 var(--font);border-top:1px solid var(--line);vertical-align:middle}
+.dashboard-reorder-table th:nth-child(3),.dashboard-reorder-table td:nth-child(3){width:188px;text-align:center}
+.dashboard-reorder-table th:nth-child(1),.dashboard-reorder-table td:nth-child(1){width:64px;text-align:center;padding-left:16px;padding-right:10px}
+.dashboard-reorder-table input[type=checkbox]{appearance:none;display:inline-grid;place-content:center;width:20px;height:20px;border:1.5px solid #aaa3b6;border-radius:5px;background:#fff;cursor:pointer;vertical-align:middle}
+.dashboard-reorder-table input[type=checkbox]:checked{background:var(--purple);border-color:var(--purple)}
+.dashboard-reorder-table input[type=checkbox]:checked::after{content:"";width:9px;height:5px;border:solid #fff;border-width:0 0 2px 2px;transform:rotate(-45deg) translate(1px,-1px)}
+.dashboard-reorder-table input[type=checkbox]:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.dashboard-reorder-quantity{display:flex;align-items:center;justify-content:center;gap:10px}
+.dashboard-reorder-quantity .td-qty-step{display:grid;place-items:center;width:36px;height:36px;padding:0;border:0;border-radius:12px;background:var(--purple);color:#fff;font:800 19px var(--font);cursor:pointer}
+.dashboard-reorder-quantity .td-qty-step:hover{background:#4b21a6}
+.dashboard-reorder-quantity .td-qty-step:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.dashboard-reorder-quantity output{min-width:25px;text-align:center;font:800 16px var(--font)}
+.dashboard-reorder-actions{min-height:88px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 24px;border-top:1px solid var(--line)}
+.dashboard-reorder-feedback{flex:1;min-width:0;font:600 13px/1.4 var(--font);color:#686375}
+.dashboard-reorder-action-buttons{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex:none}
+/* Standardized CTAs: exact Home Explore Products pill geometry and typography. */
+.dashboard-hero-content button.dashboard-action.hero-cta{
+  -webkit-appearance:none;appearance:none;box-sizing:border-box;
+  display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;
+  width:auto;min-width:190px;min-height:54px;height:54px;max-width:100%;
+  gap:12px;margin:0;padding:0 25px;border:0;border-radius:999px;
+  font-family:var(--font);font-size:14px;font-weight:800;line-height:1;
+  letter-spacing:0;text-transform:none;text-align:center;white-space:nowrap;
+  cursor:pointer;transform:none;box-shadow:none;transition:none;
+}
+.dashboard-hero-content button.dashboard-action-primary.hero-cta,
+.dashboard-hero-content button.dashboard-action-primary.hero-cta:hover{
+  background:var(--purple);color:#fff;border:0;box-shadow:none;transform:none;
+}
+.dashboard-hero-content button.dashboard-action-secondary.hero-cta,
+.dashboard-hero-content button.dashboard-action-secondary.hero-cta:hover{
+  background:#eee8fa;color:var(--purple);border:0;box-shadow:none;transform:none;
+}
+.dashboard-hero-content button.dashboard-action.hero-cta:focus-visible{
+  outline:2px solid var(--cyan);outline-offset:3px;
+}
+.dashboard-hero-content button.dashboard-action.hero-cta .lucide-icon{width:20px;height:20px;flex:none}
+@media(max-width:760px){
+  .dashboard-reorder-toolbar{padding:24px}
+  .dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner{height:48px;min-height:48px;padding:0 12px;gap:8px}
+  .dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner input{height:46px;font-size:15px}
+  .dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner svg{width:20px;height:20px}
+  .dashboard-reorder-table th{padding:13px 12px;font-size:12px}
+  .dashboard-reorder-table td{padding:13px 12px;font-size:14px}
+  .dashboard-reorder-table th:nth-child(3),.dashboard-reorder-table td:nth-child(3){width:140px}
+  .dashboard-reorder-table th:nth-child(1),.dashboard-reorder-table td:nth-child(1){width:44px;padding:7px}
+  .dashboard-reorder-quantity{gap:5px}
+  .dashboard-reorder-quantity .td-qty-step{width:29px;height:32px;border-radius:10px;font-size:17px}
+  .dashboard-reorder-quantity output{min-width:21px;font-size:14px}
+  .dashboard-reorder-actions{padding:14px 15px;gap:10px;flex-wrap:wrap}
+  .dashboard-reorder-action-buttons{gap:9px;margin-left:auto}
+  .dashboard-hero-content button.dashboard-action.hero-cta{width:auto;min-width:0;min-height:48px;height:48px;padding:0 18px;gap:8px;font-size:13px}
+}
+</style>
+<style>
+/* Account Balance: compact, balanced layout matching Order Tracking's card language. */
+.dashboard-overview-row{
+  grid-template-columns:minmax(0,7fr) minmax(0,3fr);
+  justify-content:stretch;
+  align-items:start;
+  column-gap:24px;
+}
+.dashboard-balance-column .dashboard-balance-heading{
+  margin:0 0 22px;
+  color:#fff;
+  font:900 clamp(26px,2.25vw,34px)/1.08 var(--font);
+  letter-spacing:-.035em;
+}
+.dashboard-balance-column .dashboard-balance-card{
+  background:linear-gradient(120deg,#fff 0%,#fff 56%,#faf8ff 100%);
+  border:1px solid rgba(255,255,255,.82);
+  border-radius:17px;
+  box-shadow:0 8px 22px rgba(31,12,69,.11);
+}
+.dashboard-balance-column .dashboard-balance-body{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:center;
+  gap:16px;
+  padding:22px 24px;
+}
+.dashboard-balance-column .dashboard-balance-summary{
+  display:flex;flex-direction:column;gap:5px;margin:0;
+}
+.dashboard-balance-column .dashboard-balance-label{font-size:13px;font-weight:600;color:#686375}
+.dashboard-balance-column .dashboard-balance-amount{
+  font-size:clamp(30px,2.8vw,42px);
+  font-weight:900;
+  line-height:1.05;
+  letter-spacing:-.045em;
+}
+.dashboard-balance-column .dashboard-balance-footer{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.dashboard-balance-column .dashboard-balance-date{display:flex;flex-direction:column;gap:5px;margin:0;font-size:12px;font-weight:600;color:#686375}
+.dashboard-balance-column .dashboard-balance-date strong{font-size:14px;font-weight:800;color:var(--ink)}
+.dashboard-balance-column button.dashboard-action.hero-cta{
+  width:auto;min-width:0;min-height:46px;height:46px;
+  padding:0 18px;font-size:13px;white-space:nowrap;
+}
+.dashboard-reorder-row{margin-top:32px}
+@media(min-width:901px) and (max-width:1200px){
+  .dashboard-balance-column .dashboard-balance-footer{align-items:stretch;flex-direction:column}
+  .dashboard-balance-column button.dashboard-action.hero-cta{width:100%}
+}
+@media(max-width:900px){
+  .dashboard-overview-row{grid-template-columns:minmax(0,1fr);row-gap:26px}
+  .dashboard-balance-column .dashboard-balance-body{padding:22px 24px}
+  .dashboard-reorder-row{margin-top:26px}
+}
+@media(max-width:480px){
+  .dashboard-balance-column .dashboard-balance-body{padding:20px}
+  .dashboard-balance-column .dashboard-balance-footer{align-items:stretch;flex-direction:column}
+  .dashboard-balance-column button.dashboard-action.hero-cta{width:100%}
+}
+</style>
+<style>
+/* Layout only: full-width Quick Reorder first, Account Balance and Tracking stacked below. */
+.dashboard-hero-content .dashboard-reorder-row{margin-top:0}
+.dashboard-balance-stack{width:30%;margin:32px 0 0 auto;display:flex;flex-direction:column;gap:32px;min-width:0}
+.dashboard-balance-stack .dashboard-tracking-column,.dashboard-balance-stack .dashboard-balance-column{width:100%;min-width:0}
+.dashboard-balance-stack .dashboard-tracking-heading{flex-direction:column;align-items:flex-start;gap:8px}
+.dashboard-balance-stack .dashboard-order-meta{justify-content:flex-start;text-align:left;white-space:normal}
+.dashboard-balance-stack .dashboard-tracking-steps li{font-size:clamp(9px,.85vw,12px)}
+.dashboard-balance-stack .dashboard-tracking-card{padding:22px 20px 20px}
+@media(max-width:900px){
+  .dashboard-balance-stack{width:100%;margin-top:26px;gap:26px}
+  .dashboard-balance-stack .dashboard-tracking-steps li{font-size:clamp(10px,2.6vw,14px)}
+}
+</style>
+<style>
+/* Quick Reorder 60% left; Balance and Order Tracking stack at 30% right. */
+.dashboard-hero-content .dashboard-main-grid{
+  display:grid;
+  grid-template-columns:minmax(0,65%) minmax(0,30%);
+  align-items:start;
+  justify-content:space-between;
+  gap:0;
+}
+.dashboard-hero-content .dashboard-main-grid > .dashboard-reorder-row{min-width:0;width:100%;margin:0}
+.dashboard-hero-content .dashboard-main-grid > .dashboard-balance-stack{
+  min-width:0;width:100%;margin:0;gap:48px;
+}
+@media(max-width:900px){
+  .dashboard-hero-content .dashboard-main-grid{grid-template-columns:minmax(0,1fr);gap:26px}
+  .dashboard-hero-content .dashboard-main-grid > .dashboard-balance-stack{gap:36px}
+}
+</style>
+<style>
+/* Vertical order progress inside the right-hand dashboard column. */
+.dashboard-balance-stack .dashboard-tracking-steps{
+  --tracking-marker-size:34px;
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  row-gap:38px;
+  min-height:0;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.dashboard-balance-stack .dashboard-tracking-steps::before,
+.dashboard-balance-stack .dashboard-tracking-steps::after{
+  content:"";
+  position:absolute;
+  left:calc(var(--tracking-marker-size) / 2 - 1px);
+  right:auto;
+  top:calc(var(--tracking-marker-size) / 2);
+  width:2px;
+  border-radius:99px;
+  pointer-events:none;
+}
+.dashboard-balance-stack .dashboard-tracking-steps::before{
+  height:calc(100% - var(--tracking-marker-size));
+  background:#e7e2ee;
+}
+.dashboard-balance-stack .dashboard-tracking-steps::after{
+  height:calc((100% - var(--tracking-marker-size)) / 3);
+  background:var(--purple);
+}
+.dashboard-balance-stack .dashboard-tracking-steps li,
+.dashboard-balance-stack .dashboard-tracking-steps li:first-child,
+.dashboard-balance-stack .dashboard-tracking-steps li:nth-child(2),
+.dashboard-balance-stack .dashboard-tracking-steps li:nth-child(3),
+.dashboard-balance-stack .dashboard-tracking-steps li:last-child{
+  position:relative;
+  left:auto;
+  right:auto;
+  top:auto;
+  transform:none;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:flex-start;
+  gap:14px;
+  min-height:var(--tracking-marker-size);
+  white-space:normal;
+  font-size:14px;
+  line-height:1.35;
+  text-align:left;
+}
+.dashboard-balance-stack .dashboard-tracking-steps .dashboard-tracking-marker{
+  width:var(--tracking-marker-size);
+  height:var(--tracking-marker-size);
+}
+@media(max-width:760px){
+  .dashboard-balance-stack .dashboard-tracking-steps{--tracking-marker-size:28px}
+  .dashboard-balance-stack .dashboard-tracking-steps li{font-size:13px}
+}
+</style>
+<style>
+/* Clean, original vertical tracking with a title and explanatory subtitle per step. */
+.dashboard-balance-stack .dashboard-tracking-step-copy{
+  display:flex;flex-direction:column;align-items:flex-start;gap:5px;
+  min-width:0;text-align:left;
+}
+.dashboard-balance-stack .dashboard-tracking-step-copy strong{
+  font-size:16px;line-height:1.35;font-weight:800;color:var(--ink);
+}
+.dashboard-balance-stack .dashboard-tracking-step-copy small{
+  font-size:14px;line-height:1.5;font-weight:500;color:#777181;
+}
+.dashboard-balance-stack .dashboard-tracking-steps li.is-pending .dashboard-tracking-step-copy strong{color:#565160}
+@media(max-width:760px){
+  .dashboard-balance-stack .dashboard-tracking-step-copy strong{font-size:15px}
+  .dashboard-balance-stack .dashboard-tracking-step-copy small{font-size:13px}
+}
+</style><style>
+/* Quick Reorder card ends at the bottom of Order Tracking; only its product list scrolls. */
+@media(min-width:901px){
+  .dashboard-main-grid .dashboard-reorder-row,
+  .dashboard-main-grid .dashboard-reorder-column{min-width:0;min-height:0}
+  .dashboard-main-grid .dashboard-reorder-column{display:flex;flex-direction:column}
+  .dashboard-main-grid .dashboard-reorder-column > .dashboard-balance-heading{flex:none}
+  .dashboard-main-grid .dashboard-reorder-card{
+    display:flex;flex-direction:column;
+    height:var(--dashboard-reorder-card-height,auto);
+    min-height:0;
+  }
+  .dashboard-main-grid .dashboard-reorder-toolbar,
+  .dashboard-main-grid .dashboard-reorder-actions{flex:0 0 auto}
+  .dashboard-main-grid .dashboard-reorder-table-wrap{
+    flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:auto;
+    overscroll-behavior:contain;
+  }
+  .dashboard-main-grid .dashboard-reorder-table thead{
+    position:sticky;top:0;z-index:2;
+  }
+}
+@media(max-width:900px){
+  .dashboard-main-grid .dashboard-reorder-card{height:auto}
+  .dashboard-main-grid .dashboard-reorder-table-wrap{max-height:none;overflow-y:visible}
+}
+</style>
+<style>
+/* Quick Reorder only: subtle white fade signals additional products below. */
+.dashboard-main-grid .dashboard-reorder-card{position:relative}
+.dashboard-main-grid .dashboard-reorder-table-region{position:relative;flex:1 1 auto;min-height:0;min-width:0}
+.dashboard-main-grid .dashboard-reorder-table-region .dashboard-reorder-table-wrap{height:100%;min-height:0}
+.dashboard-main-grid .dashboard-reorder-table-region::after{
+  content:"";position:absolute;z-index:3;left:0;right:0;bottom:0;height:72px;
+  background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.65) 60%,#fff 100%);
+  opacity:0;pointer-events:none;transition:opacity .18s ease;
+}
+.dashboard-main-grid .dashboard-reorder-table-region.has-more-below::after{opacity:1}
+@media(max-width:900px){
+  .dashboard-main-grid .dashboard-reorder-table-region{flex:none}
+  .dashboard-main-grid .dashboard-reorder-table-region .dashboard-reorder-table-wrap{height:auto}
+  .dashboard-main-grid .dashboard-reorder-table-region::after{display:none}
+}
+</style>
+<style>
+/* Standalone promotions section under the dashboard cards. */
+.dashboard-promotions{background:#fff;padding:32px 0 80px;color:var(--ink)}
+.dashboard-promotions-inner{width:min(1440px,calc(100% - 96px));margin:0 auto}
+.dashboard-promotions-heading{margin:0 0 24px;color:var(--ink);font:900 clamp(26px,2.25vw,34px)/1.1 var(--font);letter-spacing:-.035em}
+.dashboard-promotions-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.dashboard-promo-card{min-width:0;background:#fff;border:1px solid #e8e4ee;border-radius:17px;overflow:hidden;box-shadow:0 8px 22px rgba(31,12,69,.11);display:flex;flex-direction:column}
+.dashboard-promo-art{position:relative;width:100%;overflow:hidden;background:#f0ebfb}
+.dashboard-promo-art img{display:block;width:100%;height:auto;object-fit:contain}
+.dashboard-promo-text{padding:18px 22px 20px;min-height:88px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.dashboard-promo-text h3{margin:0;font:900 18px/1.25 var(--font);letter-spacing:-.02em;color:var(--ink)}
+.dashboard-promo-text p{margin:0;font:500 14px/1.5 var(--font);color:#686375}
+@media(max-width:900px){.dashboard-promotions-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
+@media(max-width:760px){.dashboard-promotions{padding:24px 0 54px}.dashboard-promotions-inner{width:calc(100% - 36px)}.dashboard-promotions-heading{font-size:clamp(24px,6.4vw,30px);margin-bottom:20px}}
+@media(max-width:560px){.dashboard-promotions-grid{grid-template-columns:1fr}.dashboard-promo-text{padding:16px 18px}.dashboard-promo-text h3{font-size:17px}}
+</style>
+<style>
+/* Selected-products action belongs only to the Quick Reorder toolbar. */
+.dashboard-reorder-toolbar{gap:14px}
+.dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner{flex:1 1 auto}
+.dashboard-reorder-toolbar .dashboard-clear-selected{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;flex:0 0 auto;
+  min-height:50px;padding:0 18px;border:0;border-radius:12px;
+  background:#fbe5e9;color:#cc3152;font:800 13px/1.2 var(--font);
+  white-space:nowrap;cursor:pointer;box-shadow:none;transition:none;
+}
+.dashboard-reorder-toolbar .dashboard-clear-selected[hidden]{display:none!important}
+.dashboard-reorder-toolbar .dashboard-clear-selected:hover{background:#fbe5e9;color:#cc3152}
+.dashboard-reorder-toolbar .dashboard-clear-selected:focus-visible{outline:2px solid #cc3152;outline-offset:3px}
+.dashboard-reorder-toolbar .dashboard-clear-selected svg{width:18px;height:18px;flex:none}
+@media(max-width:560px){
+  .dashboard-reorder-toolbar{gap:10px;flex-wrap:wrap}
+  .dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner{flex:1 1 100%}
+  .dashboard-reorder-toolbar .dashboard-clear-selected{min-height:44px;margin-left:auto;padding:0 14px}
+}
+</style><style>
+/* Unified storefront card styling: same as .card in styles.css.
+   Dashboard-only: never change storefront pages. */
+.dashboard-purple-hero .dashboard-reorder-card,
+.dashboard-purple-hero .dashboard-balance-card,
+.dashboard-purple-hero .dashboard-tracking-card,
+.dashboard-promotions .dashboard-promo-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:17px;
+  box-shadow:none;
+  overflow:hidden;
+}
+.dashboard-purple-hero .dashboard-reorder-card:hover,
+.dashboard-purple-hero .dashboard-balance-card:hover,
+.dashboard-purple-hero .dashboard-tracking-card:hover,
+.dashboard-promotions .dashboard-promo-card:hover{
+  border-color:var(--line);
+  box-shadow:none;
+  transform:none;
+}
+</style>
+
+<style>
+/* Quick Reorder product-name + item ID follows the storefront product-card standard. */
+.dashboard-reorder-table .dashboard-reorder-product-name{font-weight:700;color:var(--ink)}
+.dashboard-reorder-table .dashboard-reorder-product-separator{color:#a5a1ae;font-weight:600;margin:0 5px}
+.dashboard-reorder-table .dashboard-reorder-item-id{color:var(--purple);font-size:12px;font-weight:700;letter-spacing:.06em;white-space:nowrap}
+</style>
+<style>
+/* Exact storefront New Arrivals card/carousel primitives scoped to this Dashboard section. */
+.dashboard-products-section{padding:12px 0 100px;background:#fff;color:var(--ink)}
+.dashboard-products-inner{width:min(1440px,calc(100% - 96px));margin:0 auto}
+.dashboard-products-section .section-header{margin-bottom:24px}
+.dashboard-products-section #dashboardNewTitle{margin:20px 0 0;font-size:clamp(42px,5vw,70px);line-height:1;letter-spacing:-.035em;font-weight:900;color:#000}
+.dashboard-products-section .card{box-shadow:none}
+.dashboard-products-section .prices{display:flex!important}
+.dashboard-products-section .old,.dashboard-products-section .new-price{display:block!important}
+.dashboard-products-section .carousel-arrow:disabled{opacity:0;pointer-events:none}
+.dashboard-products-section .dashboard-carousel-feedback{color:var(--purple);font:600 12px/1.5 var(--font);min-height:18px}
+@media(max-width:760px){
+  .dashboard-products-section{padding:8px 0 64px}
+  .dashboard-products-inner{width:calc(100% - 36px)}
+  .dashboard-products-section #dashboardNewTitle{font-size:clamp(37px,8vw,54px)}
+}
+</style>
+
+<style>
+/* Mobile-only Dashboard: Balance → Tracking → Quick Reorder. Desktop remains unchanged. */
+@media(max-width:900px){
+  .dashboard-hero-content .dashboard-main-grid{
+    display:flex;flex-direction:column;align-items:stretch;gap:28px;
+  }
+  .dashboard-hero-content .dashboard-main-grid > .dashboard-balance-stack{
+    order:0;width:100%;margin:0;gap:28px;
+  }
+  .dashboard-hero-content .dashboard-main-grid > .dashboard-reorder-row{
+    order:1;width:100%;margin:0;
+  }
+  .dashboard-main-grid .dashboard-reorder-table{
+    border-collapse:separate;border-spacing:0 9px;
+    width:100%;table-layout:fixed;padding:0 10px 12px;
+  }
+  .dashboard-main-grid .dashboard-reorder-table thead th{
+    background:#fff;border:0;
+  }
+  .dashboard-main-grid .dashboard-reorder-table tbody td{
+    background:#faf9fc;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding-top:16px;padding-bottom:16px;
+  }
+  .dashboard-main-grid .dashboard-reorder-table tbody td:first-child{
+    border-left:1px solid var(--line);
+    border-radius:12px 0 0 12px;
+  }
+  .dashboard-main-grid .dashboard-reorder-table tbody td:last-child{
+    border-right:1px solid var(--line);
+    border-radius:0 12px 12px 0;
+  }
+  .dashboard-main-grid .dashboard-reorder-table tbody tr:has(input[type="checkbox"]:checked) td{
+    background:#f4efff;border-top-color:#dacdf6;border-bottom-color:#dacdf6;
+  }
+  .dashboard-main-grid .dashboard-reorder-table tbody tr:has(input[type="checkbox"]:checked) td:first-child{border-left-color:#dacdf6}
+  .dashboard-main-grid .dashboard-reorder-table tbody tr:has(input[type="checkbox"]:checked) td:last-child{border-right-color:#dacdf6}
+}
+@media(max-width:560px){
+  .dashboard-main-grid .dashboard-reorder-table{padding:0 6px 10px;border-spacing:0 8px}
+  .dashboard-main-grid .dashboard-reorder-table tbody td{padding-top:13px;padding-bottom:13px}
+}
+/* Compact internal scrolling for mobile Quick Reorder cards; toolbar and actions stay visible. */
+@media(max-width:900px){
+  .dashboard-hero-content .dashboard-main-grid .dashboard-reorder-card{
+    display:flex;
+    flex-direction:column;
+    height:auto;
+    max-height:none;
+  }
+  .dashboard-hero-content .dashboard-main-grid .dashboard-reorder-toolbar,
+  .dashboard-hero-content .dashboard-main-grid .dashboard-reorder-actions{
+    flex:0 0 auto;
+  }
+  .dashboard-hero-content .dashboard-main-grid .dashboard-reorder-table-region{
+    display:block;
+    flex:0 1 auto;
+    min-height:0;
+    height:clamp(285px,45vh,410px);
+    max-height:clamp(285px,45vh,410px);
+    overflow:hidden;
+  }
+  .dashboard-hero-content .dashboard-main-grid .dashboard-reorder-table-region .dashboard-reorder-table-wrap{
+    width:100%;
+    height:100%;
+    max-height:100%;
+    overflow-x:auto;
+    overflow-y:auto;
+    overscroll-behavior-y:contain;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+    scrollbar-color:#cbbce9 transparent;
+    touch-action:pan-y;
+  }
+  .dashboard-hero-content .dashboard-main-grid .dashboard-reorder-table-region::after{
+    display:block;
+    pointer-events:none;
+  }
+}
+</style>
+<style>
+/* Exact full-screen purple burger from landing-build.js, Dashboard only. */
+:root{--td-ease:cubic-bezier(.22,1,.36,1);--td-fast:.22s;--td-mid:.34s}
+html{scrollbar-gutter:stable}
+body.td-locked{overflow:clip;touch-action:none}
+body.td-login-menu-open .site-header{position:sticky!important;top:0;z-index:2700!important;visibility:visible!important}
+body.td-login-menu-open .mobile-menu-toggle{position:relative!important;z-index:2701!important;display:inline-flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}
+body.td-login-menu-open .mobile-menu-toggle .mobile-menu-open-icon{display:none!important}
+body.td-login-menu-open .mobile-menu-toggle .mobile-menu-close-icon{display:block!important}
+/* Burger full-screen purple menu — smooth open/close with clip-path */
+.mobile-menu-panel.td-login-panel{position:fixed!important;inset:0!important;z-index:2500!important;width:100vw!important;height:100dvh!important;background:var(--purple)!important;color:#fff!important;padding:0!important;overflow:hidden!important;display:grid!important;grid-template-rows:1fr!important;visibility:hidden;clip-path:inset(0 0 100% 0);transition:clip-path var(--td-mid) var(--td-ease),visibility 0s linear var(--td-mid)}
+body.td-login-menu-open .mobile-menu-panel.td-login-panel{visibility:visible;clip-path:inset(0 0 0 0);transition:clip-path var(--td-mid) var(--td-ease),visibility 0s}
+.mobile-menu-panel.td-login-panel .mobile-menu-reveal{height:100%!important;overflow:hidden!important}
+.mobile-menu-panel.td-login-panel .mobile-menu-content{width:min(620px,calc(100% - 44px))!important;height:100%!important;margin:0 auto!important;padding:92px 0 42px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;transform:none!important;gap:0!important}
+.mobile-menu-panel.td-login-panel .shopping-user,.mobile-menu-panel.td-login-panel .quick-shop-button,.mobile-menu-panel.td-login-panel .shopping-nav-separator,.mobile-menu-panel.td-login-panel .menu-auth-link{display:none!important}
+/* Header + nav items transition smoothly in and out with the menu */
+.site-header{transition:background var(--td-mid) var(--td-ease),border-color var(--td-mid) var(--td-ease)}
+.site-nav-logo,.header-search-toggle,.shopping-cart-button,.quick-shop-button,.shopping-nav-separator,.shopping-user{transition:opacity var(--td-fast) var(--td-ease)}
+.mobile-menu-toggle{transition:color var(--td-fast) var(--td-ease)}
+body.td-login-menu-open .site-header{background:var(--purple)!important;border-bottom-color:transparent!important}
+body.td-login-menu-open .site-nav-logo,body.td-login-menu-open .header-search-toggle,body.td-login-menu-open .shopping-cart-button,body.td-login-menu-open .quick-shop-button,body.td-login-menu-open .shopping-nav-separator,body.td-login-menu-open .shopping-user{opacity:0!important;pointer-events:none!important}
+body.td-login-menu-open .mobile-menu-toggle{color:#fff!important}
+.td-burger-nav{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+.td-burger-link{color:#fff!important;text-decoration:none!important;font:950 clamp(30px,4.2vw,52px) var(--font);letter-spacing:.035em;line-height:1.05;text-align:center;opacity:0;transform:translateY(14px);transition:opacity var(--td-fast) ease,transform var(--td-mid) var(--td-ease)}
+body.td-login-menu-open .td-burger-link{opacity:1;transform:translateY(0)}
+body.td-login-menu-open .td-burger-link:nth-child(1){transition-delay:.08s}
+body.td-login-menu-open .td-burger-link:nth-child(2){transition-delay:.12s}
+body.td-login-menu-open .td-burger-link:nth-child(3){transition-delay:.16s}
+body.td-login-menu-open .td-burger-link:nth-child(4){transition-delay:.20s}
+body.td-login-menu-open .td-burger-link:nth-child(5){transition-delay:.24s}
+body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
+.td-burger-link:hover,.td-burger-link:focus-visible{opacity:.75;outline:none}
+@media(max-width:760px){
+  .td-burger-nav{gap:18px}
+  .td-burger-link{font-size:38px}
+}
+@media(max-width:400px){.td-burger-link{font-size:clamp(27px,9vw,38px)}}
+@media(prefers-reduced-motion:reduce){.td-burger-link{transition:none!important}}
+</style>
+<style>
+/* Dedicated Quick Reorder page uses the existing dashboard ordering controls. */
+.dashboard-purple-hero{min-height:0!important;background:var(--purple,#6633CC)!important;padding-bottom:58px}
+.dashboard-hero-content .dashboard-main-grid{display:block!important}
+.dashboard-hero-content .dashboard-main-grid>.dashboard-reorder-row{width:100%!important;max-width:1100px;margin:0 auto!important}
+.dashboard-hero-content .dashboard-main-grid>.dashboard-balance-stack,.dashboard-promotions,.dashboard-products-section{display:none!important}
+.dashboard-main-grid .dashboard-reorder-card{height:auto!important;min-height:500px!important}
+.dashboard-main-grid .dashboard-reorder-table-region{flex:none!important}
+.dashboard-main-grid .dashboard-reorder-table-region .dashboard-reorder-table-wrap{height:auto!important;max-height:480px!important;overflow-y:auto!important}
+.dashboard-reorder-row .dashboard-balance-heading{margin-bottom:20px!important}
+.dashboard-quick-return{display:inline-flex;align-items:center;gap:8px;color:white;font-weight:750;text-decoration:none;margin-bottom:18px}
+.dashboard-quick-return:hover{text-decoration:underline}
+@media(max-width:760px){.dashboard-hero-content .dashboard-main-grid>.dashboard-reorder-row{width:100%!important}}
+</style></head>
+<body data-auth-preview="true">
+<header class="site-header" id="top">
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="./index.html" class="site-nav-logo" aria-label="True Distributors — back to top">
+      <img src="./td_logo.svg" alt="True Distributors" width="128" height="27">
+    </a>
+    <div class="shopping-nav-controls">
+      <button class="header-search-toggle" id="headerSearchToggle" type="button" aria-label="Open search" aria-expanded="false" aria-controls="headerSearchPanel">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-search header-search-open-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x header-search-close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <span class="shopping-cart-button" role="img" aria-label="Notifications, 3 unread">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-bell" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg>
+        <span class="shopping-cart-count" aria-label="3 unread notifications">3</span>
+      </span>
+      <span class="shopping-nav-separator" aria-hidden="true"></span>
+      <div class="shopping-user">
+        <div class="shopping-user-details">
+          <label for="shoppingUser" class="shopping-user-label">Shopping for</label>
+          <div class="shopping-user-select">
+            <select id="shoppingUser" aria-label="Switch shopping user">
+              <option value="Fresh Market" selected>Fresh Market</option>
+              <option value="City Grocers">City Grocers</option>
+            </select>
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+          <button class="mobile-user-trigger" id="mobileUserTrigger" type="button" aria-label="Switch shopping account: Fresh Market" aria-haspopup="dialog" aria-controls="mobileUserSheet">
+            <span class="mobile-user-trigger-copy">
+              <span class="mobile-user-trigger-label">Shopping for</span>
+              <strong class="mobile-user-trigger-name" id="mobileUserName">Fresh Market</strong>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenuPanel">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-menu mobile-menu-open-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x mobile-menu-close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu-panel td-login-panel" id="mobileMenuPanel" aria-hidden="true" inert>
+    <div class="mobile-menu-reveal">
+      <div class="mobile-menu-content" id="mobileMenuContent">
+        <nav class="td-burger-nav" aria-label="Dashboard navigation">
+          <a class="td-burger-link" href="./dashboard.html" aria-current="page">Dashboard</a>
+          <a class="td-burger-link" href="#dashboardProductCarousel">Products</a>
+          <a class="td-burger-link" href="#orderTrackingTitle">Orders</a>
+          <a class="td-burger-link" href="#dashboardBalanceTitle">Invoices</a>
+          <a class="td-burger-link" href="#dashboardSupportFooter">Support</a>
+          <a class="td-burger-link" id="dashboardMenuLogout" href="./login.html">Logout</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="header-search-panel" id="headerSearchPanel" role="search" aria-hidden="true" inert>
+    <div class="header-search-reveal">
+      <div class="header-search-inner">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-search" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="headerSearchInput" type="search" aria-label="Search products" placeholder="Search products..." autocomplete="off" enterkeyhint="search">
+        <button class="header-search-clear" id="headerSearchClear" type="button" aria-label="Clear search" hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="mobile-user-sheet" id="mobileUserSheet" aria-hidden="true" inert>
+  <button class="mobile-user-sheet-backdrop" id="mobileUserBackdrop" type="button" tabindex="-1" aria-label="Close shopping account selector"></button>
+  <section class="mobile-user-sheet-dialog" role="dialog" aria-modal="true" aria-labelledby="mobileUserSheetTitle" tabindex="-1">
+    <div class="mobile-user-sheet-grab" aria-hidden="true"></div>
+    <div class="mobile-user-sheet-header"><div><h2 id="mobileUserSheetTitle">Select a store</h2></div></div>
+    <div class="mobile-user-sheet-options" id="mobileUserOptions" role="group" aria-label="Available shopping accounts"></div>
+  </section>
+</div>
+  <main id="dashboard" aria-label="Dashboard">
+  <section class="dashboard-purple-hero" aria-labelledby="orderTrackingTitle">
+    <div class="dashboard-hero-content">
+      <a href="./dashboard.html" class="dashboard-quick-return">← Back to Dashboard</a><div class="dashboard-main-grid">
+      <div class="dashboard-reorder-row">
+        <section class="dashboard-reorder-column" aria-labelledby="dashboardReorderTitle">
+        <h2 class="dashboard-balance-heading" id="dashboardReorderTitle">QUICK REORDER</h2>
+        <div class="dashboard-reorder-card">
+        <div class="dashboard-reorder-toolbar">
+        <label class="dashboard-reorder-search header-search-inner">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="dashboardReorderSearch" type="search" placeholder="Search products..." aria-label="Search quick reorder products" autocomplete="off">
+        </label>
+        <button id="dashboardClearSelected" class="dashboard-clear-selected" type="button" aria-label="Clear selected products" hidden>
+          <span id="dashboardSelectedCount">SELECTED (0)</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg>
+        </button>
+        </div>
+        <div class="dashboard-reorder-table-region">
+        <div class="dashboard-reorder-table-wrap">
+        <table class="dashboard-reorder-table">
+        <thead><tr><th scope="col"><input type="checkbox" id="dashboardSelectAll" aria-label="Select all products"></th><th scope="col">PRODUCT</th><th scope="col">QUANTITY</th></tr></thead>
+        <tbody id="dashboardReorderProducts">
+        <tr><td><input type="checkbox" aria-label="Select Soda Cases 24pk"></td><td><span class="dashboard-reorder-product-name">Soda Cases 24pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48720</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Soda Cases 24pk quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Soda Cases 24pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Chips Variety 30pk"></td><td><span class="dashboard-reorder-product-name">Chips Variety 30pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48721</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Chips Variety 30pk quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Chips Variety 30pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Candy Bars Box (Snickers, etc.)"></td><td><span class="dashboard-reorder-product-name">Candy Bars Box (Snickers, etc.)</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48722</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Candy Bars Box quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Candy Bars Box quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Candy Bars Box"></td><td><span class="dashboard-reorder-product-name">Candy Bars Box</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48723</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Candy Bars Box quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Candy Bars Box quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Bottled Water 24pk"></td><td><span class="dashboard-reorder-product-name">Bottled Water 24pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48724</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Bottled Water 24pk quantity">−</button><output>12</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Bottled Water 24pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Sparkling Water Variety 12pk"></td><td><span class="dashboard-reorder-product-name">Sparkling Water Variety 12pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48725</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Sparkling Water Variety 12pk quantity">−</button><output>8</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Sparkling Water Variety 12pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Energy Drinks 24pk"></td><td><span class="dashboard-reorder-product-name">Energy Drinks 24pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48726</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Energy Drinks 24pk quantity">−</button><output>6</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Energy Drinks 24pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Iced Tea Bottles 12pk"></td><td><span class="dashboard-reorder-product-name">Iced Tea Bottles 12pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48727</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Iced Tea Bottles 12pk quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Iced Tea Bottles 12pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Chocolate Cookies 20pk"></td><td><span class="dashboard-reorder-product-name">Chocolate Cookies 20pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48728</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Chocolate Cookies 20pk quantity">−</button><output>7</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Chocolate Cookies 20pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Pretzel Snacks 24pk"></td><td><span class="dashboard-reorder-product-name">Pretzel Snacks 24pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48729</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Pretzel Snacks 24pk quantity">−</button><output>9</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Pretzel Snacks 24pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Granola Bars Variety 36pk"></td><td><span class="dashboard-reorder-product-name">Granola Bars Variety 36pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48730</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Granola Bars Variety 36pk quantity">−</button><output>5</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Granola Bars Variety 36pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Gum Assorted 40pk"></td><td><span class="dashboard-reorder-product-name">Gum Assorted 40pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48731</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Gum Assorted 40pk quantity">−</button><output>14</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Gum Assorted 40pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Paper Towels 12 Rolls"></td><td><span class="dashboard-reorder-product-name">Paper Towels 12 Rolls</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48732</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Paper Towels 12 Rolls quantity">−</button><output>4</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Paper Towels 12 Rolls quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Coffee Cups 100ct"></td><td><span class="dashboard-reorder-product-name">Coffee Cups 100ct</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48733</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Coffee Cups 100ct quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Coffee Cups 100ct quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Fruit Juice Boxes 24pk"></td><td><span class="dashboard-reorder-product-name">Fruit Juice Boxes 24pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48734</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Fruit Juice Boxes 24pk quantity">−</button><output>8</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Fruit Juice Boxes 24pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Crackers Variety 30pk"></td><td><span class="dashboard-reorder-product-name">Crackers Variety 30pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48735</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Crackers Variety 30pk quantity">−</button><output>6</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Crackers Variety 30pk quantity">+</button></div></td></tr>
+        </tbody>
+        </table>
+        </div>
+        </div>
+        <div class="dashboard-reorder-actions">
+        <span class="dashboard-reorder-feedback" id="dashboardReorderFeedback" role="status" aria-live="polite"></span>
+        <div class="dashboard-reorder-action-buttons">
+        <button class="dashboard-action dashboard-action-secondary hero-cta" type="button" id="dashboardBulkUpload" aria-label="Bulk Upload file">
+        <span>BULK UPLOAD</span>
+        </button>
+        <input type="file" id="dashboardBulkUploadFile" accept=".csv,.xlsx,.xls" hidden aria-label="Select bulk upload file">
+        <button class="dashboard-action dashboard-action-primary hero-cta" type="button" id="dashboardReorderAdd">ADD TO CART</button>
+        </div>
+        </div>
+        </div>
+        </section>
+      </div>
+      <div class="dashboard-balance-stack">
+        <section class="dashboard-balance-column" aria-labelledby="dashboardBalanceTitle">
+        <h2 class="dashboard-balance-heading" id="dashboardBalanceTitle">ACCOUNT BALANCE</h2>
+        <div class="dashboard-balance-card">
+        <div class="dashboard-balance-body">
+        <div class="dashboard-balance-summary">
+        <span class="dashboard-balance-label">Total Due</span>
+        <strong class="dashboard-balance-amount">$2,450.00</strong>
+        </div>
+        <div class="dashboard-balance-footer">
+        <p class="dashboard-balance-date"><span>Next Due Date</span><strong>Nov 15, 2026</strong></p>
+        <button class="dashboard-action dashboard-action-primary hero-cta" type="button">PAY INVOICES</button>
+        </div>
+        </div>
+        </div>
+        </section>
+        <section class="dashboard-tracking-column" aria-labelledby="orderTrackingTitle">
+          <div class="dashboard-tracking-heading">
+          <h1 id="orderTrackingTitle">ORDER TRACKING</h1>
+          <p class="dashboard-order-meta"><strong>Order #88432</strong><span aria-hidden="true">·</span><span>Estimated: Today, 2:00 PM</span></p>
+          </div>
+          <div class="dashboard-tracking-card" aria-label="Order #88432 tracking progress">
+          <ol class="dashboard-tracking-steps">
+          <li class="is-complete">
+          <span class="dashboard-tracking-marker" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span>
+          <span class="dashboard-tracking-step-copy"><strong>Ordered</strong><small>Your order has been placed</small></span>
+          </li>
+          <li class="is-complete">
+          <span class="dashboard-tracking-marker" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span>
+          <span class="dashboard-tracking-step-copy"><strong>Processing</strong><small>We’re preparing your order</small></span>
+          </li>
+          <li class="is-pending"><span class="dashboard-tracking-marker" aria-hidden="true"></span><span class="dashboard-tracking-step-copy"><strong>Out for Delivery</strong><small>Your order is on its way</small></span></li>
+          <li class="is-pending"><span class="dashboard-tracking-marker" aria-hidden="true"></span><span class="dashboard-tracking-step-copy"><strong>Delivered</strong><small>Order delivered to your address</small></span></li>
+          </ol>
+          </div>
+        </section>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dashboard-promotions" aria-labelledby="dashboardPromotionsTitle">
+    <div class="dashboard-promotions-inner">
+      <h2 class="dashboard-promotions-heading" id="dashboardPromotionsTitle">CURRENT DEALS &amp; PROMOTIONS</h2>
+      <div class="dashboard-promotions-grid">
+        <article class="dashboard-promo-card">
+          <div class="dashboard-promo-art" role="img" aria-label="Colorful assortment of packaged wholesale snack products">
+            <img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="" loading="lazy" decoding="async">
+          </div>
+          <div class="dashboard-promo-text"><h3>BUY 5 GET 1 FREE</h3><p>Snacking Brands</p></div>
+        </article>
+        <article class="dashboard-promo-card">
+          <div class="dashboard-promo-art" role="img" aria-label="Assorted refreshing beverages and chilled drinks on a purple background">
+            <img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="" loading="lazy" decoding="async">
+          </div>
+          <div class="dashboard-promo-text"><h3>15% OFF ALL BEVERAGES</h3><p>Use Code: <strong>BEV15</strong></p></div>
+        </article>
+        <article class="dashboard-promo-card">
+          <div class="dashboard-promo-art" role="img" aria-label="Bright assorted wrapped candies and colorful sweets">
+            <img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="" loading="lazy" decoding="async">
+          </div>
+          <div class="dashboard-promo-text"><h3>BULK CANDY SPECIAL</h3><p>Sweet deals on bulk candy</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="dashboard-products-section new-section" aria-label="Product carousel">
+    <div class="dashboard-products-inner">
+      <div class="carousel-wrap">
+        <div class="carousel" id="dashboardProductCarousel" tabindex="0" aria-label="New arrivals product carousel">
+<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48720</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$22.99</span><strong class="new-price">$15.19</strong></div><button class="add" type="button" aria-label="Add demo product #48720 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48721</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$23.74</span><strong class="new-price">$15.74</strong></div><button class="add" type="button" aria-label="Add demo product #48721 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48722</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$24.49</span><strong class="new-price">$16.29</strong></div><button class="add" type="button" aria-label="Add demo product #48722 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48723</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$25.24</span><strong class="new-price">$16.84</strong></div><button class="add" type="button" aria-label="Add demo product #48723 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48724</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$25.99</span><strong class="new-price">$17.39</strong></div><button class="add" type="button" aria-label="Add demo product #48724 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48725</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$26.74</span><strong class="new-price">$17.94</strong></div><button class="add" type="button" aria-label="Add demo product #48725 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48726</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$27.49</span><strong class="new-price">$18.49</strong></div><button class="add" type="button" aria-label="Add demo product #48726 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48727</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$28.24</span><strong class="new-price">$19.04</strong></div><button class="add" type="button" aria-label="Add demo product #48727 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+        </div>
+        <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous products" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next products"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+      <div class="section-bottom">
+        <div class="progress" role="progressbar" aria-label="New arrivals carousel progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="dashboardProductProgress"></span></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer id="dashboardSupportFooter" class="site-footer" aria-label="Footer"><div class="footer-inner"><div class="footer-columns"><div class="footer-column"><h2>WE ACCEPT</h2><ul><li>American Express</li><li>Apple Pay</li><li>Diners Club</li><li>Discover</li><li>Google Pay</li><li>Mastercard</li><li>Shop Pay</li><li>Visa</li></ul></div><div class="footer-column"><h2>SUPPORT</h2><ul><li>Help</li><li>Privacy Policy</li><li>Terms &amp; Conditions</li></ul></div><div class="footer-column"><h2>SOCIAL MEDIA</h2><ul><li>Facebook</li><li>Instagram</li><li>YouTube</li></ul></div></div><div class="footer-bottom">Copyright © 2026 True Distributors. All rights reserved.</div></div></footer>
+<script>
+/* Dashboard header. Existing storefront UI styles, no Quick Shop or burger. */
+(function(){
+  'use strict';
+  const $=selector=>document.querySelector(selector);
+  const select=$('#shoppingUser'),storageKey='td-active-shopping-for-v1';
+  const searchToggle=$('#headerSearchToggle'),searchPanel=$('#headerSearchPanel');
+  const searchInput=$('#headerSearchInput'),searchClear=$('#headerSearchClear');
+  const mobileMedia=window.matchMedia('(max-width:760px)');
+  const mobileSheet=$('#mobileUserSheet'),mobileTrigger=$('#mobileUserTrigger'),mobileOptions=$('#mobileUserOptions');
+  function updateMobileSearchTop(){
+    if(!mobileMedia.matches)return;
+    const nav=$('.site-nav');
+    if(nav)document.documentElement.style.setProperty('--mobile-search-top',Math.max(0,Math.round(nav.getBoundingClientRect().bottom))+'px');
+  }
+  function setSearchOpen(open,restoreFocus=false){
+    if(open&&mobileMedia.matches)updateMobileSearchTop();
+    searchPanel.classList.toggle('is-open',open);
+    searchPanel.inert=!open;
+    searchPanel.setAttribute('aria-hidden',String(!open));
+    searchToggle.setAttribute('aria-expanded',String(open));
+    searchToggle.setAttribute('aria-label',open?'Close search':'Open search');
+    if(open){if(!mobileMedia.matches)searchInput.focus({preventScroll:true});}
+    else{
+      if(searchPanel.contains(document.activeElement))document.activeElement.blur();
+      if(restoreFocus)searchToggle.focus({preventScroll:true});
+    }
+  }
+  window.addEventListener('resize',updateMobileSearchTop,{passive:true});
+  window.addEventListener('scroll',updateMobileSearchTop,{passive:true});
+  mobileMedia.addEventListener('change',updateMobileSearchTop);
+  window.visualViewport?.addEventListener('resize',updateMobileSearchTop,{passive:true});
+  updateMobileSearchTop();
+  searchToggle.addEventListener('click',()=>setSearchOpen(!searchPanel.classList.contains('is-open')));
+  searchPanel.addEventListener('click',e=>{
+    if(!e.target.closest('button')&&e.target!==searchInput)searchInput.focus({preventScroll:true});
+  });
+  searchInput.addEventListener('input',()=>{searchClear.hidden=!searchInput.value.length;});
+  searchInput.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){e.preventDefault();location.assign('./index.html#new-title');}
+  });
+  searchClear.addEventListener('click',()=>{searchInput.value='';searchClear.hidden=true;searchInput.focus();});
+  document.addEventListener('pointerdown',e=>{
+    if(searchPanel.classList.contains('is-open')&&!searchPanel.contains(e.target)&&!searchToggle.contains(e.target))setSearchOpen(false);
+  });
+  function syncAccount(){
+    const label=select.selectedOptions[0]?.textContent||select.value;
+    $('#mobileUserName').textContent=label;
+    mobileTrigger.setAttribute('aria-label','Switch shopping account: '+label);
+    try{localStorage.setItem(storageKey,select.value);}catch(e){}
+  }
+  try{
+    const saved=localStorage.getItem(storageKey);
+    if(saved&&Array.from(select.options).some(o=>o.value===saved))select.value=saved;
+  }catch(e){}
+  select.addEventListener('change',syncAccount);syncAccount();
+  function closeSheet(){
+    mobileSheet.classList.remove('is-open');mobileSheet.inert=true;
+    mobileSheet.setAttribute('aria-hidden','true');document.body.classList.remove('mobile-user-sheet-active');
+  }
+  mobileTrigger.addEventListener('click',()=>{
+    mobileOptions.replaceChildren();
+    Array.from(select.options).forEach(option=>{
+      const button=document.createElement('button');button.type='button';
+      button.textContent=option.textContent;button.dataset.account=option.value;
+      button.setAttribute('aria-pressed',String(option.value===select.value));mobileOptions.append(button);
+    });
+    mobileSheet.classList.add('is-open');mobileSheet.inert=false;
+    mobileSheet.setAttribute('aria-hidden','false');document.body.classList.add('mobile-user-sheet-active');
+  });
+  mobileOptions.addEventListener('click',e=>{
+    const btn=e.target.closest('[data-account]');if(!btn)return;
+    select.value=btn.dataset.account;select.dispatchEvent(new Event('change',{bubbles:true}));closeSheet();
+  });
+  $('#mobileUserBackdrop').addEventListener('click',closeSheet);
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='Escape')return;
+    if(mobileSheet.classList.contains('is-open'))closeSheet();
+    else if(searchPanel.classList.contains('is-open'))setSearchOpen(false,true);
+  });
+})();
+</script>
+<script>
+(function(){
+  const rows=[...document.querySelectorAll('#dashboardReorderProducts tr')];
+  const search=document.getElementById('dashboardReorderSearch');
+  const all=document.getElementById('dashboardSelectAll');
+  const feedback=document.getElementById('dashboardReorderFeedback');
+  const clearSelected=document.getElementById('dashboardClearSelected');
+  const selectedCount=document.getElementById('dashboardSelectedCount');
+  const scrollRegion=document.querySelector('.dashboard-main-grid .dashboard-reorder-table-region');
+  const scrollList=scrollRegion&&scrollRegion.querySelector('.dashboard-reorder-table-wrap');
+  function updateScrollHint(){
+    if(!scrollRegion||!scrollList)return;
+    const canScroll=window.matchMedia('(min-width:901px)').matches;
+    scrollRegion.classList.toggle('has-more-below',canScroll&&scrollList.scrollHeight-scrollList.scrollTop-scrollList.clientHeight>4);
+  }
+  if(scrollList){
+    scrollList.addEventListener('scroll',updateScrollHint,{passive:true});
+    window.addEventListener('resize',updateScrollHint,{passive:true});
+    if(typeof ResizeObserver!=='undefined'){
+      const hintObserver=new ResizeObserver(updateScrollHint);
+      hintObserver.observe(scrollList);
+    }
+    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(updateScrollHint);
+    requestAnimationFrame(updateScrollHint);
+  }
+  function sync(){
+    const visible=rows.filter(row=>!row.hidden);
+    const selected=visible.filter(row=>row.querySelector('input[type=checkbox]').checked);
+    all.checked=visible.length>0&&selected.length===visible.length;
+    all.indeterminate=selected.length>0&&selected.length<visible.length;
+    const totalSelected=rows.filter(row=>row.querySelector('input[type=checkbox]').checked).length;
+    clearSelected.hidden=totalSelected===0;
+    selectedCount.textContent='SELECTED ('+totalSelected+')';
+    requestAnimationFrame(updateScrollHint);
+  }
+  search.addEventListener('input',()=>{
+    const term=search.value.trim().toLowerCase();
+    rows.forEach(row=>{row.hidden=!row.cells[1].textContent.toLowerCase().includes(term);});
+    sync();
+  });
+  all.addEventListener('change',()=>{
+    rows.filter(row=>!row.hidden).forEach(row=>row.querySelector('input[type=checkbox]').checked=all.checked);
+    sync();
+  });
+  clearSelected.addEventListener('click',()=>{
+    rows.forEach(row=>{row.querySelector('input[type=checkbox]').checked=false;});
+    feedback.textContent='';
+    sync();
+  });
+  rows.forEach(row=>{
+    row.querySelector('input[type=checkbox]').addEventListener('change',sync);
+    row.querySelectorAll('[data-step]').forEach(button=>button.addEventListener('click',()=>{
+      const count=row.querySelector('output');
+      count.textContent=String(Math.max(1,Math.min(999,Number(count.textContent)+Number(button.dataset.step))));
+    }));
+  });
+  const bulkButton=document.getElementById('dashboardBulkUpload');
+  const bulkInput=document.getElementById('dashboardBulkUploadFile');
+  bulkButton.addEventListener('click',()=>bulkInput.click());
+  bulkInput.addEventListener('change',()=>{
+    const file=bulkInput.files&&bulkInput.files[0];
+    if(file)feedback.textContent=file.name+' selected — upload preview only.';
+  });
+  document.getElementById('dashboardReorderAdd').addEventListener('click',()=>{
+    const items=rows.filter(row=>row.querySelector('input[type=checkbox]').checked);
+    feedback.textContent=items.length?items.length+' selected product(s) — prototype preview only.':'Select products to add to cart.';
+  });
+  sync();
+})();
+</script>
+
+
+<script>
+/* Dashboard-only instance of the storefront horizontal product carousel. */
+(function(){
+  const carousel=document.getElementById('dashboardProductCarousel');
+  const track=document.getElementById('dashboardProductProgress');
+  const container=carousel.closest('.carousel-wrap');
+  const prev=container.querySelector('.carousel-arrow-prev');
+  const next=container.querySelector('.carousel-arrow-next');
+  const parent=track.closest('[role="progressbar"]');
+  const step=()=>{
+    const card=carousel.querySelector('.card');
+    return card?card.getBoundingClientRect().width+(parseFloat(getComputedStyle(carousel).gap)||0):carousel.clientWidth;
+  };
+  const update=()=>{
+    const max=Math.max(0,carousel.scrollWidth-carousel.clientWidth);
+    const ratio=max?carousel.scrollLeft/max:0;
+    const visible=Math.min(1,carousel.clientWidth/carousel.scrollWidth);
+    track.style.width=(visible*100)+'%';
+    track.style.transform='translateX('+(parent.clientWidth*(1-visible)*ratio)+'px)';
+    parent.setAttribute('aria-valuenow',String(Math.round(ratio*100)));
+    prev.disabled=carousel.scrollLeft<=1;
+    next.disabled=carousel.scrollLeft>=max-1;
+    prev.hidden=max<2;next.hidden=max<2;
+  };
+  const advance=direction=>{
+    const max=Math.max(0,carousel.scrollWidth-carousel.clientWidth);
+    const target=Math.max(0,Math.min(max,carousel.scrollLeft+direction*step()));
+    carousel.scrollTo({left:target,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  };
+  prev.addEventListener('click',()=>advance(-1));
+  next.addEventListener('click',()=>advance(1));
+  carousel.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update,{passive:true});
+  carousel.addEventListener('keydown',e=>{
+    if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
+    e.preventDefault();advance(e.key==='ArrowRight'?1:-1);
+  });
+  carousel.addEventListener('click',e=>{
+    const btn=e.target.closest('.add');
+    if(btn){btn.setAttribute('title','Demo product — cart integration not connected');}
+  });
+  requestAnimationFrame(update);
+})();
+</script>
+
+<script>
+/* Sync the left card's bottom to the right Tracking card without modifying other sections. */
+(function(){
+  const right=document.querySelector('.dashboard-main-grid > .dashboard-balance-stack');
+  const left=document.querySelector('.dashboard-main-grid .dashboard-reorder-card');
+  if(!right||!left)return;
+  const mq=window.matchMedia('(min-width:901px)');
+  const hero=document.querySelector('.dashboard-purple-hero');
+  const actions=left.querySelector('.dashboard-reorder-actions');
+  function syncReorderHeight(){
+    if(!mq.matches){
+      left.style.removeProperty('--dashboard-reorder-card-height');
+      hero.style.removeProperty('--dashboard-purple-stop');
+      return;
+    }
+    const top=left.getBoundingClientRect().top;
+    const bottom=right.getBoundingClientRect().bottom;
+    left.style.setProperty('--dashboard-reorder-card-height',Math.max(220,Math.round(bottom-top))+'px');
+    // Match the purple-to-white boundary exactly to the separator above the buttons.
+    requestAnimationFrame(()=>{
+      if(!mq.matches)return;
+      const stop=Math.max(0,Math.round(actions.getBoundingClientRect().top-hero.getBoundingClientRect().top));
+      hero.style.setProperty('--dashboard-purple-stop',stop+'px');
+    });
+  }
+  if(typeof ResizeObserver!=='undefined'){
+    const observer=new ResizeObserver(syncReorderHeight);
+    observer.observe(right);
+  }
+  window.addEventListener('resize',syncReorderHeight,{passive:true});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(syncReorderHeight);
+  syncReorderHeight();
+})();
+</script>
+<script>
+/* The exact landing-build.js purple fullscreen burger state, scoped to Dashboard. */
+(function(){
+  const toggle=document.getElementById('mobileMenuToggle');
+  const panel=document.getElementById('mobileMenuPanel');
+  const searchToggle=document.getElementById('headerSearchToggle');
+  const searchPanel=document.getElementById('headerSearchPanel');
+  if(!toggle||!panel)return;
+  function setOpen(open,restoreFocus=false){
+    panel.classList.toggle('is-open',open);
+    panel.inert=!open;
+    panel.setAttribute('aria-hidden',String(!open));
+    toggle.setAttribute('aria-expanded',String(open));
+    toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
+    document.body.classList.toggle('td-login-menu-open',open);
+    document.body.classList.toggle('td-locked',open);
+    if(!open&&panel.contains(document.activeElement))document.activeElement.blur();
+    if(!open&&restoreFocus)toggle.focus({preventScroll:true});
+  }
+  toggle.addEventListener('click',()=>{
+    const open=!panel.classList.contains('is-open');
+    if(open&&searchPanel?.classList.contains('is-open'))searchToggle?.click();
+    setOpen(open);
+  });
+  searchToggle?.addEventListener('click',()=>setOpen(false));
+  panel.addEventListener('click',e=>{if(e.target.closest('a'))setOpen(false)});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&panel.classList.contains('is-open'))setOpen(false,true);
+  });
+  window.addEventListener('pageshow',()=>setOpen(false));
+  document.getElementById('dashboardMenuLogout')?.addEventListener('click',()=>{
+    try{sessionStorage.removeItem('td-preview-auth-v1')}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
