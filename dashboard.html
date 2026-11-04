@@ -421,7 +421,29 @@
   .dashboard-reorder-toolbar .dashboard-reorder-search.header-search-inner{flex:1 1 100%}
   .dashboard-reorder-toolbar .dashboard-clear-selected{min-height:44px;margin-left:auto;padding:0 14px}
 }
-</style></head>
+</style><style>
+/* Unified storefront card styling: same as .card in styles.css.
+   Dashboard-only: never change storefront pages. */
+.dashboard-purple-hero .dashboard-reorder-card,
+.dashboard-purple-hero .dashboard-balance-card,
+.dashboard-purple-hero .dashboard-tracking-card,
+.dashboard-promotions .dashboard-promo-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:17px;
+  box-shadow:none;
+  overflow:hidden;
+}
+.dashboard-purple-hero .dashboard-reorder-card:hover,
+.dashboard-purple-hero .dashboard-balance-card:hover,
+.dashboard-purple-hero .dashboard-tracking-card:hover,
+.dashboard-promotions .dashboard-promo-card:hover{
+  border-color:var(--line);
+  box-shadow:none;
+  transform:none;
+}
+</style>
+</head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
   <nav class="site-nav" aria-label="Main navigation">
