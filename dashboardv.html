@@ -887,10 +887,10 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 </style>
 <style id="dashboardv-deals-styles">
 /* Same storefront New Arrivals section, with requested purple background and header. */
-.dashboardv-deals{background:var(--purple);color:#fff;padding:94px 0 110px}
-.dashboardv-deals-inner{width:min(1440px,calc(100% - 96px));margin:auto}
+.dashboardv-deals{position:relative;isolation:isolate;overflow:hidden;background:var(--purple);color:#fff;padding:94px 0 110px}
+.dashboardv-deals-inner{position:relative;z-index:1;width:min(1440px,calc(100% - 96px));margin:auto}
 .dashboardv-deals .section-header{margin-bottom:42px}
-.dashboardv-deals .eyebrow{background:#fff;color:var(--purple)}
+.dashboardv-deals .eyebrow{background:var(--cyan);color:var(--ink)}
 #dashboardv-deals-title{margin:20px 0 0;font-size:clamp(36px,4.4vw,66px);line-height:1;letter-spacing:-.035em;font-weight:900;color:#fff}
 .dashboardv-deals .view-all{color:#fff}
 .dashboardv-deals .carousel{scroll-behavior:smooth}
@@ -913,6 +913,24 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dashboardv-deals .dashboardv-shop-deal:hover{text-decoration:underline}
 @media(max-width:1100px){.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/2)}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:17px}}
 @media(max-width:760px){.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex-basis:100%;min-height:170px}.dashboardv-deals .dashboardv-deal-placeholder.picture{min-height:170px}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:16px}}
+
+/* Reuse the same circle motif, placement and palette as index.html Brands. */
+.dashboardv-deals-shapes{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.dashboardv-deals-shapes .shape{position:absolute;display:block;border-radius:50%}
+.dashboardv-deals-shapes .cyan{background:#57D4E5}
+.dashboardv-deals-shapes .white{background:#fff}
+.dashboardv-deals-shapes .tl{width:220px;height:220px;top:-110px;left:-110px}
+.dashboardv-deals-shapes .tr{width:220px;height:220px;top:-95px;right:8%}
+.dashboardv-deals-shapes .ml{width:220px;height:220px;left:-120px;bottom:100px}
+.dashboardv-deals-shapes .mr{width:240px;height:240px;top:115px;right:-125px}
+.dashboardv-deals-shapes .purple-glow{width:min(36vw,520px);height:min(36vw,520px);right:12%;top:15%;background:rgba(255,255,255,.10)}
+@media(max-width:760px){
+.dashboardv-deals-shapes .tl{width:150px;height:150px;top:-75px;left:-75px}
+.dashboardv-deals-shapes .tr{width:150px;height:150px;top:-70px;right:5%}
+.dashboardv-deals-shapes .ml{width:150px;height:150px;left:-95px;bottom:100px}
+.dashboardv-deals-shapes .mr{width:160px;height:160px;top:115px;right:-100px}
+.dashboardv-deals-shapes .purple-glow{width:280px;height:280px;right:-50px;top:24%}
+}
 </style>
 
 <style id="dashboardv-account-overview-styles">
@@ -1034,6 +1052,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   
 <main id="dashboardv" aria-label="Dashboard content">
   <section class="new-section dashboardv-deals" aria-labelledby="dashboardv-deals-title">
+    <div class="dashboardv-deals-shapes" aria-hidden="true"><span class="shape cyan tl"></span><span class="shape cyan tr"></span><span class="shape white ml"></span><span class="shape white mr"></span><span class="shape purple-glow"></span></div>
     <div class="dashboardv-deals-inner">
       <div class="section-header">
         <div class="title-group">
