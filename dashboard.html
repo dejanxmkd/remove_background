@@ -775,7 +775,17 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
       </div>
     </div>
     <div class="dashboard-featured-viewport" id="dashboardFeaturedDealsViewport" aria-label="Featured wholesale deals" tabindex="0">
-      <div class="dashboard-featured-track" id="dashboardFeaturedDealsTrack"></div>
+      <div class="dashboard-featured-track" id="dashboardFeaturedDealsTrack">
+<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="BUY 5 GET 1 FREE — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="eager" decoding="async"></div><div class="card-info"><h3 class="product-title">BUY 5 GET 1 FREE</h3><p>Snacking Brands</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
+<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="15% OFF ALL BEVERAGES — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="eager" decoding="async"></div><div class="card-info"><h3 class="product-title">15% OFF ALL BEVERAGES</h3><p>Use Code: BEV15</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
+<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="BULK CANDY SPECIAL — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="eager" decoding="async"></div><div class="card-info"><h3 class="product-title">BULK CANDY SPECIAL</h3><p>Sweet deals on bulk candy</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
+<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="SNACKS &amp; CHIPS — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="card-info"><h3 class="product-title">SNACKS & CHIPS</h3><p>Explore snack promotions</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
+<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="BOTTLED DRINKS — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="card-info"><h3 class="product-title">BOTTLED DRINKS</h3><p>Explore beverage promotions</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
+<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="CANDY FAVORITES — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="card-info"><h3 class="product-title">CANDY FAVORITES</h3><p>Explore sweet promotions</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
+<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="WHOLESALE SNACKS — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="card-info"><h3 class="product-title">WHOLESALE SNACKS</h3><p>Browse snack deals</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
+<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="DRINKS FOR YOUR STORE — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="card-info"><h3 class="product-title">DRINKS FOR YOUR STORE</h3><p>Browse beverage deals</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
+<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="BULK SWEETS — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="card-info"><h3 class="product-title">BULK SWEETS</h3><p>Browse candy deals</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
+</div>
     </div>
     <div class="dashboard-featured-footer">
       <div class="dashboard-featured-progress progress" role="progressbar" aria-label="Featured deals progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
@@ -1070,29 +1080,12 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 +amount,'Not a real billing document'];
     const safe=s=>s.replace(/[\\()]/g,'\\<script>
 (function(){
-  const source=[...document.querySelectorAll('.dashboard-promotions-grid .dashboard-promo-card')];
   const track=document.getElementById('dashboardFeaturedDealsTrack');
   const viewport=document.getElementById('dashboardFeaturedDealsViewport');
   const progress=document.querySelector('.dashboard-featured-progress');
   const prev=document.querySelector('.dashboard-featured-prev');
   const next=document.querySelector('.dashboard-featured-next');
-  if(!track||!viewport||!progress||!source.length)return;
-  source.forEach((card,index)=>{
-    const image=card.querySelector('img');
-    const title=card.querySelector('h3');
-    const description=card.querySelector('p');
-    const link=document.createElement('a');
-    link.className='card dashboard-featured-card';
-    link.href='./index.html#dealsProducts';
-    link.setAttribute('aria-label',(title?title.textContent:'Deal')+' — view deal products');
-    const art=document.createElement('div');art.className='picture';
-    if(image){const img=image.cloneNode(true);img.loading=index<3?'eager':'lazy';art.appendChild(img)}
-    const info=document.createElement('div');info.className='card-info';
-    const name=document.createElement('h3');name.className='product-title';name.textContent=title?title.textContent:'Featured Deal';
-    const desc=document.createElement('p');desc.textContent=description?description.textContent:'';
-    const cta=document.createElement('span');cta.className='dashboard-featured-cta';cta.textContent='SHOP DEALS ↗';
-    info.append(name,desc,cta);link.append(art,info);track.appendChild(link);
-  });
+  if(!track||!viewport||!progress)return;
   let page=0;
   let paused=false;
   const cards=[...track.children];
