@@ -342,7 +342,34 @@
   .dashboard-balance-stack .dashboard-tracking-step-copy strong{font-size:15px}
   .dashboard-balance-stack .dashboard-tracking-step-copy small{font-size:13px}
 }
-</style></head>
+</style><style>
+/* Quick Reorder card ends at the bottom of Order Tracking; only its product list scrolls. */
+@media(min-width:901px){
+  .dashboard-main-grid .dashboard-reorder-row,
+  .dashboard-main-grid .dashboard-reorder-column{min-width:0;min-height:0}
+  .dashboard-main-grid .dashboard-reorder-column{display:flex;flex-direction:column}
+  .dashboard-main-grid .dashboard-reorder-column > .dashboard-balance-heading{flex:none}
+  .dashboard-main-grid .dashboard-reorder-card{
+    display:flex;flex-direction:column;
+    height:var(--dashboard-reorder-card-height,auto);
+    min-height:0;
+  }
+  .dashboard-main-grid .dashboard-reorder-toolbar,
+  .dashboard-main-grid .dashboard-reorder-actions{flex:0 0 auto}
+  .dashboard-main-grid .dashboard-reorder-table-wrap{
+    flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:auto;
+    overscroll-behavior:contain;
+  }
+  .dashboard-main-grid .dashboard-reorder-table thead{
+    position:sticky;top:0;z-index:2;
+  }
+}
+@media(max-width:900px){
+  .dashboard-main-grid .dashboard-reorder-card{height:auto}
+  .dashboard-main-grid .dashboard-reorder-table-wrap{max-height:none;overflow-y:visible}
+}
+</style>
+</head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
   <nav class="site-nav" aria-label="Main navigation">
@@ -600,6 +627,28 @@
     feedback.textContent=items.length?items.length+' selected product(s) — prototype preview only.':'Select products to add to cart.';
   });
   sync();
+})();
+</script>
+<script>
+/* Sync the left card's bottom to the right Tracking card without modifying other sections. */
+(function(){
+  const right=document.querySelector('.dashboard-main-grid > .dashboard-balance-stack');
+  const left=document.querySelector('.dashboard-main-grid .dashboard-reorder-card');
+  if(!right||!left)return;
+  const mq=window.matchMedia('(min-width:901px)');
+  function syncReorderHeight(){
+    if(!mq.matches){left.style.removeProperty('--dashboard-reorder-card-height');return}
+    const top=left.getBoundingClientRect().top;
+    const bottom=right.getBoundingClientRect().bottom;
+    left.style.setProperty('--dashboard-reorder-card-height',Math.max(220,Math.round(bottom-top))+'px');
+  }
+  if(typeof ResizeObserver!=='undefined'){
+    const observer=new ResizeObserver(syncReorderHeight);
+    observer.observe(right);
+  }
+  window.addEventListener('resize',syncReorderHeight,{passive:true});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(syncReorderHeight);
+  syncReorderHeight();
 })();
 </script>
 </body>
