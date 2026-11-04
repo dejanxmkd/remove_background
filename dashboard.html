@@ -29,7 +29,7 @@
 </style>
 <style>
 /* Dashboard-only solid purple block: exactly the Home hero minimum heights. */
-.dashboard-purple-hero{width:100%;min-height:clamp(520px,68vw,740px);background:linear-gradient(to bottom,var(--purple,#6633CC) 0%,var(--purple,#6633CC) 70%,#fff 70%,#fff 100%)}
+.dashboard-purple-hero{width:100%;min-height:clamp(520px,68vw,740px);background:linear-gradient(to bottom,var(--purple,#6633CC) 0%,var(--purple,#6633CC) var(--dashboard-purple-stop,70%),#fff var(--dashboard-purple-stop,70%),#fff 100%)}
 @media(max-width:760px){.dashboard-purple-hero{min-height:570px}}
 </style>
 <style>
@@ -823,11 +823,23 @@
   const left=document.querySelector('.dashboard-main-grid .dashboard-reorder-card');
   if(!right||!left)return;
   const mq=window.matchMedia('(min-width:901px)');
+  const hero=document.querySelector('.dashboard-purple-hero');
+  const actions=left.querySelector('.dashboard-reorder-actions');
   function syncReorderHeight(){
-    if(!mq.matches){left.style.removeProperty('--dashboard-reorder-card-height');return}
+    if(!mq.matches){
+      left.style.removeProperty('--dashboard-reorder-card-height');
+      hero.style.removeProperty('--dashboard-purple-stop');
+      return;
+    }
     const top=left.getBoundingClientRect().top;
     const bottom=right.getBoundingClientRect().bottom;
     left.style.setProperty('--dashboard-reorder-card-height',Math.max(220,Math.round(bottom-top))+'px');
+    // Match the purple-to-white boundary exactly to the separator above the buttons.
+    requestAnimationFrame(()=>{
+      if(!mq.matches)return;
+      const stop=Math.max(0,Math.round(actions.getBoundingClientRect().top-hero.getBoundingClientRect().top));
+      hero.style.setProperty('--dashboard-purple-stop',stop+'px');
+    });
   }
   if(typeof ResizeObserver!=='undefined'){
     const observer=new ResizeObserver(syncReorderHeight);
