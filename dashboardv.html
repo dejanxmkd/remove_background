@@ -942,7 +942,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dv-invoice{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:9px 12px;padding:16px 0;border-bottom:1px solid var(--line)}
 .dv-invoice:first-child{padding-top:16px}.dv-invoice:last-child{border-bottom:0;padding-bottom:0}
 .dv-invoice-id{display:flex;flex-direction:column;gap:5px}
-.dv-invoice-id strong{font-size:14px;font-weight:800}.dv-invoice-id span{font-size:12px;color:#716c7a}
+.dv-invoice-id strong{font-size:14px;font-weight:800}.dv-invoice-id span{font-size:14px;color:#716c7a}
 .dv-invoice-amount{font-size:14px;font-weight:800;white-space:nowrap}
 .dv-invoice-actions{grid-column:1/-1;display:flex;justify-content:flex-end;gap:6px}
 .dv-primary,.dv-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:8px 19px;min-height:36px;border-radius:999px;font:800 12px/1.2 var(--font);white-space:nowrap;text-decoration:none;cursor:pointer}
@@ -950,9 +950,9 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dv-secondary{background:rgba(102,51,204,.11);border:1px solid transparent;color:var(--purple)}.dv-secondary:hover{background:rgba(102,51,204,.17);color:#4b21a6}
 .dv-primary:focus-visible,.dv-secondary:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
 .dv-balance-contents{display:flex;flex:1;flex-direction:column;align-items:flex-start;gap:17px}
-.dv-muted{font-size:13px;color:#716c7a}
+.dv-muted{font-size:14px;color:#716c7a}
 .dv-total{font-size:clamp(32px,3vw,48px);font-weight:900;line-height:1.05;letter-spacing:-.045em}
-.dv-due{margin:0;color:#716c7a;font-size:12px;line-height:1.4}.dv-due strong{color:var(--ink)}
+.dv-due{margin:0;color:#716c7a;font-size:14px;line-height:1.4}.dv-due strong{color:var(--ink)}
 .dv-pay{margin-top:auto}
 .dv-track-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin:0 0 26px}
 .dv-track-head h2{margin:0}.dv-account-section .dv-quick{background:var(--cyan);border-color:var(--cyan);color:var(--ink);font-size:12px;padding:8px 19px;min-height:36px}.dv-account-section .dv-quick:hover{background:#42c6d9;border-color:#42c6d9;color:var(--ink)}.dv-quick svg{width:15px;height:15px}
@@ -964,14 +964,14 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dv-steps li,.dv-steps li:first-child,.dv-steps li:last-child,.dv-steps li:nth-child(2),.dv-steps li:nth-child(3){display:grid;grid-template-columns:var(--dv-node) minmax(0,1fr);align-items:start;justify-items:stretch;gap:18px;position:relative;z-index:1;min-height:var(--dv-node);padding:0;text-align:left;transform:none}
 .dv-steps li:last-child{min-height:var(--dv-node)}
 .dv-steps li:first-child{grid-template-columns:var(--dv-node) minmax(0,1fr) minmax(0,1.7fr)}
-@media(max-width:760px){.dv-steps li:first-child{grid-template-columns:var(--dv-node) minmax(0,1fr) minmax(0,1.7fr)}.dv-order{font-size:13px}}
+@media(max-width:760px){.dv-steps li:first-child{grid-template-columns:var(--dv-node) minmax(0,1fr) minmax(0,1.7fr)}.dv-order{font-size:14px}}
 .dv-step-dot{width:var(--dv-node);height:var(--dv-node);display:grid;place-items:center;flex:none;border-radius:50%;border:2px solid #dad4e4;background:#fff}
 .dv-step-dot svg{width:15px;height:15px}
 .dv-steps .complete .dv-step-dot{color:#fff;background:var(--purple);border-color:var(--purple)}
 .dv-step-copy{display:flex;flex-direction:column;gap:6px;min-width:0;padding-top:4px}
 .dv-step-label{font-size:14px;line-height:1.35;font-weight:700;color:#716c7a}
 .dv-steps .complete .dv-step-label{color:var(--ink);font-weight:800}
-.dv-step-subtitle{font-size:12px;line-height:1.45;color:#716c7a}
+.dv-step-subtitle{font-size:14px;line-height:1.45;color:#716c7a}
 .dv-steps .current .dv-step-label{color:var(--purple)}
 /* Pulse the current step only; respect reduced-motion preferences. */
 .dv-steps .current .dv-step-dot{animation:dv-current-step-pulse 2s ease-in-out infinite}
@@ -979,7 +979,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 @media(prefers-reduced-motion:reduce){.dv-steps .current .dv-step-dot{animation:none}}
 @media(min-width:1101px){.dv-invoice{grid-template-columns:minmax(0,1fr) auto auto;gap:6px;align-items:center}.dv-invoice-actions{grid-column:auto;justify-content:flex-end;gap:8px;margin-left:16px}.dv-invoice-actions .dv-primary,.dv-invoice-actions .dv-secondary{font-size:12px;padding:8px 19px;gap:6px}.dv-invoice-actions svg{width:18px;height:18px}}
 @media(max-width:1100px){.dv-account-container{grid-template-columns:1fr 1fr;row-gap:26px}.dv-account-col:nth-child(2){border-right:0;padding-right:0}.dv-account-col:last-child{grid-column:1/-1;padding:24px 0 0;border-top:1px solid var(--line)}}
-@media(max-width:760px){.dv-account-section{padding:52px 0 72px;background:linear-gradient(to bottom,var(--purple) 0%,var(--purple) 33%,#fff 33%,#fff 100%)}.dv-account-container{width:calc(100% - 36px);grid-template-columns:1fr;padding:22px 18px}.dv-account-col,.dv-account-col:first-child,.dv-account-col:last-child{grid-column:1/-1;border:0;border-bottom:1px solid var(--line);padding:0 0 22px;margin:0 0 22px}.dv-account-col:last-child{border:0;margin:0;padding:0}.dv-account-col h2{font-size:20px}.dv-invoice{grid-template-columns:minmax(0,1fr) auto}.dv-invoice-actions{grid-column:1/-1;justify-content:flex-start}.dv-pay{margin-top:5px}.dv-track-head h2{font-size:18px}.dv-step-label{font-size:13px}}
+@media(max-width:760px){.dv-account-section{padding:52px 0 72px;background:linear-gradient(to bottom,var(--purple) 0%,var(--purple) 33%,#fff 33%,#fff 100%)}.dv-account-container{width:calc(100% - 36px);grid-template-columns:1fr;padding:22px 18px}.dv-account-col,.dv-account-col:first-child,.dv-account-col:last-child{grid-column:1/-1;border:0;border-bottom:1px solid var(--line);padding:0 0 22px;margin:0 0 22px}.dv-account-col:last-child{border:0;margin:0;padding:0}.dv-account-col h2{font-size:20px}.dv-invoice{grid-template-columns:minmax(0,1fr) auto}.dv-invoice-actions{grid-column:1/-1;justify-content:flex-start}.dv-pay{margin-top:5px}.dv-track-head h2{font-size:18px}.dv-step-label{font-size:14px}}
 </style>
 </head>
 <body data-auth-preview="true">
