@@ -550,50 +550,32 @@
 }
 </style>
 <style>
-/* Dashboard burger follows storefront mobile reveal, without changing desktop navigation. */
-.dashboard-mobile-menu-panel{display:none}
-@media(max-width:760px){
-  .site-header .shopping-nav-controls{gap:clamp(7px,2vw,13px)}
-  .site-header .mobile-menu-toggle{display:inline-flex;flex:none}
-  .site-header .dashboard-mobile-menu-panel{display:grid}
-  .dashboard-mobile-menu-panel .dashboard-mobile-menu-content{
-    width:calc(100% - 36px);margin:0 auto;padding:14px 0 20px;
-    display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
-    gap:0;
-  }
-  .dashboard-mobile-menu-content > a:not(.dashboard-menu-logout){
-    display:flex;align-items:center;min-height:48px;padding:11px 12px;
-    border-bottom:1px solid var(--line);font-size:15px;font-weight:650;
-    color:var(--ink);
-  }
-  .dashboard-mobile-menu-content > a[aria-current="page"]{color:var(--purple);font-weight:800}
-  .dashboard-mobile-menu-content > a:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
-  .dashboard-mobile-menu-content .dashboard-menu-logout{
-    display:flex;order:0;align-self:stretch;width:100%;margin-top:15px;
-    min-height:50px;
-  }
+/* Dashboard links inside the shared storefront hamburger panel.
+   The menu's container, reveal and animation come from styles.css unchanged. */
+.dashboard-mobile-menu-content > .dashboard-menu-link{
+  display:inline-flex;align-items:center;min-height:44px;
+  font-size:14px;font-weight:650;color:var(--ink);
+  text-decoration:none;white-space:nowrap;
 }
+.dashboard-mobile-menu-content > .dashboard-menu-link[aria-current="page"]{color:var(--purple);font-weight:800}
+.dashboard-mobile-menu-content > .dashboard-menu-link:hover{color:var(--purple)}
+.dashboard-mobile-menu-content > .dashboard-menu-link:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
 @media(min-width:761px){
-  /* Match the storefront desktop burger and slide-down navigation. */
-  .site-header .mobile-menu-toggle{
-    display:inline-flex!important;align-items:center;justify-content:center;
-    flex:none;width:43px;height:43px;padding:0;margin:0;
+  .dashboard-mobile-menu-content{flex-wrap:wrap}
+  .dashboard-mobile-menu-content > .dashboard-menu-logout{margin-left:8px}
+}
+@media(max-width:760px){
+  .dashboard-mobile-menu-content{gap:0}
+  .dashboard-mobile-menu-content > .dashboard-menu-link{
+    display:flex;align-items:center;width:100%;min-height:49px;
+    padding:12px 0;border-bottom:1px solid var(--line);
+    font-size:15px;
   }
-  .site-header .dashboard-mobile-menu-panel{display:grid!important}
-  .dashboard-mobile-menu-panel .dashboard-mobile-menu-content{
-    display:flex;flex-direction:row;align-items:center;justify-content:flex-end;
-    gap:clamp(12px,2vw,26px);flex-wrap:wrap;
-    width:min(1440px,calc(100% - 96px));margin:0 auto;padding:18px 0;
+  .dashboard-mobile-menu-content > .dashboard-menu-logout{
+    order:3;display:flex;align-self:stretch;width:100%;min-height:52px;
+    margin-top:16px;
   }
-  .dashboard-mobile-menu-content > a:not(.dashboard-menu-logout){
-    color:var(--ink);font-size:14px;font-weight:650;white-space:nowrap;
-  }
-  .dashboard-mobile-menu-content > a[aria-current="page"]{color:var(--purple);font-weight:800}
-  .dashboard-mobile-menu-content > a:hover{color:var(--purple)}
-  .dashboard-mobile-menu-content > a:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
-  .dashboard-mobile-menu-content .dashboard-menu-logout{
-    min-height:44px;margin:0;width:auto;
-  }
+  .dashboard-mobile-menu-content > .shopping-user{order:0;margin-bottom:10px}
 }
 </style>
 </head>
@@ -637,14 +619,14 @@
       </button>
     </div>
   </nav>
-  <div class="mobile-menu-panel dashboard-mobile-menu-panel" id="mobileMenuPanel" aria-hidden="true" inert>
+  <div class="mobile-menu-panel" id="mobileMenuPanel" aria-hidden="true" inert>
     <div class="mobile-menu-reveal">
       <nav class="mobile-menu-content dashboard-mobile-menu-content" id="mobileMenuContent" aria-label="Dashboard mobile navigation">
-        <a href="./dashboard.html" aria-current="page">Dashboard</a>
-        <a href="#dashboardProductCarousel">Products</a>
-        <a href="#orderTrackingTitle">Orders</a>
-        <a href="#dashboardBalanceTitle">Invoices</a>
-        <a href="#dashboardSupportFooter">Support</a>
+        <a class="dashboard-menu-link" href="./dashboard.html" aria-current="page">Dashboard</a>
+        <a class="dashboard-menu-link" href="#dashboardProductCarousel">Products</a>
+        <a class="dashboard-menu-link" href="#orderTrackingTitle">Orders</a>
+        <a class="dashboard-menu-link" href="#dashboardBalanceTitle">Invoices</a>
+        <a class="dashboard-menu-link" href="#dashboardSupportFooter">Support</a>
         <a class="menu-auth-link dashboard-menu-logout" id="dashboardMenuLogout" href="./login.html">Logout
           <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
@@ -1052,16 +1034,18 @@
 })();
 </script>
 <script>
-/* Dashboard burger on desktop and mobile: same storefront slide-down reveal. */
+/* Shared storefront hamburger behavior: same reveal, focus and responsive account positioning. */
 (function(){
   const toggle=document.getElementById('mobileMenuToggle');
   const panel=document.getElementById('mobileMenuPanel');
-  if(!toggle||!panel)return;
+  const content=document.getElementById('mobileMenuContent');
+  const controls=document.querySelector('.shopping-nav-controls');
+  const user=controls?.querySelector('.shopping-user');
   const mq=window.matchMedia('(max-width:760px)');
   const searchToggle=document.getElementById('headerSearchToggle');
   const searchPanel=document.getElementById('headerSearchPanel');
+  if(!toggle||!panel||!content)return;
   function setOpen(open,restoreFocus=false){
-    open=!!open;
     panel.classList.toggle('is-open',open);
     panel.inert=!open;
     panel.setAttribute('aria-hidden',String(!open));
@@ -1070,10 +1054,18 @@
     if(!open&&panel.contains(document.activeElement))document.activeElement.blur();
     if(!open&&restoreFocus)toggle.focus({preventScroll:true});
   }
+  function syncLayout(){
+    setOpen(false);
+    if(!user||!controls)return;
+    if(mq.matches){content.prepend(user);}
+    else{controls.insertBefore(user,toggle);}
+  }
+  mq.addEventListener('change',syncLayout);
+  syncLayout();
   toggle.addEventListener('click',()=>{
-    const opening=!panel.classList.contains('is-open');
-    if(opening&&searchPanel?.classList.contains('is-open'))searchToggle?.click();
-    setOpen(opening);
+    const open=!panel.classList.contains('is-open');
+    if(open&&searchPanel?.classList.contains('is-open'))searchToggle?.click();
+    setOpen(open);
   });
   searchToggle?.addEventListener('click',()=>setOpen(false));
   panel.addEventListener('click',e=>{if(e.target.closest('a'))setOpen(false)});
@@ -1081,11 +1073,9 @@
     if(panel.classList.contains('is-open')&&!panel.contains(e.target)&&!toggle.contains(e.target))setOpen(false);
   });
   document.addEventListener('keydown',e=>{
-    if(e.key==='Escape'&&panel.classList.contains('is-open')){e.stopPropagation();setOpen(false,true);}
+    if(e.key==='Escape'&&panel.classList.contains('is-open')){setOpen(false,true);}
   });
-  mq.addEventListener('change',()=>setOpen(false));
-  const logout=document.getElementById('dashboardMenuLogout');
-  logout?.addEventListener('click',()=>{
+  document.getElementById('dashboardMenuLogout')?.addEventListener('click',()=>{
     try{sessionStorage.removeItem('td-preview-auth-v1')}catch(e){}
   });
 })();
