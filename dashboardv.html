@@ -995,6 +995,76 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 @media(max-width:1100px){.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/2)}}
 @media(max-width:760px){.dashboardv-current-deals.dashboardv-deals{padding:52px 0 72px}.dashboardv-current-deals #dashboardv-current-title{font-size:clamp(30px,7.4vw,46px)}.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{flex-basis:100%}}
 </style>
+<style id="dashboardv-exact-homepage-brands">
+/* BRANDS: identical refinements to index.html's landing-build.css. */
+/* ----- Brand carousel logo normalization --------------------------------- */
+.brands-carousel .brand-picture {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 276px !important;
+  min-height: 276px !important;
+  padding: 0 !important;
+  background: #fff !important;
+  overflow: hidden !important;
+}
+.brands-carousel .brand-logo-img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+/* ----- Brands section polish --------------------------------------------- */
+.brands-section .section-bottom,
+.brands-section .progress,
+.brands-section #brandProgress {
+  display: none !important;
+}
+
+body .brands-section .brands-carousel .brand-card,
+body .brands-section .brands-carousel .brand-picture {
+  background: #fff !important;
+  border-color: #fff !important;
+  box-shadow: none !important;
+}
+body .brands-section .brands-carousel .brand-card:hover,
+body .brands-section .brands-carousel .brand-card:focus-within {
+  box-shadow: 0 18px 40px rgba(8, 7, 11, 0.1) !important;
+}
+body .brands-section .brands-carousel .brand-card .brand-logo-img {
+  filter: grayscale(1) saturate(0) contrast(1.55) !important;
+  opacity: 1 !important;
+  transition: filter 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+body .brands-section .brands-carousel .brand-card:hover .brand-logo-img,
+body .brands-section .brands-carousel .brand-card:focus-within .brand-logo-img {
+  filter: grayscale(0) saturate(1.16) contrast(1.06) !important;
+  transform: scale(1.018) !important;
+}
+
+/* ----- Mobile tweaks ----------------------------------------------------- */
+@media (max-width: 760px) {
+  .brands-carousel .brand-picture {
+    height: 264px !important;
+    min-height: 264px !important;
+  }
+}
+
+/* ----- Reduced motion ---------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  body .brands-section .brands-carousel .brand-card .brand-logo-img {
+    transition: none !important;
+  }
+}
+
+</style>
 </head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
