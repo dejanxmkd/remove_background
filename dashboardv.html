@@ -891,7 +891,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dashboardv-deals-inner{width:min(1440px,calc(100% - 96px));margin:auto}
 .dashboardv-deals .section-header{margin-bottom:42px}
 .dashboardv-deals .eyebrow{background:#fff;color:var(--purple)}
-#dashboardv-deals-title{margin:20px 0 0;font-size:clamp(36px,4.4vw,66px);line-height:1;letter-spacing:-.035em;font-weight:900;color:#fff}
+.dashboardv-deals .title-group h1{margin:20px 0 0;font-size:clamp(36px,4.4vw,66px);line-height:1;letter-spacing:-.035em;font-weight:900;color:#fff}
 .dashboardv-deals .view-all{color:#fff}
 .dashboardv-deals .carousel{scroll-behavior:smooth}
 .dashboardv-deals .carousel .card{background:#fff;color:var(--ink)}
@@ -899,11 +899,11 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dashboardv-deals .progress span{background:#fff}
 .dashboardv-carousel-wrap{position:relative}
 .dashboardv-deals .mobile-view-all{background:#fff;color:var(--purple)}
-@media(max-width:760px){.dashboardv-deals{padding:52px 0 72px}.dashboardv-deals-inner{width:calc(100% - 36px)}.dashboardv-deals .section-header{margin-bottom:20px}#dashboardv-deals-title{font-size:clamp(30px,7.4vw,46px)}}
+@media(max-width:760px){.dashboardv-deals{padding:52px 0 72px}.dashboardv-deals-inner{width:calc(100% - 36px)}.dashboardv-deals .section-header{margin-bottom:20px}.dashboardv-deals .title-group h1{font-size:clamp(30px,7.4vw,46px)}}
 
 /* Four side-by-side, horizontal deal cards with image placeholders only. */
-.dashboardv-deals #dashboardvDealsCarousel{--gap:18px;align-items:stretch}
-.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex:0 0 calc((100% - 3 * var(--gap))/4);display:grid;grid-template-columns:43% minmax(0,1fr);min-width:0;min-height:176px;align-self:stretch;overflow:hidden;background:#fff;border-radius:17px}
+.dashboardv-deals .dashboardv-deals .carousel{--gap:18px;align-items:stretch}
+.dashboardv-deals .dashboardv-deals .carousel .dashboardv-deal-card.card{flex:0 0 calc((100% - 3 * var(--gap))/4);display:grid;grid-template-columns:43% minmax(0,1fr);min-width:0;min-height:176px;align-self:stretch;overflow:hidden;background:#fff;border-radius:17px}
 .dashboardv-deals .dashboardv-deal-placeholder.picture{width:100%;height:100%;min-height:176px;aspect-ratio:auto;background:var(--placeholder);border:0}
 .dashboardv-deals .dashboardv-deal-info.card-info{display:flex;min-width:0;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px;padding:16px 15px}
 .dashboardv-deals .dashboardv-deal-info .product-title{margin:0;min-height:0;color:var(--ink);font:900 clamp(13px,1.05vw,17px)/1.24 var(--font);letter-spacing:-.025em}
@@ -911,8 +911,10 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dashboardv-deals .dashboardv-shop-deal.request-price-link{display:inline-flex;align-items:center;gap:5px;margin-top:3px;color:var(--purple);font:800 12px/1.25 var(--font);white-space:nowrap;text-decoration:none}
 .dashboardv-deals .dashboardv-shop-deal svg{width:17px;height:17px}
 .dashboardv-deals .dashboardv-shop-deal:hover{text-decoration:underline}
-@media(max-width:1100px){.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/2)}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:16px}}
-@media(max-width:760px){.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex-basis:100%;min-height:170px}.dashboardv-deals .dashboardv-deal-placeholder.picture{min-height:170px}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:15px}}
+@media(max-width:1100px){.dashboardv-deals .dashboardv-deals .carousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/2)}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:16px}}
+@media(max-width:760px){.dashboardv-deals .dashboardv-deals .carousel .dashboardv-deal-card.card{flex-basis:100%;min-height:170px}.dashboardv-deals .dashboardv-deal-placeholder.picture{min-height:170px}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:15px}}
+
+.dashboardv-deals-second{padding-top:65px}
 </style>
 </head>
 <body data-auth-preview="true">
@@ -1074,6 +1076,90 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
       <a class="mobile-view-all" href="./index.html#dealsProducts">View All Deals <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     </div>
   </section>
+  <section class="new-section dashboardv-deals dashboardv-deals-second" aria-labelledby="dashboardv-deals-title-2">
+    <div class="dashboardv-deals-inner">
+      <div class="section-header">
+        <div class="title-group">
+          <div class="eyebrow">SPECIAL OFFERS</div>
+          <h1 id="dashboardv-deals-title-2">DEALS YOU DON'T WANT TO MISS</h1>
+        </div>
+        <a class="view-all desktop-view-all" href="./index.html#dealsProducts">View All Deals <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+      <div class="carousel-wrap dashboardv-carousel-wrap">
+        <button class="carousel-arrow carousel-arrow-prev dashboardv-carousel-prev" type="button" aria-label="Previous deals" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <div class="carousel" id="dashboardvDealsCarousel2" tabindex="0" aria-label="Deals carousel">
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">BUY 5 GET 1 FREE</h3>
+    <p class="dashboardv-deal-subtitle">Snacking Brands</p>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">15% OFF ALL BEVERAGES</h3>
+    <p class="dashboardv-deal-subtitle">Use Code: BEV15</p>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">BULK CANDY SPECIAL</h3>
+    <p class="dashboardv-deal-subtitle">Sweet deals on bulk candy</p>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">SNACKS & CHIPS</h3>
+    <p class="dashboardv-deal-subtitle">Explore snack promotions</p>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">BOTTLED DRINKS</h3>
+    <p class="dashboardv-deal-subtitle">Explore beverage promotions</p>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">CANDY FAVORITES</h3>
+    <p class="dashboardv-deal-subtitle">Explore sweet promotions</p>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">WHOLESALE SNACKS</h3>
+    <p class="dashboardv-deal-subtitle">Browse snack deals</p>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">BULK SWEETS</h3>
+    <p class="dashboardv-deal-subtitle">Browse candy deals</p>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+</article>
+</div>
+        <button class="carousel-arrow carousel-arrow-next dashboardv-carousel-next" type="button" aria-label="Next deals"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+      <div class="section-bottom"><div class="progress" role="progressbar" aria-label="Deals carousel progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="dashboardvDealsProgress2"></span></div></div>
+      <a class="mobile-view-all" href="./index.html#dealsProducts">View All Deals <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </section>
+
 </main>
 <script>
 /* Dashboard header. Existing storefront UI styles, no Quick Shop or burger. */
@@ -1193,36 +1279,41 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 })();
 </script>
 <script>
-/* Standalone New Arrivals-style carousel for Dashboard V only. */
+/* Every Deals section owns an independent carousel and matching controls. */
 (function(){
-  const rail=document.getElementById('dashboardvDealsCarousel');
-  if(!rail)return;
-  const prev=document.querySelector('.dashboardv-carousel-prev');
-  const next=document.querySelector('.dashboardv-carousel-next');
-  const track=document.getElementById('dashboardvDealsProgress');
-  const progress=track.parentElement;
-  function sync(){
-    const max=Math.max(0,rail.scrollWidth-rail.clientWidth);
-    const ratio=max?rail.scrollLeft/max:0;
-    const visible=Math.min(1,rail.clientWidth/rail.scrollWidth);
-    track.style.width=(visible*100)+'%';
-    track.style.transform='translateX('+(progress.clientWidth*(1-visible)*ratio)+'px)';
-    progress.setAttribute('aria-valuenow',String(Math.round(ratio*100)));
-    prev.disabled=rail.scrollLeft<=1;
-    next.disabled=rail.scrollLeft>=max-1;
-  }
-  function move(sign){
-    const card=rail.querySelector('.card');
-    const distance=(card?.getBoundingClientRect().width||rail.clientWidth)+(parseFloat(getComputedStyle(rail).gap)||0);
-    rail.scrollBy({left:sign*distance,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
-  }
-  prev.addEventListener('click',()=>move(-1));
-  next.addEventListener('click',()=>move(1));
-  rail.addEventListener('scroll',sync,{passive:true});
-  window.addEventListener('resize',sync,{passive:true});
-  rail.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();move(e.key==='ArrowRight'?1:-1)}});
-  rail.addEventListener('click',e=>{if(e.target.closest('[data-demo-product]'))location.assign('./login.html')});
-  requestAnimationFrame(sync);
+  document.querySelectorAll('.dashboardv-deals').forEach(section=>{
+    const rail=section.querySelector('.carousel');
+    const prev=section.querySelector('.dashboardv-carousel-prev');
+    const next=section.querySelector('.dashboardv-carousel-next');
+    const track=section.querySelector('.progress span');
+    const progress=track?.parentElement;
+    if(!rail||!prev||!next||!track||!progress)return;
+    function sync(){
+      const max=Math.max(0,rail.scrollWidth-rail.clientWidth);
+      const ratio=max?rail.scrollLeft/max:0;
+      const visible=rail.scrollWidth?Math.min(1,rail.clientWidth/rail.scrollWidth):1;
+      track.style.width=(visible*100)+'%';
+      track.style.transform='translateX('+(progress.clientWidth*(1-visible)*ratio)+'px)';
+      progress.setAttribute('aria-valuenow',String(Math.round(ratio*100)));
+      prev.disabled=rail.scrollLeft<=1;
+      next.disabled=rail.scrollLeft>=max-1;
+    }
+    function move(sign){
+      const card=rail.querySelector('.card');
+      const distance=(card?.getBoundingClientRect().width||rail.clientWidth)+(parseFloat(getComputedStyle(rail).gap)||0);
+      rail.scrollBy({left:sign*distance,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+    }
+    prev.addEventListener('click',()=>move(-1));
+    next.addEventListener('click',()=>move(1));
+    rail.addEventListener('scroll',sync,{passive:true});
+    window.addEventListener('resize',sync,{passive:true});
+    rail.addEventListener('keydown',e=>{
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+        e.preventDefault();move(e.key==='ArrowRight'?1:-1);
+      }
+    });
+    requestAnimationFrame(sync);
+  });
 })();
 </script>
 </body>
