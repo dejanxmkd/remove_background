@@ -1,8 +1,6 @@
 name: Publish True Distributors to GitHub Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
