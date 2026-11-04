@@ -589,57 +589,59 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 @media(prefers-reduced-motion:reduce){.td-burger-link{transition:none!important}}
 </style>
 <style>
-/* Compact dashboard cards: expose the deal grid above the fold. */
-.dashboard-compact-hero{min-height:0!important;background:var(--purple,#6633CC)!important;padding:27px 0 32px!important}
-.dashboard-compact-hero .dashboard-hero-content{padding-top:0!important;padding-bottom:0!important}
-.dashboard-summary-three{display:grid;grid-template-columns:1.18fr .9fr 1fr;gap:18px;align-items:stretch}
-.dashboard-summary-panel{min-width:0;display:flex;flex-direction:column;gap:12px}
-.dashboard-panel-heading{display:flex;align-items:center;justify-content:space-between;gap:9px;min-height:29px}
-.dashboard-panel-heading h2{margin:0;color:#fff;font:900 clamp(17px,1.75vw,24px)/1.1 var(--font);letter-spacing:-.035em;white-space:nowrap}
-.dashboard-quick-link{font:800 11px/1.2 var(--font);white-space:nowrap;text-decoration:none;background:#fff;border-radius:999px;color:var(--purple,#6633CC);padding:10px 12px;transition:transform .2s}
-.dashboard-quick-link:hover{transform:translateY(-2px)}
-.dashboard-summary-card{flex:1;background:#fff;border-radius:15px;padding:18px 19px;min-width:0;box-shadow:0 5px 16px rgba(31,12,69,.08)}
-.dashboard-demo-note{margin:0 0 9px;font-size:10px;color:#756b83;font-weight:600}
+/* Dashboard uses storefront UI kit: .card, .card-info, .picture, .hero-cta,
+   .view-all and .product-title from styles.css. Only dashboard layout below. */
+.dashboard-compact-hero{min-height:0!important;background:var(--purple)!important;padding:30px 0 34px!important}
+.dashboard-compact-hero .dashboard-hero-content{padding:0!important}
+.dashboard-summary-three{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.9fr) minmax(0,1fr);gap:18px;align-items:stretch}
+.dashboard-summary-panel{min-width:0;display:flex;flex-direction:column;gap:14px}
+.dashboard-panel-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:38px}
+.dashboard-panel-heading h2{margin:0;color:#fff;font:900 clamp(18px,1.75vw,25px)/1.1 var(--font);letter-spacing:-.035em}
+.dashboard-summary-panel .dashboard-summary-card{flex:1;width:100%;min-width:0;display:flex;flex-direction:column;justify-content:center;padding:20px 22px;border:1px solid var(--line);border-radius:17px;background:#fff;box-shadow:none;overflow:visible;scroll-snap-align:none}
+.dashboard-panel-heading .dashboard-quick-link.hero-cta{flex:none;min-height:37px;padding:10px 15px;gap:8px;background:var(--cyan);color:var(--ink);font-size:11px;white-space:nowrap;text-decoration:none}
+.dashboard-panel-heading .dashboard-quick-link.hero-cta:hover{background:var(--cyan)}
+.dashboard-demo-note{margin:0 0 8px;color:#7e778a;font-size:10px;font-weight:600}
 .dashboard-invoices-list{display:flex;flex-direction:column}
-.dashboard-invoice-row{display:flex;justify-content:space-between;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid #ede9f3}
+.dashboard-invoice-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid var(--line)}
 .dashboard-invoice-row:last-child{border-bottom:0;padding-bottom:0}
-.dashboard-invoice-row>div:first-child{display:flex;flex-direction:column;gap:4px;min-width:0}
-.dashboard-invoice-row strong{font-size:13px;color:var(--ink)}
-.dashboard-invoice-row span{font-size:11px;color:#716b79;white-space:nowrap}
-.dashboard-invoice-actions{display:flex;gap:5px;flex:none}
-.dashboard-invoice-actions button{border:1px solid #dfd6f0;background:#f5efff;color:var(--purple,#6633CC);border-radius:8px;padding:7px 8px;font:800 11px var(--font);cursor:pointer}
-.dashboard-invoice-actions button:hover{background:#e7dafc}
-.dashboard-invoice-actions button span{color:inherit;font-size:10px}
-.dashboard-balance-compact{display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.dashboard-invoice-row>div:first-child{display:flex;flex-direction:column;gap:3px;min-width:0}
+.dashboard-invoice-row strong{font-size:13px;font-weight:800;color:var(--ink)}
+.dashboard-invoice-row span{font-size:11px;font-weight:500;color:#716c7a;white-space:nowrap}
+.dashboard-invoice-actions{display:flex;align-items:center;gap:6px;flex:none}
+.dashboard-invoice-actions button{font:800 11px var(--font);border:0;border-radius:999px;background:var(--purple);color:white;padding:9px 12px;cursor:pointer}
+.dashboard-invoice-actions button span{color:inherit;font:inherit}
+.dashboard-invoice-actions button:hover{background:#4b21a6}
+.dashboard-balance-compact{gap:12px}
 .dashboard-balance-compact .dashboard-balance-label{font-size:13px}
-.dashboard-balance-compact .dashboard-balance-amount{display:block;font-size:clamp(29px,3vw,42px);line-height:1.05}
-.dashboard-compact-footer{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.dashboard-compact-footer .dashboard-balance-date{margin:0;display:flex;flex-direction:column;gap:5px}
-.dashboard-compact-footer .dashboard-action.hero-cta{min-height:38px;height:38px;padding:0 12px;font-size:11px}
-.dashboard-tracking-compact{display:flex;flex-direction:column;justify-content:center;gap:18px}
-.dashboard-tracking-compact .dashboard-order-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0;color:#5d516c;font-size:12px}
-.dashboard-tracking-compact .dashboard-order-meta strong{color:var(--purple,#6633CC)}
-.dashboard-progress-track{width:100%;height:8px;border-radius:99px;background:#eae5f1;overflow:hidden}
-.dashboard-progress-track span{display:block;width:50%;height:100%;background:var(--purple,#6633CC);border-radius:99px}
-.dashboard-progress-labels{display:flex;justify-content:space-between;gap:5px;margin-top:-10px}
-.dashboard-progress-labels span{font-size:10px;font-weight:650;color:#655d70;text-align:center}
-.dashboard-tracking-status{display:flex;align-items:center;gap:7px;margin:0;font-size:12px;color:#5e536c}
-.dashboard-status-dot{width:9px;height:9px;border-radius:50%;background:var(--purple,#6633CC)}
-.dashboard-promotions{padding:24px 0 45px!important}
-.dashboard-promotions-heading{margin-bottom:18px!important;font-size:clamp(23px,2.2vw,30px)!important}
-.dashboard-promotions-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:17px!important}
-.dashboard-promo-card{border-radius:13px;box-shadow:none}
-.dashboard-promo-art{aspect-ratio:2.2;overflow:hidden}
-.dashboard-promo-art img{width:100%;height:100%;object-fit:cover}
-.dashboard-promo-text{min-height:0;padding:13px 15px 15px;gap:3px}
-.dashboard-promo-text h3{font-size:15px}
-.dashboard-promo-text p{font-size:12px}
-.dashboard-shop-links{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:30px;margin-top:30px}
-.dashboard-shop-links a{font:900 17px/1.25 var(--font);color:var(--purple,#6633CC);text-decoration:none}
-.dashboard-shop-links a:hover{text-decoration:underline}
-@media(max-width:1050px){.dashboard-summary-three{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-summary-panel:first-child{grid-column:1/-1}.dashboard-compact-hero{padding:24px 0 30px!important}}
-@media(max-width:760px){.dashboard-summary-three{grid-template-columns:1fr;gap:18px}.dashboard-summary-panel:first-child{grid-column:auto}.dashboard-promotions-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.dashboard-panel-heading h2{font-size:22px}}
-@media(max-width:520px){.dashboard-promotions-grid{grid-template-columns:1fr!important}.dashboard-promo-art{aspect-ratio:2.1}.dashboard-shop-links{gap:18px}.dashboard-shop-links a{font-size:15px}.dashboard-summary-card{padding:16px}.dashboard-panel-heading h2{font-size:19px}}
+.dashboard-balance-compact .dashboard-balance-amount{display:block;font-size:clamp(30px,3vw,43px);line-height:1.05}
+.dashboard-compact-footer{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.dashboard-compact-footer .dashboard-balance-date{display:flex;flex-direction:column;gap:5px;margin:0}
+.dashboard-compact-footer .dashboard-action.hero-cta{height:41px;min-height:41px;padding:0 16px;font-size:11px;border-radius:999px}
+.dashboard-tracking-compact{gap:17px}
+.dashboard-tracking-compact .dashboard-order-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:0;color:#675f72;font-size:12px}
+.dashboard-tracking-compact .dashboard-order-meta strong{color:var(--purple)}
+.dashboard-progress-track{height:8px;background:var(--placeholder);border-radius:999px;overflow:hidden}
+.dashboard-progress-track span{display:block;width:50%;height:100%;background:var(--purple);border-radius:999px}
+.dashboard-progress-labels{display:flex;justify-content:space-between;gap:6px}
+.dashboard-progress-labels span{font-size:10px;font-weight:700;color:#716c7a;text-align:center}
+.dashboard-tracking-status{margin:0;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#675f72}
+.dashboard-status-dot{width:9px;height:9px;border-radius:50%;background:var(--purple);flex:none}
+.dashboard-promotions{padding:30px 0 55px!important;background:#fff}
+.dashboard-promotions-inner{width:min(1440px,calc(100% - 96px));margin:auto}
+.dashboard-promotions-heading{font:900 clamp(25px,2.3vw,33px)/1.1 var(--font);letter-spacing:-.035em;margin:0 0 22px}
+.dashboard-promotions-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.dashboard-promotions-grid .dashboard-promo-card.card{display:flex;flex-direction:column;flex:none;min-width:0;border:1px solid var(--line);border-radius:17px;background:#fff;overflow:hidden;box-shadow:none;scroll-snap-align:none}
+.dashboard-promotions-grid .dashboard-promo-art.picture{height:auto;aspect-ratio:2.15;overflow:hidden;background:var(--placeholder)}
+.dashboard-promotions-grid .dashboard-promo-art img{width:100%;height:100%;display:block;object-fit:cover}
+.dashboard-promotions-grid .dashboard-promo-text.card-info{padding:15px 17px 18px;display:flex;flex-direction:column;gap:5px;min-height:75px}
+.dashboard-promotions-grid .dashboard-promo-text .product-title{margin:0;min-height:0;font:800 15px/1.35 var(--font);color:var(--ink)}
+.dashboard-promotions-grid .dashboard-promo-text p{margin:0;font:500 12px/1.4 var(--font);color:#716c7a}
+.dashboard-shop-links{display:flex;align-items:center;justify-content:center;gap:38px;flex-wrap:wrap;margin-top:32px}
+.dashboard-shop-links .view-all{font:800 15px var(--font);color:var(--purple);padding:8px 0}
+.dashboard-shop-links .view-all:hover{text-decoration:underline}
+@media(max-width:1050px){.dashboard-summary-three{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-summary-panel:first-child{grid-column:1/-1}}
+@media(max-width:760px){.dashboard-compact-hero{padding:24px 0 32px!important}.dashboard-summary-three{grid-template-columns:1fr;gap:18px}.dashboard-summary-panel:first-child{grid-column:auto}.dashboard-panel-heading h2{font-size:22px}.dashboard-promotions-inner{width:calc(100% - 36px)}.dashboard-promotions-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
+@media(max-width:520px){.dashboard-promotions-grid{grid-template-columns:1fr}.dashboard-summary-panel .dashboard-summary-card{padding:18px}.dashboard-panel-heading h2{font-size:19px}.dashboard-promotions-grid .dashboard-promo-art.picture{aspect-ratio:2.1}.dashboard-shop-links{gap:18px}.dashboard-shop-links .view-all{font-size:13px}}
 </style></head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
@@ -721,8 +723,8 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
     <div class="dashboard-hero-content">
       <div class="dashboard-summary-three">
         <section class="dashboard-summary-panel" aria-labelledby="dashboardInvoicesTitle">
-          <div class="dashboard-panel-heading"><h2 id="dashboardInvoicesTitle">RECENT INVOICES</h2><a class="dashboard-quick-link" href="./quick-reorder.html">QUICK REORDER <span aria-hidden="true">↗</span></a></div>
-          <div class="dashboard-summary-card dashboard-invoices-card">
+          <div class="dashboard-panel-heading"><h2 id="dashboardInvoicesTitle">RECENT INVOICES</h2><a class="hero-cta dashboard-quick-link" href="./quick-reorder.html">QUICK REORDER <span aria-hidden="true">↗</span></a></div>
+          <div class="card dashboard-summary-card dashboard-invoices-card">
             <p class="dashboard-demo-note">Sample invoices · prototype</p>
             <div class="dashboard-invoices-list">
               <div class="dashboard-invoice-row"><div><strong>INV-1048</strong><span>Nov 02, 2026 · $840.00</span></div><div class="dashboard-invoice-actions"><button type="button" data-invoice="INV-1048" data-amount="840.00" data-date="Nov 02, 2026" data-action="download" aria-label="Download sample invoice INV-1048">↓ <span>PDF</span></button><button type="button" data-invoice="INV-1048" data-amount="840.00" data-date="Nov 02, 2026" data-action="print" aria-label="Print sample invoice INV-1048">Print</button></div></div>
@@ -733,14 +735,14 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
         </section>
         <section class="dashboard-summary-panel" aria-labelledby="dashboardBalanceTitle">
           <div class="dashboard-panel-heading"><h2 id="dashboardBalanceTitle">ACCOUNT BALANCE</h2></div>
-          <div class="dashboard-summary-card dashboard-balance-compact">
+          <div class="card dashboard-summary-card dashboard-balance-compact">
             <span class="dashboard-balance-label">Total Due</span><strong class="dashboard-balance-amount">$2,450.00</strong>
             <div class="dashboard-compact-footer"><p class="dashboard-balance-date">Next Due Date <strong>Nov 15, 2026</strong></p><button class="dashboard-action dashboard-action-primary hero-cta" type="button" aria-label="Pay invoices demo">PAY INVOICES</button></div>
           </div>
         </section>
         <section class="dashboard-summary-panel" aria-labelledby="orderTrackingTitle">
           <div class="dashboard-panel-heading"><h2 id="orderTrackingTitle">ORDER TRACKING</h2></div>
-          <div class="dashboard-summary-card dashboard-tracking-compact">
+          <div class="card dashboard-summary-card dashboard-tracking-compact">
             <p class="dashboard-order-meta"><strong>Order #88432</strong><span>·</span><span>Estimated: Today, 2:00 PM</span></p>
             <div class="dashboard-progress-track" role="img" aria-label="Order placed and processing complete, out for delivery pending"><span></span></div>
             <div class="dashboard-progress-labels"><span>Ordered</span><span>Processing</span><span>Out for Delivery</span><span>Delivered</span></div>
@@ -753,18 +755,18 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <section class="dashboard-promotions" aria-labelledby="dashboardPromotionsTitle">
     <div class="dashboard-promotions-inner">
       <h2 class="dashboard-promotions-heading" id="dashboardPromotionsTitle">CURRENT DEALS &amp; PROMOTIONS</h2>
-      <div class="dashboard-promotions-grid"><article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>BUY 5 GET 1 FREE</h3><p>Snacking Brands</p></div></article>
-<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>15% OFF ALL BEVERAGES</h3><p>Use Code: BEV15</p></div></article>
-<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>BULK CANDY SPECIAL</h3><p>Sweet deals on bulk candy</p></div></article>
-<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>SNACKS & CHIPS</h3><p>Explore snack promotions</p></div></article>
-<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>BOTTLED DRINKS</h3><p>Explore beverage promotions</p></div></article>
-<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>CANDY FAVORITES</h3><p>Explore sweet promotions</p></div></article>
-<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>WHOLESALE SNACKS</h3><p>Browse snack deals</p></div></article>
-<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>DRINKS FOR YOUR STORE</h3><p>Browse beverage deals</p></div></article>
-<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>BULK SWEETS</h3><p>Browse candy deals</p></div></article></div>
+      <div class="dashboard-promotions-grid"><article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">BUY 5 GET 1 FREE</h3><p>Snacking Brands</p></div></article>
+<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">15% OFF ALL BEVERAGES</h3><p>Use Code: BEV15</p></div></article>
+<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">BULK CANDY SPECIAL</h3><p>Sweet deals on bulk candy</p></div></article>
+<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">SNACKS & CHIPS</h3><p>Explore snack promotions</p></div></article>
+<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">BOTTLED DRINKS</h3><p>Explore beverage promotions</p></div></article>
+<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">CANDY FAVORITES</h3><p>Explore sweet promotions</p></div></article>
+<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">WHOLESALE SNACKS</h3><p>Browse snack deals</p></div></article>
+<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">DRINKS FOR YOUR STORE</h3><p>Browse beverage deals</p></div></article>
+<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">BULK SWEETS</h3><p>Browse candy deals</p></div></article></div>
       <nav class="dashboard-shop-links" aria-label="Browse product catalog">
-        <a href="./index.html#categories-title">SHOP ALL CATEGORIES <span aria-hidden="true">↗</span></a>
-        <a href="./index.html#brands-title">SHOP ALL BRANDS <span aria-hidden="true">↗</span></a>
+        <a class="view-all" href="./index.html#categories-title">SHOP ALL CATEGORIES <span aria-hidden="true">↗</span></a>
+        <a class="view-all" href="./index.html#brands-title">SHOP ALL BRANDS <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </section>
