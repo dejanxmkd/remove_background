@@ -549,6 +549,35 @@
   }
 }
 </style>
+<style>
+/* Dashboard burger follows storefront mobile reveal, without changing desktop navigation. */
+.dashboard-mobile-menu-panel{display:none}
+@media(max-width:760px){
+  .site-header .shopping-nav-controls{gap:clamp(7px,2vw,13px)}
+  .site-header .mobile-menu-toggle{display:inline-flex;flex:none}
+  .site-header .dashboard-mobile-menu-panel{display:grid}
+  .dashboard-mobile-menu-panel .dashboard-mobile-menu-content{
+    width:calc(100% - 36px);margin:0 auto;padding:14px 0 20px;
+    display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+    gap:0;
+  }
+  .dashboard-mobile-menu-content > a:not(.dashboard-menu-logout){
+    display:flex;align-items:center;min-height:48px;padding:11px 12px;
+    border-bottom:1px solid var(--line);font-size:15px;font-weight:650;
+    color:var(--ink);
+  }
+  .dashboard-mobile-menu-content > a[aria-current="page"]{color:var(--purple);font-weight:800}
+  .dashboard-mobile-menu-content > a:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
+  .dashboard-mobile-menu-content .dashboard-menu-logout{
+    display:flex;order:0;align-self:stretch;width:100%;margin-top:15px;
+    min-height:50px;
+  }
+}
+@media(min-width:761px){
+  .site-header .mobile-menu-toggle,
+  .site-header .dashboard-mobile-menu-panel{display:none!important}
+}
+</style>
 </head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
@@ -584,8 +613,26 @@
           </button>
         </div>
       </div>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenuPanel">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-menu mobile-menu-open-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x mobile-menu-close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
     </div>
   </nav>
+  <div class="mobile-menu-panel dashboard-mobile-menu-panel" id="mobileMenuPanel" aria-hidden="true" inert>
+    <div class="mobile-menu-reveal">
+      <nav class="mobile-menu-content dashboard-mobile-menu-content" id="mobileMenuContent" aria-label="Dashboard mobile navigation">
+        <a href="./dashboard.html" aria-current="page">Dashboard</a>
+        <a href="#dashboardProductCarousel">Products</a>
+        <a href="#orderTrackingTitle">Orders</a>
+        <a href="#dashboardBalanceTitle">Invoices</a>
+        <a href="#dashboardSupportFooter">Support</a>
+        <a class="menu-auth-link dashboard-menu-logout" id="dashboardMenuLogout" href="./login.html">Logout
+          <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </nav>
+    </div>
+  </div>
   <div class="header-search-panel" id="headerSearchPanel" role="search" aria-hidden="true" inert>
     <div class="header-search-reveal">
       <div class="header-search-inner">
@@ -752,7 +799,7 @@
     </div>
   </section>
 </main>
-<footer class="site-footer" aria-label="Footer"><div class="footer-inner"><div class="footer-columns"><div class="footer-column"><h2>WE ACCEPT</h2><ul><li>American Express</li><li>Apple Pay</li><li>Diners Club</li><li>Discover</li><li>Google Pay</li><li>Mastercard</li><li>Shop Pay</li><li>Visa</li></ul></div><div class="footer-column"><h2>SUPPORT</h2><ul><li>Help</li><li>Privacy Policy</li><li>Terms &amp; Conditions</li></ul></div><div class="footer-column"><h2>SOCIAL MEDIA</h2><ul><li>Facebook</li><li>Instagram</li><li>YouTube</li></ul></div></div><div class="footer-bottom">Copyright © 2026 True Distributors. All rights reserved.</div></div></footer>
+<footer id="dashboardSupportFooter" class="site-footer" aria-label="Footer"><div class="footer-inner"><div class="footer-columns"><div class="footer-column"><h2>WE ACCEPT</h2><ul><li>American Express</li><li>Apple Pay</li><li>Diners Club</li><li>Discover</li><li>Google Pay</li><li>Mastercard</li><li>Shop Pay</li><li>Visa</li></ul></div><div class="footer-column"><h2>SUPPORT</h2><ul><li>Help</li><li>Privacy Policy</li><li>Terms &amp; Conditions</li></ul></div><div class="footer-column"><h2>SOCIAL MEDIA</h2><ul><li>Facebook</li><li>Instagram</li><li>YouTube</li></ul></div></div><div class="footer-bottom">Copyright © 2026 True Distributors. All rights reserved.</div></div></footer>
 <script>
 /* Dashboard header. Existing storefront UI styles, no Quick Shop or burger. */
 (function(){
@@ -984,6 +1031,45 @@
   window.addEventListener('resize',syncReorderHeight,{passive:true});
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(syncReorderHeight);
   syncReorderHeight();
+})();
+</script>
+<script>
+/* Mobile Dashboard burger: same slide-down reveal behavior as the storefront. */
+(function(){
+  const toggle=document.getElementById('mobileMenuToggle');
+  const panel=document.getElementById('mobileMenuPanel');
+  if(!toggle||!panel)return;
+  const mq=window.matchMedia('(max-width:760px)');
+  const searchToggle=document.getElementById('headerSearchToggle');
+  const searchPanel=document.getElementById('headerSearchPanel');
+  function setOpen(open,restoreFocus=false){
+    open=!!open&&mq.matches;
+    panel.classList.toggle('is-open',open);
+    panel.inert=!open;
+    panel.setAttribute('aria-hidden',String(!open));
+    toggle.setAttribute('aria-expanded',String(open));
+    toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
+    if(!open&&panel.contains(document.activeElement))document.activeElement.blur();
+    if(!open&&restoreFocus)toggle.focus({preventScroll:true});
+  }
+  toggle.addEventListener('click',()=>{
+    const opening=!panel.classList.contains('is-open');
+    if(opening&&searchPanel?.classList.contains('is-open'))searchToggle?.click();
+    setOpen(opening);
+  });
+  searchToggle?.addEventListener('click',()=>setOpen(false));
+  panel.addEventListener('click',e=>{if(e.target.closest('a'))setOpen(false)});
+  document.addEventListener('pointerdown',e=>{
+    if(panel.classList.contains('is-open')&&!panel.contains(e.target)&&!toggle.contains(e.target))setOpen(false);
+  });
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&panel.classList.contains('is-open')){e.stopPropagation();setOpen(false,true);}
+  });
+  mq.addEventListener('change',()=>setOpen(false));
+  const logout=document.getElementById('dashboardMenuLogout');
+  logout?.addEventListener('click',()=>{
+    try{sessionStorage.removeItem('td-preview-auth-v1')}catch(e){}
+  });
 })();
 </script>
 </body>
