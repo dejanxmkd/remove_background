@@ -903,17 +903,14 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 
 /* Four side-by-side, horizontal deal cards with image placeholders only. */
 .dashboardv-deals #dashboardvDealsCarousel{--gap:18px;align-items:stretch}
-.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex:0 0 calc((100% - 3 * var(--gap))/4);display:grid;grid-template-columns:43% minmax(0,1fr);min-width:0;min-height:176px;align-self:stretch;overflow:hidden;background:#fff;border-radius:17px}
+.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex:0 0 calc((100% - 3 * var(--gap))/4);display:flex;flex-direction:column;min-width:0;min-height:310px;align-self:stretch;overflow:hidden;background:#fff;border-radius:17px}
 .dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card,.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card:hover{box-shadow:0 8px 22px rgba(8,7,11,.16)}
-.dashboardv-deals .dashboardv-deal-placeholder.picture{width:100%;height:100%;min-height:176px;aspect-ratio:auto;background:var(--placeholder);border:0}
-.dashboardv-deals .dashboardv-deal-info.card-info{display:flex;min-width:0;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px;padding:16px 15px}
+.dashboardv-deals .dashboardv-deal-placeholder.picture{width:100%;height:190px;min-height:190px;flex:none;aspect-ratio:auto;background:var(--placeholder);border:0}
+.dashboardv-deals .dashboardv-deal-info.card-info{display:flex;min-width:0;flex:1;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:10px;padding:19px 17px 22px}
 .dashboardv-deals .dashboardv-deal-info .product-title{margin:0;min-height:0;color:var(--ink);font:800 17px/1.35 var(--font);letter-spacing:-.025em}
 .dashboardv-deals .dashboardv-deal-subtitle{margin:0;color:#716c7a;font:500 14px/1.4 var(--font)}
-.dashboardv-deals .dashboardv-shop-deal.request-price-link{display:inline-flex;align-items:center;gap:5px;margin-top:3px;color:var(--purple);font:800 15px/1.2 var(--font);white-space:nowrap;text-decoration:none}
-.dashboardv-deals .dashboardv-shop-deal svg{width:17px;height:17px}
-.dashboardv-deals .dashboardv-shop-deal:hover{text-decoration:underline}
 @media(max-width:1100px){.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/2)}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:17px}}
-@media(max-width:760px){.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex-basis:100%;min-height:170px}.dashboardv-deals .dashboardv-deal-placeholder.picture{min-height:170px}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:16px}}
+@media(max-width:760px){.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex-basis:100%;min-height:310px}.dashboardv-deals .dashboardv-deal-placeholder.picture{height:190px;min-height:190px}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:16px}}
 
 /* Reuse the same circle motif, placement and palette as index.html Brands. */
 .dashboardv-deals-shapes{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
@@ -978,7 +975,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dv-steps .current .dv-step-dot{animation:dv-current-step-pulse 2s ease-in-out infinite}
 @keyframes dv-current-step-pulse{0%,100%{box-shadow:0 0 0 0 rgba(102,51,204,.35)}50%{box-shadow:0 0 0 9px rgba(102,51,204,0)}}
 @media(prefers-reduced-motion:reduce){.dv-steps .current .dv-step-dot{animation:none}}
-@media(min-width:1101px){.dv-invoice{grid-template-columns:minmax(0,1fr) auto auto;gap:6px;align-items:center}.dv-invoice-actions{grid-column:auto;justify-content:flex-end;gap:4px}.dv-invoice-actions .dv-primary,.dv-invoice-actions .dv-secondary{font-size:10px;padding:7px 8px;gap:4px}.dv-invoice-actions svg{width:15px;height:15px}}
+@media(min-width:1101px){.dv-invoice{grid-template-columns:minmax(0,1fr) auto auto;gap:6px;align-items:center}.dv-invoice-actions{grid-column:auto;justify-content:flex-end;gap:8px;margin-left:16px}.dv-invoice-actions .dv-primary,.dv-invoice-actions .dv-secondary{font-size:10px;padding:7px 8px;gap:4px}.dv-invoice-actions svg{width:15px;height:15px}}
 @media(max-width:1100px){.dv-account-container{grid-template-columns:1fr 1fr;row-gap:26px}.dv-account-col:nth-child(2){border-right:0;padding-right:0}.dv-account-col:last-child{grid-column:1/-1;padding:24px 0 0;border-top:1px solid var(--line)}}
 @media(max-width:760px){.dv-account-section{padding:52px 0 72px;background:linear-gradient(to bottom,var(--purple) 0%,var(--purple) 33%,#fff 33%,#fff 100%)}.dv-account-container{width:calc(100% - 36px);grid-template-columns:1fr;padding:22px 18px}.dv-account-col,.dv-account-col:first-child,.dv-account-col:last-child{grid-column:1/-1;border:0;border-bottom:1px solid var(--line);padding:0 0 22px;margin:0 0 22px}.dv-account-col:last-child{border:0;margin:0;padding:0}.dv-account-col h2{font-size:20px}.dv-invoice{grid-template-columns:minmax(0,1fr) auto}.dv-invoice-actions{grid-column:1/-1;justify-content:flex-start}.dv-pay{margin-top:5px}.dv-track-head h2{font-size:18px}.dv-step-label{font-size:13px}}
 </style>
@@ -1067,7 +1064,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
           <div class="eyebrow">SPECIAL OFFERS</div>
           <h1 id="dashboardv-deals-title">DEALS YOU DON'T WANT TO MISS</h1>
         </div>
-        <a class="view-all desktop-view-all" href="./index.html#dealsProducts">View All Deals <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        
       </div>
       <div class="carousel-wrap dashboardv-carousel-wrap">
         <button class="carousel-arrow carousel-arrow-prev dashboardv-carousel-prev" type="button" aria-label="Previous deals" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
@@ -1077,7 +1074,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">BUY 5 GET 1 FREE</h3>
     <p class="dashboardv-deal-subtitle">Snacking Brands</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    
   </div>
 </article>
 <article class="card dashboardv-deal-card">
@@ -1085,7 +1082,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">15% OFF ALL BEVERAGES</h3>
     <p class="dashboardv-deal-subtitle">Use Code: BEV15</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    
   </div>
 </article>
 <article class="card dashboardv-deal-card">
@@ -1093,7 +1090,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">BULK CANDY SPECIAL</h3>
     <p class="dashboardv-deal-subtitle">Sweet deals on bulk candy</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    
   </div>
 </article>
 <article class="card dashboardv-deal-card">
@@ -1101,7 +1098,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">SNACKS & CHIPS</h3>
     <p class="dashboardv-deal-subtitle">Explore snack promotions</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    
   </div>
 </article>
 <article class="card dashboardv-deal-card">
@@ -1109,7 +1106,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">BOTTLED DRINKS</h3>
     <p class="dashboardv-deal-subtitle">Explore beverage promotions</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    
   </div>
 </article>
 <article class="card dashboardv-deal-card">
@@ -1117,7 +1114,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">CANDY FAVORITES</h3>
     <p class="dashboardv-deal-subtitle">Explore sweet promotions</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    
   </div>
 </article>
 <article class="card dashboardv-deal-card">
@@ -1125,7 +1122,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">WHOLESALE SNACKS</h3>
     <p class="dashboardv-deal-subtitle">Browse snack deals</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    
   </div>
 </article>
 <article class="card dashboardv-deal-card">
@@ -1133,7 +1130,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">BULK SWEETS</h3>
     <p class="dashboardv-deal-subtitle">Browse candy deals</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    
   </div>
 </article>
 </div>
@@ -1146,7 +1143,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <section class="dv-account-section" aria-label="Account Overview"><div class="dv-account-container">
     <div class="dv-account-col dv-account-balance"><h2>ACCOUNT BALANCE</h2><div class="dv-balance-contents"><span class="dv-muted">Total Due</span><strong class="dv-total">$2,450.00</strong><p class="dv-due">Next Due Date: <strong>Nov 15, 2026</strong></p><button type="button" class="dv-primary dv-pay">PAY INVOICES <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></div></div>
     <div class="dv-account-col dv-account-tracking"><div class="dv-track-head"><h2>ORDER TRACKING</h2><a class="dv-secondary dv-quick" href="./quick-reorder.html">QUICK REORDER</a></div><p class="dv-order"><strong>Order #88432</strong> · Estimated Today, 2:00 PM</p><ol class="dv-steps" aria-label="Order status timeline"><li class="complete"><span class="dv-step-dot" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg></span><span class="dv-step-copy"><strong class="dv-step-label">Ordered</strong></span></li><li class="complete current"><span class="dv-step-dot" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg></span><span class="dv-step-copy"><strong class="dv-step-label">Processing</strong><span class="dv-step-subtitle">We're preparing your order</span></span></li><li class="pending"><span class="dv-step-dot" aria-hidden="true"></span><span class="dv-step-copy"><strong class="dv-step-label">Out for Delivery</strong></span></li><li class="pending"><span class="dv-step-dot" aria-hidden="true"></span><span class="dv-step-copy"><strong class="dv-step-label">Delivered</strong></span></li></ol></div>
-  <div class="dv-account-col dv-account-invoices"><h2>RECENT INVOICES</h2><div class="dv-invoice-list"><div class="dv-invoice"><div class="dv-invoice-id"><strong>INV-1048</strong><span>Nov 07, 2026</span></div><strong class="dv-invoice-amount">$840.00</strong><div class="dv-invoice-actions"><button class="dv-primary" type="button" data-action="download" data-invoice="INV-1048" data-date="Nov 07, 2026" data-amount="840.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-download" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> DOWNLOAD</button><button class="dv-secondary" type="button" data-action="print" data-invoice="INV-1048" data-date="Nov 07, 2026" data-amount="840.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-printer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> PRINT</button></div></div><div class="dv-invoice"><div class="dv-invoice-id"><strong>INV-1047</strong><span>Oct 29, 2026</span></div><strong class="dv-invoice-amount">$1,120.00</strong><div class="dv-invoice-actions"><button class="dv-primary" type="button" data-action="download" data-invoice="INV-1047" data-date="Oct 29, 2026" data-amount="1120.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-download" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> DOWNLOAD</button><button class="dv-secondary" type="button" data-action="print" data-invoice="INV-1047" data-date="Oct 29, 2026" data-amount="1120.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-printer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> PRINT</button></div></div><div class="dv-invoice"><div class="dv-invoice-id"><strong>INV-1046</strong><span>Oct 22, 2026</span></div><strong class="dv-invoice-amount">$490.00</strong><div class="dv-invoice-actions"><button class="dv-primary" type="button" data-action="download" data-invoice="INV-1046" data-date="Oct 22, 2026" data-amount="490.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-download" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> DOWNLOAD</button><button class="dv-secondary" type="button" data-action="print" data-invoice="INV-1046" data-date="Oct 22, 2026" data-amount="490.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-printer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> PRINT</button></div></div></div></div></div></section>
+  <div class="dv-account-col dv-account-invoices"><h2>RECENT INVOICES</h2><div class="dv-invoice-list"><div class="dv-invoice"><div class="dv-invoice-id"><strong>INV-1048</strong><span>Nov 07, 2026</span></div><strong class="dv-invoice-amount">$840.00</strong><div class="dv-invoice-actions"><button class="dv-secondary" type="button" data-action="print" data-invoice="INV-1048" data-date="Nov 07, 2026" data-amount="840.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-printer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> PRINT</button><button class="dv-primary" type="button" data-action="download" data-invoice="INV-1048" data-date="Nov 07, 2026" data-amount="840.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-download" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> DOWNLOAD</button></div></div><div class="dv-invoice"><div class="dv-invoice-id"><strong>INV-1047</strong><span>Oct 29, 2026</span></div><strong class="dv-invoice-amount">$1,120.00</strong><div class="dv-invoice-actions"><button class="dv-secondary" type="button" data-action="print" data-invoice="INV-1047" data-date="Oct 29, 2026" data-amount="1120.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-printer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> PRINT</button><button class="dv-primary" type="button" data-action="download" data-invoice="INV-1047" data-date="Oct 29, 2026" data-amount="1120.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-download" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> DOWNLOAD</button></div></div><div class="dv-invoice"><div class="dv-invoice-id"><strong>INV-1046</strong><span>Oct 22, 2026</span></div><strong class="dv-invoice-amount">$490.00</strong><div class="dv-invoice-actions"><button class="dv-secondary" type="button" data-action="print" data-invoice="INV-1046" data-date="Oct 22, 2026" data-amount="490.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-printer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> PRINT</button><button class="dv-primary" type="button" data-action="download" data-invoice="INV-1046" data-date="Oct 22, 2026" data-amount="490.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-download" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> DOWNLOAD</button></div></div></div></div></div></section>
 
 </main>
 <script>
