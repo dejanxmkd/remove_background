@@ -588,7 +588,59 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 @media(max-width:400px){.td-burger-link{font-size:clamp(27px,9vw,38px)}}
 @media(prefers-reduced-motion:reduce){.td-burger-link{transition:none!important}}
 </style>
-</head>
+<style>
+/* Compact dashboard cards: expose the deal grid above the fold. */
+.dashboard-compact-hero{min-height:0!important;background:var(--purple,#6633CC)!important;padding:27px 0 32px!important}
+.dashboard-compact-hero .dashboard-hero-content{padding-top:0!important;padding-bottom:0!important}
+.dashboard-summary-three{display:grid;grid-template-columns:1.18fr .9fr 1fr;gap:18px;align-items:stretch}
+.dashboard-summary-panel{min-width:0;display:flex;flex-direction:column;gap:12px}
+.dashboard-panel-heading{display:flex;align-items:center;justify-content:space-between;gap:9px;min-height:29px}
+.dashboard-panel-heading h2{margin:0;color:#fff;font:900 clamp(17px,1.75vw,24px)/1.1 var(--font);letter-spacing:-.035em;white-space:nowrap}
+.dashboard-quick-link{font:800 11px/1.2 var(--font);white-space:nowrap;text-decoration:none;background:#fff;border-radius:999px;color:var(--purple,#6633CC);padding:10px 12px;transition:transform .2s}
+.dashboard-quick-link:hover{transform:translateY(-2px)}
+.dashboard-summary-card{flex:1;background:#fff;border-radius:15px;padding:18px 19px;min-width:0;box-shadow:0 5px 16px rgba(31,12,69,.08)}
+.dashboard-demo-note{margin:0 0 9px;font-size:10px;color:#756b83;font-weight:600}
+.dashboard-invoices-list{display:flex;flex-direction:column}
+.dashboard-invoice-row{display:flex;justify-content:space-between;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid #ede9f3}
+.dashboard-invoice-row:last-child{border-bottom:0;padding-bottom:0}
+.dashboard-invoice-row>div:first-child{display:flex;flex-direction:column;gap:4px;min-width:0}
+.dashboard-invoice-row strong{font-size:13px;color:var(--ink)}
+.dashboard-invoice-row span{font-size:11px;color:#716b79;white-space:nowrap}
+.dashboard-invoice-actions{display:flex;gap:5px;flex:none}
+.dashboard-invoice-actions button{border:1px solid #dfd6f0;background:#f5efff;color:var(--purple,#6633CC);border-radius:8px;padding:7px 8px;font:800 11px var(--font);cursor:pointer}
+.dashboard-invoice-actions button:hover{background:#e7dafc}
+.dashboard-invoice-actions button span{color:inherit;font-size:10px}
+.dashboard-balance-compact{display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.dashboard-balance-compact .dashboard-balance-label{font-size:13px}
+.dashboard-balance-compact .dashboard-balance-amount{display:block;font-size:clamp(29px,3vw,42px);line-height:1.05}
+.dashboard-compact-footer{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.dashboard-compact-footer .dashboard-balance-date{margin:0;display:flex;flex-direction:column;gap:5px}
+.dashboard-compact-footer .dashboard-action.hero-cta{min-height:38px;height:38px;padding:0 12px;font-size:11px}
+.dashboard-tracking-compact{display:flex;flex-direction:column;justify-content:center;gap:18px}
+.dashboard-tracking-compact .dashboard-order-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0;color:#5d516c;font-size:12px}
+.dashboard-tracking-compact .dashboard-order-meta strong{color:var(--purple,#6633CC)}
+.dashboard-progress-track{width:100%;height:8px;border-radius:99px;background:#eae5f1;overflow:hidden}
+.dashboard-progress-track span{display:block;width:50%;height:100%;background:var(--purple,#6633CC);border-radius:99px}
+.dashboard-progress-labels{display:flex;justify-content:space-between;gap:5px;margin-top:-10px}
+.dashboard-progress-labels span{font-size:10px;font-weight:650;color:#655d70;text-align:center}
+.dashboard-tracking-status{display:flex;align-items:center;gap:7px;margin:0;font-size:12px;color:#5e536c}
+.dashboard-status-dot{width:9px;height:9px;border-radius:50%;background:var(--purple,#6633CC)}
+.dashboard-promotions{padding:24px 0 45px!important}
+.dashboard-promotions-heading{margin-bottom:18px!important;font-size:clamp(23px,2.2vw,30px)!important}
+.dashboard-promotions-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:17px!important}
+.dashboard-promo-card{border-radius:13px;box-shadow:none}
+.dashboard-promo-art{aspect-ratio:2.2;overflow:hidden}
+.dashboard-promo-art img{width:100%;height:100%;object-fit:cover}
+.dashboard-promo-text{min-height:0;padding:13px 15px 15px;gap:3px}
+.dashboard-promo-text h3{font-size:15px}
+.dashboard-promo-text p{font-size:12px}
+.dashboard-shop-links{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:30px;margin-top:30px}
+.dashboard-shop-links a{font:900 17px/1.25 var(--font);color:var(--purple,#6633CC);text-decoration:none}
+.dashboard-shop-links a:hover{text-decoration:underline}
+@media(max-width:1050px){.dashboard-summary-three{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-summary-panel:first-child{grid-column:1/-1}.dashboard-compact-hero{padding:24px 0 30px!important}}
+@media(max-width:760px){.dashboard-summary-three{grid-template-columns:1fr;gap:18px}.dashboard-summary-panel:first-child{grid-column:auto}.dashboard-promotions-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.dashboard-panel-heading h2{font-size:22px}}
+@media(max-width:520px){.dashboard-promotions-grid{grid-template-columns:1fr!important}.dashboard-promo-art{aspect-ratio:2.1}.dashboard-shop-links{gap:18px}.dashboard-shop-links a{font-size:15px}.dashboard-summary-card{padding:16px}.dashboard-panel-heading h2{font-size:19px}}
+</style></head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
   <nav class="site-nav" aria-label="Main navigation">
@@ -664,128 +716,58 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   </section>
 </div>
   <main id="dashboard" aria-label="Dashboard">
-  <section class="dashboard-purple-hero" aria-labelledby="orderTrackingTitle">
+
+  <section class="dashboard-purple-hero dashboard-compact-hero" aria-label="Account overview">
     <div class="dashboard-hero-content">
-      <div class="dashboard-main-grid">
-      <div class="dashboard-reorder-row">
-        <section class="dashboard-reorder-column" aria-labelledby="dashboardReorderTitle">
-        <h2 class="dashboard-balance-heading" id="dashboardReorderTitle">QUICK REORDER</h2>
-        <div class="dashboard-reorder-card">
-        <div class="dashboard-reorder-toolbar">
-        <label class="dashboard-reorder-search header-search-inner">
-        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input id="dashboardReorderSearch" type="search" placeholder="Search products..." aria-label="Search quick reorder products" autocomplete="off">
-        </label>
-        <button id="dashboardClearSelected" class="dashboard-clear-selected" type="button" aria-label="Clear selected products" hidden>
-          <span id="dashboardSelectedCount">SELECTED (0)</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v5M14 11v5"/></svg>
-        </button>
-        </div>
-        <div class="dashboard-reorder-table-region">
-        <div class="dashboard-reorder-table-wrap">
-        <table class="dashboard-reorder-table">
-        <thead><tr><th scope="col"><input type="checkbox" id="dashboardSelectAll" aria-label="Select all products"></th><th scope="col">PRODUCT</th><th scope="col">QUANTITY</th></tr></thead>
-        <tbody id="dashboardReorderProducts">
-        <tr><td><input type="checkbox" aria-label="Select Soda Cases 24pk"></td><td><span class="dashboard-reorder-product-name">Soda Cases 24pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48720</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Soda Cases 24pk quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Soda Cases 24pk quantity">+</button></div></td></tr>
-        <tr><td><input type="checkbox" aria-label="Select Chips Variety 30pk"></td><td><span class="dashboard-reorder-product-name">Chips Variety 30pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48721</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Chips Variety 30pk quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Chips Variety 30pk quantity">+</button></div></td></tr>
-        <tr><td><input type="checkbox" aria-label="Select Candy Bars Box (Snickers, etc.)"></td><td><span class="dashboard-reorder-product-name">Candy Bars Box (Snickers, etc.)</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48722</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Candy Bars Box quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Candy Bars Box quantity">+</button></div></td></tr>
-        <tr><td><input type="checkbox" aria-label="Select Candy Bars Box"></td><td><span class="dashboard-reorder-product-name">Candy Bars Box</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48723</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Candy Bars Box quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Candy Bars Box quantity">+</button></div></td></tr>
-        <tr><td><input type="checkbox" aria-label="Select Bottled Water 24pk"></td><td><span class="dashboard-reorder-product-name">Bottled Water 24pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48724</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Bottled Water 24pk quantity">−</button><output>12</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Bottled Water 24pk quantity">+</button></div></td></tr>
-        <tr><td><input type="checkbox" aria-label="Select Sparkling Water Variety 12pk"></td><td><span class="dashboard-reorder-product-name">Sparkling Water Variety 12pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48725</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Sparkling Water Variety 12pk quantity">−</button><output>8</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Sparkling Water Variety 12pk quantity">+</button></div></td></tr>
-        <tr><td><input type="checkbox" aria-label="Select Energy Drinks 24pk"></td><td><span class="dashboard-reorder-product-name">Energy Drinks 24pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48726</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Energy Drinks 24pk quantity">−</button><output>6</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Energy Drinks 24pk quantity">+</button></div></td></tr>
-        <tr><td><input type="checkbox" aria-label="Select Iced Tea Bottles 12pk"></td><td><span class="dashboard-reorder-product-name">Iced Tea Bottles 12pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48727</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Iced Tea Bottles 12pk quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Iced Tea Bottles 12pk quantity">+</button></div></td></tr>
-        <tr><td><input type="checkbox" aria-label="Select Chocolate Cookies 20pk"></td><td><span class="dashboard-reorder-product-name">Chocolate Cookies 20pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48728</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Chocolate Cookies 20pk quantity">−</button><output>7</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Chocolate Cookies 20pk quantity">+</button></div></td></tr>
-        <tr><td><input type="checkbox" aria-label="Select Pretzel Snacks 24pk"></td><td><span class="dashboard-reorder-product-name">Pretzel Snacks 24pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48729</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Pretzel Snacks 24pk quantity">−</button><output>9</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Pretzel Snacks 24pk quantity">+</button></div></td></tr>
-        <tr><td><input type="checkbox" aria-label="Select Granola Bars Variety 36pk"></td><td><span class="dashboard-reorder-product-name">Granola Bars Variety 36pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48730</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Granola Bars Variety 36pk quantity">−</button><output>5</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Granola Bars Variety 36pk quantity">+</button></div></td></tr>
-        <tr><td><input type="checkbox" aria-label="Select Gum Assorted 40pk"></td><td><span class="dashboard-reorder-product-name">Gum Assorted 40pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48731</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Gum Assorted 40pk quantity">−</button><output>14</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Gum Assorted 40pk quantity">+</button></div></td></tr>
-        <tr><td><input type="checkbox" aria-label="Select Paper Towels 12 Rolls"></td><td><span class="dashboard-reorder-product-name">Paper Towels 12 Rolls</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48732</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Paper Towels 12 Rolls quantity">−</button><output>4</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Paper Towels 12 Rolls quantity">+</button></div></td></tr>
-        <tr><td><input type="checkbox" aria-label="Select Coffee Cups 100ct"></td><td><span class="dashboard-reorder-product-name">Coffee Cups 100ct</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48733</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Coffee Cups 100ct quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Coffee Cups 100ct quantity">+</button></div></td></tr>
-        <tr><td><input type="checkbox" aria-label="Select Fruit Juice Boxes 24pk"></td><td><span class="dashboard-reorder-product-name">Fruit Juice Boxes 24pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48734</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Fruit Juice Boxes 24pk quantity">−</button><output>8</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Fruit Juice Boxes 24pk quantity">+</button></div></td></tr>
-        <tr><td><input type="checkbox" aria-label="Select Crackers Variety 30pk"></td><td><span class="dashboard-reorder-product-name">Crackers Variety 30pk</span><span class="dashboard-reorder-product-separator" aria-hidden="true"> · </span><span class="dashboard-reorder-item-id">Item #48735</span></td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Crackers Variety 30pk quantity">−</button><output>6</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Crackers Variety 30pk quantity">+</button></div></td></tr>
-        </tbody>
-        </table>
-        </div>
-        </div>
-        <div class="dashboard-reorder-actions">
-        <span class="dashboard-reorder-feedback" id="dashboardReorderFeedback" role="status" aria-live="polite"></span>
-        <div class="dashboard-reorder-action-buttons">
-        <button class="dashboard-action dashboard-action-secondary hero-cta" type="button" id="dashboardBulkUpload" aria-label="Bulk Upload file">
-        <span>BULK UPLOAD</span>
-        </button>
-        <input type="file" id="dashboardBulkUploadFile" accept=".csv,.xlsx,.xls" hidden aria-label="Select bulk upload file">
-        <button class="dashboard-action dashboard-action-primary hero-cta" type="button" id="dashboardReorderAdd">ADD TO CART</button>
-        </div>
-        </div>
-        </div>
-        </section>
-      </div>
-      <div class="dashboard-balance-stack">
-        <section class="dashboard-balance-column" aria-labelledby="dashboardBalanceTitle">
-        <h2 class="dashboard-balance-heading" id="dashboardBalanceTitle">ACCOUNT BALANCE</h2>
-        <div class="dashboard-balance-card">
-        <div class="dashboard-balance-body">
-        <div class="dashboard-balance-summary">
-        <span class="dashboard-balance-label">Total Due</span>
-        <strong class="dashboard-balance-amount">$2,450.00</strong>
-        </div>
-        <div class="dashboard-balance-footer">
-        <p class="dashboard-balance-date"><span>Next Due Date</span><strong>Nov 15, 2026</strong></p>
-        <button class="dashboard-action dashboard-action-primary hero-cta" type="button">PAY INVOICES</button>
-        </div>
-        </div>
-        </div>
-        </section>
-        <section class="dashboard-tracking-column" aria-labelledby="orderTrackingTitle">
-          <div class="dashboard-tracking-heading">
-          <h1 id="orderTrackingTitle">ORDER TRACKING</h1>
-          <p class="dashboard-order-meta"><strong>Order #88432</strong><span aria-hidden="true">·</span><span>Estimated: Today, 2:00 PM</span></p>
-          </div>
-          <div class="dashboard-tracking-card" aria-label="Order #88432 tracking progress">
-          <ol class="dashboard-tracking-steps">
-          <li class="is-complete">
-          <span class="dashboard-tracking-marker" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span>
-          <span class="dashboard-tracking-step-copy"><strong>Ordered</strong><small>Your order has been placed</small></span>
-          </li>
-          <li class="is-complete">
-          <span class="dashboard-tracking-marker" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg></span>
-          <span class="dashboard-tracking-step-copy"><strong>Processing</strong><small>We’re preparing your order</small></span>
-          </li>
-          <li class="is-pending"><span class="dashboard-tracking-marker" aria-hidden="true"></span><span class="dashboard-tracking-step-copy"><strong>Out for Delivery</strong><small>Your order is on its way</small></span></li>
-          <li class="is-pending"><span class="dashboard-tracking-marker" aria-hidden="true"></span><span class="dashboard-tracking-step-copy"><strong>Delivered</strong><small>Order delivered to your address</small></span></li>
-          </ol>
+      <div class="dashboard-summary-three">
+        <section class="dashboard-summary-panel" aria-labelledby="dashboardInvoicesTitle">
+          <div class="dashboard-panel-heading"><h2 id="dashboardInvoicesTitle">RECENT INVOICES</h2><a class="dashboard-quick-link" href="./quick-reorder.html">QUICK REORDER <span aria-hidden="true">↗</span></a></div>
+          <div class="dashboard-summary-card dashboard-invoices-card">
+            <p class="dashboard-demo-note">Sample invoices · prototype</p>
+            <div class="dashboard-invoices-list">
+              <div class="dashboard-invoice-row"><div><strong>INV-1048</strong><span>Nov 02, 2026 · $840.00</span></div><div class="dashboard-invoice-actions"><button type="button" data-invoice="INV-1048" data-amount="840.00" data-date="Nov 02, 2026" data-action="download" aria-label="Download sample invoice INV-1048">↓ <span>PDF</span></button><button type="button" data-invoice="INV-1048" data-amount="840.00" data-date="Nov 02, 2026" data-action="print" aria-label="Print sample invoice INV-1048">Print</button></div></div>
+              <div class="dashboard-invoice-row"><div><strong>INV-1047</strong><span>Oct 29, 2026 · $1,120.00</span></div><div class="dashboard-invoice-actions"><button type="button" data-invoice="INV-1047" data-amount="1120.00" data-date="Oct 29, 2026" data-action="download" aria-label="Download sample invoice INV-1047">↓ <span>PDF</span></button><button type="button" data-invoice="INV-1047" data-amount="1120.00" data-date="Oct 29, 2026" data-action="print" aria-label="Print sample invoice INV-1047">Print</button></div></div>
+              <div class="dashboard-invoice-row"><div><strong>INV-1046</strong><span>Oct 22, 2026 · $490.00</span></div><div class="dashboard-invoice-actions"><button type="button" data-invoice="INV-1046" data-amount="490.00" data-date="Oct 22, 2026" data-action="download" aria-label="Download sample invoice INV-1046">↓ <span>PDF</span></button><button type="button" data-invoice="INV-1046" data-amount="490.00" data-date="Oct 22, 2026" data-action="print" aria-label="Print sample invoice INV-1046">Print</button></div></div>
+            </div>
           </div>
         </section>
-      </div>
+        <section class="dashboard-summary-panel" aria-labelledby="dashboardBalanceTitle">
+          <div class="dashboard-panel-heading"><h2 id="dashboardBalanceTitle">ACCOUNT BALANCE</h2></div>
+          <div class="dashboard-summary-card dashboard-balance-compact">
+            <span class="dashboard-balance-label">Total Due</span><strong class="dashboard-balance-amount">$2,450.00</strong>
+            <div class="dashboard-compact-footer"><p class="dashboard-balance-date">Next Due Date <strong>Nov 15, 2026</strong></p><button class="dashboard-action dashboard-action-primary hero-cta" type="button" aria-label="Pay invoices demo">PAY INVOICES</button></div>
+          </div>
+        </section>
+        <section class="dashboard-summary-panel" aria-labelledby="orderTrackingTitle">
+          <div class="dashboard-panel-heading"><h2 id="orderTrackingTitle">ORDER TRACKING</h2></div>
+          <div class="dashboard-summary-card dashboard-tracking-compact">
+            <p class="dashboard-order-meta"><strong>Order #88432</strong><span>·</span><span>Estimated: Today, 2:00 PM</span></p>
+            <div class="dashboard-progress-track" role="img" aria-label="Order placed and processing complete, out for delivery pending"><span></span></div>
+            <div class="dashboard-progress-labels"><span>Ordered</span><span>Processing</span><span>Out for Delivery</span><span>Delivered</span></div>
+            <p class="dashboard-tracking-status"><span class="dashboard-status-dot"></span> Processing · Preparing your order</p>
+          </div>
+        </section>
       </div>
     </div>
   </section>
-
   <section class="dashboard-promotions" aria-labelledby="dashboardPromotionsTitle">
     <div class="dashboard-promotions-inner">
       <h2 class="dashboard-promotions-heading" id="dashboardPromotionsTitle">CURRENT DEALS &amp; PROMOTIONS</h2>
-      <div class="dashboard-promotions-grid">
-        <article class="dashboard-promo-card">
-          <div class="dashboard-promo-art" role="img" aria-label="Colorful assortment of packaged wholesale snack products">
-            <img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="" loading="lazy" decoding="async">
-          </div>
-          <div class="dashboard-promo-text"><h3>BUY 5 GET 1 FREE</h3><p>Snacking Brands</p></div>
-        </article>
-        <article class="dashboard-promo-card">
-          <div class="dashboard-promo-art" role="img" aria-label="Assorted refreshing beverages and chilled drinks on a purple background">
-            <img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="" loading="lazy" decoding="async">
-          </div>
-          <div class="dashboard-promo-text"><h3>15% OFF ALL BEVERAGES</h3><p>Use Code: <strong>BEV15</strong></p></div>
-        </article>
-        <article class="dashboard-promo-card">
-          <div class="dashboard-promo-art" role="img" aria-label="Bright assorted wrapped candies and colorful sweets">
-            <img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="" loading="lazy" decoding="async">
-          </div>
-          <div class="dashboard-promo-text"><h3>BULK CANDY SPECIAL</h3><p>Sweet deals on bulk candy</p></div>
-        </article>
-      </div>
+      <div class="dashboard-promotions-grid"><article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>BUY 5 GET 1 FREE</h3><p>Snacking Brands</p></div></article>
+<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>15% OFF ALL BEVERAGES</h3><p>Use Code: BEV15</p></div></article>
+<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>BULK CANDY SPECIAL</h3><p>Sweet deals on bulk candy</p></div></article>
+<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>SNACKS & CHIPS</h3><p>Explore snack promotions</p></div></article>
+<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>BOTTLED DRINKS</h3><p>Explore beverage promotions</p></div></article>
+<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>CANDY FAVORITES</h3><p>Explore sweet promotions</p></div></article>
+<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>WHOLESALE SNACKS</h3><p>Browse snack deals</p></div></article>
+<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>DRINKS FOR YOUR STORE</h3><p>Browse beverage deals</p></div></article>
+<article class="dashboard-promo-card"><div class="dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="dashboard-promo-text"><h3>BULK SWEETS</h3><p>Browse candy deals</p></div></article></div>
+      <nav class="dashboard-shop-links" aria-label="Browse product catalog">
+        <a href="./index.html#categories-title">SHOP ALL CATEGORIES <span aria-hidden="true">↗</span></a>
+        <a href="./index.html#brands-title">SHOP ALL BRANDS <span aria-hidden="true">↗</span></a>
+      </nav>
     </div>
   </section>
-
 
   <section class="dashboard-products-section new-section" aria-label="Product carousel">
     <div class="dashboard-products-inner">
@@ -892,76 +874,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   });
 })();
 </script>
-<script>
-(function(){
-  const rows=[...document.querySelectorAll('#dashboardReorderProducts tr')];
-  const search=document.getElementById('dashboardReorderSearch');
-  const all=document.getElementById('dashboardSelectAll');
-  const feedback=document.getElementById('dashboardReorderFeedback');
-  const clearSelected=document.getElementById('dashboardClearSelected');
-  const selectedCount=document.getElementById('dashboardSelectedCount');
-  const scrollRegion=document.querySelector('.dashboard-main-grid .dashboard-reorder-table-region');
-  const scrollList=scrollRegion&&scrollRegion.querySelector('.dashboard-reorder-table-wrap');
-  function updateScrollHint(){
-    if(!scrollRegion||!scrollList)return;
-    const canScroll=window.matchMedia('(min-width:901px)').matches;
-    scrollRegion.classList.toggle('has-more-below',canScroll&&scrollList.scrollHeight-scrollList.scrollTop-scrollList.clientHeight>4);
-  }
-  if(scrollList){
-    scrollList.addEventListener('scroll',updateScrollHint,{passive:true});
-    window.addEventListener('resize',updateScrollHint,{passive:true});
-    if(typeof ResizeObserver!=='undefined'){
-      const hintObserver=new ResizeObserver(updateScrollHint);
-      hintObserver.observe(scrollList);
-    }
-    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(updateScrollHint);
-    requestAnimationFrame(updateScrollHint);
-  }
-  function sync(){
-    const visible=rows.filter(row=>!row.hidden);
-    const selected=visible.filter(row=>row.querySelector('input[type=checkbox]').checked);
-    all.checked=visible.length>0&&selected.length===visible.length;
-    all.indeterminate=selected.length>0&&selected.length<visible.length;
-    const totalSelected=rows.filter(row=>row.querySelector('input[type=checkbox]').checked).length;
-    clearSelected.hidden=totalSelected===0;
-    selectedCount.textContent='SELECTED ('+totalSelected+')';
-    requestAnimationFrame(updateScrollHint);
-  }
-  search.addEventListener('input',()=>{
-    const term=search.value.trim().toLowerCase();
-    rows.forEach(row=>{row.hidden=!row.cells[1].textContent.toLowerCase().includes(term);});
-    sync();
-  });
-  all.addEventListener('change',()=>{
-    rows.filter(row=>!row.hidden).forEach(row=>row.querySelector('input[type=checkbox]').checked=all.checked);
-    sync();
-  });
-  clearSelected.addEventListener('click',()=>{
-    rows.forEach(row=>{row.querySelector('input[type=checkbox]').checked=false;});
-    feedback.textContent='';
-    sync();
-  });
-  rows.forEach(row=>{
-    row.querySelector('input[type=checkbox]').addEventListener('change',sync);
-    row.querySelectorAll('[data-step]').forEach(button=>button.addEventListener('click',()=>{
-      const count=row.querySelector('output');
-      count.textContent=String(Math.max(1,Math.min(999,Number(count.textContent)+Number(button.dataset.step))));
-    }));
-  });
-  const bulkButton=document.getElementById('dashboardBulkUpload');
-  const bulkInput=document.getElementById('dashboardBulkUploadFile');
-  bulkButton.addEventListener('click',()=>bulkInput.click());
-  bulkInput.addEventListener('change',()=>{
-    const file=bulkInput.files&&bulkInput.files[0];
-    if(file)feedback.textContent=file.name+' selected — upload preview only.';
-  });
-  document.getElementById('dashboardReorderAdd').addEventListener('click',()=>{
-    const items=rows.filter(row=>row.querySelector('input[type=checkbox]').checked);
-    feedback.textContent=items.length?items.length+' selected product(s) — prototype preview only.':'Select products to add to cart.';
-  });
-  sync();
-})();
-</script>
+
 
 
 <script>
@@ -1075,6 +988,46 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   window.addEventListener('pageshow',()=>setOpen(false));
   document.getElementById('dashboardMenuLogout')?.addEventListener('click',()=>{
     try{sessionStorage.removeItem('td-preview-auth-v1')}catch(e){}
+  });
+})();
+</script>
+<script>
+(function(){
+  function pdfFor(invoice,date,amount){
+    const lines=['TRUE DISTRIBUTORS','SAMPLE INVOICE - PROTOTYPE ONLY','Invoice: '+invoice,'Date: '+date,'Amount: 
+</html>
++amount,'Not a real billing document'];
+    const safe=s=>s.replace(/[\\()]/g,'\\</body>');
+    const stream='BT /F1 17 Tf 45 750 Td '+lines.map((line,i)=>(i?'0 -36 Td ':'')+'('+safe(line)+') Tj').join(' ')+' ET';
+    const objects=[
+      '<< /Type /Catalog /Pages 2 0 R >>',
+      '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
+      '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>',
+      '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>',
+      '<< /Length '+stream.length+' >>\nstream\n'+stream+'\nendstream'
+    ];
+    let doc='%PDF-1.4\n', offsets=[0];
+    objects.forEach((obj,i)=>{offsets.push(doc.length);doc+=(i+1)+' 0 obj\n'+obj+'\nendobj\n'});
+    const xref=doc.length;
+    doc+='xref\n0 '+(objects.length+1)+'\n0000000000 65535 f \n';
+    offsets.slice(1).forEach(n=>{doc+=String(n).padStart(10,'0')+' 00000 n \n'});
+    doc+='trailer\n<< /Size '+(objects.length+1)+' /Root 1 0 R >>\nstartxref\n'+xref+'\n%%EOF';
+    return new Blob([doc],{type:'application/pdf'});
+  }
+  document.querySelectorAll('.dashboard-invoice-actions button').forEach(button=>{
+    button.addEventListener('click',()=>{
+      const blob=pdfFor(button.dataset.invoice,button.dataset.date,button.dataset.amount);
+      const url=URL.createObjectURL(blob);
+      if(button.dataset.action==='download'){
+        const a=document.createElement('a');a.href=url;a.download=button.dataset.invoice+'-SAMPLE.pdf';document.body.appendChild(a);a.click();a.remove();
+        setTimeout(()=>URL.revokeObjectURL(url),10000);
+      }else{
+        const popup=window.open(url,'_blank');
+        if(!popup){window.alert('Please allow pop-ups to print the sample PDF.');URL.revokeObjectURL(url);return;}
+        popup.addEventListener('load',()=>{try{popup.focus();popup.print()}catch(e){}},{once:true});
+        setTimeout(()=>URL.revokeObjectURL(url),60000);
+      }
+    });
   });
 })();
 </script>
