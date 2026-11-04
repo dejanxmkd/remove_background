@@ -982,6 +982,19 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 @media(max-width:1100px){.dv-account-container{grid-template-columns:1fr 1fr;row-gap:26px}.dv-account-col:nth-child(2){border-right:0;padding-right:0}.dv-account-col:last-child{grid-column:1/-1;padding:24px 0 0;border-top:1px solid var(--line)}}
 @media(max-width:760px){.dv-account-section{padding:52px 0 72px;background:linear-gradient(to bottom,var(--purple) 0%,var(--purple) 33%,#fff 33%,#fff 100%)}.dv-account-container{width:calc(100% - 36px);grid-template-columns:1fr;padding:22px 18px}.dv-account-col,.dv-account-col:first-child,.dv-account-col:last-child{grid-column:1/-1;border:0;border-bottom:1px solid var(--line);padding:0 0 22px;margin:0 0 22px}.dv-account-col:last-child{border:0;margin:0;padding:0}.dv-account-col h2{font-size:20px}.dv-invoice{grid-template-columns:minmax(0,1fr) auto}.dv-invoice-actions{grid-column:1/-1;justify-content:flex-start}.dv-pay{margin-top:5px}.dv-track-head h2{font-size:18px}.dv-step-label{font-size:14px}}
 </style>
+<style id="dashboardv-current-deals-styles">
+/* New Arrivals-style white section; reuse the Deals carousel card system. */
+.dashboardv-current-deals.dashboardv-deals{background:#fff;color:var(--ink);padding:86px 0 96px}
+.dashboardv-current-deals .eyebrow{background:var(--purple);color:#fff}
+.dashboardv-current-deals #dashboardv-current-title{margin:20px 0 0;font-size:clamp(36px,4.4vw,66px);line-height:1;letter-spacing:-.035em;font-weight:900;color:var(--ink)}
+.dashboardv-current-deals #dashboardvCurrentCarousel{--gap:18px;align-items:stretch;scroll-behavior:smooth}
+.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{flex:0 0 calc((100% - 3 * var(--gap))/4);display:flex;flex-direction:column;min-width:0;min-height:310px;align-self:stretch;overflow:hidden;background:#fff;border-radius:17px;border:1px solid var(--line)}
+.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card,.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card:hover{box-shadow:0 9px 23px rgba(25,14,61,.14)}
+.dashboardv-current-deals .progress{background:#eae7ef}
+.dashboardv-current-deals .progress span{background:var(--purple)}
+@media(max-width:1100px){.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/2)}}
+@media(max-width:760px){.dashboardv-current-deals.dashboardv-deals{padding:52px 0 72px}.dashboardv-current-deals #dashboardv-current-title{font-size:clamp(30px,7.4vw,46px)}.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{flex-basis:100%}}
+</style>
 </head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
@@ -1148,6 +1161,90 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
     <div class="dv-account-col dv-account-invoices"><h2>RECENT INVOICES</h2><div class="dv-invoice-list"><div class="dv-invoice"><div class="dv-invoice-id"><strong>INV-1048</strong><span>Nov 07, 2026</span></div><strong class="dv-invoice-amount">$840.00</strong><div class="dv-invoice-actions"><button class="dv-secondary" type="button" data-action="print" data-invoice="INV-1048" data-date="Nov 07, 2026" data-amount="840.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-printer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> PRINT</button><button class="dv-primary" type="button" data-action="download" data-invoice="INV-1048" data-date="Nov 07, 2026" data-amount="840.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-download" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> DOWNLOAD</button></div></div><div class="dv-invoice"><div class="dv-invoice-id"><strong>INV-1047</strong><span>Oct 29, 2026</span></div><strong class="dv-invoice-amount">$1,120.00</strong><div class="dv-invoice-actions"><button class="dv-secondary" type="button" data-action="print" data-invoice="INV-1047" data-date="Oct 29, 2026" data-amount="1120.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-printer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> PRINT</button><button class="dv-primary" type="button" data-action="download" data-invoice="INV-1047" data-date="Oct 29, 2026" data-amount="1120.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-download" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> DOWNLOAD</button></div></div><div class="dv-invoice"><div class="dv-invoice-id"><strong>INV-1046</strong><span>Oct 22, 2026</span></div><strong class="dv-invoice-amount">$490.00</strong><div class="dv-invoice-actions"><button class="dv-secondary" type="button" data-action="print" data-invoice="INV-1046" data-date="Oct 22, 2026" data-amount="490.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-printer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> PRINT</button><button class="dv-primary" type="button" data-action="download" data-invoice="INV-1046" data-date="Oct 22, 2026" data-amount="490.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-download" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> DOWNLOAD</button></div></div></div></div><div class="dv-account-col dv-account-tracking"><div class="dv-track-head"><h2>ORDER TRACKING</h2></div><ol class="dv-steps" aria-label="Order status timeline"><li class="complete"><span class="dv-step-dot" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg></span><span class="dv-step-copy"><strong class="dv-step-label">Ordered</strong></span></li><li class="complete current"><span class="dv-step-dot" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg></span><span class="dv-step-copy"><strong class="dv-step-label">Processing</strong></span></li><li class="pending"><span class="dv-step-dot" aria-hidden="true"></span><span class="dv-step-copy"><strong class="dv-step-label">Out for Delivery</strong></span></li><li class="pending"><span class="dv-step-dot" aria-hidden="true"></span><span class="dv-step-copy"><strong class="dv-step-label">Delivered</strong></span></li></ol><div class="dv-track-bottom"><a class="dv-secondary dv-quick" href="./quick-reorder.html">QUICK REORDER</a><div class="dv-order"><strong>Order #88432</strong><span>Estimated Today, 2:00 PM</span></div></div></div>
   </div></section>
 
+  <section class="new-section dashboardv-deals dashboardv-current-deals" aria-labelledby="dashboardv-current-title">
+
+    <div class="dashboardv-deals-inner">
+      <div class="section-header">
+        <div class="title-group">
+          <div class="eyebrow">FEATURED PROMOTIONS</div>
+          <h1 id="dashboardv-current-title">CURRENT DEALS &amp; PROMOTIONS</h1>
+        </div>
+        
+      </div>
+      <div class="carousel-wrap dashboardv-carousel-wrap">
+        <button class="carousel-arrow carousel-arrow-prev dashboardv-current-prev" type="button" aria-label="Previous current deals" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <div class="carousel" id="dashboardvCurrentCarousel" tabindex="0" aria-label="Current deals carousel">
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Weekly Snack Specials</h3>
+    <p class="dashboardv-deal-subtitle">Explore current snack promotions</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Beverage Promotions</h3>
+    <p class="dashboardv-deal-subtitle">Explore current beverage offers</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Candy & Confectionery</h3>
+    <p class="dashboardv-deal-subtitle">Current candy deals</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Chips & Snacks</h3>
+    <p class="dashboardv-deal-subtitle">Available snack promotions</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Bottled Drinks</h3>
+    <p class="dashboardv-deal-subtitle">Featured beverage offers</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Sweet Deals</h3>
+    <p class="dashboardv-deal-subtitle">Promotions on candy favorites</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Bulk Savings</h3>
+    <p class="dashboardv-deal-subtitle">Offers for wholesale orders</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Featured Offers</h3>
+    <p class="dashboardv-deal-subtitle">Discover more current deals</p>
+    
+  </div>
+</article>
+</div>
+        <button class="carousel-arrow carousel-arrow-next dashboardv-current-next" type="button" aria-label="Next current deals"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+      <div class="section-bottom"><div class="progress" role="progressbar" aria-label="Current deals carousel progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="dashboardvCurrentProgress"></span></div></div>
+    </div>
+  </section>
+
 </main>
 <script>
 /* Dashboard header. Existing storefront UI styles, no Quick Shop or burger. */
@@ -1274,6 +1371,39 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   const prev=document.querySelector('.dashboardv-carousel-prev');
   const next=document.querySelector('.dashboardv-carousel-next');
   const track=document.getElementById('dashboardvDealsProgress');
+  const progress=track.parentElement;
+  function sync(){
+    const max=Math.max(0,rail.scrollWidth-rail.clientWidth);
+    const ratio=max?rail.scrollLeft/max:0;
+    const visible=Math.min(1,rail.clientWidth/rail.scrollWidth);
+    track.style.width=(visible*100)+'%';
+    track.style.transform='translateX('+(progress.clientWidth*(1-visible)*ratio)+'px)';
+    progress.setAttribute('aria-valuenow',String(Math.round(ratio*100)));
+    prev.disabled=rail.scrollLeft<=1;
+    next.disabled=rail.scrollLeft>=max-1;
+  }
+  function move(sign){
+    const card=rail.querySelector('.card');
+    const distance=(card?.getBoundingClientRect().width||rail.clientWidth)+(parseFloat(getComputedStyle(rail).gap)||0);
+    rail.scrollBy({left:sign*distance,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  }
+  prev.addEventListener('click',()=>move(-1));
+  next.addEventListener('click',()=>move(1));
+  rail.addEventListener('scroll',sync,{passive:true});
+  window.addEventListener('resize',sync,{passive:true});
+  rail.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();move(e.key==='ArrowRight'?1:-1)}});
+  rail.addEventListener('click',e=>{if(e.target.closest('[data-demo-product]'))location.assign('./login.html')});
+  requestAnimationFrame(sync);
+})();
+</script>
+<script>
+/* Current Deals carousel for Dashboard V. */
+(function(){
+  const rail=document.getElementById('dashboardvCurrentCarousel');
+  if(!rail)return;
+  const prev=document.querySelector('.dashboardv-current-prev');
+  const next=document.querySelector('.dashboardv-current-next');
+  const track=document.getElementById('dashboardvCurrentProgress');
   const progress=track.parentElement;
   function sync(){
     const max=Math.max(0,rail.scrollWidth-rail.clientWidth);
