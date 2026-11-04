@@ -550,71 +550,43 @@
 }
 </style>
 <style>
-/* Match index.html: full-width white header reveal; same row height,
-   animated grid expansion and exact storefront alignment. */
-.site-header > #mobileMenuPanel{
-  width:100%;
-  background:#fff;
-}
-.site-header > #mobileMenuPanel .mobile-menu-reveal{
-  min-height:0;
-  overflow:hidden;
-}
-.site-header > #mobileMenuPanel .dashboard-mobile-menu-content{
-  box-sizing:border-box;
-}
-.dashboard-menu-link{
-  color:var(--ink);font-size:14px;font-weight:700;
-  line-height:1.35;text-decoration:none;white-space:nowrap;
-}
-.dashboard-menu-link[aria-current="page"]{color:var(--purple);font-weight:800}
-.dashboard-menu-link:hover{color:var(--purple)}
-.dashboard-menu-link:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
-@media(min-width:761px){
-  /* Exactly the index desktop 1440px content row, not a floating dropdown. */
-  .site-header > #mobileMenuPanel .dashboard-mobile-menu-content{
-    display:flex;
-    flex-direction:row;
-    justify-content:flex-end;
-    align-items:center;
-    flex-wrap:nowrap;
-    width:min(1440px,calc(100% - 96px));
-    margin:0 auto;
-    padding:18px 0;
-    gap:18px;
-  }
-  .dashboard-mobile-menu-content .dashboard-menu-logout{
-    display:inline-flex;
-    width:auto;
-    min-height:44px;
-    flex:none;
-  }
-}
+/* Exact full-screen purple burger from landing-build.js, Dashboard only. */
+:root{--td-ease:cubic-bezier(.22,1,.36,1);--td-fast:.22s;--td-mid:.34s}
+html{scrollbar-gutter:stable}
+body.td-locked{overflow:clip;touch-action:none}
+body.td-login-menu-open .site-header{position:sticky!important;top:0;z-index:2700!important;visibility:visible!important}
+body.td-login-menu-open .mobile-menu-toggle{position:relative!important;z-index:2701!important;display:inline-flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}
+body.td-login-menu-open .mobile-menu-toggle .mobile-menu-open-icon{display:none!important}
+body.td-login-menu-open .mobile-menu-toggle .mobile-menu-close-icon{display:block!important}
+/* Burger full-screen purple menu — smooth open/close with clip-path */
+.mobile-menu-panel.td-login-panel{position:fixed!important;inset:0!important;z-index:2500!important;width:100vw!important;height:100dvh!important;background:var(--purple)!important;color:#fff!important;padding:0!important;overflow:hidden!important;display:grid!important;grid-template-rows:1fr!important;visibility:hidden;clip-path:inset(0 0 100% 0);transition:clip-path var(--td-mid) var(--td-ease),visibility 0s linear var(--td-mid)}
+body.td-login-menu-open .mobile-menu-panel.td-login-panel{visibility:visible;clip-path:inset(0 0 0 0);transition:clip-path var(--td-mid) var(--td-ease),visibility 0s}
+.mobile-menu-panel.td-login-panel .mobile-menu-reveal{height:100%!important;overflow:hidden!important}
+.mobile-menu-panel.td-login-panel .mobile-menu-content{width:min(620px,calc(100% - 44px))!important;height:100%!important;margin:0 auto!important;padding:92px 0 42px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;transform:none!important;gap:0!important}
+.mobile-menu-panel.td-login-panel .shopping-user,.mobile-menu-panel.td-login-panel .quick-shop-button,.mobile-menu-panel.td-login-panel .shopping-nav-separator,.mobile-menu-panel.td-login-panel .menu-auth-link{display:none!important}
+/* Header + nav items transition smoothly in and out with the menu */
+.site-header{transition:background var(--td-mid) var(--td-ease),border-color var(--td-mid) var(--td-ease)}
+.site-nav-logo,.header-search-toggle,.shopping-cart-button,.quick-shop-button,.shopping-nav-separator,.shopping-user{transition:opacity var(--td-fast) var(--td-ease)}
+.mobile-menu-toggle{transition:color var(--td-fast) var(--td-ease)}
+body.td-login-menu-open .site-header{background:var(--purple)!important;border-bottom-color:transparent!important}
+body.td-login-menu-open .site-nav-logo,body.td-login-menu-open .header-search-toggle,body.td-login-menu-open .shopping-cart-button,body.td-login-menu-open .quick-shop-button,body.td-login-menu-open .shopping-nav-separator,body.td-login-menu-open .shopping-user{opacity:0!important;pointer-events:none!important}
+body.td-login-menu-open .mobile-menu-toggle{color:#fff!important}
+.td-burger-nav{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+.td-burger-link{color:#fff!important;text-decoration:none!important;font:950 clamp(30px,4.2vw,52px) var(--font);letter-spacing:.035em;line-height:1.05;text-align:center;opacity:0;transform:translateY(14px);transition:opacity var(--td-fast) ease,transform var(--td-mid) var(--td-ease)}
+body.td-login-menu-open .td-burger-link{opacity:1;transform:translateY(0)}
+body.td-login-menu-open .td-burger-link:nth-child(1){transition-delay:.08s}
+body.td-login-menu-open .td-burger-link:nth-child(2){transition-delay:.12s}
+body.td-login-menu-open .td-burger-link:nth-child(3){transition-delay:.16s}
+body.td-login-menu-open .td-burger-link:nth-child(4){transition-delay:.20s}
+body.td-login-menu-open .td-burger-link:nth-child(5){transition-delay:.24s}
+body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
+.td-burger-link:hover,.td-burger-link:focus-visible{opacity:.75;outline:none}
 @media(max-width:760px){
-  /* The same slide-down panel as index mobile, with stacked Dashboard links. */
-  .site-header > #mobileMenuPanel .dashboard-mobile-menu-content{
-    display:flex;
-    flex-direction:column;
-    align-items:stretch;
-    justify-content:flex-start;
-    width:calc(100% - 36px);
-    margin:0 auto;
-    padding:20px 0 24px;
-    gap:0;
-  }
-  .dashboard-mobile-menu-content .shopping-user{
-    order:0;width:100%;margin:0 0 12px;
-  }
-  .dashboard-menu-link{
-    display:flex;align-items:center;width:100%;
-    min-height:49px;padding:9px 0;
-    border-bottom:1px solid var(--line);font-size:15px;
-  }
-  .dashboard-mobile-menu-content .dashboard-menu-logout{
-    display:flex;order:3;align-self:stretch;
-    width:100%;min-height:52px;margin-top:16px;
-  }
+  .td-burger-nav{gap:18px}
+  .td-burger-link{font-size:38px}
 }
+@media(max-width:400px){.td-burger-link{font-size:clamp(27px,9vw,38px)}}
+@media(prefers-reduced-motion:reduce){.td-burger-link{transition:none!important}}
 </style>
 </head>
 <body data-auth-preview="true">
@@ -657,17 +629,17 @@
       </button>
     </div>
   </nav>
-  <div class="mobile-menu-panel" id="mobileMenuPanel" aria-hidden="true" inert>
+  <div class="mobile-menu-panel td-login-panel" id="mobileMenuPanel" aria-hidden="true" inert>
     <div class="mobile-menu-reveal">
-      <div class="mobile-menu-content dashboard-mobile-menu-content" id="mobileMenuContent" role="navigation" aria-label="Dashboard navigation">
-        <a class="dashboard-menu-link" href="./dashboard.html" aria-current="page">Dashboard</a>
-        <a class="dashboard-menu-link" href="#dashboardProductCarousel">Products</a>
-        <a class="dashboard-menu-link" href="#orderTrackingTitle">Orders</a>
-        <a class="dashboard-menu-link" href="#dashboardBalanceTitle">Invoices</a>
-        <a class="dashboard-menu-link" href="#dashboardSupportFooter">Support</a>
-        <a class="menu-auth-link dashboard-menu-logout" id="dashboardMenuLogout" href="./login.html">Logout
-          <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
+      <div class="mobile-menu-content" id="mobileMenuContent">
+        <nav class="td-burger-nav" aria-label="Dashboard navigation">
+          <a class="td-burger-link" href="./dashboard.html" aria-current="page">Dashboard</a>
+          <a class="td-burger-link" href="#dashboardProductCarousel">Products</a>
+          <a class="td-burger-link" href="#orderTrackingTitle">Orders</a>
+          <a class="td-burger-link" href="#dashboardBalanceTitle">Invoices</a>
+          <a class="td-burger-link" href="#dashboardSupportFooter">Support</a>
+          <a class="td-burger-link" id="dashboardMenuLogout" href="./login.html">Logout</a>
+        </nav>
       </div>
     </div>
   </div>
@@ -1072,34 +1044,24 @@
 })();
 </script>
 <script>
-/* Shared storefront hamburger behavior: same reveal, focus and responsive account positioning. */
+/* The exact landing-build.js purple fullscreen burger state, scoped to Dashboard. */
 (function(){
   const toggle=document.getElementById('mobileMenuToggle');
   const panel=document.getElementById('mobileMenuPanel');
-  const content=document.getElementById('mobileMenuContent');
-  const controls=document.querySelector('.shopping-nav-controls');
-  const user=controls?.querySelector('.shopping-user');
-  const mq=window.matchMedia('(max-width:760px)');
   const searchToggle=document.getElementById('headerSearchToggle');
   const searchPanel=document.getElementById('headerSearchPanel');
-  if(!toggle||!panel||!content)return;
+  if(!toggle||!panel)return;
   function setOpen(open,restoreFocus=false){
     panel.classList.toggle('is-open',open);
     panel.inert=!open;
     panel.setAttribute('aria-hidden',String(!open));
     toggle.setAttribute('aria-expanded',String(open));
     toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
+    document.body.classList.toggle('td-login-menu-open',open);
+    document.body.classList.toggle('td-locked',open);
     if(!open&&panel.contains(document.activeElement))document.activeElement.blur();
     if(!open&&restoreFocus)toggle.focus({preventScroll:true});
   }
-  function syncLayout(){
-    setOpen(false);
-    if(!user||!controls)return;
-    if(mq.matches){content.prepend(user);}
-    else{controls.insertBefore(user,toggle);}
-  }
-  mq.addEventListener('change',syncLayout);
-  syncLayout();
   toggle.addEventListener('click',()=>{
     const open=!panel.classList.contains('is-open');
     if(open&&searchPanel?.classList.contains('is-open'))searchToggle?.click();
@@ -1107,12 +1069,10 @@
   });
   searchToggle?.addEventListener('click',()=>setOpen(false));
   panel.addEventListener('click',e=>{if(e.target.closest('a'))setOpen(false)});
-  document.addEventListener('pointerdown',e=>{
-    if(panel.classList.contains('is-open')&&!panel.contains(e.target)&&!toggle.contains(e.target))setOpen(false);
-  });
   document.addEventListener('keydown',e=>{
-    if(e.key==='Escape'&&panel.classList.contains('is-open')){setOpen(false,true);}
+    if(e.key==='Escape'&&panel.classList.contains('is-open'))setOpen(false,true);
   });
+  window.addEventListener('pageshow',()=>setOpen(false));
   document.getElementById('dashboardMenuLogout')?.addEventListener('click',()=>{
     try{sessionStorage.removeItem('td-preview-auth-v1')}catch(e){}
   });
