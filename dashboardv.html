@@ -885,6 +885,25 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 @media(max-width:1080px){.td2-shell{grid-template-columns:1fr 1fr}.td2-column:nth-child(2){border:0;padding-right:0}.td2-column:nth-child(3){grid-column:1/-1;padding:24px 0 0;border:0;border-top:1px solid #e5e0ec;margin-top:25px}.td2-invoice{grid-template-columns:minmax(0,1fr) auto auto}.td2-invoice-actions{grid-column:auto}.td2-column:nth-child(3) .td2-steps{margin-bottom:25px}}
 @media(max-width:760px){.td2-hero{padding:50px 0 65px;background:linear-gradient(to bottom,#6633cc 0%,#6633cc 36%,#fff 36%,#fff 100%)}.td2-shell{width:calc(100% - 32px);padding:22px 18px;grid-template-columns:1fr;border-radius:17px}.td2-column,.td2-column:first-child,.td2-column:last-child{grid-column:1/-1;padding:0 0 24px;border:0;border-bottom:1px solid #e5e0ec;margin:0 0 24px}.td2-column:last-child{padding:0;margin:0;border:0}.td2-heading{margin-bottom:15px}.td2-heading h2{font-size:20px}.td2-invoice{grid-template-columns:minmax(0,1fr) auto;gap:8px}.td2-invoice-actions{grid-column:1/-1;justify-content:center}.td2-total>strong{font-size:44px}.td2-pay{min-height:39px}.td2-due{margin:18px 0 25px}.td2-quick{font-size:10px;padding:0 9px;min-height:35px}.td2-tracking-heading{gap:8px}.td2-tracking-heading h2{font-size:18px}.td2-order-meta{font-size:12px}.td2-step-name{font-size:10px;white-space:normal}.td2-step-dot{width:33px;height:33px}.td2-steps::before,.td2-steps::after{top:16px}.td2-status{padding:18px}.td2-status small{font-size:12px}}
 </style>
+<style id="dashboardv-deals-styles">
+/* Same storefront New Arrivals section, with requested purple background and header. */
+.dashboardv-deals{background:var(--purple);color:#fff;padding:94px 0 110px}
+.dashboardv-deals-inner{width:min(1440px,calc(100% - 96px));margin:auto}
+.dashboardv-deals .section-header{margin-bottom:42px}
+.dashboardv-deals .eyebrow{background:#fff;color:var(--purple)}
+#dashboardv-deals-title{margin:20px 0 0;font-size:clamp(36px,4.4vw,66px);line-height:1;letter-spacing:-.035em;font-weight:900;color:#fff}
+.dashboardv-deals .view-all{color:#fff}
+.dashboardv-deals .carousel{scroll-behavior:smooth}
+.dashboardv-deals .carousel .card{background:#fff;color:var(--ink)}
+.dashboardv-deals .progress{background:rgba(255,255,255,.3)}
+.dashboardv-deals .progress span{background:#fff}
+.dashboardv-carousel-wrap{position:relative}
+.dashboardv-carousel-arrow{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:40px;height:40px;transform:translateY(-50%);border:0;border-radius:50%;background:var(--purple);color:#fff;font-size:28px;font-weight:600;line-height:1;box-shadow:0 3px 12px rgba(0,0,0,.12);cursor:pointer}
+.dashboardv-carousel-prev{left:8px}.dashboardv-carousel-next{right:8px}
+.dashboardv-carousel-arrow:disabled{opacity:.35;cursor:default}
+.dashboardv-deals .mobile-view-all{background:#fff;color:var(--purple)}
+@media(max-width:760px){.dashboardv-deals{padding:52px 0 72px}.dashboardv-deals-inner{width:calc(100% - 36px)}.dashboardv-deals .section-header{margin-bottom:20px}#dashboardv-deals-title{font-size:clamp(30px,7.4vw,46px)}}
+</style>
 </head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
@@ -961,7 +980,33 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   </section>
 </div>
   
-<main id="dashboardv" aria-label="Dashboard content"></main>
+<main id="dashboardv" aria-label="Dashboard content">
+  <section class="new-section dashboardv-deals" aria-labelledby="dashboardv-deals-title">
+    <div class="dashboardv-deals-inner">
+      <div class="section-header">
+        <div class="title-group">
+          <div class="eyebrow">SPECIAL OFFERS</div>
+          <h1 id="dashboardv-deals-title">DEALS YOU DON'T WANT TO MISS</h1>
+        </div>
+        <a class="view-all desktop-view-all" href="./index.html#dealsProducts">View All Deals <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+      <div class="carousel-wrap dashboardv-carousel-wrap">
+        <button class="dashboardv-carousel-arrow dashboardv-carousel-prev" type="button" aria-label="Previous deals" disabled>‹</button>
+        <div class="carousel" id="dashboardvDealsCarousel" tabindex="0" aria-label="Deals carousel"><article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48720</div><h3 class="product-title">Product name</h3><div class="purchase"><a class="request-price-link" href="./login.html" aria-label="Request price for item #48720">Request Price <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a><button class="add" type="button" aria-label="Add demo product #48720 to cart" data-demo-product="48720"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48721</div><h3 class="product-title">Product name</h3><div class="purchase"><a class="request-price-link" href="./login.html" aria-label="Request price for item #48721">Request Price <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a><button class="add" type="button" aria-label="Add demo product #48721 to cart" data-demo-product="48721"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48722</div><h3 class="product-title">Product name</h3><div class="purchase"><a class="request-price-link" href="./login.html" aria-label="Request price for item #48722">Request Price <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a><button class="add" type="button" aria-label="Add demo product #48722 to cart" data-demo-product="48722"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48723</div><h3 class="product-title">Product name</h3><div class="purchase"><a class="request-price-link" href="./login.html" aria-label="Request price for item #48723">Request Price <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a><button class="add" type="button" aria-label="Add demo product #48723 to cart" data-demo-product="48723"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48724</div><h3 class="product-title">Product name</h3><div class="purchase"><a class="request-price-link" href="./login.html" aria-label="Request price for item #48724">Request Price <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a><button class="add" type="button" aria-label="Add demo product #48724 to cart" data-demo-product="48724"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48725</div><h3 class="product-title">Product name</h3><div class="purchase"><a class="request-price-link" href="./login.html" aria-label="Request price for item #48725">Request Price <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a><button class="add" type="button" aria-label="Add demo product #48725 to cart" data-demo-product="48725"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48726</div><h3 class="product-title">Product name</h3><div class="purchase"><a class="request-price-link" href="./login.html" aria-label="Request price for item #48726">Request Price <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a><button class="add" type="button" aria-label="Add demo product #48726 to cart" data-demo-product="48726"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48727</div><h3 class="product-title">Product name</h3><div class="purchase"><a class="request-price-link" href="./login.html" aria-label="Request price for item #48727">Request Price <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a><button class="add" type="button" aria-label="Add demo product #48727 to cart" data-demo-product="48727"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article></div>
+        <button class="dashboardv-carousel-arrow dashboardv-carousel-next" type="button" aria-label="Next deals">›</button>
+      </div>
+      <div class="section-bottom"><div class="progress" role="progressbar" aria-label="Deals carousel progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="dashboardvDealsProgress"></span></div></div>
+      <a class="mobile-view-all" href="./index.html#dealsProducts">View All Deals <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </section>
+</main>
 <script>
 /* Dashboard header. Existing storefront UI styles, no Quick Shop or burger. */
 (function(){
@@ -1077,6 +1122,39 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   document.getElementById('dashboardMenuLogout')?.addEventListener('click',()=>{
     try{sessionStorage.removeItem('td-preview-auth-v1')}catch(e){}
   });
+})();
+</script>
+<script>
+/* Standalone New Arrivals-style carousel for Dashboard V only. */
+(function(){
+  const rail=document.getElementById('dashboardvDealsCarousel');
+  if(!rail)return;
+  const prev=document.querySelector('.dashboardv-carousel-prev');
+  const next=document.querySelector('.dashboardv-carousel-next');
+  const track=document.getElementById('dashboardvDealsProgress');
+  const progress=track.parentElement;
+  function sync(){
+    const max=Math.max(0,rail.scrollWidth-rail.clientWidth);
+    const ratio=max?rail.scrollLeft/max:0;
+    const visible=Math.min(1,rail.clientWidth/rail.scrollWidth);
+    track.style.width=(visible*100)+'%';
+    track.style.transform='translateX('+(progress.clientWidth*(1-visible)*ratio)+'px)';
+    progress.setAttribute('aria-valuenow',String(Math.round(ratio*100)));
+    prev.disabled=rail.scrollLeft<=1;
+    next.disabled=rail.scrollLeft>=max-1;
+  }
+  function move(sign){
+    const card=rail.querySelector('.card');
+    const distance=(card?.getBoundingClientRect().width||rail.clientWidth)+(parseFloat(getComputedStyle(rail).gap)||0);
+    rail.scrollBy({left:sign*distance,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  }
+  prev.addEventListener('click',()=>move(-1));
+  next.addEventListener('click',()=>move(1));
+  rail.addEventListener('scroll',sync,{passive:true});
+  window.addEventListener('resize',sync,{passive:true});
+  rail.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();move(e.key==='ArrowRight'?1:-1)}});
+  rail.addEventListener('click',e=>{if(e.target.closest('[data-demo-product]'))location.assign('./login.html')});
+  requestAnimationFrame(sync);
 })();
 </script>
 </body>
