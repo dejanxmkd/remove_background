@@ -997,21 +997,21 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 </style>
 
 <style id="dashboardv-explore-links-styles">
+/* Two solid-brand tiles with clipped hero-style decorative circles and real CTA links. */
 .dv-explore-links{background:#fff;padding:0 0 72px}
 .dv-explore-links-inner{width:min(1440px,calc(100% - 96px));margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.dv-explore-card,.dv-explore-card:nth-child(2){position:relative;isolation:isolate;overflow:hidden;display:flex;min-width:0;min-height:218px;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:36px;padding:30px 32px;border:1px solid var(--purple);border-radius:17px;background:var(--purple);color:#fff;text-decoration:none;box-shadow:none}
-.dv-explore-card::before,.dv-explore-card:nth-child(2)::before{content:"";position:absolute;z-index:-1;width:210px;height:210px;border-radius:50%;right:-80px;top:-105px;background:var(--cyan);pointer-events:none}
-.dv-explore-card::after,.dv-explore-card:nth-child(2)::after{content:"";position:absolute;z-index:-1;width:110px;height:110px;border-radius:50%;right:110px;bottom:-75px;background:#fff;pointer-events:none}
-.dv-explore-card:nth-child(2)::before{width:170px;height:170px;right:48px;top:-105px;background:#fff}
-.dv-explore-card:nth-child(2)::after{width:180px;height:180px;right:-110px;bottom:-92px;background:var(--cyan)}
-.dv-explore-card:hover,.dv-explore-card:nth-child(2):hover{color:#fff;border-color:var(--purple)}
-.dv-explore-card-heading{position:relative;font:900 clamp(24px,2.5vw,36px)/1.15 var(--font);letter-spacing:-.035em}
-.dv-explore-card-heading::after,.dv-explore-card:nth-child(2) .dv-explore-card-heading::after{content:"";display:block;width:44px;height:4px;margin-top:15px;border-radius:9px;background:var(--cyan)}
-.dv-explore-card-action,.dv-explore-card:nth-child(2) .dv-explore-card-action{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:44px;padding:11px 17px 11px 20px;border-radius:999px;background:var(--cyan);color:var(--ink);font:800 13px/1.3 var(--font);white-space:nowrap}
-.dv-explore-card-arrow,.dv-explore-card:nth-child(2) .dv-explore-card-arrow{display:grid;place-items:center;flex:none;width:20px;height:20px;background:none;color:var(--ink)}
-.dv-explore-card-arrow svg{width:19px;height:19px}
-.dv-explore-card:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
-@media(max-width:760px){.dv-explore-links{padding-bottom:52px}.dv-explore-links-inner{width:calc(100% - 36px);grid-template-columns:1fr;gap:14px}.dv-explore-card,.dv-explore-card:nth-child(2){min-height:185px;padding:24px;gap:24px}.dv-explore-card-heading{font-size:27px}}
+.dv-explore-card{position:relative;isolation:isolate;overflow:hidden;display:flex;min-width:0;min-height:248px;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:36px;padding:34px;border:0;border-radius:17px;background:var(--purple);color:#fff;box-shadow:none}
+.dv-explore-card::before,.dv-explore-card::after{content:"";position:absolute;z-index:0;display:block;border-radius:50%;pointer-events:none}
+.dv-explore-card::before{width:220px;height:220px;top:-112px;right:-78px;background:var(--cyan)}
+.dv-explore-card::after{width:180px;height:180px;bottom:-116px;right:52px;background:#fff}
+.dv-explore-card:nth-child(2)::before{width:210px;height:210px;right:14px;top:-145px;background:var(--cyan)}
+.dv-explore-card:nth-child(2)::after{width:200px;height:200px;right:-112px;bottom:-83px;background:#fff}
+.dv-explore-card-heading{position:relative;z-index:1;font:900 clamp(24px,2.5vw,36px)/1.15 var(--font);letter-spacing:-.035em}
+.dv-explore-card-action{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:45px;padding:12px 20px;border:0;border-radius:999px;background:var(--cyan);color:var(--ink);font:800 13px/1.3 var(--font);text-decoration:none;white-space:nowrap;box-shadow:none}
+.dv-explore-card-action:hover{background:var(--cyan);color:var(--ink)}
+.dv-explore-card-action:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.dv-explore-card-action svg{flex:none;width:19px;height:19px}
+@media(max-width:760px){.dv-explore-links{padding-bottom:52px}.dv-explore-links-inner{width:calc(100% - 36px);grid-template-columns:1fr;gap:14px}.dv-explore-card{min-height:215px;padding:24px}.dv-explore-card-heading{font-size:27px}.dv-explore-card::before{width:160px;height:160px;top:-82px;right:-72px}.dv-explore-card::after{width:135px;height:135px;bottom:-88px;right:22px}.dv-explore-card:nth-child(2)::before{width:155px;height:155px;right:3px;top:-108px}.dv-explore-card:nth-child(2)::after{width:145px;height:145px;right:-86px;bottom:-60px}}
 </style>
 </head>
 <body data-auth-preview="true">
@@ -1266,8 +1266,14 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 </main>
 <nav class="dv-explore-links" aria-label="Explore product categories and brands">
   <div class="dv-explore-links-inner">
-    <a class="dv-explore-card" href="./index.html#categories-title"><span class="dv-explore-card-heading">CATEGORIES</span><span class="dv-explore-card-action">Browse Categories <span class="dv-explore-card-arrow"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span></a>
-    <a class="dv-explore-card" href="./index.html#brands-title"><span class="dv-explore-card-heading">BRANDS</span><span class="dv-explore-card-action">Explore Brands <span class="dv-explore-card-arrow"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span></a>
+    <article class="dv-explore-card">
+      <span class="dv-explore-card-heading">CATEGORIES</span>
+      <a class="dv-explore-card-action" href="./index.html#categories-title">Browse Categories <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </article>
+    <article class="dv-explore-card">
+      <span class="dv-explore-card-heading">BRANDS</span>
+      <a class="dv-explore-card-action" href="./index.html#brands-title">Explore Brands <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </article>
   </div>
 </nav>
 <footer class="site-footer" aria-label="Footer"><div class="footer-inner"><div class="footer-columns"><div class="footer-column"><h2>WE ACCEPT</h2><ul><li>American Express</li><li>Apple Pay</li><li>Diners Club</li><li>Discover</li><li>Google Pay</li><li>Mastercard</li><li>Shop Pay</li><li>Visa</li></ul></div><div class="footer-column"><h2>SUPPORT</h2><ul><li>Help</li><li>Privacy Policy</li><li>Terms &amp; Conditions</li></ul></div><div class="footer-column"><h2>SOCIAL MEDIA</h2><ul><li>Facebook</li><li>Instagram</li><li>YouTube</li></ul></div></div><div class="footer-bottom">Copyright © 2026 True Distributors. All rights reserved.</div></div></footer>
