@@ -550,32 +550,48 @@
 }
 </style>
 <style>
-/* Dashboard links inside the shared storefront hamburger panel.
-   The menu's container, reveal and animation come from styles.css unchanged. */
+/* Dashboard uses the exact storefront burger panel and reveal.
+   Only the contents differ: six Dashboard links arranged in a clean menu. */
 .dashboard-mobile-menu-content > .dashboard-menu-link{
-  display:inline-flex;align-items:center;min-height:44px;
-  font-size:14px;font-weight:650;color:var(--ink);
-  text-decoration:none;white-space:nowrap;
+  display:flex;align-items:center;min-height:47px;padding:11px 14px;
+  color:var(--ink);font-size:14px;font-weight:650;
+  text-decoration:none;border-bottom:1px solid var(--line);
 }
-.dashboard-mobile-menu-content > .dashboard-menu-link[aria-current="page"]{color:var(--purple);font-weight:800}
+.dashboard-mobile-menu-content > .dashboard-menu-link[aria-current="page"]{
+  color:var(--purple);font-weight:800;
+}
 .dashboard-mobile-menu-content > .dashboard-menu-link:hover{color:var(--purple)}
-.dashboard-mobile-menu-content > .dashboard-menu-link:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.dashboard-mobile-menu-content > .dashboard-menu-link:focus-visible{
+  outline:2px solid var(--cyan);outline-offset:-2px;
+}
+.dashboard-mobile-menu-content > .dashboard-menu-logout{
+  display:flex;align-self:stretch;min-height:49px;
+  margin-top:15px;
+}
 @media(min-width:761px){
-  .dashboard-mobile-menu-content{flex-wrap:wrap}
-  .dashboard-mobile-menu-content > .dashboard-menu-logout{margin-left:8px}
+  /* Same full-width sliding header panel as index.html.
+     Only the dashboard's navigation group sits at the right edge. */
+  .site-header .dashboard-mobile-menu-content{
+    display:flex;flex-direction:column;align-items:stretch;
+    gap:0;width:260px;max-width:calc(100% - 96px);
+    margin-left:auto;margin-right:max(48px,calc((100% - 1440px)/2));
+    padding:14px 0 22px;
+  }
 }
 @media(max-width:760px){
-  .dashboard-mobile-menu-content{gap:0}
+  .site-header .dashboard-mobile-menu-content{
+    display:flex;flex-direction:column;align-items:stretch;
+    gap:0;width:calc(100% - 36px);margin:0 auto;padding:16px 0 23px;
+  }
+  .dashboard-mobile-menu-content > .shopping-user{
+    order:0;width:100%;margin-bottom:12px;padding:0 12px;
+  }
   .dashboard-mobile-menu-content > .dashboard-menu-link{
-    display:flex;align-items:center;width:100%;min-height:49px;
-    padding:12px 0;border-bottom:1px solid var(--line);
-    font-size:15px;
+    min-height:50px;padding:12px 14px;font-size:15px;
   }
   .dashboard-mobile-menu-content > .dashboard-menu-logout{
-    order:3;display:flex;align-self:stretch;width:100%;min-height:52px;
-    margin-top:16px;
+    order:3;min-height:52px;margin-top:16px;
   }
-  .dashboard-mobile-menu-content > .shopping-user{order:0;margin-bottom:10px}
 }
 </style>
 </head>
