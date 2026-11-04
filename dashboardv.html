@@ -997,21 +997,21 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 </style>
 
 <style id="dashboardv-explore-links-styles">
-/* Two solid-brand tiles with clipped hero-style decorative circles and real CTA links. */
+/* Two full purple category/brand cards with hero-style solid circles and real cyan buttons. */
 .dv-explore-links{background:#fff;padding:0 0 72px}
 .dv-explore-links-inner{width:min(1440px,calc(100% - 96px));margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 .dv-explore-card{position:relative;isolation:isolate;overflow:hidden;display:flex;min-width:0;min-height:248px;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:36px;padding:34px;border:0;border-radius:17px;background:var(--purple);color:#fff;box-shadow:none}
 .dv-explore-card::before,.dv-explore-card::after{content:"";position:absolute;z-index:0;display:block;border-radius:50%;pointer-events:none}
-.dv-explore-card::before{width:220px;height:220px;top:-112px;right:-78px;background:var(--cyan)}
-.dv-explore-card::after{width:180px;height:180px;bottom:-116px;right:52px;background:#fff}
-.dv-explore-card:nth-child(2)::before{width:210px;height:210px;right:14px;top:-145px;background:var(--cyan)}
-.dv-explore-card:nth-child(2)::after{width:200px;height:200px;right:-112px;bottom:-83px;background:#fff}
-.dv-explore-card-heading{position:relative;z-index:1;font:900 clamp(24px,2.5vw,36px)/1.15 var(--font);letter-spacing:-.035em}
-.dv-explore-card-action{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:45px;padding:12px 20px;border:0;border-radius:999px;background:var(--cyan);color:var(--ink);font:800 13px/1.3 var(--font);text-decoration:none;white-space:nowrap;box-shadow:none}
-.dv-explore-card-action:hover{background:var(--cyan);color:var(--ink)}
-.dv-explore-card-action:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.dv-explore-card::before{width:220px;height:220px;top:-110px;right:-90px;background:var(--cyan)}
+.dv-explore-card::after{width:175px;height:175px;bottom:-112px;right:75px;background:#fff}
+.dv-explore-card:nth-child(2)::before{width:205px;height:205px;right:0;top:-118px;background:var(--cyan)}
+.dv-explore-card:nth-child(2)::after{width:190px;height:190px;right:-110px;bottom:-92px;background:#fff}
+.dv-explore-card .dv-explore-card-heading{position:relative;z-index:1;margin:0;padding:0;border:0;color:#fff;font:900 clamp(24px,2.5vw,36px)/1.15 var(--font);letter-spacing:-.035em;text-decoration:none}
+.dv-explore-card .dv-explore-card-heading::before,.dv-explore-card .dv-explore-card-heading::after{content:none!important;display:none!important}
+.dv-explore-card a.dv-explore-card-action,.dv-explore-card a.dv-explore-card-action:hover{position:relative;z-index:2;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:46px;padding:12px 21px;border:0;border-radius:999px;background:var(--cyan);color:var(--ink);font:800 14px/1.2 var(--font);text-decoration:none;white-space:nowrap;box-shadow:none}
+.dv-explore-card a.dv-explore-card-action:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .dv-explore-card-action svg{flex:none;width:19px;height:19px}
-@media(max-width:760px){.dv-explore-links{padding-bottom:52px}.dv-explore-links-inner{width:calc(100% - 36px);grid-template-columns:1fr;gap:14px}.dv-explore-card{min-height:215px;padding:24px}.dv-explore-card-heading{font-size:27px}.dv-explore-card::before{width:160px;height:160px;top:-82px;right:-72px}.dv-explore-card::after{width:135px;height:135px;bottom:-88px;right:22px}.dv-explore-card:nth-child(2)::before{width:155px;height:155px;right:3px;top:-108px}.dv-explore-card:nth-child(2)::after{width:145px;height:145px;right:-86px;bottom:-60px}}
+@media(max-width:760px){.dv-explore-links{padding-bottom:52px}.dv-explore-links-inner{width:calc(100% - 36px);grid-template-columns:1fr;gap:14px}.dv-explore-card{min-height:215px;padding:24px}.dv-explore-card .dv-explore-card-heading{font-size:27px}.dv-explore-card::before{width:160px;height:160px;top:-82px;right:-72px}.dv-explore-card::after{width:135px;height:135px;bottom:-88px;right:22px}.dv-explore-card:nth-child(2)::before{width:155px;height:155px;right:3px;top:-108px}.dv-explore-card:nth-child(2)::after{width:145px;height:145px;right:-86px;bottom:-60px}}
 </style>
 </head>
 <body data-auth-preview="true">
