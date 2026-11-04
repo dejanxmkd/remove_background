@@ -898,9 +898,6 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dashboardv-deals .progress{background:rgba(255,255,255,.3)}
 .dashboardv-deals .progress span{background:#fff}
 .dashboardv-carousel-wrap{position:relative}
-.dashboardv-carousel-arrow{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:40px;height:40px;transform:translateY(-50%);border:0;border-radius:50%;background:var(--purple);color:#fff;font-size:28px;font-weight:600;line-height:1;box-shadow:0 3px 12px rgba(0,0,0,.12);cursor:pointer}
-.dashboardv-carousel-prev{left:8px}.dashboardv-carousel-next{right:8px}
-.dashboardv-carousel-arrow:disabled{opacity:.35;cursor:default}
 .dashboardv-deals .mobile-view-all{background:#fff;color:var(--purple)}
 @media(max-width:760px){.dashboardv-deals{padding:52px 0 72px}.dashboardv-deals-inner{width:calc(100% - 36px)}.dashboardv-deals .section-header{margin-bottom:20px}#dashboardv-deals-title{font-size:clamp(30px,7.4vw,46px)}}
 
@@ -912,7 +909,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dashboardv-deals .dashboardv-deal-info .product-title{margin:0;min-height:0;color:var(--ink);font:900 clamp(13px,1.05vw,17px)/1.24 var(--font);letter-spacing:-.025em}
 .dashboardv-deals .dashboardv-deal-subtitle{margin:0;color:#716c7a;font:500 12px/1.35 var(--font)}
 .dashboardv-deals .dashboardv-shop-deal.request-price-link{display:inline-flex;align-items:center;gap:5px;margin-top:3px;color:var(--purple);font:800 12px/1.25 var(--font);white-space:nowrap;text-decoration:none}
-.dashboardv-deals .dashboardv-shop-deal svg{width:15px;height:15px;transform:rotate(-45deg)}
+.dashboardv-deals .dashboardv-shop-deal svg{width:17px;height:17px}
 .dashboardv-deals .dashboardv-shop-deal:hover{text-decoration:underline}
 @media(max-width:1100px){.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/2)}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:16px}}
 @media(max-width:760px){.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex-basis:100%;min-height:170px}.dashboardv-deals .dashboardv-deal-placeholder.picture{min-height:170px}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:15px}}
@@ -1004,14 +1001,14 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
         <a class="view-all desktop-view-all" href="./index.html#dealsProducts">View All Deals <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
       </div>
       <div class="carousel-wrap dashboardv-carousel-wrap">
-        <button class="dashboardv-carousel-arrow dashboardv-carousel-prev" type="button" aria-label="Previous deals" disabled>‹</button>
+        <button class="carousel-arrow carousel-arrow-prev dashboardv-carousel-prev" type="button" aria-label="Previous deals" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
         <div class="carousel" id="dashboardvDealsCarousel" tabindex="0" aria-label="Deals carousel">
 <article class="card dashboardv-deal-card">
   <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">BUY 5 GET 1 FREE</h3>
     <p class="dashboardv-deal-subtitle">Snacking Brands</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
   </div>
 </article>
 <article class="card dashboardv-deal-card">
@@ -1019,7 +1016,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">15% OFF ALL BEVERAGES</h3>
     <p class="dashboardv-deal-subtitle">Use Code: BEV15</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
   </div>
 </article>
 <article class="card dashboardv-deal-card">
@@ -1027,7 +1024,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">BULK CANDY SPECIAL</h3>
     <p class="dashboardv-deal-subtitle">Sweet deals on bulk candy</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
   </div>
 </article>
 <article class="card dashboardv-deal-card">
@@ -1035,7 +1032,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">SNACKS & CHIPS</h3>
     <p class="dashboardv-deal-subtitle">Explore snack promotions</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
   </div>
 </article>
 <article class="card dashboardv-deal-card">
@@ -1043,7 +1040,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">BOTTLED DRINKS</h3>
     <p class="dashboardv-deal-subtitle">Explore beverage promotions</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
   </div>
 </article>
 <article class="card dashboardv-deal-card">
@@ -1051,7 +1048,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">CANDY FAVORITES</h3>
     <p class="dashboardv-deal-subtitle">Explore sweet promotions</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
   </div>
 </article>
 <article class="card dashboardv-deal-card">
@@ -1059,7 +1056,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">WHOLESALE SNACKS</h3>
     <p class="dashboardv-deal-subtitle">Browse snack deals</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
   </div>
 </article>
 <article class="card dashboardv-deal-card">
@@ -1067,11 +1064,11 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">BULK SWEETS</h3>
     <p class="dashboardv-deal-subtitle">Browse candy deals</p>
-    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a class="request-price-link dashboardv-shop-deal" href="./index.html#dealsProducts">SHOP DEALS <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
   </div>
 </article>
 </div>
-        <button class="dashboardv-carousel-arrow dashboardv-carousel-next" type="button" aria-label="Next deals">›</button>
+        <button class="carousel-arrow carousel-arrow-next dashboardv-carousel-next" type="button" aria-label="Next deals"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
       </div>
       <div class="section-bottom"><div class="progress" role="progressbar" aria-label="Deals carousel progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="dashboardvDealsProgress"></span></div></div>
       <a class="mobile-view-all" href="./index.html#dealsProducts">View All Deals <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
