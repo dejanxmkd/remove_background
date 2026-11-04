@@ -369,6 +369,23 @@
   .dashboard-main-grid .dashboard-reorder-table-wrap{max-height:none;overflow-y:visible}
 }
 </style>
+<style>
+/* Quick Reorder only: subtle white fade signals additional products below. */
+.dashboard-main-grid .dashboard-reorder-card{position:relative}
+.dashboard-main-grid .dashboard-reorder-table-region{position:relative;flex:1 1 auto;min-height:0;min-width:0}
+.dashboard-main-grid .dashboard-reorder-table-region .dashboard-reorder-table-wrap{height:100%;min-height:0}
+.dashboard-main-grid .dashboard-reorder-table-region::after{
+  content:"";position:absolute;z-index:3;left:0;right:0;bottom:0;height:72px;
+  background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.65) 60%,#fff 100%);
+  opacity:0;pointer-events:none;transition:opacity .18s ease;
+}
+.dashboard-main-grid .dashboard-reorder-table-region.has-more-below::after{opacity:1}
+@media(max-width:900px){
+  .dashboard-main-grid .dashboard-reorder-table-region{flex:none}
+  .dashboard-main-grid .dashboard-reorder-table-region .dashboard-reorder-table-wrap{height:auto}
+  .dashboard-main-grid .dashboard-reorder-table-region::after{display:none}
+}
+</style>
 </head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
@@ -440,6 +457,7 @@
         <input id="dashboardReorderSearch" type="search" placeholder="Search products..." aria-label="Search quick reorder products" autocomplete="off">
         </label>
         </div>
+        <div class="dashboard-reorder-table-region">
         <div class="dashboard-reorder-table-wrap">
         <table class="dashboard-reorder-table">
         <thead><tr><th scope="col"><input type="checkbox" id="dashboardSelectAll" aria-label="Select all products"></th><th scope="col">PRODUCT</th><th scope="col">QUANTITY</th></tr></thead>
@@ -448,8 +466,21 @@
         <tr><td><input type="checkbox" aria-label="Select Chips Variety 30pk"></td><td>Chips Variety 30pk</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Chips Variety 30pk quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Chips Variety 30pk quantity">+</button></div></td></tr>
         <tr><td><input type="checkbox" aria-label="Select Candy Bars Box (Snickers, etc.)"></td><td>Candy Bars Box (Snickers, etc.)</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Candy Bars Box quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Candy Bars Box quantity">+</button></div></td></tr>
         <tr><td><input type="checkbox" aria-label="Select Candy Bars Box"></td><td>Candy Bars Box</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Candy Bars Box quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Candy Bars Box quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Bottled Water 24pk"></td><td>Bottled Water 24pk</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Bottled Water 24pk quantity">−</button><output>12</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Bottled Water 24pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Sparkling Water Variety 12pk"></td><td>Sparkling Water Variety 12pk</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Sparkling Water Variety 12pk quantity">−</button><output>8</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Sparkling Water Variety 12pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Energy Drinks 24pk"></td><td>Energy Drinks 24pk</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Energy Drinks 24pk quantity">−</button><output>6</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Energy Drinks 24pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Iced Tea Bottles 12pk"></td><td>Iced Tea Bottles 12pk</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Iced Tea Bottles 12pk quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Iced Tea Bottles 12pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Chocolate Cookies 20pk"></td><td>Chocolate Cookies 20pk</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Chocolate Cookies 20pk quantity">−</button><output>7</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Chocolate Cookies 20pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Pretzel Snacks 24pk"></td><td>Pretzel Snacks 24pk</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Pretzel Snacks 24pk quantity">−</button><output>9</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Pretzel Snacks 24pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Granola Bars Variety 36pk"></td><td>Granola Bars Variety 36pk</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Granola Bars Variety 36pk quantity">−</button><output>5</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Granola Bars Variety 36pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Gum Assorted 40pk"></td><td>Gum Assorted 40pk</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Gum Assorted 40pk quantity">−</button><output>14</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Gum Assorted 40pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Paper Towels 12 Rolls"></td><td>Paper Towels 12 Rolls</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Paper Towels 12 Rolls quantity">−</button><output>4</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Paper Towels 12 Rolls quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Coffee Cups 100ct"></td><td>Coffee Cups 100ct</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Coffee Cups 100ct quantity">−</button><output>10</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Coffee Cups 100ct quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Fruit Juice Boxes 24pk"></td><td>Fruit Juice Boxes 24pk</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Fruit Juice Boxes 24pk quantity">−</button><output>8</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Fruit Juice Boxes 24pk quantity">+</button></div></td></tr>
+        <tr><td><input type="checkbox" aria-label="Select Crackers Variety 30pk"></td><td>Crackers Variety 30pk</td><td><div class="dashboard-reorder-quantity"><button class="td-qty-step" type="button" data-step="-1" aria-label="Decrease Crackers Variety 30pk quantity">−</button><output>6</output><button class="td-qty-step" type="button" data-step="1" aria-label="Increase Crackers Variety 30pk quantity">+</button></div></td></tr>
         </tbody>
         </table>
+        </div>
         </div>
         <div class="dashboard-reorder-actions">
         <span class="dashboard-reorder-feedback" id="dashboardReorderFeedback" role="status" aria-live="polite"></span>
@@ -593,11 +624,29 @@
   const search=document.getElementById('dashboardReorderSearch');
   const all=document.getElementById('dashboardSelectAll');
   const feedback=document.getElementById('dashboardReorderFeedback');
+  const scrollRegion=document.querySelector('.dashboard-main-grid .dashboard-reorder-table-region');
+  const scrollList=scrollRegion&&scrollRegion.querySelector('.dashboard-reorder-table-wrap');
+  function updateScrollHint(){
+    if(!scrollRegion||!scrollList)return;
+    const canScroll=window.matchMedia('(min-width:901px)').matches;
+    scrollRegion.classList.toggle('has-more-below',canScroll&&scrollList.scrollHeight-scrollList.scrollTop-scrollList.clientHeight>4);
+  }
+  if(scrollList){
+    scrollList.addEventListener('scroll',updateScrollHint,{passive:true});
+    window.addEventListener('resize',updateScrollHint,{passive:true});
+    if(typeof ResizeObserver!=='undefined'){
+      const hintObserver=new ResizeObserver(updateScrollHint);
+      hintObserver.observe(scrollList);
+    }
+    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(updateScrollHint);
+    requestAnimationFrame(updateScrollHint);
+  }
   function sync(){
     const visible=rows.filter(row=>!row.hidden);
     const selected=visible.filter(row=>row.querySelector('input[type=checkbox]').checked);
     all.checked=visible.length>0&&selected.length===visible.length;
     all.indeterminate=selected.length>0&&selected.length<visible.length;
+    requestAnimationFrame(updateScrollHint);
   }
   search.addEventListener('input',()=>{
     const term=search.value.trim().toLowerCase();
