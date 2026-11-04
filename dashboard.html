@@ -642,6 +642,23 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 @media(max-width:1050px){.dashboard-summary-three{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-summary-panel:first-child{grid-column:1/-1}}
 @media(max-width:760px){.dashboard-compact-hero{padding:24px 0 32px!important}.dashboard-summary-three{grid-template-columns:1fr;gap:18px}.dashboard-summary-panel:first-child{grid-column:auto}.dashboard-panel-heading h2{font-size:22px}.dashboard-promotions-inner{width:calc(100% - 36px)}.dashboard-promotions-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
 @media(max-width:520px){.dashboard-promotions-grid{grid-template-columns:1fr}.dashboard-summary-panel .dashboard-summary-card{padding:18px}.dashboard-panel-heading h2{font-size:19px}.dashboard-promotions-grid .dashboard-promo-art.picture{aspect-ratio:2.1}.dashboard-shop-links{gap:18px}.dashboard-shop-links .view-all{font-size:13px}}
+</style><style>
+/* Order tracking: compact four-stage stepper using storefront purple, line, and card tokens. */
+.dashboard-tracking-compact .dashboard-order-meta{justify-content:flex-start;margin:0 0 2px}
+.dashboard-tracking-compact .td-order-steps{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));list-style:none;padding:0;margin:5px 0 0;gap:0}
+.dashboard-tracking-compact .td-order-steps:before{content:"";position:absolute;top:14px;left:12.5%;right:12.5%;height:2px;background:var(--line)}
+.dashboard-tracking-compact .td-order-steps:after{content:"";position:absolute;top:14px;left:12.5%;width:25%;height:2px;background:var(--purple)}
+.dashboard-tracking-compact .td-order-steps li{display:flex;flex-direction:column;align-items:center;gap:9px;position:relative;min-width:0;text-align:center}
+.dashboard-tracking-compact .td-order-step-dot{z-index:1;width:30px;height:30px;display:grid;place-items:center;flex:none;border:2px solid #dcd5e9;background:#fff;border-radius:50%;color:#fff}
+.dashboard-tracking-compact .td-order-steps .is-complete .td-order-step-dot{background:var(--purple);border-color:var(--purple)}
+.dashboard-tracking-compact .td-order-step-label{font:700 10px/1.3 var(--font);color:#716b7b;max-width:95px}
+.dashboard-tracking-compact .td-order-steps .is-complete .td-order-step-label{color:var(--ink)}
+.dashboard-tracking-compact .td-order-current{display:flex;gap:10px;align-items:center;background:#f5f1fc;border-radius:11px;padding:11px 12px}
+.dashboard-tracking-compact .td-order-current-dot{width:9px;height:9px;border-radius:50%;background:var(--purple);flex:none}
+.dashboard-tracking-compact .td-order-current span:last-child{display:flex;flex-direction:column;gap:3px}
+.dashboard-tracking-compact .td-order-current strong{font:800 12px/1.2 var(--font);color:var(--ink)}
+.dashboard-tracking-compact .td-order-current small{font:500 11px/1.3 var(--font);color:#716b7b}
+@media(max-width:520px){.dashboard-tracking-compact .td-order-step-label{font-size:9px}.dashboard-tracking-compact .td-order-steps{margin-top:3px}}
 </style></head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
@@ -744,9 +761,13 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
           <div class="dashboard-panel-heading"><h2 id="orderTrackingTitle">ORDER TRACKING</h2></div>
           <div class="card dashboard-summary-card dashboard-tracking-compact">
             <p class="dashboard-order-meta"><strong>Order #88432</strong><span>·</span><span>Estimated: Today, 2:00 PM</span></p>
-            <div class="dashboard-progress-track" role="img" aria-label="Order placed and processing complete, out for delivery pending"><span></span></div>
-            <div class="dashboard-progress-labels"><span>Ordered</span><span>Processing</span><span>Out for Delivery</span><span>Delivered</span></div>
-            <p class="dashboard-tracking-status"><span class="dashboard-status-dot"></span> Processing · Preparing your order</p>
+            <ol class="td-order-steps" aria-label="Order progress">
+              <li class="is-complete"><span class="td-order-step-dot" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg></span><span class="td-order-step-label">Ordered</span></li>
+              <li class="is-complete"><span class="td-order-step-dot" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg></span><span class="td-order-step-label">Processing</span></li>
+              <li class="is-upcoming"><span class="td-order-step-dot" aria-hidden="true"></span><span class="td-order-step-label">Out for Delivery</span></li>
+              <li class="is-upcoming"><span class="td-order-step-dot" aria-hidden="true"></span><span class="td-order-step-label">Delivered</span></li>
+            </ol>
+            <div class="td-order-current"><span class="td-order-current-dot" aria-hidden="true"></span><span><strong>Processing</strong><small>We're preparing your order</small></span></div>
           </div>
         </section>
       </div>
