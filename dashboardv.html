@@ -1631,11 +1631,254 @@ const categories=[
       requestAnimationFrame(frame);
     }
   }
-  cardCarousel('brandCarousel','brandProgress',brands,b=>
-    '<article class="card brand-card"><div class="brand-picture"><img class="brand-logo-img" src="'+b.image+'" alt="'+b.name.replace(/&/g,'&amp;').replace(/"/g,'&quot;')+' logo" loading="lazy" decoding="async" width="640" height="640"></div><div class="brand-info"><h3 class="brand-name">'+b.name.replace(/&/g,'&amp;')+'</h3></div></article>',
-    {loop:true,auto:true});
   cardCarousel('categoryCarousel','categoryProgress',categories,c=>
     '<article class="card category-card"><div class="category-visual"><img class="category-image" src="'+c.image+'" alt="'+c.name.replace(/&/g,'&amp;')+' products" loading="lazy" decoding="async" width="480" height="480"></div><div class="category-footer"><span>'+c.name.replace(/&/g,'&amp;')+'</span></div></article>');
+})();
+</script>
+<script>
+/* Exact Brands carousel engine and 63-logo data reused from index.html app.js. */
+(function(){
+  'use strict';
+class ProductCard {
+ static render(product,index){
+  return `<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item ${product.item}</div><h2 class="product-title">${product.name}</h2><div class="purchase"><a class="request-price-link" href="./login.html" aria-label="Request price for item ${product.item}">Request Price <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-chevron-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a><button class="add" type="button" aria-label="Add product to cart" data-index="${index}"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>`;
+ }
+}
+
+
+class ProductCarousel {
+ constructor(element,items,progress,renderCard=ProductCard.render){
+  this.element=element;this.items=items;this.progress=progress;this.track=progress.parentElement;
+  this.target=0;this.frame=0;this.wheelTimer=0;this.drag=null;
+  element.innerHTML=items.map((item,i)=>renderCard(item,i)).join('');
+  element.addEventListener('scroll',()=>this.updateProgress(),{passive:true});
+  element.addEventListener('wheel',e=>this.onWheel(e),{passive:false});
+  element.addEventListener('pointerdown',e=>this.onPointerDown(e));
+  element.addEventListener('pointermove',e=>this.onPointerMove(e));
+  element.addEventListener('pointerup',()=>this.endDrag());
+  element.addEventListener('pointercancel',()=>this.endDrag());
+  element.addEventListener('keydown',e=>this.onKeyDown(e));
+  window.addEventListener('resize',()=>{this.stop();this.updateProgress()});
+  this.updateProgress();
+ }
+ max(){return Math.max(0,this.element.scrollWidth-this.element.clientWidth)}
+ step(){const card=this.element.querySelector('.card');return card?card.getBoundingClientRect().width+(parseFloat(getComputedStyle(this.element).columnGap)||0):this.element.clientWidth}
+ updateProgress(){
+  const max=this.max(),visible=Math.min(1,this.element.clientWidth/this.element.scrollWidth);
+  const ratio=max?Math.max(0,Math.min(1,this.element.scrollLeft/max)):0;
+  this.progress.style.width=(visible*100)+'%';
+  this.progress.style.transform=`translateX(${this.track.clientWidth*(1-visible)*ratio}px)`;
+  this.track.setAttribute('aria-valuenow',String(Math.round(ratio*100)));
+ }
+ stop(){cancelAnimationFrame(this.frame);this.frame=0;clearTimeout(this.wheelTimer);this.target=this.element.scrollLeft;this.element.style.scrollSnapType=''}
+ animateTo(position){
+  this.target=Math.max(0,Math.min(this.max(),position));
+  this.element.style.scrollSnapType='none';
+  if(!this.frame)this.frame=requestAnimationFrame(()=>this.tick());
+ }
+ tick(){
+  const delta=this.target-this.element.scrollLeft;
+  if(Math.abs(delta)<.6){
+   this.element.scrollLeft=this.target;this.frame=0;
+   return;
+  }
+  this.element.scrollLeft+=delta*.13;
+  this.frame=requestAnimationFrame(()=>this.tick());
+ }
+ settle(){
+  const max=this.max(),step=this.step();
+  const nearest=Math.max(0,Math.min(max,Math.round(this.target/step)*step));
+  // The last position is an exact edge alignment, never a clipped final card.
+  const position=max-nearest<step*.5?max:nearest;
+  this.animateTo(position);
+ }
+ onWheel(event){
+  if(event.ctrlKey||matchMedia('(max-width:760px)').matches)return;
+  // Only intercept the wheel for an explicit HORIZONTAL gesture
+  // (trackpad swipe or Shift+wheel). Vertical wheel always scrolls the page.
+  const horizontal=event.shiftKey?event.deltaY:event.deltaX;
+  if(!event.shiftKey&&Math.abs(horizontal)<=Math.abs(event.deltaY))return;
+  const raw=horizontal;
+  if(Math.abs(raw)<.5)return;
+  const delta=raw*(event.deltaMode===1?18:event.deltaMode===2?this.element.clientWidth:1);
+  const base=this.frame?this.target:this.element.scrollLeft;
+  if((delta<0&&base<=0)||(delta>0&&base>=this.max()))return;
+  event.preventDefault();
+  this.animateTo(base+delta);
+  clearTimeout(this.wheelTimer);
+  this.wheelTimer=setTimeout(()=>this.settle(),160);
+ }
+ onPointerDown(event){
+  if(event.pointerType!=='mouse'||event.target.closest('a, button, input, select, textarea'))return;
+  this.stop();this.drag={x:event.clientX,left:this.element.scrollLeft};
+  this.element.style.scrollSnapType='none';this.element.setPointerCapture(event.pointerId);
+ }
+ onPointerMove(event){if(this.drag)this.element.scrollLeft=this.drag.left-(event.clientX-this.drag.x)}
+ endDrag(){
+  if(!this.drag)return;
+  this.drag=null;this.target=this.element.scrollLeft;this.settle();
+ }
+ onKeyDown(event){
+  if(event.key!=='ArrowLeft'&&event.key!=='ArrowRight')return;
+  event.preventDefault();
+  this.animateTo(this.element.scrollLeft+(event.key==='ArrowRight'?1:-1)*this.step());
+  clearTimeout(this.wheelTimer);this.wheelTimer=setTimeout(()=>this.settle(),300);
+ }
+ reset(){this.animateTo(0)}
+}
+
+
+function installCarouselArrows(slider,label){
+ const wrap=slider.element.closest('.carousel-wrap');
+ if(!wrap||wrap.querySelector('.carousel-arrow'))return;
+ const create=direction=>{
+  const btn=document.createElement('button');
+  btn.type='button';
+  btn.className='carousel-arrow '+(direction<0?'carousel-arrow-prev':'carousel-arrow-next');
+  btn.setAttribute('aria-label',(direction<0?'Previous ':'Next ')+label);
+  btn.innerHTML=direction<0
+    ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>'
+    : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>';
+  btn.addEventListener('click',()=>{
+   if(slider.advance)slider.advance(direction);
+   else slider.animateTo(slider.element.scrollLeft+direction*slider.step());
+  });
+  return btn;
+ };
+ const prev=create(-1),next=create(1);
+ wrap.append(prev,next);
+ if(!slider.advance){
+  const sync=()=>{
+   const max=slider.max(),left=slider.element.scrollLeft;
+   prev.disabled=left<1;next.disabled=left>=max-1;
+   prev.hidden=max<2;next.hidden=max<2;
+  };
+  slider.element.addEventListener('scroll',sync,{passive:true});
+  window.addEventListener('resize',sync);
+  sync();
+ }
+}
+
+
+class BrandCard {
+ static render(brand,index){return `<article class="card brand-card"><div class="brand-picture"><img class="brand-logo-img" src="${brand.image}" alt="${brand.name} logo" loading="lazy" decoding="async" width="640" height="640"></div><div class="brand-info"><h3 class="brand-name">${brand.name}</h3></div></article>`;}
+}
+
+const brands=[
+ {name:"Airheads",image:'./assets/brands/v2/01-airheads.webp'},
+ {name:"Altoids",image:'./assets/brands/v2/02-altoids.webp'},
+ {name:"Barebells",image:'./assets/brands/v2/03-barebells.webp'},
+ {name:"Giannos",image:'./assets/brands/v2/04-giannos.webp'},
+ {name:"Hersheys",image:'./assets/brands/v2/05-hersheys.webp'},
+ {name:"Ice Breakers",image:'./assets/brands/v2/06-ice-breakers.webp'},
+ {name:"Jolly Rancher",image:'./assets/brands/v2/07-jolly-rancher.webp'},
+ {name:"Kidsmania",image:'./assets/brands/v2/08-kidsmania.webp'},
+ {name:"Kinder",image:'./assets/brands/v2/09-kinder.webp'},
+ {name:"M&M's",image:'./assets/brands/v2/10-m-m-s.webp'},
+ {name:"Nerds",image:'./assets/brands/v2/11-nerds.webp'},
+ {name:"Oreo",image:'./assets/brands/v2/12-oreo.webp'},
+ {name:"Pringles",image:'./assets/brands/v2/13-pringles.webp'},
+ {name:"Quest Protein",image:'./assets/brands/v2/14-quest-protein.webp'},
+ {name:"Reese's",image:'./assets/brands/v2/15-reese-s.webp'},
+ {name:"Sour Patch Kids",image:'./assets/brands/v2/16-sour-patch-kids.webp'},
+ {name:"Trolli",image:'./assets/brands/v2/17-trolli.webp'},
+ {name:"Cheez-It",image:'./assets/brands/v2/18-cheez-it.webp'},
+ {name:"Haribo",image:'./assets/brands/v2/19-haribo.webp'},
+ {name:"Hi-Chew",image:'./assets/brands/v2/20-hi-chew.webp'},
+ {name:"Hostess",image:'./assets/brands/v2/21-hostess.webp'},
+ {name:"Mentos",image:'./assets/brands/v2/22-mentos.webp'},
+ {name:"Milka",image:'./assets/brands/v2/23-milka.webp'},
+ {name:"Planters",image:'./assets/brands/v2/24-planters.webp'},
+ {name:"RAW",image:'./assets/brands/v2/25-raw.webp'},
+ {name:"Trident",image:'./assets/brands/v2/26-trident.webp'},
+ {name:"VELO",image:'./assets/brands/v2/27-velo.webp'},
+ {name:"ZYN",image:'./assets/brands/v2/28-zyn.webp'},
+ {name:"Mike and Ike",image:'./assets/brands/v2/29-mike-and-ike.webp'},
+ {name:"Starburst",image:'./assets/brands/v2/30-starburst.webp'},
+ {name:"Takis",image:'./assets/brands/v2/31-takis.webp'},
+ {name:"Tic Tac",image:'./assets/brands/v2/32-tic-tac.webp'},
+ {name:"Tide",image:'./assets/brands/v2/33-tide.webp'},
+ {name:"Trojan",image:'./assets/brands/v2/34-trojan.webp'},
+ {name:"Twix",image:'./assets/brands/v2/35-twix.webp'},
+ {name:"Advil",image:'./assets/brands/v2/36-advil.webp'},
+ {name:"ALP",image:'./assets/brands/v2/37-alp.webp'},
+ {name:"Always",image:'./assets/brands/v2/38-always.webp'},
+ {name:"Amos",image:'./assets/brands/v2/39-amos.webp'},
+ {name:"AXE",image:'./assets/brands/v2/40-axe.webp'},
+ {name:"Davids Seeds",image:'./assets/brands/v2/41-davids-seeds.webp'},
+ {name:"Duracell",image:'./assets/brands/v2/42-duracell.webp'},
+ {name:"Keebler",image:'./assets/brands/v2/43-keebler.webp'},
+ {name:"KIND",image:'./assets/brands/v2/44-kind.webp'},
+ {name:"Lays",image:'./assets/brands/v2/45-lays.webp'},
+ {name:"Lenny & Larrys",image:'./assets/brands/v2/46-lenny-larrys.webp'},
+ {name:"Lifesavers",image:'./assets/brands/v2/47-lifesavers.webp'},
+ {name:"Listerine",image:'./assets/brands/v2/48-listerine.webp'},
+ {name:"Loacker",image:'./assets/brands/v2/49-loacker.webp'},
+ {name:"Nutella",image:'./assets/brands/v2/50-nutella.webp'},
+ {name:"One Bar",image:'./assets/brands/v2/51-one-bar.webp'},
+ {name:"Pop Tarts",image:'./assets/brands/v2/52-pop-tarts.webp'},
+ {name:"Popcorners",image:'./assets/brands/v2/53-popcorners.webp'},
+ {name:"Red Bull",image:'./assets/brands/v2/54-red-bull.webp'},
+ {name:"Ritter Sport",image:'./assets/brands/v2/55-ritter-sport.webp'},
+ {name:"Sahale",image:'./assets/brands/v2/56-sahale.webp'},
+ {name:"Skittles",image:'./assets/brands/v2/57-skittles.webp'},
+ {name:"Slim Jim",image:'./assets/brands/v2/58-slim-jim.webp'},
+ {name:"Snickers",image:'./assets/brands/v2/59-snickers.webp'},
+ {name:"Sour Power Straws",image:'./assets/brands/v2/60-sour-power-straws.webp'},
+ {name:"Swedish Fish",image:'./assets/brands/v2/61-swedish-fish.webp'},
+ {name:"True Pinless",image:'./assets/brands/v2/62-true-pinless.webp'},
+ {name:"Tylenol",image:'./assets/brands/v2/63-tylenol.webp'}
+];
+
+class LoopingBrandCarousel extends ProductCarousel {
+ constructor(element,items,progress,renderCard){
+  const order=[...items];
+  for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]]}
+  super(element,[...order,...order,...order],progress,renderCard);
+  this.element.classList.add('is-infinite-carousel');
+  this.cycle=()=>this.element.scrollWidth/3;
+  this.element.scrollLeft=this.cycle();this.target=this.element.scrollLeft;
+  this.hoverPaused=false;this.focusPaused=false;this.touchUntil=0;this.manualUntil=0;this.lastTick=0;
+  this.element.addEventListener('scroll',()=>this.recenter(),{passive:true});
+  const area=this.element.closest('.carousel-wrap');
+  area.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')this.hoverPaused=true});
+  area.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')this.hoverPaused=false});
+  area.addEventListener('focusin',()=>{this.focusPaused=true});
+  area.addEventListener('focusout',()=>{this.focusPaused=area.contains(document.activeElement)});
+  area.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')this.touchUntil=performance.now()+3500});
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+   // Suspend animation while the brand rail is outside the viewport.
+   this.isVisible=false;
+   if('IntersectionObserver' in window){
+    const visibility=new IntersectionObserver(entries=>{
+     this.isVisible=entries[0]?.isIntersecting===true;
+     this.lastTick=0;
+    },{rootMargin:'100px 0px'});
+    visibility.observe(this.element);
+   }else{this.isVisible=true}
+   const loop=now=>{
+    if(!this.lastTick)this.lastTick=now;
+    const elapsed=Math.min(64,now-this.lastTick);this.lastTick=now;
+    if(this.isVisible&&!document.hidden&&!this.hoverPaused&&!this.focusPaused&&!this.drag&&now>this.manualUntil&&now>this.touchUntil&&!this.frame){
+     this.element.scrollLeft+=elapsed*.085;
+    }
+    requestAnimationFrame(loop);
+   };
+   requestAnimationFrame(loop);
+  }
+ }
+ recenter(){
+  const span=this.cycle();if(!span)return;
+  const x=this.element.scrollLeft;
+  if(x<span*.55){this.element.scrollLeft=x+span;this.target+=span}
+  else if(x>span*2.45){this.element.scrollLeft=x-span;this.target-=span}
+ }
+ advance(direction){this.manualUntil=performance.now()+2800;this.animateTo(this.element.scrollLeft+direction*this.step())}
+ reset(){this.manualUntil=performance.now()+2800;this.animateTo(this.cycle())}
+}
+
+  const brandCarousel=new LoopingBrandCarousel(document.getElementById('brandCarousel'),brands,document.getElementById('brandProgress'),BrandCard.render);
+  installCarouselArrows(brandCarousel,'brands');
 })();
 </script>
 </body>
