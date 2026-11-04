@@ -550,47 +550,33 @@
 }
 </style>
 <style>
-/* Dashboard uses the exact storefront burger panel and reveal.
-   Only the contents differ: six Dashboard links arranged in a clean menu. */
-.dashboard-mobile-menu-content > .dashboard-menu-link{
-  display:flex;align-items:center;min-height:47px;padding:11px 14px;
-  color:var(--ink);font-size:14px;font-weight:650;
-  text-decoration:none;border-bottom:1px solid var(--line);
+/* Dashboard: retain exact index.html burger dimensions, panel reveal,
+   alignment and breakpoints from styles.css. Only link typography differs. */
+.dashboard-menu-link{
+  color:var(--ink);
+  font-size:14px;
+  font-weight:700;
+  line-height:1.35;
+  white-space:nowrap;
 }
-.dashboard-mobile-menu-content > .dashboard-menu-link[aria-current="page"]{
-  color:var(--purple);font-weight:800;
-}
-.dashboard-mobile-menu-content > .dashboard-menu-link:hover{color:var(--purple)}
-.dashboard-mobile-menu-content > .dashboard-menu-link:focus-visible{
-  outline:2px solid var(--cyan);outline-offset:-2px;
-}
-.dashboard-mobile-menu-content > .dashboard-menu-logout{
-  display:flex;align-self:stretch;min-height:49px;
-  margin-top:15px;
-}
-@media(min-width:761px){
-  /* Same full-width sliding header panel as index.html.
-     Only the dashboard's navigation group sits at the right edge. */
-  .site-header .dashboard-mobile-menu-content{
-    display:flex;flex-direction:column;align-items:stretch;
-    gap:0;width:260px;max-width:calc(100% - 96px);
-    margin-left:auto;margin-right:max(48px,calc((100% - 1440px)/2));
-    padding:14px 0 22px;
-  }
-}
+.dashboard-menu-link[aria-current="page"]{color:var(--purple);font-weight:800}
+.dashboard-menu-link:hover{color:var(--purple)}
+.dashboard-menu-link:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
 @media(max-width:760px){
-  .site-header .dashboard-mobile-menu-content{
-    display:flex;flex-direction:column;align-items:stretch;
-    gap:0;width:calc(100% - 36px);margin:0 auto;padding:16px 0 23px;
+  .dashboard-menu-link{
+    display:flex;
+    align-items:center;
+    width:100%;
+    min-height:49px;
+    padding:9px 0;
+    border-bottom:1px solid var(--line);
+    font-size:15px;
   }
-  .dashboard-mobile-menu-content > .shopping-user{
-    order:0;width:100%;margin-bottom:12px;padding:0 12px;
+  .dashboard-mobile-menu-content .shopping-user{
+    order:0;
   }
-  .dashboard-mobile-menu-content > .dashboard-menu-link{
-    min-height:50px;padding:12px 14px;font-size:15px;
-  }
-  .dashboard-mobile-menu-content > .dashboard-menu-logout{
-    order:3;min-height:52px;margin-top:16px;
+  .dashboard-mobile-menu-content .dashboard-menu-logout{
+    order:3;
   }
 }
 </style>
@@ -637,7 +623,7 @@
   </nav>
   <div class="mobile-menu-panel" id="mobileMenuPanel" aria-hidden="true" inert>
     <div class="mobile-menu-reveal">
-      <nav class="mobile-menu-content dashboard-mobile-menu-content" id="mobileMenuContent" aria-label="Dashboard mobile navigation">
+      <nav class="mobile-menu-content dashboard-mobile-menu-content" id="mobileMenuContent" aria-label="Dashboard navigation">
         <a class="dashboard-menu-link" href="./dashboard.html" aria-current="page">Dashboard</a>
         <a class="dashboard-menu-link" href="#dashboardProductCarousel">Products</a>
         <a class="dashboard-menu-link" href="#orderTrackingTitle">Orders</a>
