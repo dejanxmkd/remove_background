@@ -966,6 +966,14 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dv-steps li{display:flex;flex-direction:column;align-items:center;gap:10px;position:relative;z-index:1;text-align:center;min-width:0}.dv-steps li:first-child{align-items:flex-start;text-align:left}.dv-steps li:last-child{align-items:flex-end;text-align:right}
 .dv-step-dot{width:30px;height:30px;border-radius:50%;border:2px solid #dad4e4;background:#fff;display:grid;place-items:center}
 .dv-step-dot svg{width:15px;height:15px}.dv-steps .complete .dv-step-dot{color:#fff;background:var(--purple);border-color:var(--purple)}
+/* Only the furthest completed tracking step pulses to indicate current progress. */
+.dv-steps .complete:nth-child(2) .dv-step-dot{animation:dv-current-step-pulse 2s ease-in-out infinite}
+@keyframes dv-current-step-pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(102,51,204,.35)}
+  50%{box-shadow:0 0 0 9px rgba(102,51,204,0)}
+}
+@media(prefers-reduced-motion:reduce){.dv-steps .complete:nth-child(2) .dv-step-dot{animation:none}}
+
 .dv-step-label{font-size:12px;line-height:1.35;color:#716c7a}.dv-steps .complete .dv-step-label{color:var(--ink);font-weight:800}
 .dv-status{margin-top:auto;display:flex;flex-direction:column;gap:4px;border-radius:12px;background:#f3edff;padding:16px}
 .dv-status strong{font-size:14px;font-weight:800}.dv-status span{font-size:12px;color:#716c7a}
