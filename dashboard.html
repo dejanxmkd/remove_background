@@ -1103,7 +1103,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
     page=(page+pageCount)%pageCount;
     const first=cards[page*n];
     if(!first)return;
-    track.style.transform='translateX(-'+first.offsetLeft+'px)';
+    track.style.transform='translateX(-'+(first.offsetLeft-cards[0].offsetLeft)+'px)';
     const pct=(page+1)/pageCount*100;
     progress.setAttribute('aria-valuenow',String(Math.round(pct)));
     progress.querySelector('span').style.width=pct+'%';
