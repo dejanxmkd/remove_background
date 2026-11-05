@@ -1005,7 +1005,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 @media(max-width:760px){
   .dv-account-section{
     padding:52px 0 72px;
-    background:linear-gradient(to bottom,var(--purple) 0%,var(--purple) 33%,#fff 33%,#fff 100%);
+    background:linear-gradient(to bottom,var(--purple) 0%,var(--purple) var(--dv-purple-stop,80%),#fff var(--dv-purple-stop,80%),#fff 100%);
   }
   .dv-account-container{
     width:calc(100% - 36px);
@@ -1576,5 +1576,34 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 
 
 
+<script>
+/* Keep the purple/white mobile background boundary at the midpoint of the ORDER TRACKING card. */
+(function(){
+  const section=document.querySelector('.dv-account-section');
+  const tracking=document.querySelector('.dv-account-tracking');
+  if(!section||!tracking)return;
+  const mobile=window.matchMedia('(max-width:760px)');
+  function syncAccountBackground(){
+    if(!mobile.matches){
+      section.style.removeProperty('--dv-purple-stop');
+      return;
+    }
+    const boundary=tracking.getBoundingClientRect().top
+      -section.getBoundingClientRect().top
+      +tracking.getBoundingClientRect().height/2;
+    const value=Math.round(boundary)+'px';
+    if(section.style.getPropertyValue('--dv-purple-stop')!==value)
+      section.style.setProperty('--dv-purple-stop',value);
+  }
+  mobile.addEventListener('change',syncAccountBackground);
+  window.addEventListener('resize',syncAccountBackground,{passive:true});
+  if('ResizeObserver' in window){
+    const observer=new ResizeObserver(syncAccountBackground);
+    observer.observe(tracking);
+    observer.observe(section);
+  }
+  requestAnimationFrame(syncAccountBackground);
+})();
+</script>
 </body>
 </html>
