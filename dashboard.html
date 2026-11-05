@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#6633CC">
-  <meta name="td-dashboard-ui-revision" content="20261105-nine-illustrated-offer-cards-v10">
+  <meta name="td-dashboard-ui-revision" content="20261105-photographic-promotions-coffee-v11">
   <title>Dashboard — True Distributors</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -902,6 +902,26 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 @media(max-width:760px){.dashboardv-deals{padding:52px 0 72px}.dashboardv-deals-inner{width:calc(100% - 36px)}.dashboardv-deals .section-header{margin-bottom:20px}#dashboardv-deals-title{font-size:clamp(30px,7.4vw,46px)}}
 
 /* Static 3 x 3 deals grid replaces the horizontal slider. */
+/* Promotional photo direction based on the supplied 3x3 reference; keep original card geometry. */
+#dashboardv #dashboardvDealsGrid .dv-promo-photo{position:relative!important;isolation:isolate!important;overflow:hidden!important}
+#dashboardv #dashboardvDealsGrid .dv-promo-overlay{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;padding:clamp(13px,1.5vw,23px);pointer-events:none;color:#fff;text-shadow:0 2px 13px rgba(0,0,0,.35)}
+#dashboardv #dashboardvDealsGrid .dv-promo-photo:not(.dv-promo-inventory)::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(115deg,rgba(17,9,40,.80),rgba(20,11,46,.18) 52%,transparent 76%);pointer-events:none}
+#dashboardv #dashboardvDealsGrid .dv-promo-snickers::before{background:linear-gradient(105deg,rgba(84,24,23,.89),transparent 70%)}
+#dashboardv #dashboardvDealsGrid .dv-promo-charger::before{background:linear-gradient(105deg,rgba(57,24,124,.88),transparent 74%)}
+#dashboardv #dashboardvDealsGrid .dv-promo-giannos::before{background:linear-gradient(105deg,rgba(18,39,79,.97),rgba(18,39,79,.68) 38%,transparent 74%)}
+#dashboardv #dashboardvDealsGrid .dv-promo-candy::before{background:linear-gradient(102deg,rgba(70,21,6,.82),transparent 76%)}
+#dashboardv #dashboardvDealsGrid .dv-promo-hersheys::before{background:linear-gradient(105deg,rgba(71,18,26,.93),transparent 75%)}
+#dashboardv #dashboardvDealsGrid .dv-promo-school::before{background:linear-gradient(105deg,rgba(26,39,85,.92),transparent 68%)}
+#dashboardv #dashboardvDealsGrid .dv-promo-support::before{background:linear-gradient(103deg,rgba(57,28,132,.94),transparent 70%)}
+#dashboardv #dashboardvDealsGrid .dv-promo-kicker{display:inline-block;max-width:96%;padding:9px 12px;border-radius:8px;background:#6230cc;color:#fff;font:900 clamp(10px,1vw,14px)/1.15 var(--font);letter-spacing:.02em}
+#dashboardv #dashboardvDealsGrid .dv-promo-kicker-yellow{background:#ffe12c;color:#171421;text-shadow:none}
+#dashboardv #dashboardvDealsGrid .dv-promo-hero{font:900 clamp(21px,2.1vw,34px)/1.03 var(--font);letter-spacing:-.035em;text-shadow:0 3px 11px rgba(0,0,0,.28)}
+#dashboardv #dashboardvDealsGrid .dv-promo-sticker{display:block;padding:13px 15px;border-radius:13px;max-width:85%;font:900 clamp(19px,2.5vw,39px)/1 var(--font);letter-spacing:-.04em;text-shadow:none}
+#dashboardv #dashboardvDealsGrid .dv-promo-sticker-red{background:#e11f2e;color:#fff;transform:rotate(-6deg);box-shadow:0 8px 24px rgba(0,0,0,.16)}
+#dashboardv #dashboardvDealsGrid .dv-promo-sticker-purple{background:#6933d3;color:#fff}
+#dashboardv #dashboardvDealsGrid .dv-promo-sticker-yellow{background:#ffe12c;color:#161324;font-size:clamp(17px,1.8vw,27px)}
+@media(max-width:760px){#dashboardv #dashboardvDealsGrid .dv-promo-hero{font-size:clamp(23px,6vw,35px)}#dashboardv #dashboardvDealsGrid .dv-promo-sticker{font-size:clamp(21px,6vw,36px)}#dashboardv #dashboardvDealsGrid .dv-promo-kicker{font-size:12px}}
+
 .dashboardv-deals #dashboardvDealsGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch;width:100%;padding:0;overflow:visible}
 .dashboardv-deals #dashboardvDealsGrid .dashboardv-deal-card.card{display:flex;flex-direction:column;min-width:0;min-height:310px;align-self:stretch;overflow:hidden;background:#fff;border-radius:17px}
 .dashboardv-deals #dashboardvDealsGrid .dashboardv-deal-card.card,.dashboardv-deals #dashboardvDealsGrid .dashboardv-deal-card.card:hover{box-shadow:none}
@@ -1178,7 +1198,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
       <div class="dashboardv-deals-grid-wrap">
         <div class="dashboardv-deals-grid" id="dashboardvDealsGrid" aria-label="Deals grid">
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Chocolate bars and peanuts promotional illustration" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/01-snickers.svg');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder dv-promo-photo dv-promo-snickers" role="img" aria-label="snickers product photograph" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('https://www.usamegashop.com/cdn/shop/files/SnickersMilkChocolateCandyBars_FullSize_1.86oz._48pk._25a983a2-ba15-49b8-99fc-caf0e9f0d9f4.jpg?v=1770569864'),url('./assets/dashboard-deals/01-snickers.svg');background-size:cover,cover;background-position:center,center;background-repeat:no-repeat,no-repeat"><span class="dv-promo-overlay" aria-hidden="true"><span class="dv-promo-kicker">SNICKERS · 48 COUNT</span><strong class="dv-promo-sticker dv-promo-sticker-red">15% OFF</strong></span></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">LIMITED TIME, SNICKERS X 48</h3>
     <p class="dashboardv-deal-subtitle">15% off! (ends 11/20/2026)</p>
@@ -1186,7 +1206,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="USB C charger and cable illustration" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/02-usbc-charger.svg');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder dv-promo-photo dv-promo-charger" role="img" aria-label="charger product photograph" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('https://i5.walmartimages.com/seo/AirPods-Pro-3-Charger-20W-USB-C-Airpods-Power-Adapter-Wall-Charging-Block-Plug-USB-C-Type-C-C-Woven-Cable-Cord-2025-AirPods-Pro-3rd-2nd-Air-pods-4-Ai_9662f26c-ad0c-4ee3-8df9-668d643054b9.c78c7a3b7652598c324427f36cb7325e.jpeg'),url('./assets/dashboard-deals/02-usbc-charger.svg');background-size:cover,cover;background-position:center,center;background-repeat:no-repeat,no-repeat"><span class="dv-promo-overlay" aria-hidden="true"><span class="dv-promo-kicker dv-promo-kicker-yellow">DEAL OF THE WEEK</span><strong class="dv-promo-sticker dv-promo-sticker-purple">$5.36</strong></span></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">DEAL OF THE WEEK: COMBO USB-C CHARGER</h3>
     <p class="dashboardv-deal-subtitle">+ 3ft Cable $5.36</p>
@@ -1194,7 +1214,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Neutral warehouse shelving and inventory boxes" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/03-neutral-warehouse.svg');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder dv-promo-photo dv-promo-inventory" role="img" aria-label="Neutral warehouse shelving and inventory boxes" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/03-neutral-warehouse.svg');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">DON'T MISS OUT: JUUL VIR 5%</h3>
     <p class="dashboardv-deal-subtitle">20% off while they last (100 units)</p>
@@ -1202,15 +1222,16 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="GIANNOS snack bag and pita chips illustration" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/04-giannos.svg');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder dv-promo-photo dv-promo-giannos" role="img" aria-label="Giannos original roast coffee photograph" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('https://www.giannos.com/cdn/shop/files/giannos-original-ground-front_bb1fc16b-87ec-418e-971a-08007039cb15.png?v=1775601126'),url('./assets/dashboard-deals/04-giannos.svg');background-size:cover,cover;background-position:center,center;background-repeat:no-repeat,no-repeat"><span class="dv-promo-overlay" aria-hidden="true"><span class="dv-promo-kicker">PREMIUM COFFEE</span><strong class="dv-promo-hero">TRY<br>GIANNOS</strong></span></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">TRY GIANNOS</h3>
+    <p class="dashboardv-deal-subtitle">Discover premium Giannos coffee</p>
     
     
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Colorful seasonal candy assortment illustration" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/05-seasonal-candy.svg');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder dv-promo-photo dv-promo-candy" role="img" aria-label="candy product photograph" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('https://cdn.pixabay.com/photo/2020/11/02/17/43/pumpkins-5707392_1280.jpg'),url('./assets/dashboard-deals/05-seasonal-candy.svg');background-size:cover,cover;background-position:center,center;background-repeat:no-repeat,no-repeat"><span class="dv-promo-overlay" aria-hidden="true"><strong class="dv-promo-hero">SEASONAL<br>CANDY</strong><span class="dv-promo-kicker dv-promo-kicker-yellow">GOING FAST</span></span></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">SEASONAL CANDY</h3>
     <p class="dashboardv-deal-subtitle">going fast, act quickly</p>
@@ -1218,7 +1239,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Hershey's chocolate bar assortment illustration" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/06-hersheys-chocolate.svg');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder dv-promo-photo dv-promo-hersheys" role="img" aria-label="hersheys product photograph" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('https://www.kroger.com/product/images/xlarge/front/0003400000220'),url('./assets/dashboard-deals/06-hersheys-chocolate.svg');background-size:cover,cover;background-position:center,center;background-repeat:no-repeat,no-repeat"><span class="dv-promo-overlay" aria-hidden="true"><span class="dv-promo-kicker">HERSHEY'S</span><strong class="dv-promo-sticker dv-promo-sticker-yellow">KING SIZE<br>NEW FLAVORS</strong></span></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">ALL NEW HERSHEY'S KING SIZE FLAVORS ARE HERE</h3>
     
@@ -1226,7 +1247,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="School and office supplies illustration" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/07-school-supplies.svg');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder dv-promo-photo dv-promo-school" role="img" aria-label="school product photograph" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('https://cdn.pixabay.com/photo/2017/08/28/18/06/school-supplies-2690599_1280.jpg'),url('./assets/dashboard-deals/07-school-supplies.svg');background-size:cover,cover;background-position:center,center;background-repeat:no-repeat,no-repeat"><span class="dv-promo-overlay" aria-hidden="true"><strong class="dv-promo-hero">SCHOOL &amp;<br>OFFICE SUPPLIES</strong><span class="dv-promo-sticker dv-promo-sticker-yellow">30% OFF</span></span></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">SCHOOL AND OFFICE SUPPLIES MUST GO!</h3>
     <p class="dashboardv-deal-subtitle">(30% off, ends 11/30/2026)</p>
@@ -1234,7 +1255,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Neutral warehouse stock and inventory tracking illustration" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/08-neutral-inventory.svg');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder dv-promo-photo dv-promo-inventory" role="img" aria-label="Neutral warehouse stock and inventory tracking illustration" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/08-neutral-inventory.svg');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">DID YOU CHECK YOUR ZYN INVENTORY?</h3>
     <p class="dashboardv-deal-subtitle">Replenish at a discount while in stock!</p>
@@ -1242,7 +1263,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Customer support agent with headset illustration" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/09-spanish-support.svg');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder dv-promo-photo dv-promo-support" role="img" aria-label="Customer service operator photograph" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('https://images.pexels.com/photos/7709198/pexels-photo-7709198.jpeg?auto=compress&dpr=1&h=750&w=1260'),url('./assets/dashboard-deals/09-spanish-support.svg');background-size:cover,cover;background-position:center,center;background-repeat:no-repeat,no-repeat"><span class="dv-promo-overlay" aria-hidden="true"><strong class="dv-promo-hero">¿NECESITAS<br>AYUDA?</strong><span class="dv-promo-kicker">HABLAMOS ESPAÑOL</span></span></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">NECESITAS AYUDA?</h3>
     <p class="dashboardv-deal-subtitle">Nuestras operadoras hablan espanol! Llama al +1-718-746-0008</p>
