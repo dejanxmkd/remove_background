@@ -887,7 +887,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 </style>
 <style id="dashboardv-deals-styles">
 /* Same storefront New Arrivals section, with requested purple background and header. */
-#dashboardv > .dashboardv-deals:not(.dashboardv-current-deals){position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(to bottom,var(--purple,#6633cc) 0%,var(--purple,#6633cc) var(--dv-deals-purple-boundary,220px),#fff var(--dv-deals-purple-boundary,220px),#fff 100%)!important;color:#fff;padding:0 0 14px}
+#dashboardv > .dashboardv-deals:not(.dashboardv-current-deals){position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(to bottom,var(--purple,#6633cc) 0%,var(--purple,#6633cc) var(--dv-deals-purple-boundary,220px),#fff var(--dv-deals-purple-boundary,220px),#fff 100%)!important;color:#fff;padding:0 0 100px}
 .dashboardv-deals-inner{position:relative;z-index:1;width:min(1440px,calc(100% - 96px));margin:auto}
 .dashboardv-deals .section-header{margin-bottom:42px}
 .dashboardv-deals .eyebrow{background:var(--cyan);color:var(--ink)}
@@ -929,7 +929,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dashboardv-deals-shapes .mr{width:160px;height:160px;top:115px;right:-100px}
 }
 @media(max-width:760px){
-  #dashboardv > .dashboardv-deals:not(.dashboardv-current-deals){padding:0 0 24px}
+  #dashboardv > .dashboardv-deals:not(.dashboardv-current-deals){padding:0 0 76px}
 }
 </style>
 <style id="dashboardv-account-overview-styles">
@@ -1050,7 +1050,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 </style>
 <style id="dashboardv-current-deals-styles">
 /* New Arrivals-style white section; reuse the Deals carousel card system. */
-.dashboardv-current-deals.dashboardv-deals{background:#fff;color:var(--ink);padding:86px 0 96px}
+#dashboardv > .dashboardv-current-deals.dashboardv-deals{background:#fff;color:var(--ink);padding:0 0 96px}
 .dashboardv-current-deals .eyebrow{background:var(--purple);color:#fff}
 .dashboardv-current-deals #dashboardv-current-title{margin:20px 0 0;font-size:clamp(36px,4.4vw,66px);line-height:1;letter-spacing:-.035em;font-weight:900;color:var(--ink)}
 .dashboardv-current-deals #dashboardvCurrentCarousel{--gap:18px;align-items:stretch;scroll-behavior:smooth}
@@ -1059,7 +1059,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dashboardv-current-deals .progress{background:#eae7ef}
 .dashboardv-current-deals .progress span{background:var(--purple)}
 @media(max-width:1100px){.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/2)}}
-@media(max-width:760px){.dashboardv-current-deals.dashboardv-deals{padding:52px 0 72px}.dashboardv-current-deals #dashboardv-current-title{font-size:clamp(30px,7.4vw,46px)}.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/1.5)}}
+@media(max-width:760px){#dashboardv > .dashboardv-current-deals.dashboardv-deals{padding:0 0 72px}.dashboardv-current-deals #dashboardv-current-title{font-size:clamp(30px,7.4vw,46px)}.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/1.5)}}
 </style>
 
 <style id="dashboardv-explore-links-styles">
