@@ -939,7 +939,17 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dv-account-col:first-child{padding-left:0}.dv-account-col:last-child{padding-right:0}
 .dv-account-invoices{align-self:stretch;margin:0;padding-bottom:0}
 .dv-account-invoices .dv-invoice-list{margin-bottom:0;padding-bottom:0}
-@media(min-width:761px){.dv-account-invoices .dv-invoice-list{flex:1}.dv-account-invoices .dv-invoice:last-child{margin-top:auto}}
+/* Distribute invoice rows from top to bottom; center each separator in its own gap. */
+@media(min-width:761px){
+.dv-account-invoices .dv-invoice-list{display:grid;flex:1;grid-template-rows:auto minmax(0,1fr) auto minmax(0,1fr) auto;align-content:stretch;gap:0}
+.dv-account-invoices .dv-invoice{padding:0;border:0;min-width:0}
+.dv-account-invoices .dv-invoice:first-child{grid-row:1}
+.dv-account-invoices .dv-invoice:nth-child(2){grid-row:3}
+.dv-account-invoices .dv-invoice:last-child{grid-row:5;margin-top:0}
+.dv-account-invoices .dv-invoice-list::before,.dv-account-invoices .dv-invoice-list::after{content:"";display:block;grid-column:1/-1;align-self:center;height:1px;background:var(--line);width:100%}
+.dv-account-invoices .dv-invoice-list::before{grid-row:2}
+.dv-account-invoices .dv-invoice-list::after{grid-row:4}
+}
 .dv-account-col h2{font:900 clamp(17px,1.6vw,24px)/1.2 var(--font);letter-spacing:-.035em;margin:0 0 26px;color:var(--ink)}
 .dv-invoice-list{display:flex;flex-direction:column;gap:0;justify-content:flex-start}
 .dv-invoice{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:9px 12px;padding:16px 0;border-bottom:1px solid var(--line)}
