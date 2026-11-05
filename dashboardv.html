@@ -13,6 +13,9 @@
 /* Desktop stays right-aligned; mobile layout follows index.html's logo + three icons. */
 .site-nav{display:flex;align-items:center}
 .shopping-nav-controls{margin-left:auto;justify-content:flex-end}
+@media(max-width:760px){
+  .site-nav .shopping-nav-controls>.shopping-nav-separator{display:none!important}
+}
 </style>
 <style>
 /* Dashboard-only solid purple block: exactly the Home hero minimum heights. */
@@ -906,7 +909,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dashboardv-deals .dashboardv-deal-info .product-title{margin:0;min-height:0;color:var(--ink);font:800 17px/1.35 var(--font);letter-spacing:-.025em}
 .dashboardv-deals .dashboardv-deal-subtitle{margin:0;color:#716c7a;font:500 14px/1.4 var(--font)}
 @media(max-width:1100px){.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/2)}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:17px}}
-@media(max-width:760px){.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex-basis:100%;min-height:310px}.dashboardv-deals .dashboardv-deal-placeholder.picture{height:190px;min-height:190px}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:16px}}
+@media(max-width:760px){.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/1.5);min-height:310px}.dashboardv-deals .dashboardv-deal-placeholder.picture{height:190px;min-height:190px}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:16px}}
 
 /* Reuse the same circle motif, placement and palette as index.html Brands. */
 .dashboardv-deals-shapes{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
@@ -1011,7 +1014,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dashboardv-current-deals .progress{background:#eae7ef}
 .dashboardv-current-deals .progress span{background:var(--purple)}
 @media(max-width:1100px){.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/2)}}
-@media(max-width:760px){.dashboardv-current-deals.dashboardv-deals{padding:52px 0 72px}.dashboardv-current-deals #dashboardv-current-title{font-size:clamp(30px,7.4vw,46px)}.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{flex-basis:100%}}
+@media(max-width:760px){.dashboardv-current-deals.dashboardv-deals{padding:52px 0 72px}.dashboardv-current-deals #dashboardv-current-title{font-size:clamp(30px,7.4vw,46px)}.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/1.5)}}
 </style>
 
 <style id="dashboardv-explore-links-styles">
