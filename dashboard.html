@@ -10,21 +10,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css?v=dashboard-menu-exact-20261104">
 <style>
-/* Dashboard-only layout: original storefront components, right aligned. */
+/* Desktop stays right-aligned; mobile layout follows index.html's logo + three icons. */
 .site-nav{display:flex;align-items:center}
 .shopping-nav-controls{margin-left:auto;justify-content:flex-end}
 @media(max-width:760px){
-  .site-nav{display:flex;flex-wrap:nowrap;align-items:center;gap:10px;min-height:66px}
-  .site-nav-logo{flex:none;width:auto}
-  .shopping-nav-controls{display:flex;flex:1;min-width:0;width:auto;margin-left:auto;align-items:center;justify-content:flex-end;gap:clamp(7px,2vw,15px)}
-  .shopping-user{display:flex;flex:none;min-width:0}
-  .shopping-user-details{min-width:0}
-  .mobile-user-trigger{max-width:150px}
-  .mobile-user-trigger-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-}
-@media(max-width:380px){
-  .site-nav-logo img{width:108px}
-  .shopping-nav-controls{gap:4px}
+  .site-nav .shopping-nav-controls>.shopping-nav-separator{display:none!important}
 }
 </style>
 <style>
@@ -563,7 +553,7 @@ body.td-login-menu-open .mobile-menu-toggle .mobile-menu-close-icon{display:bloc
 body.td-login-menu-open .mobile-menu-panel.td-login-panel{visibility:visible;clip-path:inset(0 0 0 0);transition:clip-path var(--td-mid) var(--td-ease),visibility 0s}
 .mobile-menu-panel.td-login-panel .mobile-menu-reveal{height:100%!important;overflow:hidden!important}
 .mobile-menu-panel.td-login-panel .mobile-menu-content{width:min(620px,calc(100% - 44px))!important;height:100%!important;margin:0 auto!important;padding:92px 0 42px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;transform:none!important;gap:0!important}
-.mobile-menu-panel.td-login-panel .shopping-user,.mobile-menu-panel.td-login-panel .quick-shop-button,.mobile-menu-panel.td-login-panel .shopping-nav-separator,.mobile-menu-panel.td-login-panel .menu-auth-link{display:none!important}
+.mobile-menu-panel.td-login-panel .quick-shop-button,.mobile-menu-panel.td-login-panel .shopping-nav-separator,.mobile-menu-panel.td-login-panel .menu-auth-link{display:none!important}
 /* Header + nav items transition smoothly in and out with the menu */
 .site-header{transition:background var(--td-mid) var(--td-ease),border-color var(--td-mid) var(--td-ease)}
 .site-nav-logo,.header-search-toggle,.shopping-cart-button,.quick-shop-button,.shopping-nav-separator,.shopping-user{transition:opacity var(--td-fast) var(--td-ease)}
@@ -584,6 +574,15 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 @media(max-width:760px){
   .td-burger-nav{gap:18px}
   .td-burger-link{font-size:38px}
+}
+@media(max-width:760px){
+  .mobile-menu-panel.td-login-panel .mobile-menu-reveal{overflow-y:auto!important;overscroll-behavior:contain}
+  .mobile-menu-panel.td-login-panel .mobile-menu-content{height:auto!important;min-height:100%;padding:78px 0 34px!important;gap:24px!important}
+  .mobile-menu-panel.td-login-panel .shopping-user{display:flex!important;flex:0 0 auto!important;align-items:center;justify-content:center;width:min(340px,100%);margin:0 auto}
+  .mobile-menu-panel.td-login-panel .shopping-user-details{width:100%}
+  .mobile-menu-panel.td-login-panel .mobile-user-trigger{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:none;min-height:56px;padding:12px 18px;border:1px solid rgba(255,255,255,.28);border-radius:12px;background:rgba(255,255,255,.10);color:#fff}
+  .mobile-menu-panel.td-login-panel .mobile-user-trigger-label{color:rgba(255,255,255,.78)}
+  .mobile-menu-panel.td-login-panel .mobile-user-trigger-name{color:#fff}
 }
 @media(max-width:400px){.td-burger-link{font-size:clamp(27px,9vw,38px)}}
 @media(prefers-reduced-motion:reduce){.td-burger-link{transition:none!important}}
@@ -885,6 +884,194 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 @media(max-width:1080px){.td2-shell{grid-template-columns:1fr 1fr}.td2-column:nth-child(2){border:0;padding-right:0}.td2-column:nth-child(3){grid-column:1/-1;padding:24px 0 0;border:0;border-top:1px solid #e5e0ec;margin-top:25px}.td2-invoice{grid-template-columns:minmax(0,1fr) auto auto}.td2-invoice-actions{grid-column:auto}.td2-column:nth-child(3) .td2-steps{margin-bottom:25px}}
 @media(max-width:760px){.td2-hero{padding:50px 0 65px;background:linear-gradient(to bottom,#6633cc 0%,#6633cc 36%,#fff 36%,#fff 100%)}.td2-shell{width:calc(100% - 32px);padding:22px 18px;grid-template-columns:1fr;border-radius:17px}.td2-column,.td2-column:first-child,.td2-column:last-child{grid-column:1/-1;padding:0 0 24px;border:0;border-bottom:1px solid #e5e0ec;margin:0 0 24px}.td2-column:last-child{padding:0;margin:0;border:0}.td2-heading{margin-bottom:15px}.td2-heading h2{font-size:20px}.td2-invoice{grid-template-columns:minmax(0,1fr) auto;gap:8px}.td2-invoice-actions{grid-column:1/-1;justify-content:center}.td2-total>strong{font-size:44px}.td2-pay{min-height:39px}.td2-due{margin:18px 0 25px}.td2-quick{font-size:10px;padding:0 9px;min-height:35px}.td2-tracking-heading{gap:8px}.td2-tracking-heading h2{font-size:18px}.td2-order-meta{font-size:12px}.td2-step-name{font-size:10px;white-space:normal}.td2-step-dot{width:33px;height:33px}.td2-steps::before,.td2-steps::after{top:16px}.td2-status{padding:18px}.td2-status small{font-size:12px}}
 </style>
+<style id="dashboardv-deals-styles">
+/* Same storefront New Arrivals section, with requested purple background and header. */
+.dashboardv-deals{position:relative;isolation:isolate;overflow:hidden;background:var(--purple);color:#fff;padding:94px 0 110px}
+.dashboardv-deals-inner{position:relative;z-index:1;width:min(1440px,calc(100% - 96px));margin:auto}
+.dashboardv-deals .section-header{margin-bottom:42px}
+.dashboardv-deals .eyebrow{background:var(--cyan);color:var(--ink)}
+#dashboardv-deals-title{margin:20px 0 0;font-size:clamp(36px,4.4vw,66px);line-height:1;letter-spacing:-.035em;font-weight:900;color:#fff}
+.dashboardv-deals .view-all{color:#fff}
+.dashboardv-deals .carousel{scroll-behavior:smooth}
+.dashboardv-deals .carousel .card{background:#fff;color:var(--ink)}
+.dashboardv-deals .progress{background:rgba(255,255,255,.3)}
+.dashboardv-deals .progress span{background:#fff}
+.dashboardv-carousel-wrap{position:relative}
+.dashboardv-deals .mobile-view-all{background:#fff;color:var(--purple)}
+@media(max-width:760px){.dashboardv-deals{padding:52px 0 72px}.dashboardv-deals-inner{width:calc(100% - 36px)}.dashboardv-deals .section-header{margin-bottom:20px}#dashboardv-deals-title{font-size:clamp(30px,7.4vw,46px)}}
+
+/* Four side-by-side, horizontal deal cards with image placeholders only. */
+.dashboardv-deals #dashboardvDealsCarousel{--gap:18px;align-items:stretch}
+.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex:0 0 calc((100% - 3 * var(--gap))/4);display:flex;flex-direction:column;min-width:0;min-height:310px;align-self:stretch;overflow:hidden;background:#fff;border-radius:17px}
+.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card,.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card:hover{box-shadow:none}
+.dashboardv-deals .dashboardv-deal-placeholder.picture{width:100%;height:190px;min-height:190px;flex:1 1 auto;aspect-ratio:auto;background:var(--placeholder);border:0}
+.dashboardv-deals .dashboardv-deal-info.card-info{display:flex;min-width:0;flex:0 0 auto;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:9px;padding:17px}
+.dashboardv-deals .dashboardv-deal-info .product-title{margin:0;min-height:0;color:var(--ink);font:800 17px/1.35 var(--font);letter-spacing:-.025em}
+.dashboardv-deals .dashboardv-deal-subtitle{margin:0;color:#716c7a;font:500 14px/1.4 var(--font)}
+@media(max-width:1100px){.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/2)}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:17px}}
+@media(max-width:760px){.dashboardv-deals #dashboardvDealsCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/1.5);min-height:310px}.dashboardv-deals .dashboardv-deal-placeholder.picture{height:190px;min-height:190px}.dashboardv-deals .dashboardv-deal-info .product-title{font-size:16px}}
+
+/* Reuse the same circle motif, placement and palette as index.html Brands. */
+.dashboardv-deals-shapes{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.dashboardv-deals-shapes .shape{position:absolute;display:block;border-radius:50%}
+.dashboardv-deals-shapes .cyan{background:#57D4E5}
+.dashboardv-deals-shapes .white{background:#fff}
+.dashboardv-deals-shapes .tl{width:220px;height:220px;top:-110px;left:-110px}
+.dashboardv-deals-shapes .tr{width:220px;height:220px;top:-95px;right:8%}
+.dashboardv-deals-shapes .ml{width:220px;height:220px;left:-120px;bottom:100px}
+.dashboardv-deals-shapes .mr{width:240px;height:240px;top:115px;right:-125px}
+@media(max-width:760px){
+.dashboardv-deals-shapes .tl{width:150px;height:150px;top:-75px;left:-75px}
+.dashboardv-deals-shapes .tr{width:150px;height:150px;top:-70px;right:5%}
+.dashboardv-deals-shapes .ml{width:150px;height:150px;left:-95px;bottom:100px}
+.dashboardv-deals-shapes .mr{width:160px;height:160px;top:115px;right:-100px}
+}
+</style>
+
+<style id="dashboardv-account-overview-styles">
+/* Dashboard V account area; existing index.html tokens and component patterns. */
+.dv-account-section{background:linear-gradient(to bottom,var(--purple) 0%,var(--purple) 50%,#fff 50%,#fff 100%);padding:64px 0 90px;color:var(--ink)}
+.dv-account-section *{box-sizing:border-box}
+.dv-account-container{width:min(1440px,calc(100% - 96px));margin:0 auto;padding:30px 26px;display:grid;grid-template-columns:max-content minmax(0,1fr) minmax(0,1fr);background:#fff;border:1px solid var(--line);border-radius:17px;box-shadow:none}
+.dv-account-col{display:flex;flex-direction:column;min-width:0;padding:0 23px}
+.dv-account-col:not(:last-child){border-right:1px solid var(--line)}
+.dv-account-col:first-child{padding-left:0}.dv-account-col:last-child{padding-right:0}
+.dv-account-invoices{align-self:stretch;margin:0;padding-bottom:0}
+.dv-account-invoices .dv-invoice-list{margin-bottom:0;padding-bottom:0}
+/* Distribute invoice rows from top to bottom; center each separator in its own gap. */
+@media(min-width:761px){
+.dv-account-invoices .dv-invoice-list{display:grid;flex:1;width:100%;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto minmax(0,1fr) auto;align-content:stretch;gap:0}
+.dv-account-invoices .dv-invoice{padding:0;border:0;min-width:0}
+.dv-account-invoices .dv-invoice:first-child{grid-row:1}
+.dv-account-invoices .dv-invoice:nth-child(2){grid-row:3}
+.dv-account-invoices .dv-invoice:last-child{grid-row:5;margin-top:0}
+.dv-account-invoices .dv-invoice-list::before,.dv-account-invoices .dv-invoice-list::after{content:"";display:block;grid-column:1/-1;align-self:center;height:1px;background:var(--line);width:100%}
+.dv-account-invoices .dv-invoice-list::before{grid-row:2}
+.dv-account-invoices .dv-invoice-list::after{grid-row:4}
+}
+.dv-account-col h2{font:900 clamp(17px,1.6vw,24px)/1.2 var(--font);letter-spacing:-.035em;margin:0 0 26px;color:var(--ink)}
+.dv-invoice-list{display:flex;flex-direction:column;gap:0;justify-content:flex-start}
+.dv-invoice{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:9px 12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.dv-invoice:first-child{padding-top:0}.dv-invoice:last-child{border-bottom:0;padding-bottom:0}
+.dv-invoice-id{display:flex;flex-direction:column;gap:5px}
+.dv-invoice-id strong{font-size:14px;font-weight:800}.dv-invoice-id span{font-size:14px;color:#716c7a}
+.dv-invoice-amount{font-size:14px;font-weight:800;white-space:nowrap}
+.dv-invoice-actions{grid-column:1/-1;display:flex;justify-content:flex-end;gap:6px}
+.dv-primary,.dv-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:8px 19px;min-height:36px;border-radius:999px;font:800 12px/1.2 var(--font);white-space:nowrap;text-decoration:none;cursor:pointer}
+.dv-primary{background:var(--purple);border:1px solid var(--purple);color:#fff}.dv-primary:hover{background:#4b21a6;color:#fff}
+.dv-secondary{background:rgba(102,51,204,.11);border:1px solid transparent;color:var(--purple)}.dv-secondary:hover{background:rgba(102,51,204,.17);color:#4b21a6}
+.dv-primary:focus-visible,.dv-secondary:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.dv-balance-contents{display:flex;flex:1;flex-direction:column;align-items:flex-start;gap:17px}
+.dv-muted{font-size:14px;color:#716c7a}
+.dv-total{font-size:clamp(32px,3vw,48px);font-weight:900;line-height:1.05;letter-spacing:-.045em}
+.dv-due{margin:0;color:#716c7a;font-size:14px;line-height:1.4}.dv-due strong{display:block;color:var(--ink)}
+.dv-pay{margin-top:auto;align-self:stretch;width:100%}
+/* Order tracking: compact visual timeline and separated order summary. */
+.dv-track-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin:0 0 28px}
+.dv-track-head h2{margin:0}
+.dv-account-tracking .dv-steps{--dv-node:34px;--dv-edge:0px;position:relative;display:flex;align-items:flex-start;justify-content:space-between;gap:0;flex:0 0 auto;list-style:none;margin:0;padding:0 var(--dv-edge);min-height:118px;width:100%}
+.dv-account-tracking .dv-steps::before,.dv-account-tracking .dv-steps::after{content:"";position:absolute;z-index:0;top:calc(var(--dv-node) / 2 - 1.5px);left:calc(var(--dv-edge) + var(--dv-node) / 2);right:calc(var(--dv-edge) + var(--dv-node) / 2);height:3px;border-radius:999px;background:#e5dfef}
+.dv-account-tracking .dv-steps::after{right:auto;width:calc((100% - 2 * var(--dv-edge) - var(--dv-node)) / 3);background:linear-gradient(90deg,#8250e3,var(--purple))}
+.dv-account-tracking .dv-steps li{display:flex;flex:0 0 var(--dv-node);flex-direction:column;align-items:center;justify-content:flex-start;gap:10px;position:relative;z-index:1;min-width:var(--dv-node);min-height:0;padding:0;text-align:center;transform:none}
+.dv-account-tracking .dv-step-dot{position:relative;width:var(--dv-node);height:var(--dv-node);display:grid;place-items:center;flex:none;border-radius:50%;border:2px solid #dfd9e9;background:#fff;color:#fff;transition:background .2s ease,border-color .2s ease}
+.dv-account-tracking .dv-step-dot svg{width:18px;height:18px}
+.dv-account-tracking .dv-steps .complete .dv-step-dot{color:#fff;background:var(--purple);border-color:var(--purple)}
+.dv-account-tracking .dv-step-copy{position:absolute;top:calc(var(--dv-node) + 20px);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0;width:max-content;max-width:125px;padding:0;text-align:center}
+.dv-account-tracking .dv-steps li:first-child .dv-step-copy{left:0;right:auto;transform:none;align-items:flex-start;text-align:left}
+.dv-account-tracking .dv-steps li:last-child .dv-step-copy{left:auto;right:0;transform:none;align-items:flex-end;text-align:right}
+.dv-account-tracking .dv-step-label{display:block;font-size:14px;line-height:1.35;font-weight:700;color:#5f596c;white-space:nowrap}
+.dv-account-tracking .dv-steps .complete .dv-step-label{color:var(--ink);font-weight:800}
+.dv-account-tracking .dv-steps .current .dv-step-label{background:none;color:var(--purple);border-radius:0;padding:0;font-weight:800;margin-top:0}
+.dv-account-tracking .dv-steps .current .dv-step-dot{box-shadow:0 0 0 5px rgba(102,51,204,.13)}
+.dv-account-tracking .dv-steps .current .dv-step-dot::after{content:"";position:absolute;inset:-8px;border:2px solid rgba(102,51,204,.65);border-radius:50%;pointer-events:none;animation:dv-tracking-active-pulse 2.3s ease-out infinite}
+@keyframes dv-tracking-active-pulse{0%{transform:scale(.8);opacity:.9}68%,100%{transform:scale(1.55);opacity:0}}
+@media(prefers-reduced-motion:reduce){.dv-account-tracking .dv-steps .current .dv-step-dot::after{animation:none;transform:none;opacity:.5}}
+.dv-account-tracking .dv-track-divider{width:100%;height:1px;flex:none;background:var(--line);margin:10px 0 20px}
+.dv-account-tracking .dv-track-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;column-gap:14px;row-gap:14px;min-width:0;margin-top:auto;padding:0}
+.dv-account-tracking .dv-track-order{display:flex;align-items:center;gap:12px;min-width:0;flex:1 1 170px}
+.dv-account-tracking .dv-track-package{display:grid;place-items:center;flex:none;width:52px;height:52px;border-radius:50%;background:var(--purple);color:#fff}
+.dv-account-tracking .dv-track-package svg{width:24px;height:24px}
+.dv-account-tracking .dv-order{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0;margin:0;font-size:14px;line-height:1.35;color:#716c7a;text-align:left}
+.dv-account-tracking .dv-order strong{font-size:14px;font-weight:800;color:var(--ink);white-space:nowrap}
+.dv-account-tracking .dv-order span{font-size:14px;white-space:nowrap}
+.dv-account-section .dv-account-tracking .dv-quick{display:inline-flex;align-self:center;align-items:center;justify-content:center;gap:8px;flex:0 0 auto;width:auto;min-height:40px;margin:0;padding:10px 14px;border:1px solid transparent;border-radius:999px;background:#eee7ff;color:var(--purple);font:800 12px/1.2 var(--font);white-space:nowrap}
+.dv-account-section .dv-account-tracking .dv-quick:hover{background:#e6dcfc;border-color:transparent;color:var(--purple)}
+.dv-account-tracking .dv-quick svg{width:18px;height:18px}
+@media(min-width:1101px) and (max-width:1320px){.dv-account-tracking .dv-track-bottom{gap:12px}.dv-account-section .dv-account-tracking .dv-quick{margin-left:auto}}
+@media(max-width:760px){.dv-account-tracking .dv-steps{--dv-node:30px;--dv-edge:0px;min-height:114px}.dv-account-tracking .dv-step-label{font-size:11px;white-space:normal;line-height:1.25}.dv-account-tracking .dv-step-copy{max-width:75px}.dv-account-tracking .dv-steps .current .dv-step-label{padding:0}.dv-account-tracking .dv-track-bottom{gap:12px}.dv-account-tracking .dv-order strong{font-size:14px}.dv-account-tracking .dv-order span{font-size:14px}.dv-account-section .dv-account-tracking .dv-quick{min-height:38px;padding:9px 12px;font-size:11px}}
+@media(min-width:1101px){.dv-invoice{grid-template-columns:minmax(0,1fr) auto auto;gap:6px;align-items:center}.dv-invoice-actions{grid-column:auto;justify-content:flex-end;gap:8px;margin-left:16px}.dv-invoice-actions .dv-primary,.dv-invoice-actions .dv-secondary{font-size:12px;padding:8px 19px;gap:6px}.dv-invoice-actions svg{width:18px;height:18px}}
+@media(max-width:1100px){.dv-account-container{grid-template-columns:1fr 1fr;row-gap:26px}.dv-account-col:nth-child(2){border-right:0;padding-right:0}.dv-account-col:last-child{grid-column:1/-1;padding:24px 0 0;border-top:1px solid var(--line)}}
+/* Mobile: three independent overview cards with consistent outside gaps and inside padding. */
+@media(max-width:760px){
+  .dv-account-section{
+    padding:52px 0 72px;
+    background:linear-gradient(to bottom,var(--purple) 0%,var(--purple) var(--dv-purple-stop,80%),#fff var(--dv-purple-stop,80%),#fff 100%);
+  }
+  .dv-account-container{
+    width:calc(100% - 36px);
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    row-gap:18px;
+    padding:0;
+    background:transparent;
+    border:0;
+    border-radius:0;
+    box-shadow:none;
+  }
+  .dv-account-section .dv-account-container>.dv-account-col{
+    grid-column:1/-1;
+    align-self:stretch;
+    min-width:0;
+    margin:0;
+    padding:24px 20px;
+    border:1px solid var(--line);
+    border-radius:17px;
+    background:#fff;
+    box-shadow:none;
+  }
+  .dv-account-col h2{font-size:20px;margin-bottom:24px}
+  .dv-invoice{grid-template-columns:minmax(0,1fr) auto}
+  .dv-invoice-actions{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr);width:100%;gap:8px}
+  .dv-account-invoices .dv-invoice-actions>.dv-primary,
+  .dv-account-invoices .dv-invoice-actions>.dv-secondary{width:100%;min-height:44px}
+  .dv-pay{margin-top:5px;width:100%;min-height:44px}
+  .dv-account-tracking .dv-track-bottom{align-items:stretch}
+  .dv-account-section .dv-account-tracking .dv-quick{width:100%;min-height:44px;flex:1 1 100%;align-self:stretch;margin:0}
+  .dv-track-head h2{font-size:20px}
+  .dv-step-label{font-size:14px}
+}
+</style>
+<style id="dashboardv-current-deals-styles">
+/* New Arrivals-style white section; reuse the Deals carousel card system. */
+.dashboardv-current-deals.dashboardv-deals{background:#fff;color:var(--ink);padding:86px 0 96px}
+.dashboardv-current-deals .eyebrow{background:var(--purple);color:#fff}
+.dashboardv-current-deals #dashboardv-current-title{margin:20px 0 0;font-size:clamp(36px,4.4vw,66px);line-height:1;letter-spacing:-.035em;font-weight:900;color:var(--ink)}
+.dashboardv-current-deals #dashboardvCurrentCarousel{--gap:18px;align-items:stretch;scroll-behavior:smooth}
+.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{flex:0 0 calc((100% - 3 * var(--gap))/4);display:flex;flex-direction:column;min-width:0;min-height:310px;align-self:stretch;overflow:hidden;background:#fff;border-radius:17px;border:1px solid var(--line)}
+.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card,.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card:hover{box-shadow:none}
+.dashboardv-current-deals .progress{background:#eae7ef}
+.dashboardv-current-deals .progress span{background:var(--purple)}
+@media(max-width:1100px){.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/2)}}
+@media(max-width:760px){.dashboardv-current-deals.dashboardv-deals{padding:52px 0 72px}.dashboardv-current-deals #dashboardv-current-title{font-size:clamp(30px,7.4vw,46px)}.dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{flex-basis:calc((100% - var(--gap))/1.5)}}
+</style>
+
+<style id="dashboardv-explore-links-styles">
+/* Two full purple category/brand cards with hero-style solid circles and real cyan buttons. */
+.dv-explore-links{background:#fff;padding:0 0 72px}
+.dv-explore-links-inner{width:min(1440px,calc(100% - 96px));margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.dv-explore-card{position:relative;isolation:isolate;overflow:hidden;display:flex;min-width:0;min-height:248px;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:36px;padding:34px;border:0;border-radius:17px;background:var(--purple);color:#fff;box-shadow:none}
+.dv-explore-card::before,.dv-explore-card::after{content:"";position:absolute;z-index:0;display:block;border-radius:50%;pointer-events:none}
+.dv-explore-card::before{width:220px;height:220px;top:-110px;right:-90px;background:var(--cyan)}
+.dv-explore-card::after{width:175px;height:175px;bottom:-112px;right:75px;background:#fff}
+.dv-explore-card:nth-child(2)::before{width:205px;height:205px;right:0;top:-118px;background:var(--cyan)}
+.dv-explore-card:nth-child(2)::after{width:190px;height:190px;right:-110px;bottom:-92px;background:#fff}
+.dv-explore-card .dv-explore-card-heading{position:relative;z-index:1;margin:0;padding:0;border:0;color:#fff;font:900 clamp(24px,2.5vw,36px)/1.15 var(--font);letter-spacing:-.035em;text-decoration:none}
+.dv-explore-card .dv-explore-card-heading::before,.dv-explore-card .dv-explore-card-heading::after{content:none!important;display:none!important}
+.dv-explore-card a.dv-explore-card-action,.dv-explore-card a.dv-explore-card-action:hover{position:relative;z-index:2;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:46px;padding:12px 21px;border:0;border-radius:999px;background:var(--cyan);color:var(--ink);font:800 14px/1.2 var(--font);text-decoration:none;white-space:nowrap;box-shadow:none}
+.dv-explore-card a.dv-explore-card-action:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.dv-explore-card-action svg{flex:none;width:19px;height:19px}
+@media(max-width:760px){.dv-explore-links{padding-bottom:52px}.dv-explore-links-inner{width:calc(100% - 36px);grid-template-columns:1fr;gap:14px}.dv-explore-card{min-height:215px;padding:24px}.dv-explore-card a.dv-explore-card-action{width:100%;min-height:46px}.dv-explore-card .dv-explore-card-heading{font-size:27px}.dv-explore-card::before{width:160px;height:160px;top:-82px;right:-72px}.dv-explore-card::after{width:135px;height:135px;bottom:-88px;right:22px}.dv-explore-card:nth-child(2)::before{width:155px;height:155px;right:3px;top:-108px}.dv-explore-card:nth-child(2)::after{width:145px;height:145px;right:-86px;bottom:-60px}}
+</style>
 </head>
 <body data-auth-preview="true">
 <header class="site-header" id="top">
@@ -960,100 +1147,195 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
     <div class="mobile-user-sheet-options" id="mobileUserOptions" role="group" aria-label="Available shopping accounts"></div>
   </section>
 </div>
-  <main id="dashboard" aria-label="Dashboard">
-<section class="dashboard-featured-deals" aria-labelledby="dashboardFeaturedDealsTitle">
-  <div class="dashboard-featured-inner">
-    <div class="dashboard-featured-heading">
-      <div><span class="eyebrow">SPECIAL OFFERS</span><h2 id="dashboardFeaturedDealsTitle">DEALS YOU DON'T WANT TO MISS</h2></div>
-      <div class="dashboard-featured-controls" aria-label="Promotions carousel controls">
-        <button class="carousel-arrow carousel-arrow-prev dashboard-featured-prev" type="button" aria-label="Previous deals"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
-        <button class="carousel-arrow carousel-arrow-next dashboard-featured-next" type="button" aria-label="Next deals"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
-      </div>
-    </div>
-    <div class="dashboard-featured-viewport" id="dashboardFeaturedDealsViewport" aria-label="Featured wholesale deals" tabindex="0">
-      <div class="dashboard-featured-track" id="dashboardFeaturedDealsTrack">
-<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="BUY 5 GET 1 FREE — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="eager" decoding="async"></div><div class="card-info"><h3 class="product-title">BUY 5 GET 1 FREE</h3><p>Snacking Brands</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
-<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="15% OFF ALL BEVERAGES — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="eager" decoding="async"></div><div class="card-info"><h3 class="product-title">15% OFF ALL BEVERAGES</h3><p>Use Code: BEV15</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
-<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="BULK CANDY SPECIAL — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="eager" decoding="async"></div><div class="card-info"><h3 class="product-title">BULK CANDY SPECIAL</h3><p>Sweet deals on bulk candy</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
-<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="SNACKS &amp; CHIPS — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="card-info"><h3 class="product-title">SNACKS & CHIPS</h3><p>Explore snack promotions</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
-<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="BOTTLED DRINKS — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="card-info"><h3 class="product-title">BOTTLED DRINKS</h3><p>Explore beverage promotions</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
-<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="CANDY FAVORITES — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="card-info"><h3 class="product-title">CANDY FAVORITES</h3><p>Explore sweet promotions</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
-<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="WHOLESALE SNACKS — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="card-info"><h3 class="product-title">WHOLESALE SNACKS</h3><p>Browse snack deals</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
-<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="DRINKS FOR YOUR STORE — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="card-info"><h3 class="product-title">DRINKS FOR YOUR STORE</h3><p>Browse beverage deals</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
-<a class="card dashboard-featured-card" href="./index.html#dealsProducts" aria-label="BULK SWEETS — view deal products"><div class="picture"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="card-info"><h3 class="product-title">BULK SWEETS</h3><p>Browse candy deals</p><span class="dashboard-featured-cta">SHOP DEALS ↗</span></div></a>
-</div>
-    </div>
-    <div class="dashboard-featured-footer">
-      <div class="dashboard-featured-progress progress" role="progressbar" aria-label="Featured deals progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
-      <a href="./index.html#dealsProducts" class="view-all">VIEW ALL DEALS <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-    </div>
-  </div>
-</section>
-
-  <section class="td2-hero" aria-label="Account overview">
-    <div class="td2-shell">
-      <section class="td2-column td2-invoices" aria-labelledby="td2InvoiceTitle">
-        <header class="td2-heading"><span class="td2-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14v18l-3-2-4 2-4-2-3 2V3Z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></span><h2 id="td2InvoiceTitle">RECENT INVOICES</h2></header>
-        <div class="td2-invoice-list"><div class="td2-invoice"><div class="td2-invoice-label"><strong>INV-1048</strong><span>Nov 07, 2026</span></div><strong class="td2-invoice-amount">$840.00</strong><div class="td2-invoice-actions dashboard-invoice-actions"><button type="button" data-invoice="INV-1048" data-amount="840.00" data-date="Nov 07, 2026" data-action="download" aria-label="Download sample invoice INV-1048"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v4h16v-4"/></svg><span>PDF</span></button><button type="button" data-invoice="INV-1048" data-amount="840.00" data-date="Nov 07, 2026" data-action="print" aria-label="Print sample invoice INV-1048"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h2"/><path d="M6 14h12v7H6z"/></svg><span>Print</span></button></div></div>
-<div class="td2-invoice"><div class="td2-invoice-label"><strong>INV-1047</strong><span>Oct 29, 2026</span></div><strong class="td2-invoice-amount">$1,120.00</strong><div class="td2-invoice-actions dashboard-invoice-actions"><button type="button" data-invoice="INV-1047" data-amount="1120.00" data-date="Oct 29, 2026" data-action="download" aria-label="Download sample invoice INV-1047"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v4h16v-4"/></svg><span>PDF</span></button><button type="button" data-invoice="INV-1047" data-amount="1120.00" data-date="Oct 29, 2026" data-action="print" aria-label="Print sample invoice INV-1047"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h2"/><path d="M6 14h12v7H6z"/></svg><span>Print</span></button></div></div>
-<div class="td2-invoice"><div class="td2-invoice-label"><strong>INV-1046</strong><span>Oct 22, 2026</span></div><strong class="td2-invoice-amount">$490.00</strong><div class="td2-invoice-actions dashboard-invoice-actions"><button type="button" data-invoice="INV-1046" data-amount="490.00" data-date="Oct 22, 2026" data-action="download" aria-label="Download sample invoice INV-1046"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v4h16v-4"/></svg><span>PDF</span></button><button type="button" data-invoice="INV-1046" data-amount="490.00" data-date="Oct 22, 2026" data-action="print" aria-label="Print sample invoice INV-1046"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h2"/><path d="M6 14h12v7H6z"/></svg><span>Print</span></button></div></div></div>
-      </section>
-      <section class="td2-column td2-balance" aria-labelledby="td2BalanceTitle">
-        <header class="td2-heading"><span class="td2-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8V5a2 2 0 0 1 2-2h13"/><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M15 12h6v5h-6a2 2 0 0 1 0-5Z"/></svg></span><h2 id="td2BalanceTitle">ACCOUNT BALANCE</h2></header>
-        <div class="td2-total"><span>Total Due</span><strong>$2,450.00</strong></div>
-        <p class="td2-due"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 14h3"/></svg><span>Next Due Date: <strong>Nov 15, 2026</strong></span></p>
-        <button class="td2-pay" type="button" aria-label="Pay invoices demo">Pay Invoices <span aria-hidden="true">→</span></button>
-      </section>
-      <section class="td2-column td2-tracking" aria-labelledby="td2TrackingTitle">
-        <header class="td2-heading td2-tracking-heading"><span class="td2-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="M3 7v10l9 5 9-5V7M12 12v10M7.5 4.5l9 5"/></svg></span><h2 id="td2TrackingTitle">ORDER TRACKING</h2><a class="td2-quick" href="./quick-reorder.html">Quick Reorder ↗</a></header>
-        <p class="td2-order-meta"><strong>Order #88432</strong><span>·</span><span>Estimated Today, 2:00 PM</span></p>
-        <ol class="td2-steps"><li class="td2-complete"><span class="td2-step-dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></span><span class="td2-step-name">Ordered</span></li><li class="td2-complete"><span class="td2-step-dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></span><span class="td2-step-name">Processing</span></li><li class="td2-pending"><span class="td2-step-dot"></span><span class="td2-step-name">Out for Delivery</span></li><li class="td2-pending"><span class="td2-step-dot"></span><span class="td2-step-name">Delivered</span></li></ol>
-        <div class="td2-status"><span class="td2-spinner" aria-hidden="true"></span><span><strong>Processing</strong><small>We're preparing your order</small></span></div>
-      </section>
-    </div>
-  </section>
-<section class="dashboard-promotions" aria-labelledby="dashboardPromotionsTitle">
-    <div class="dashboard-promotions-inner">
-      <h2 class="dashboard-promotions-heading" id="dashboardPromotionsTitle">CURRENT DEALS &amp; PROMOTIONS</h2>
-      <div class="dashboard-promotions-grid"><article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">BUY 5 GET 1 FREE</h3><p>Snacking Brands</p></div></article>
-<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">15% OFF ALL BEVERAGES</h3><p>Use Code: BEV15</p></div></article>
-<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">BULK CANDY SPECIAL</h3><p>Sweet deals on bulk candy</p></div></article>
-<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">SNACKS & CHIPS</h3><p>Explore snack promotions</p></div></article>
-<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">BOTTLED DRINKS</h3><p>Explore beverage promotions</p></div></article>
-<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">CANDY FAVORITES</h3><p>Explore sweet promotions</p></div></article>
-<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/9ef50dd06e4fa0e6b868f593fa85298591d689f2237b294b82ca7f640ea15f73.png" alt="Assorted packaged snacks" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">WHOLESALE SNACKS</h3><p>Browse snack deals</p></div></article>
-<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/d614b05801a775b8bebe434a3ade45d10336b02f15b4a06e1b98a2e4c661adc9.png" alt="Chilled branded beverages" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">DRINKS FOR YOUR STORE</h3><p>Browse beverage deals</p></div></article>
-<article class="card dashboard-promo-card"><div class="picture dashboard-promo-art"><img src="https://cdn.openart.ai/openart-uploads/production/attachment-transfers/fc49ae67eb3bb4be635d5d71dcddc71deb749663d9a1cbce396193c601b2c885.png" alt="Assorted colorful bulk candy" loading="lazy" decoding="async"></div><div class="card-info dashboard-promo-text"><h3 class="product-title">BULK SWEETS</h3><p>Browse candy deals</p></div></article></div>
-      <nav class="dashboard-shop-links" aria-label="Browse product catalog">
-        <a class="view-all" href="./index.html#categories-title">SHOP ALL CATEGORIES <span aria-hidden="true">↗</span></a>
-        <a class="view-all" href="./index.html#brands-title">SHOP ALL BRANDS <span aria-hidden="true">↗</span></a>
-      </nav>
-    </div>
-  </section>
-
-  <section class="dashboard-products-section new-section" aria-label="Product carousel">
-    <div class="dashboard-products-inner">
-      <div class="carousel-wrap">
-        <div class="carousel" id="dashboardProductCarousel" tabindex="0" aria-label="New arrivals product carousel">
-<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48720</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$22.99</span><strong class="new-price">$15.19</strong></div><button class="add" type="button" aria-label="Add demo product #48720 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
-<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48721</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$23.74</span><strong class="new-price">$15.74</strong></div><button class="add" type="button" aria-label="Add demo product #48721 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
-<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48722</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$24.49</span><strong class="new-price">$16.29</strong></div><button class="add" type="button" aria-label="Add demo product #48722 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
-<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48723</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$25.24</span><strong class="new-price">$16.84</strong></div><button class="add" type="button" aria-label="Add demo product #48723 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
-<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48724</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$25.99</span><strong class="new-price">$17.39</strong></div><button class="add" type="button" aria-label="Add demo product #48724 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
-<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48725</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$26.74</span><strong class="new-price">$17.94</strong></div><button class="add" type="button" aria-label="Add demo product #48725 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
-<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48726</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$27.49</span><strong class="new-price">$18.49</strong></div><button class="add" type="button" aria-label="Add demo product #48726 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
-<article class="card"><div class="picture" aria-label="Product image placeholder"></div><div class="card-info"><div class="item">Item #48727</div><h3 class="product-title">Product name</h3><div class="purchase"><div class="prices"><span class="old">$28.24</span><strong class="new-price">$19.04</strong></div><button class="add" type="button" aria-label="Add demo product #48727 to cart"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-plus" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div></div></article>
+  
+<main id="dashboardv" aria-label="Dashboard content">
+  <section class="new-section dashboardv-deals" aria-labelledby="dashboardv-deals-title">
+    <div class="dashboardv-deals-shapes" aria-hidden="true"><span class="shape cyan tl"></span><span class="shape cyan tr"></span><span class="shape white ml"></span><span class="shape white mr"></span></div>
+    <div class="dashboardv-deals-inner">
+      <div class="section-header">
+        <div class="title-group">
+          <div class="eyebrow">SPECIAL OFFERS</div>
+          <h1 id="dashboardv-deals-title">DEALS YOU DON'T WANT TO MISS</h1>
         </div>
-        <button class="carousel-arrow carousel-arrow-prev" type="button" aria-label="Previous products" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
-        <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next products"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+        
       </div>
-      <div class="section-bottom">
-        <div class="progress" role="progressbar" aria-label="New arrivals carousel progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="dashboardProductProgress"></span></div>
+      <div class="carousel-wrap dashboardv-carousel-wrap">
+        <button class="carousel-arrow carousel-arrow-prev dashboardv-carousel-prev" type="button" aria-label="Previous deals" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <div class="carousel" id="dashboardvDealsCarousel" tabindex="0" aria-label="Deals carousel">
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Buy 5 Get 1 Free</h3>
+    <p class="dashboardv-deal-subtitle">Snacking Brands</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">15% Off All Beverages</h3>
+    <p class="dashboardv-deal-subtitle">Use Code: BEV15</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Bulk Candy Special</h3>
+    <p class="dashboardv-deal-subtitle">Sweet deals on bulk candy</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Chips & Snacks</h3>
+    <p class="dashboardv-deal-subtitle">Explore snack promotions</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Bottled Drinks</h3>
+    <p class="dashboardv-deal-subtitle">Explore beverage promotions</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Candy Favorites</h3>
+    <p class="dashboardv-deal-subtitle">Explore sweet promotions</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Wholesale Snacks</h3>
+    <p class="dashboardv-deal-subtitle">Browse snack deals</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Bulk Sweets</h3>
+    <p class="dashboardv-deal-subtitle">Browse candy deals</p>
+    
+  </div>
+</article>
+</div>
+        <button class="carousel-arrow carousel-arrow-next dashboardv-carousel-next" type="button" aria-label="Next deals"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
       </div>
+      <div class="section-bottom"><div class="progress" role="progressbar" aria-label="Deals carousel progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="dashboardvDealsProgress"></span></div></div>
+      <a class="mobile-view-all" href="./index.html#dealsProducts">View All Deals <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     </div>
   </section>
+  <section class="dv-account-section" aria-label="Account Overview"><div class="dv-account-container">
+    <div class="dv-account-col dv-account-balance"><h2>ACCOUNT BALANCE</h2><div class="dv-balance-contents"><strong class="dv-total">$2,450.00</strong><p class="dv-due">Next Due Date:<strong>November 15, 2026</strong></p><button type="button" class="dv-primary dv-pay">PAY INVOICES <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></div></div>
+    <div class="dv-account-col dv-account-invoices"><h2>RECENT INVOICES</h2><div class="dv-invoice-list"><div class="dv-invoice"><div class="dv-invoice-id"><strong>INV-1048</strong><span>Nov 07, 2026</span></div><strong class="dv-invoice-amount">$840.00</strong><div class="dv-invoice-actions"><button class="dv-secondary" type="button" data-action="print" data-invoice="INV-1048" data-date="Nov 07, 2026" data-amount="840.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-printer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> PRINT</button><button class="dv-primary" type="button" data-action="download" data-invoice="INV-1048" data-date="Nov 07, 2026" data-amount="840.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-download" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> DOWNLOAD</button></div></div><div class="dv-invoice"><div class="dv-invoice-id"><strong>INV-1047</strong><span>Oct 29, 2026</span></div><strong class="dv-invoice-amount">$1,120.00</strong><div class="dv-invoice-actions"><button class="dv-secondary" type="button" data-action="print" data-invoice="INV-1047" data-date="Oct 29, 2026" data-amount="1120.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-printer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> PRINT</button><button class="dv-primary" type="button" data-action="download" data-invoice="INV-1047" data-date="Oct 29, 2026" data-amount="1120.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-download" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> DOWNLOAD</button></div></div><div class="dv-invoice"><div class="dv-invoice-id"><strong>INV-1046</strong><span>Oct 22, 2026</span></div><strong class="dv-invoice-amount">$490.00</strong><div class="dv-invoice-actions"><button class="dv-secondary" type="button" data-action="print" data-invoice="INV-1046" data-date="Oct 22, 2026" data-amount="490.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-printer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> PRINT</button><button class="dv-primary" type="button" data-action="download" data-invoice="INV-1046" data-date="Oct 22, 2026" data-amount="490.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-download" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> DOWNLOAD</button></div></div></div></div><div class="dv-account-col dv-account-tracking"><div class="dv-track-head"><h2>ORDER TRACKING</h2></div><ol class="dv-steps" aria-label="Order status timeline"><li class="complete"><span class="dv-step-dot" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg></span><span class="dv-step-copy"><strong class="dv-step-label">Ordered</strong></span></li><li class="complete current"><span class="dv-step-dot" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg></span><span class="dv-step-copy"><strong class="dv-step-label">Processing</strong></span></li><li class="pending"><span class="dv-step-dot" aria-hidden="true"></span><span class="dv-step-copy"><strong class="dv-step-label">Out for Delivery</strong></span></li><li class="pending"><span class="dv-step-dot" aria-hidden="true"></span><span class="dv-step-copy"><strong class="dv-step-label">Delivered</strong></span></li></ol><div class="dv-track-divider" aria-hidden="true"></div><div class="dv-track-bottom"><div class="dv-track-order"><div class="dv-order"><strong>ORDER #88432</strong><span>Estimated Today, 2:30 PM</span></div></div><a class="dv-secondary dv-quick" href="./quick-reorder.html"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-refresh-cw" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.36-6.36L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.36 6.36L3 16"/><path d="M8 16H3v5"/></svg>QUICK REORDER</a></div></div>
+  </div></section>
+
+  <section class="new-section dashboardv-deals dashboardv-current-deals" aria-labelledby="dashboardv-current-title">
+
+    <div class="dashboardv-deals-inner">
+      <div class="section-header">
+        <div class="title-group">
+          <div class="eyebrow">FEATURED PROMOTIONS</div>
+          <h1 id="dashboardv-current-title">CURRENT DEALS &amp; PROMOTIONS</h1>
+        </div>
+        
+      </div>
+      <div class="carousel-wrap dashboardv-carousel-wrap">
+        <button class="carousel-arrow carousel-arrow-prev dashboardv-current-prev" type="button" aria-label="Previous current deals" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <div class="carousel" id="dashboardvCurrentCarousel" tabindex="0" aria-label="Current deals carousel">
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Weekly Snack Specials</h3>
+    <p class="dashboardv-deal-subtitle">Explore current snack promotions</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Beverage Promotions</h3>
+    <p class="dashboardv-deal-subtitle">Explore current beverage offers</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Candy & Confectionery</h3>
+    <p class="dashboardv-deal-subtitle">Current candy deals</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Chips & Snacks</h3>
+    <p class="dashboardv-deal-subtitle">Available snack promotions</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Bottled Drinks</h3>
+    <p class="dashboardv-deal-subtitle">Featured beverage offers</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Sweet Deals</h3>
+    <p class="dashboardv-deal-subtitle">Promotions on candy favorites</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Bulk Savings</h3>
+    <p class="dashboardv-deal-subtitle">Offers for wholesale orders</p>
+    
+  </div>
+</article>
+<article class="card dashboardv-deal-card">
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Deal image placeholder"></div>
+  <div class="card-info dashboardv-deal-info">
+    <h3 class="product-title">Featured Offers</h3>
+    <p class="dashboardv-deal-subtitle">Discover more current deals</p>
+    
+  </div>
+</article>
+</div>
+        <button class="carousel-arrow carousel-arrow-next dashboardv-current-next" type="button" aria-label="Next current deals"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+      <div class="section-bottom"><div class="progress" role="progressbar" aria-label="Current deals carousel progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="dashboardvCurrentProgress"></span></div></div>
+    </div>
+  </section>
+
 </main>
-<footer id="dashboardSupportFooter" class="site-footer" aria-label="Footer"><div class="footer-inner"><div class="footer-columns"><div class="footer-column"><h2>WE ACCEPT</h2><ul><li>American Express</li><li>Apple Pay</li><li>Diners Club</li><li>Discover</li><li>Google Pay</li><li>Mastercard</li><li>Shop Pay</li><li>Visa</li></ul></div><div class="footer-column"><h2>SUPPORT</h2><ul><li>Help</li><li>Privacy Policy</li><li>Terms &amp; Conditions</li></ul></div><div class="footer-column"><h2>SOCIAL MEDIA</h2><ul><li>Facebook</li><li>Instagram</li><li>YouTube</li></ul></div></div><div class="footer-bottom">Copyright © 2026 True Distributors. All rights reserved.</div></div></footer>
+<nav class="dv-explore-links" aria-label="Explore product categories and brands">
+  <div class="dv-explore-links-inner">
+    <article class="dv-explore-card">
+      <span class="dv-explore-card-heading">CATEGORIES</span>
+      <a class="dv-explore-card-action" href="./index.html#categories-title">Browse Categories <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </article>
+    <article class="dv-explore-card">
+      <span class="dv-explore-card-heading">BRANDS</span>
+      <a class="dv-explore-card-action" href="./index.html#brands-title">Explore Brands <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </article>
+  </div>
+</nav>
+<footer class="site-footer" aria-label="Footer"><div class="footer-inner"><div class="footer-columns"><div class="footer-column"><h2>WE ACCEPT</h2><ul><li>American Express</li><li>Apple Pay</li><li>Diners Club</li><li>Discover</li><li>Google Pay</li><li>Mastercard</li><li>Shop Pay</li><li>Visa</li></ul></div><div class="footer-column"><h2>SUPPORT</h2><ul><li>Help</li><li>Privacy Policy</li><li>Terms &amp; Conditions</li></ul></div><div class="footer-column"><h2>SOCIAL MEDIA</h2><ul><li>Facebook</li><li>Instagram</li><li>YouTube</li></ul></div></div><div class="footer-bottom">Copyright © 2026 True Distributors. All rights reserved.</div></div></footer>
 <script>
 /* Dashboard header. Existing storefront UI styles, no Quick Shop or burger. */
 (function(){
@@ -1136,93 +1418,15 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   });
 })();
 </script>
-
-
-
-<script>
-/* Dashboard-only instance of the storefront horizontal product carousel. */
-(function(){
-  const carousel=document.getElementById('dashboardProductCarousel');
-  const track=document.getElementById('dashboardProductProgress');
-  const container=carousel.closest('.carousel-wrap');
-  const prev=container.querySelector('.carousel-arrow-prev');
-  const next=container.querySelector('.carousel-arrow-next');
-  const parent=track.closest('[role="progressbar"]');
-  const step=()=>{
-    const card=carousel.querySelector('.card');
-    return card?card.getBoundingClientRect().width+(parseFloat(getComputedStyle(carousel).gap)||0):carousel.clientWidth;
-  };
-  const update=()=>{
-    const max=Math.max(0,carousel.scrollWidth-carousel.clientWidth);
-    const ratio=max?carousel.scrollLeft/max:0;
-    const visible=Math.min(1,carousel.clientWidth/carousel.scrollWidth);
-    track.style.width=(visible*100)+'%';
-    track.style.transform='translateX('+(parent.clientWidth*(1-visible)*ratio)+'px)';
-    parent.setAttribute('aria-valuenow',String(Math.round(ratio*100)));
-    prev.disabled=carousel.scrollLeft<=1;
-    next.disabled=carousel.scrollLeft>=max-1;
-    prev.hidden=max<2;next.hidden=max<2;
-  };
-  const advance=direction=>{
-    const max=Math.max(0,carousel.scrollWidth-carousel.clientWidth);
-    const target=Math.max(0,Math.min(max,carousel.scrollLeft+direction*step()));
-    carousel.scrollTo({left:target,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
-  };
-  prev.addEventListener('click',()=>advance(-1));
-  next.addEventListener('click',()=>advance(1));
-  carousel.addEventListener('scroll',update,{passive:true});
-  window.addEventListener('resize',update,{passive:true});
-  carousel.addEventListener('keydown',e=>{
-    if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
-    e.preventDefault();advance(e.key==='ArrowRight'?1:-1);
-  });
-  carousel.addEventListener('click',e=>{
-    const btn=e.target.closest('.add');
-    if(btn){btn.setAttribute('title','Demo product — cart integration not connected');}
-  });
-  requestAnimationFrame(update);
-})();
-</script>
-
-<script>
-/* Sync the left card's bottom to the right Tracking card without modifying other sections. */
-(function(){
-  const right=document.querySelector('.dashboard-main-grid > .dashboard-balance-stack');
-  const left=document.querySelector('.dashboard-main-grid .dashboard-reorder-card');
-  if(!right||!left)return;
-  const mq=window.matchMedia('(min-width:901px)');
-  const hero=document.querySelector('.dashboard-purple-hero');
-  const actions=left.querySelector('.dashboard-reorder-actions');
-  function syncReorderHeight(){
-    if(!mq.matches){
-      left.style.removeProperty('--dashboard-reorder-card-height');
-      hero.style.removeProperty('--dashboard-purple-stop');
-      return;
-    }
-    const top=left.getBoundingClientRect().top;
-    const bottom=right.getBoundingClientRect().bottom;
-    left.style.setProperty('--dashboard-reorder-card-height',Math.max(220,Math.round(bottom-top))+'px');
-    // Match the purple-to-white boundary exactly to the separator above the buttons.
-    requestAnimationFrame(()=>{
-      if(!mq.matches)return;
-      const stop=Math.max(0,Math.round(actions.getBoundingClientRect().top-hero.getBoundingClientRect().top));
-      hero.style.setProperty('--dashboard-purple-stop',stop+'px');
-    });
-  }
-  if(typeof ResizeObserver!=='undefined'){
-    const observer=new ResizeObserver(syncReorderHeight);
-    observer.observe(right);
-  }
-  window.addEventListener('resize',syncReorderHeight,{passive:true});
-  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(syncReorderHeight);
-  syncReorderHeight();
-})();
-</script>
 <script>
 /* The exact landing-build.js purple fullscreen burger state, scoped to Dashboard. */
 (function(){
   const toggle=document.getElementById('mobileMenuToggle');
   const panel=document.getElementById('mobileMenuPanel');
+  const menuContent=document.getElementById('mobileMenuContent');
+  const navControls=document.querySelector('.shopping-nav-controls');
+  const shoppingUser=navControls?.querySelector('.shopping-user');
+  const mobileHeaderMedia=window.matchMedia('(max-width:760px)');
   const searchToggle=document.getElementById('headerSearchToggle');
   const searchPanel=document.getElementById('headerSearchPanel');
   if(!toggle||!panel)return;
@@ -1237,6 +1441,21 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
     if(!open&&panel.contains(document.activeElement))document.activeElement.blur();
     if(!open&&restoreFocus)toggle.focus({preventScroll:true});
   }
+  /* Same mobile navigation behavior as index.html: keep logo/search/bell/burger
+     in the top row and move the existing store chooser inside the burger. */
+  function syncMobileNav(){
+    if(!shoppingUser||!menuContent||!navControls)return;
+    if(mobileHeaderMedia.matches){
+      menuContent.appendChild(shoppingUser);
+    }else{
+      navControls.insertBefore(shoppingUser,toggle);
+    }
+  }
+  mobileHeaderMedia.addEventListener('change',()=>{
+    setOpen(false);
+    syncMobileNav();
+  });
+  syncMobileNav();
   toggle.addEventListener('click',()=>{
     const open=!panel.classList.contains('is-open');
     if(open&&searchPanel?.classList.contains('is-open'))searchToggle?.click();
@@ -1251,6 +1470,72 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   document.getElementById('dashboardMenuLogout')?.addEventListener('click',()=>{
     try{sessionStorage.removeItem('td-preview-auth-v1')}catch(e){}
   });
+})();
+</script>
+<script>
+/* Standalone New Arrivals-style carousel for Dashboard V only. */
+(function(){
+  const rail=document.getElementById('dashboardvDealsCarousel');
+  if(!rail)return;
+  const prev=document.querySelector('.dashboardv-carousel-prev');
+  const next=document.querySelector('.dashboardv-carousel-next');
+  const track=document.getElementById('dashboardvDealsProgress');
+  const progress=track.parentElement;
+  function sync(){
+    const max=Math.max(0,rail.scrollWidth-rail.clientWidth);
+    const ratio=max?rail.scrollLeft/max:0;
+    const visible=Math.min(1,rail.clientWidth/rail.scrollWidth);
+    track.style.width=(visible*100)+'%';
+    track.style.transform='translateX('+(progress.clientWidth*(1-visible)*ratio)+'px)';
+    progress.setAttribute('aria-valuenow',String(Math.round(ratio*100)));
+    prev.disabled=rail.scrollLeft<=1;
+    next.disabled=rail.scrollLeft>=max-1;
+  }
+  function move(sign){
+    const card=rail.querySelector('.card');
+    const distance=(card?.getBoundingClientRect().width||rail.clientWidth)+(parseFloat(getComputedStyle(rail).gap)||0);
+    rail.scrollBy({left:sign*distance,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  }
+  prev.addEventListener('click',()=>move(-1));
+  next.addEventListener('click',()=>move(1));
+  rail.addEventListener('scroll',sync,{passive:true});
+  window.addEventListener('resize',sync,{passive:true});
+  rail.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();move(e.key==='ArrowRight'?1:-1)}});
+  rail.addEventListener('click',e=>{if(e.target.closest('[data-demo-product]'))location.assign('./login.html')});
+  requestAnimationFrame(sync);
+})();
+</script>
+<script>
+/* Current Deals carousel for Dashboard V. */
+(function(){
+  const rail=document.getElementById('dashboardvCurrentCarousel');
+  if(!rail)return;
+  const prev=document.querySelector('.dashboardv-current-prev');
+  const next=document.querySelector('.dashboardv-current-next');
+  const track=document.getElementById('dashboardvCurrentProgress');
+  const progress=track.parentElement;
+  function sync(){
+    const max=Math.max(0,rail.scrollWidth-rail.clientWidth);
+    const ratio=max?rail.scrollLeft/max:0;
+    const visible=Math.min(1,rail.clientWidth/rail.scrollWidth);
+    track.style.width=(visible*100)+'%';
+    track.style.transform='translateX('+(progress.clientWidth*(1-visible)*ratio)+'px)';
+    progress.setAttribute('aria-valuenow',String(Math.round(ratio*100)));
+    prev.disabled=rail.scrollLeft<=1;
+    next.disabled=rail.scrollLeft>=max-1;
+  }
+  function move(sign){
+    const card=rail.querySelector('.card');
+    const distance=(card?.getBoundingClientRect().width||rail.clientWidth)+(parseFloat(getComputedStyle(rail).gap)||0);
+    rail.scrollBy({left:sign*distance,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  }
+  prev.addEventListener('click',()=>move(-1));
+  next.addEventListener('click',()=>move(1));
+  rail.addEventListener('scroll',sync,{passive:true});
+  window.addEventListener('resize',sync,{passive:true});
+  rail.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();move(e.key==='ArrowRight'?1:-1)}});
+  rail.addEventListener('click',e=>{if(e.target.closest('[data-demo-product]'))location.assign('./login.html')});
+  requestAnimationFrame(sync);
 })();
 </script>
 <script>
@@ -1274,7 +1559,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
     doc+='trailer\n<< /Size '+(objects.length+1)+' /Root 1 0 R >>\nstartxref\n'+xref+'\n%%EOF';
     return new Blob([doc],{type:'application/pdf'});
   }
-  document.querySelectorAll('.dashboard-invoice-actions button').forEach(button=>{
+  document.querySelectorAll('.dv-invoice-actions button').forEach(button=>{
     button.addEventListener('click',()=>{
       const blob=pdfFor(button.dataset.invoice,button.dataset.date,button.dataset.amount);
       const url=URL.createObjectURL(blob);
@@ -1291,44 +1576,37 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   });
 })();
 </script>
+<script>document.querySelector(".dv-pay")?.addEventListener("click",()=>alert("Invoice payment is not connected in this prototype."));</script>
+
+
+
 <script>
+/* Keep the purple/white mobile background boundary at the midpoint of the ORDER TRACKING card. */
 (function(){
-  const track=document.getElementById('dashboardFeaturedDealsTrack');
-  const viewport=document.getElementById('dashboardFeaturedDealsViewport');
-  const progress=document.querySelector('.dashboard-featured-progress');
-  const prev=document.querySelector('.dashboard-featured-prev');
-  const next=document.querySelector('.dashboard-featured-next');
-  if(!track||!viewport||!progress)return;
-  let page=0;
-  let paused=false;
-  const cards=[...track.children];
-  const visibleCount=()=>window.matchMedia('(max-width:760px)').matches?1:window.matchMedia('(max-width:1100px)').matches?2:3;
-  const maxPage=()=>Math.ceil(cards.length/visibleCount());
-  function update(){
-    const n=visibleCount(),pageCount=maxPage();
-    page=(page+pageCount)%pageCount;
-    const first=cards[page*n];
-    if(!first)return;
-    track.style.transform='translateX(-'+(first.offsetLeft-cards[0].offsetLeft)+'px)';
-    const pct=(page+1)/pageCount*100;
-    progress.setAttribute('aria-valuenow',String(Math.round(pct)));
-    progress.querySelector('span').style.width=pct+'%';
+  const section=document.querySelector('.dv-account-section');
+  const tracking=document.querySelector('.dv-account-tracking');
+  if(!section||!tracking)return;
+  const mobile=window.matchMedia('(max-width:760px)');
+  function syncAccountBackground(){
+    if(!mobile.matches){
+      section.style.removeProperty('--dv-purple-stop');
+      return;
+    }
+    const boundary=tracking.getBoundingClientRect().top
+      -section.getBoundingClientRect().top
+      +tracking.getBoundingClientRect().height/2;
+    const value=Math.round(boundary)+'px';
+    if(section.style.getPropertyValue('--dv-purple-stop')!==value)
+      section.style.setProperty('--dv-purple-stop',value);
   }
-  const move=delta=>{page+=delta;update()};
-  prev.addEventListener('click',()=>move(-1));
-  next.addEventListener('click',()=>move(1));
-  viewport.addEventListener('keydown',event=>{if(event.key==='ArrowRight'){event.preventDefault();move(1)}else if(event.key==='ArrowLeft'){event.preventDefault();move(-1)}});
-  const wrap=document.querySelector('.dashboard-featured-deals');
-  wrap.addEventListener('mouseenter',()=>paused=true);
-  wrap.addEventListener('mouseleave',()=>paused=false);
-  wrap.addEventListener('focusin',()=>paused=true);
-  wrap.addEventListener('focusout',event=>{if(!wrap.contains(event.relatedTarget))paused=false});
-  window.addEventListener('resize',update,{passive:true});
-  if(typeof ResizeObserver!=='undefined'){new ResizeObserver(update).observe(viewport)}
-  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    window.setInterval(()=>{if(!paused&&!document.hidden)move(1)},5000);
+  mobile.addEventListener('change',syncAccountBackground);
+  window.addEventListener('resize',syncAccountBackground,{passive:true});
+  if('ResizeObserver' in window){
+    const observer=new ResizeObserver(syncAccountBackground);
+    observer.observe(tracking);
+    observer.observe(section);
   }
-  update();
+  requestAnimationFrame(syncAccountBackground);
 })();
 </script>
 </body>
