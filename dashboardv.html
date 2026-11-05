@@ -10,22 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css?v=dashboard-menu-exact-20261104">
 <style>
-/* Dashboard-only layout: original storefront components, right aligned. */
+/* Desktop stays right-aligned; mobile layout follows index.html's logo + three icons. */
 .site-nav{display:flex;align-items:center}
 .shopping-nav-controls{margin-left:auto;justify-content:flex-end}
-@media(max-width:760px){
-  .site-nav{display:flex;flex-wrap:nowrap;align-items:center;gap:10px;min-height:66px}
-  .site-nav-logo{flex:none;width:auto}
-  .shopping-nav-controls{display:flex;flex:1;min-width:0;width:auto;margin-left:auto;align-items:center;justify-content:flex-end;gap:clamp(7px,2vw,15px)}
-  .shopping-user{display:flex;flex:none;min-width:0}
-  .shopping-user-details{min-width:0}
-  .mobile-user-trigger{max-width:150px}
-  .mobile-user-trigger-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-}
-@media(max-width:380px){
-  .site-nav-logo img{width:108px}
-  .shopping-nav-controls{gap:4px}
-}
 </style>
 <style>
 /* Dashboard-only solid purple block: exactly the Home hero minimum heights. */
@@ -563,7 +550,7 @@ body.td-login-menu-open .mobile-menu-toggle .mobile-menu-close-icon{display:bloc
 body.td-login-menu-open .mobile-menu-panel.td-login-panel{visibility:visible;clip-path:inset(0 0 0 0);transition:clip-path var(--td-mid) var(--td-ease),visibility 0s}
 .mobile-menu-panel.td-login-panel .mobile-menu-reveal{height:100%!important;overflow:hidden!important}
 .mobile-menu-panel.td-login-panel .mobile-menu-content{width:min(620px,calc(100% - 44px))!important;height:100%!important;margin:0 auto!important;padding:92px 0 42px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;transform:none!important;gap:0!important}
-.mobile-menu-panel.td-login-panel .shopping-user,.mobile-menu-panel.td-login-panel .quick-shop-button,.mobile-menu-panel.td-login-panel .shopping-nav-separator,.mobile-menu-panel.td-login-panel .menu-auth-link{display:none!important}
+.mobile-menu-panel.td-login-panel .quick-shop-button,.mobile-menu-panel.td-login-panel .shopping-nav-separator,.mobile-menu-panel.td-login-panel .menu-auth-link{display:none!important}
 /* Header + nav items transition smoothly in and out with the menu */
 .site-header{transition:background var(--td-mid) var(--td-ease),border-color var(--td-mid) var(--td-ease)}
 .site-nav-logo,.header-search-toggle,.shopping-cart-button,.quick-shop-button,.shopping-nav-separator,.shopping-user{transition:opacity var(--td-fast) var(--td-ease)}
@@ -584,6 +571,15 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 @media(max-width:760px){
   .td-burger-nav{gap:18px}
   .td-burger-link{font-size:38px}
+}
+@media(max-width:760px){
+  .mobile-menu-panel.td-login-panel .mobile-menu-reveal{overflow-y:auto!important;overscroll-behavior:contain}
+  .mobile-menu-panel.td-login-panel .mobile-menu-content{height:auto!important;min-height:100%;padding:78px 0 34px!important;gap:24px!important}
+  .mobile-menu-panel.td-login-panel .shopping-user{display:flex!important;flex:0 0 auto!important;align-items:center;justify-content:center;width:min(340px,100%);margin:0 auto}
+  .mobile-menu-panel.td-login-panel .shopping-user-details{width:100%}
+  .mobile-menu-panel.td-login-panel .mobile-user-trigger{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:none;min-height:56px;padding:12px 18px;border:1px solid rgba(255,255,255,.28);border-radius:12px;background:rgba(255,255,255,.10);color:#fff}
+  .mobile-menu-panel.td-login-panel .mobile-user-trigger-label{color:rgba(255,255,255,.78)}
+  .mobile-menu-panel.td-login-panel .mobile-user-trigger-name{color:#fff}
 }
 @media(max-width:400px){.td-burger-link{font-size:clamp(27px,9vw,38px)}}
 @media(prefers-reduced-motion:reduce){.td-burger-link{transition:none!important}}
@@ -1386,6 +1382,10 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 (function(){
   const toggle=document.getElementById('mobileMenuToggle');
   const panel=document.getElementById('mobileMenuPanel');
+  const menuContent=document.getElementById('mobileMenuContent');
+  const navControls=document.querySelector('.shopping-nav-controls');
+  const shoppingUser=navControls?.querySelector('.shopping-user');
+  const mobileHeaderMedia=window.matchMedia('(max-width:760px)');
   const searchToggle=document.getElementById('headerSearchToggle');
   const searchPanel=document.getElementById('headerSearchPanel');
   if(!toggle||!panel)return;
@@ -1400,6 +1400,21 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
     if(!open&&panel.contains(document.activeElement))document.activeElement.blur();
     if(!open&&restoreFocus)toggle.focus({preventScroll:true});
   }
+  /* Same mobile navigation behavior as index.html: keep logo/search/bell/burger
+     in the top row and move the existing store chooser inside the burger. */
+  function syncMobileNav(){
+    if(!shoppingUser||!menuContent||!navControls)return;
+    if(mobileHeaderMedia.matches){
+      menuContent.appendChild(shoppingUser);
+    }else{
+      navControls.insertBefore(shoppingUser,toggle);
+    }
+  }
+  mobileHeaderMedia.addEventListener('change',()=>{
+    setOpen(false);
+    syncMobileNav();
+  });
+  syncMobileNav();
   toggle.addEventListener('click',()=>{
     const open=!panel.classList.contains('is-open');
     if(open&&searchPanel?.classList.contains('is-open'))searchToggle?.click();
