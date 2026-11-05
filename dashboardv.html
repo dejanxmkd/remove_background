@@ -1031,8 +1031,12 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
   }
   .dv-account-col h2{font-size:20px;margin-bottom:24px}
   .dv-invoice{grid-template-columns:minmax(0,1fr) auto}
-  .dv-invoice-actions{grid-column:1/-1;justify-content:flex-start;flex-wrap:wrap;gap:8px}
-  .dv-pay{margin-top:5px}
+  .dv-invoice-actions{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr);width:100%;gap:8px}
+  .dv-account-invoices .dv-invoice-actions>.dv-primary,
+  .dv-account-invoices .dv-invoice-actions>.dv-secondary{width:100%;min-height:44px}
+  .dv-pay{margin-top:5px;width:100%;min-height:44px}
+  .dv-account-tracking .dv-track-bottom{align-items:stretch}
+  .dv-account-section .dv-account-tracking .dv-quick{width:100%;min-height:44px;flex:1 1 100%;align-self:stretch;margin:0}
   .dv-track-head h2{font-size:20px}
   .dv-step-label{font-size:14px}
 }
@@ -1066,7 +1070,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dv-explore-card a.dv-explore-card-action,.dv-explore-card a.dv-explore-card-action:hover{position:relative;z-index:2;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:46px;padding:12px 21px;border:0;border-radius:999px;background:var(--cyan);color:var(--ink);font:800 14px/1.2 var(--font);text-decoration:none;white-space:nowrap;box-shadow:none}
 .dv-explore-card a.dv-explore-card-action:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .dv-explore-card-action svg{flex:none;width:19px;height:19px}
-@media(max-width:760px){.dv-explore-links{padding-bottom:52px}.dv-explore-links-inner{width:calc(100% - 36px);grid-template-columns:1fr;gap:14px}.dv-explore-card{min-height:215px;padding:24px}.dv-explore-card .dv-explore-card-heading{font-size:27px}.dv-explore-card::before{width:160px;height:160px;top:-82px;right:-72px}.dv-explore-card::after{width:135px;height:135px;bottom:-88px;right:22px}.dv-explore-card:nth-child(2)::before{width:155px;height:155px;right:3px;top:-108px}.dv-explore-card:nth-child(2)::after{width:145px;height:145px;right:-86px;bottom:-60px}}
+@media(max-width:760px){.dv-explore-links{padding-bottom:52px}.dv-explore-links-inner{width:calc(100% - 36px);grid-template-columns:1fr;gap:14px}.dv-explore-card{min-height:215px;padding:24px}.dv-explore-card a.dv-explore-card-action{width:100%;min-height:46px}.dv-explore-card .dv-explore-card-heading{font-size:27px}.dv-explore-card::before{width:160px;height:160px;top:-82px;right:-72px}.dv-explore-card::after{width:135px;height:135px;bottom:-88px;right:22px}.dv-explore-card:nth-child(2)::before{width:155px;height:155px;right:3px;top:-108px}.dv-explore-card:nth-child(2)::after{width:145px;height:145px;right:-86px;bottom:-60px}}
 </style>
 </head>
 <body data-auth-preview="true">
