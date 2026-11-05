@@ -887,7 +887,7 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 </style>
 <style id="dashboardv-deals-styles">
 /* Same storefront New Arrivals section, with requested purple background and header. */
-#dashboardv > .dashboardv-deals:not(.dashboardv-current-deals){position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(to bottom,var(--purple,#6633cc) 0%,var(--purple,#6633cc) 50%,#fff 50%,#fff 100%)!important;color:#fff;padding:0 0 75px}
+#dashboardv > .dashboardv-deals:not(.dashboardv-current-deals){position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(to bottom,var(--purple,#6633cc) 0%,var(--purple,#6633cc) var(--dv-deals-purple-boundary,220px),#fff var(--dv-deals-purple-boundary,220px),#fff 100%)!important;color:#fff;padding:0 0 75px}
 .dashboardv-deals-inner{position:relative;z-index:1;width:min(1440px,calc(100% - 96px));margin:auto}
 .dashboardv-deals .section-header{margin-bottom:42px}
 .dashboardv-deals .eyebrow{background:var(--cyan);color:var(--ink)}
@@ -1580,5 +1580,26 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 
 
 
+<script>
+/* Align the purple-to-white boundary precisely with the Deals cards' image/text divider. */
+(function(){
+  const section=document.querySelector('#dashboardv > .dashboardv-deals:not(.dashboardv-current-deals)');
+  const image=section?.querySelector('#dashboardvDealsCarousel .dashboardv-deal-card .picture');
+  if(!section||!image)return;
+  function alignBoundary(){
+    const boundary=Math.max(0,Math.round(image.getBoundingClientRect().bottom-section.getBoundingClientRect().top));
+    section.style.setProperty('--dv-deals-purple-boundary',boundary+'px');
+  }
+  window.addEventListener('resize',alignBoundary,{passive:true});
+  if('ResizeObserver' in window){
+    const observer=new ResizeObserver(alignBoundary);
+    observer.observe(image);
+    observer.observe(section.querySelector('#dashboardvDealsCarousel'));
+  }
+  if(document.fonts?.ready)document.fonts.ready.then(alignBoundary);
+  window.addEventListener('load',alignBoundary,{once:true});
+  requestAnimationFrame(alignBoundary);
+})();
+</script>
 </body>
 </html>
