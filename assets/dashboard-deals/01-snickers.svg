@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700" role="img">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#69351f"/><stop offset="1" stop-color="#d28a55"/></linearGradient>
+<linearGradient id="shine" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff" stop-opacity=".94"/><stop offset="1" stop-color="#e9e6f5"/></linearGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#eaecf4"/><stop offset="1" stop-color="#c8ccd9"/></linearGradient>
+<linearGradient id="box" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8dab7"/><stop offset="1" stop-color="#d29b69"/></linearGradient>
+<linearGradient id="choc" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8b4a2d"/><stop offset="1" stop-color="#381a19"/></linearGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f9d581"/><stop offset="1" stop-color="#e69e35"/></linearGradient>
+<filter id="shadow" x="-25%" y="-45%" width="150%" height="200%"><feDropShadow dx="0" dy="20" stdDeviation="18" flood-color="#15102d" flood-opacity=".22"/></filter>
+</defs>
+<rect width="1000" height="700" fill="url(#bg)"/><circle cx="75" cy="65" r="225" fill="#fff" opacity=".07"/><circle cx="965" cy="680" r="310" fill="#fff" opacity=".06"/><circle cx="945" cy="55" r="160" fill="#fff" opacity=".075"/><ellipse cx="500" cy="618" rx="345" ry="45" fill="#180c35" opacity=".15"/>
+
+<g filter="url(#shadow)" transform="translate(70 90)">
+<g transform="rotate(-11 430 270)"><rect x="135" y="280" width="570" height="171" rx="34" fill="#281733"/><rect x="150" y="294" width="537" height="141" rx="27" fill="#2b1845" stroke="#e1c5b0" stroke-width="6"/><rect x="249" y="314" width="339" height="92" rx="14" fill="#f8f3e5" stroke="#efc89d" stroke-width="7"/><text x="419" y="375" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="60" fill="#26376a">SNICKERS</text></g>
+<g transform="translate(-15 -72) rotate(12 600 160)"><rect x="404" y="122" width="357" height="125" rx="28" fill="url(#choc)"/><rect x="415" y="134" width="335" height="101" rx="20" fill="none" stroke="#d9a275" stroke-width="6"/><path d="M435 173h288" stroke="#b57b51" stroke-width="6" opacity=".8"/><path d="M522 139v86M614 139v86" stroke="#ad7956" stroke-width="6"/></g>
+<g fill="#e8c687" stroke="#c79558" stroke-width="5"><ellipse cx="226" cy="465" rx="33" ry="19" transform="rotate(18 226 465)"/><ellipse cx="287" cy="491" rx="31" ry="17" transform="rotate(-18 287 491)"/><ellipse cx="733" cy="467" rx="31" ry="18"/></g>
+</g>
+</svg>
