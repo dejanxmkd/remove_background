@@ -932,15 +932,15 @@ body.td-login-menu-open .td-burger-link:nth-child(6){transition-delay:.28s}
 .dv-account-section{} /* No changes to the account layout. */
 .dashboardv-deals:not(.dashboardv-current-deals)>.dv-wide-banner{display:none}
 @media(min-width:761px){
-.dashboardv-deals:not(.dashboardv-current-deals){padding:0}
+.dashboardv-deals:not(.dashboardv-current-deals){padding:44px 0 66px}
 .dashboardv-deals:not(.dashboardv-current-deals)>.dashboardv-deals-inner,
 .dashboardv-deals:not(.dashboardv-current-deals)>.dashboardv-deals-shapes{display:none}
-.dashboardv-deals:not(.dashboardv-current-deals)>.dv-wide-banner{position:relative;isolation:isolate;display:block;width:100%;height:clamp(380px,31vw,530px);overflow:hidden;background:var(--purple)}
+.dashboardv-deals:not(.dashboardv-current-deals)>.dv-wide-banner{position:relative;isolation:isolate;display:block;width:min(1440px,calc(100% - 96px));height:clamp(380px,31vw,530px);margin:0 auto;overflow:hidden;border-radius:17px;background:var(--purple)}
 .dv-wide-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .8s ease,visibility 0s linear .8s}
 .dv-wide-slide.is-active{opacity:1;visibility:visible;transition:opacity .8s ease,visibility 0s}
 .dv-wide-slide>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .dv-wide-slide:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,8,45,.88),rgba(20,8,45,.62) 36%,rgba(20,8,45,.14) 72%,transparent)}
-.dv-wide-copy{position:absolute;z-index:1;left:max(88px,calc((100vw - 1440px)/2 + 12px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:flex-start;gap:18px;max-width:min(660px,55vw)}
+.dv-wide-copy{position:absolute;z-index:1;left:clamp(78px,8%,112px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:flex-start;gap:18px;max-width:min(660px,55vw)}
 .dv-wide-copy h2{margin:0;color:#fff;font:900 clamp(38px,4.4vw,75px)/1.05 var(--font);letter-spacing:-.048em}
 .dv-wide-copy p{margin:0 0 6px;color:#fff;font:500 clamp(15px,1.35vw,20px)/1.5 var(--font)}
 .dv-wide-cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 22px;border-radius:999px;background:var(--cyan);color:var(--ink);font:800 13px/1.2 var(--font);text-decoration:none}
