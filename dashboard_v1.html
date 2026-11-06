@@ -1350,7 +1350,7 @@ body.dashboard-minimal {
   overflow:hidden;
   border:0;
   border-radius:16px;
-  background:#e4ddfb;
+  background:#665682;
   box-shadow:none;
 }
 .dashboard-minimal #dashboardv > .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card .dashboardv-deal-placeholder.picture{
@@ -1364,17 +1364,10 @@ body.dashboard-minimal {
   margin:0!important;
   aspect-ratio:auto!important;
   flex:none!important;
-  background:#e4ddfb;
+  background:#665682;
   border:0;
   z-index:0;
 }
-.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card:nth-child(2) .dashboardv-deal-placeholder.picture{background:#dceaf4;}
-.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card:nth-child(3) .dashboardv-deal-placeholder.picture{background:#f6e3eb;}
-.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card:nth-child(4) .dashboardv-deal-placeholder.picture{background:#e3eee1;}
-.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card:nth-child(5) .dashboardv-deal-placeholder.picture{background:#f5e9d8;}
-.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card:nth-child(6) .dashboardv-deal-placeholder.picture{background:#e8e2fa;}
-.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card:nth-child(7) .dashboardv-deal-placeholder.picture{background:#e0eceb;}
-.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card:nth-child(8) .dashboardv-deal-placeholder.picture{background:#f3e9e1;}
 .dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card::after{
   content:"";
   position:absolute;
@@ -1742,14 +1735,6 @@ body.dashboard-minimal{--purple:#6633cc;}
   background-image:none!important;
   background-color:#665682!important;
 }
-.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(2) .dashboardv-deal-placeholder.picture{background-color:#59667e!important;}
-.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(3) .dashboardv-deal-placeholder.picture{background-color:#79647c!important;}
-.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(4) .dashboardv-deal-placeholder.picture{background-color:#657a73!important;}
-.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(5) .dashboardv-deal-placeholder.picture{background-color:#8b716b!important;}
-.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(6) .dashboardv-deal-placeholder.picture{background-color:#6b6485!important;}
-.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(7) .dashboardv-deal-placeholder.picture{background-color:#657b85!important;}
-.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(8) .dashboardv-deal-placeholder.picture{background-color:#85766a!important;}
-.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(9) .dashboardv-deal-placeholder.picture{background-color:#70647b!important;}
 .dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card::after,
 .dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card::after {
   background:linear-gradient(180deg,rgba(0,0,0,0) 32%,rgba(0,0,0,.16) 53%,rgba(0,0,0,.88) 100%);
@@ -1760,42 +1745,41 @@ body.dashboard-minimal{--purple:#6633cc;}
   text-shadow:0 1px 8px rgba(0,0,0,.28);
 }
 
-/* V1 spacing: exactly 100px above and below the three overview cards.
-   The deals grid begins directly after the lower 100px spacing. */
+/* Overview: keep the 100px top air, remove its bottom gap.
+   Both open and collapsed states place the deals section 100px below the overview. */
 .dashboard-minimal #dashboardv > .dv-account-panel > .dv-account-section{
-  padding:100px 0!important;
-  background:#f5f6f7!important;
+  padding:100px 0 0!important;
+  background:#fff!important;
 }
 .dashboard-minimal #dashboardv > .dv-account-panel.is-collapsed > .dv-account-section{
-  padding-top:0!important;
-  padding-bottom:0!important;
+  padding:0!important;
 }
-.dashboard-minimal #dashboardv > .dashboardv-deals:not(.dashboardv-current-deals){
+.dashboard-minimal #dashboardv > .dv-account-panel + .dashboardv-deals:not(.dashboardv-current-deals){
+  margin-top:100px!important;
   padding-top:0!important;
 }
 @media(max-width:760px){
   .dashboard-minimal #dashboardv > .dv-account-panel > .dv-account-section{
-    padding:100px 0!important;
+    padding:100px 0 0!important;
+    background:#fff!important;
   }
   .dashboard-minimal #dashboardv > .dv-account-panel.is-collapsed > .dv-account-section{
-    padding-top:0!important;
-    padding-bottom:0!important;
+    padding:0!important;
   }
-  .dashboard-minimal #dashboardv > .dashboardv-deals:not(.dashboardv-current-deals){
+  .dashboard-minimal #dashboardv > .dv-account-panel + .dashboardv-deals:not(.dashboardv-current-deals){
+    margin-top:100px!important;
     padding-top:0!important;
-  }
-}
-/* When Account Overview is hidden, retain 100px clearance below the attached
-   46px desktop / 44px mobile toggle before the first deal cards. */
-.dashboard-minimal #dashboardv > .dv-account-panel.is-collapsed + .dashboardv-deals:not(.dashboardv-current-deals){
-  padding-top:146px!important;
-}
-@media(max-width:760px){
-  .dashboard-minimal #dashboardv > .dv-account-panel.is-collapsed + .dashboardv-deals:not(.dashboardv-current-deals){
-    padding-top:144px!important;
   }
 }
 
+
+/* One shared placeholder color for every card in both deals sections. */
+.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card .dashboardv-deal-placeholder.picture,
+.dashboard-minimal #dashboardv > .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card .dashboardv-deal-placeholder.picture{
+  background:#665682!important;
+  background-color:#665682!important;
+  background-image:none!important;
+}
 </style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal">
