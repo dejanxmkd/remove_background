@@ -1544,6 +1544,64 @@ body.dashboard-minimal{--purple:#6633cc;}
   .dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card .product-title{font-size:17px;}
   .dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card .dashboardv-deal-subtitle{font-size:15px;}
 }
+
+/* Dashboard V1: unobtrusive overview toggle, visually attached to nav bottom. */
+.dashboard-minimal .dv-overview-toggle-bar{
+  position:relative;
+  z-index:5;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  width:100%;
+  height:0;
+}
+.dashboard-minimal .dv-overview-toggle{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  min-width:212px;
+  min-height:35px;
+  padding:7px 17px 9px;
+  border:1px solid #e1e5e8;
+  border-top:0;
+  border-radius:0 0 11px 11px;
+  background:#fff;
+  box-shadow:0 3px 7px rgba(30,37,45,.045);
+  color:#6633cc;
+  font:800 10px/1.3 var(--font);
+  letter-spacing:.045em;
+  white-space:nowrap;
+  cursor:pointer;
+  transition:background .2s ease,color .2s ease;
+}
+.dashboard-minimal .dv-overview-toggle:hover{background:#f8f5ff;color:#5425b8;}
+.dashboard-minimal .dv-overview-toggle:focus-visible{outline:2px solid #6633cc;outline-offset:2px;}
+.dashboard-minimal .dv-overview-toggle-icon{flex:none;transition:transform .26s ease;}
+.dashboard-minimal .dv-overview-toggle[aria-expanded="false"] .dv-overview-toggle-icon{transform:rotate(180deg);}
+.dashboard-minimal .dv-account-panel{
+  display:grid;
+  grid-template-rows:minmax(0,1fr);
+  min-height:0;
+  transition:grid-template-rows .36s cubic-bezier(.22,1,.36,1);
+}
+.dashboard-minimal .dv-account-panel > .dv-account-section{
+  min-height:0;
+  overflow:hidden;
+}
+.dashboard-minimal .dv-account-panel.is-collapsed{grid-template-rows:minmax(0,0fr);}
+.dashboard-minimal .dv-account-panel.is-collapsed > .dv-account-section{
+  padding-top:0!important;
+  padding-bottom:0!important;
+  border:0!important;
+}
+@media(max-width:760px){
+  .dashboard-minimal .dv-overview-toggle{min-width:202px;min-height:36px;font-size:10px;padding:8px 13px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .dashboard-minimal .dv-account-panel,
+  .dashboard-minimal .dv-overview-toggle-icon{transition:none;}
+}
 </style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal">
@@ -1612,6 +1670,12 @@ body.dashboard-minimal{--purple:#6633cc;}
     </div>
   </div>
 </header>
+<div class="dv-overview-toggle-bar">
+  <button id="dvOverviewToggle" class="dv-overview-toggle" type="button" aria-controls="dvAccountOverviewPanel" aria-expanded="true">
+    <svg class="dv-overview-toggle-icon" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"/></svg>
+    <span id="dvOverviewToggleLabel">HIDE ACCOUNT OVERVIEW</span>
+  </button>
+</div>
 <div class="mobile-user-sheet" id="mobileUserSheet" aria-hidden="true" inert>
   <button class="mobile-user-sheet-backdrop" id="mobileUserBackdrop" type="button" tabindex="-1" aria-label="Close shopping account selector"></button>
   <section class="mobile-user-sheet-dialog" role="dialog" aria-modal="true" aria-labelledby="mobileUserSheetTitle" tabindex="-1">
@@ -1622,6 +1686,7 @@ body.dashboard-minimal{--purple:#6633cc;}
 </div>
   
 <main id="dashboardv" aria-label="Dashboard content">
+  <div id="dvAccountOverviewPanel" class="dv-account-panel">
   <section class="dv-account-section" aria-label="Account Overview"><div class="dashboardv-deals-shapes" aria-hidden="true"><span class="shape cyan tl"></span><span class="shape cyan tr"></span><span class="shape white ml"></span><span class="shape white mr"></span></div><div class="dv-account-container">
     <div class="dv-account-col dv-account-balance"><h2>ACCOUNT BALANCE</h2><div class="dv-balance-contents"><strong class="dv-total">$2,450.00</strong><p class="dv-due"><strong>NOVEMBER 15, 2026</strong><span>Next Due Date</span></p><button type="button" class="dv-primary dv-pay">PAY INVOICES <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></div></div>
     <div class="dv-account-col dv-account-invoices"><h2>RECENT INVOICES</h2><div class="dv-invoice-list"><div class="dv-invoice"><div class="dv-invoice-id"><strong>INV-1048</strong><span>Nov 07, 2026</span></div><strong class="dv-invoice-amount">$840.00</strong><div class="dv-invoice-actions"><button class="dv-secondary" type="button" data-action="print" data-invoice="INV-1048" data-date="Nov 07, 2026" data-amount="840.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-printer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> PRINT</button><button class="dv-primary" type="button" data-action="download" data-invoice="INV-1048" data-date="Nov 07, 2026" data-amount="840.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-download" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> DOWNLOAD</button></div></div><div class="dv-invoice"><div class="dv-invoice-id"><strong>INV-1047</strong><span>Oct 29, 2026</span></div><strong class="dv-invoice-amount">$1,120.00</strong><div class="dv-invoice-actions"><button class="dv-secondary" type="button" data-action="print" data-invoice="INV-1047" data-date="Oct 29, 2026" data-amount="1120.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-printer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> PRINT</button><button class="dv-primary" type="button" data-action="download" data-invoice="INV-1047" data-date="Oct 29, 2026" data-amount="1120.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-download" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> DOWNLOAD</button></div></div><div class="dv-invoice"><div class="dv-invoice-id"><strong>INV-1046</strong><span>Oct 22, 2026</span></div><strong class="dv-invoice-amount">$490.00</strong><div class="dv-invoice-actions"><button class="dv-secondary" type="button" data-action="print" data-invoice="INV-1046" data-date="Oct 22, 2026" data-amount="490.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-printer" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> PRINT</button><button class="dv-primary" type="button" data-action="download" data-invoice="INV-1046" data-date="Oct 22, 2026" data-amount="490.00"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-download" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> DOWNLOAD</button></div></div></div></div><div class="dv-account-col dv-account-tracking"><div class="dv-track-head"><h2>ORDER TRACKING</h2></div><ol class="dv-steps" aria-label="Order status timeline"><li class="complete"><span class="dv-step-dot" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg></span><span class="dv-step-copy"><strong class="dv-step-label">Ordered</strong></span></li><li class="complete current"><span class="dv-step-dot" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-check" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg></span><span class="dv-step-copy"><strong class="dv-step-label">Processing</strong></span></li><li class="pending"><span class="dv-step-dot" aria-hidden="true"></span><span class="dv-step-copy"><strong class="dv-step-label">Out for Delivery</strong></span></li><li class="pending"><span class="dv-step-dot" aria-hidden="true"></span><span class="dv-step-copy"><strong class="dv-step-label">Delivered</strong></span></li></ol><div class="dv-track-divider" aria-hidden="true"></div><div class="dv-track-bottom"><div class="dv-track-order"><div class="dv-order"><strong>ORDER #88432</strong><span>Estimated Today, 2:30 PM</span></div></div><a class="dv-secondary dv-quick" href="./quick-reorder.html"><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-refresh-cw" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.36-6.36L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.36 6.36L3 16"/><path d="M8 16H3v5"/></svg>QUICK REORDER</a></div></div>
@@ -1630,6 +1695,7 @@ body.dashboard-minimal{--purple:#6633cc;}
     <span class="dv-scroll-cue-icon" aria-hidden="true"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15"/><path d="m5 12 7 7 7-7"/></svg></span>
   </a>
   </section>
+  </div>
 
   <section class="new-section dashboardv-deals" aria-label="Deals grid">
     <div class="dashboardv-deals-inner">
@@ -2042,6 +2108,24 @@ body.dashboard-minimal{--purple:#6633cc;}
   if(document.fonts?.ready)document.fonts.ready.then(alignBoundary);
   window.addEventListener('load',alignBoundary,{once:true});
   requestAnimationFrame(alignBoundary);
+})();
+</script>
+<script>
+/* Dashboard V1 account summary: accessible show/hide directly below the navigation. */
+(function(){
+  const button=document.getElementById('dvOverviewToggle');
+  const panel=document.getElementById('dvAccountOverviewPanel');
+  const label=document.getElementById('dvOverviewToggleLabel');
+  if(!button||!panel||!label)return;
+  button.addEventListener('click',function(){
+    const expanded=button.getAttribute('aria-expanded')==='true';
+    const show=!expanded;
+    button.setAttribute('aria-expanded',String(show));
+    label.textContent=show?'HIDE ACCOUNT OVERVIEW':'SHOW ACCOUNT OVERVIEW';
+    panel.classList.toggle('is-collapsed',!show);
+    panel.inert=!show;
+    panel.setAttribute('aria-hidden',String(!show));
+  });
 })();
 </script>
 </body>
