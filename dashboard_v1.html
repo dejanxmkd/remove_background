@@ -1696,6 +1696,47 @@ body.dashboard-minimal{--purple:#6633cc;}
   .dashboard-minimal .dv-overview-toggle-icon{transition:none;}
 }
 
+/* Account Overview toggle keeps identical dimensions and alignment for both labels. */
+.dashboard-minimal .dv-overview-toggle-bar{
+  flex:0 0 auto;
+  overflow-anchor:none;
+}
+.dashboard-minimal .dv-overview-toggle{
+  box-sizing:border-box;
+  width:260px;
+  min-width:260px;
+  max-width:260px;
+  height:46px;
+  min-height:46px;
+  max-height:46px;
+  flex:none;
+  padding:0 16px;
+  gap:10px;
+}
+.dashboard-minimal .dv-overview-toggle-icon{
+  width:16px;
+  height:16px;
+  flex:0 0 16px;
+}
+.dashboard-minimal #dvOverviewToggleLabel{
+  display:block;
+  flex:0 0 196px;
+  width:196px;
+  text-align:center;
+}
+.dashboard-minimal .dv-account-panel{overflow-anchor:none;}
+@media(max-width:760px){
+  .dashboard-minimal .dv-overview-toggle{
+    width:260px;
+    min-width:260px;
+    max-width:260px;
+    height:44px;
+    min-height:44px;
+    max-height:44px;
+    padding:0 16px;
+  }
+}
+
 /* Both Dashboard V1 deal sections: placeholders only, white copy and dark bottom overlays. */
 .dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card .dashboardv-deal-placeholder.picture {
   background-image:none!important;
