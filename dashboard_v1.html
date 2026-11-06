@@ -1718,6 +1718,32 @@ body.dashboard-minimal{--purple:#6633cc;}
   color:#fff!important;
   text-shadow:0 1px 8px rgba(0,0,0,.28);
 }
+
+/* V1 spacing: exactly 100px above and below the three overview cards.
+   The deals grid begins directly after the lower 100px spacing. */
+.dashboard-minimal #dashboardv > .dv-account-panel > .dv-account-section{
+  padding:100px 0!important;
+  background:#f5f6f7!important;
+}
+.dashboard-minimal #dashboardv > .dv-account-panel.is-collapsed > .dv-account-section{
+  padding-top:0!important;
+  padding-bottom:0!important;
+}
+.dashboard-minimal #dashboardv > .dashboardv-deals:not(.dashboardv-current-deals){
+  padding-top:0!important;
+}
+@media(max-width:760px){
+  .dashboard-minimal #dashboardv > .dv-account-panel > .dv-account-section{
+    padding:100px 0!important;
+  }
+  .dashboard-minimal #dashboardv > .dv-account-panel.is-collapsed > .dv-account-section{
+    padding-top:0!important;
+    padding-bottom:0!important;
+  }
+  .dashboard-minimal #dashboardv > .dashboardv-deals:not(.dashboardv-current-deals){
+    padding-top:0!important;
+  }
+}
 </style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal">
