@@ -2144,6 +2144,13 @@ body.dashboard-minimal input[type="submit"],
 body.dashboard-minimal input[type="reset"]{
   border-radius:999px!important;
 }
+
+/* Keep the Account Overview navigation tab attached and square on top,
+   restoring its original 0 0 9px 9px corners (not a pill). */
+body.dashboard-minimal .site-header #dvOverviewToggle,
+body.dashboard-minimal button#dvOverviewToggle{
+  border-radius:0 0 9px 9px!important;
+}
 </style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal">
