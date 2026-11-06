@@ -1921,6 +1921,71 @@ body.dashboard-minimal.dv-overview-modal-open{
 @media(prefers-reduced-motion:reduce){
   .dashboard-minimal .site-header > .dv-overview-backdrop{transition:none;}
 }
+
+/* Reliable fixed modal layers, independent of the sticky header's clipping,
+   layout and stacking context. The page never scrolls when toggled. */
+body.dashboard-minimal > #dvOverviewBackdrop.dv-overview-backdrop {
+  position:fixed!important;
+  inset:0!important;
+  z-index:990!important;
+  background:rgba(15,18,23,.56)!important;
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  touch-action:none;
+  transition:opacity .3s ease,visibility 0s!important;
+}
+body.dashboard-minimal > #dvOverviewBackdrop.dv-overview-backdrop.is-hidden {
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .25s ease,visibility 0s .25s!important;
+}
+body.dashboard-minimal > #dvAccountOverviewPanel.dv-account-panel {
+  position:fixed!important;
+  top:var(--dv-nav-bottom,78px)!important;
+  left:0!important;
+  right:0!important;
+  bottom:auto!important;
+  z-index:1100!important;
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  max-height:calc(100dvh - var(--dv-nav-bottom,78px))!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  overscroll-behavior:contain;
+  background:#fff!important;
+  border-top:1px solid #e9e9e9;
+  box-shadow:0 28px 50px rgba(0,0,0,.2);
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translateY(0);
+  clip-path:inset(0 0 0 0);
+  transition:transform .42s cubic-bezier(.22,1,.36,1),
+             clip-path .42s cubic-bezier(.22,1,.36,1),
+             opacity .26s ease,visibility 0s!important;
+}
+body.dashboard-minimal > #dvAccountOverviewPanel.dv-account-panel.is-collapsed {
+  height:auto!important;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(-24px);
+  clip-path:inset(0 0 100% 0);
+  transition:transform .36s cubic-bezier(.22,1,.36,1),
+             clip-path .36s cubic-bezier(.22,1,.36,1),
+             opacity .24s ease,visibility 0s .36s!important;
+}
+body.dashboard-minimal > #dvAccountOverviewPanel.dv-account-panel > .dv-account-section {
+  padding:100px 0!important;
+  background:#fff!important;
+}
+@media(prefers-reduced-motion:reduce){
+  body.dashboard-minimal > #dvAccountOverviewPanel.dv-account-panel,
+  body.dashboard-minimal > #dvOverviewBackdrop.dv-overview-backdrop {transition:none!important;}
+}
 </style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal">
@@ -1994,6 +2059,7 @@ body.dashboard-minimal.dv-overview-modal-open{
     <span id="dvOverviewToggleLabel">SHOW ACCOUNT OVERVIEW</span>
   </button>
 </div>
+</header>
 <div id="dvOverviewBackdrop" class="dv-overview-backdrop is-hidden" aria-hidden="true"></div>
 <div id="dvAccountOverviewPanel" class="dv-account-panel is-collapsed" role="dialog" aria-modal="true" aria-label="Account Overview" aria-hidden="true" inert>
   <section class="dv-account-section" aria-label="Account Overview"><div class="dashboardv-deals-shapes" aria-hidden="true"><span class="shape cyan tl"></span><span class="shape cyan tr"></span><span class="shape white ml"></span><span class="shape white mr"></span></div><div class="dv-account-container">
@@ -2003,7 +2069,7 @@ body.dashboard-minimal.dv-overview-modal-open{
   
   </section>
   </div>
-</header>
+
 <div class="mobile-user-sheet" id="mobileUserSheet" aria-hidden="true" inert>
   <button class="mobile-user-sheet-backdrop" id="mobileUserBackdrop" type="button" tabindex="-1" aria-label="Close shopping account selector"></button>
   <section class="mobile-user-sheet-dialog" role="dialog" aria-modal="true" aria-labelledby="mobileUserSheetTitle" tabindex="-1">
@@ -2440,7 +2506,7 @@ body.dashboard-minimal.dv-overview-modal-open{
   let expanded=false;
 
   function syncHeaderHeight(){
-    header.style.setProperty('--dv-header-bottom',Math.round(header.getBoundingClientRect().bottom)+'px');
+    document.documentElement.style.setProperty('--dv-nav-bottom',Math.max(0,Math.round(header.getBoundingClientRect().bottom))+'px');
   }
   function setOpen(show){
     if(expanded===show)return;
@@ -2452,7 +2518,6 @@ body.dashboard-minimal.dv-overview-modal-open{
     panel.setAttribute('aria-hidden',String(!show));
     panel.classList.toggle('is-collapsed',!show);
     backdrop.classList.toggle('is-hidden',!show);
-    document.body.classList.toggle('dv-overview-modal-open',show);
   }
 
   button.addEventListener('click',function(){setOpen(!expanded);});
