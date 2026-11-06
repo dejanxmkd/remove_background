@@ -2005,6 +2005,75 @@ body.dashboard-minimal > header.site-header #dvOverviewToggle{
   pointer-events:auto;
   visibility:visible!important;
 }
+
+/* Categories & Brands: taller photographic tiles with bottom-aligned content. */
+.dashboard-minimal .dv-explore-card{
+  position:relative;
+  isolation:isolate;
+  min-height:325px;
+  justify-content:flex-end;
+  align-items:flex-start;
+  gap:16px;
+  padding:30px 34px;
+  border:0;
+  border-radius:14px;
+  background:#b8b8b8;
+  color:#fff;
+}
+.dashboard-minimal .dv-explore-card-photo{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+}
+.dashboard-minimal .dv-explore-card::after,
+.dashboard-minimal .dv-explore-card:nth-child(2)::after{
+  content:""!important;
+  display:block!important;
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  width:100%;
+  height:100%;
+  border-radius:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.05) 18%,rgba(0,0,0,.24) 52%,rgba(0,0,0,.78) 100%);
+  pointer-events:none;
+}
+.dashboard-minimal .dv-explore-card .dv-explore-card-heading{
+  position:relative;
+  z-index:2;
+  color:#fff;
+  font-size:clamp(24px,2.5vw,34px);
+  line-height:1.1;
+  font-weight:900;
+  text-shadow:0 2px 10px rgba(0,0,0,.20);
+}
+.dashboard-minimal .dv-explore-card a.dv-explore-card-action,
+.dashboard-minimal .dv-explore-card a.dv-explore-card-action:hover{
+  position:relative;
+  z-index:2;
+  min-height:46px;
+  padding:12px 20px;
+  background:#6633cc;
+  border:1px solid #6633cc;
+  border-radius:9px;
+  color:#fff;
+  font-size:14px;
+  font-weight:800;
+  box-shadow:none;
+}
+.dashboard-minimal .dv-explore-card a.dv-explore-card-action:hover{
+  background:#5525b5;
+  border-color:#5525b5;
+}
+@media(max-width:760px){
+  .dashboard-minimal .dv-explore-card{min-height:280px;padding:24px;gap:14px;}
+  .dashboard-minimal .dv-explore-card .dv-explore-card-heading{font-size:27px;}
+}
 </style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal">
@@ -2270,10 +2339,12 @@ body.dashboard-minimal > header.site-header #dvOverviewToggle{
 <nav class="dv-explore-links" aria-label="Explore product categories and brands">
   <div class="dv-explore-links-inner">
     <article class="dv-explore-card">
+      <img class="dv-explore-card-photo" src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="" loading="lazy" decoding="async">
       <span class="dv-explore-card-heading">CATEGORIES</span>
       <a class="dv-explore-card-action" href="./index.html#categories-title">Browse Categories <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     </article>
     <article class="dv-explore-card">
+      <img class="dv-explore-card-photo" src="https://images.unsplash.com/photo-1649207668567-629fc4577f2f?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="" loading="lazy" decoding="async">
       <span class="dv-explore-card-heading">BRANDS</span>
       <a class="dv-explore-card-action" href="./index.html#brands-title">Explore Brands <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-arrow-right" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     </article>
