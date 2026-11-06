@@ -1785,6 +1785,17 @@ body.dashboard-minimal{--purple:#6633cc;}
     padding-top:0!important;
   }
 }
+/* When Account Overview is hidden, retain 100px clearance below the attached
+   46px desktop / 44px mobile toggle before the first deal cards. */
+.dashboard-minimal #dashboardv > .dv-account-panel.is-collapsed + .dashboardv-deals:not(.dashboardv-current-deals){
+  padding-top:146px!important;
+}
+@media(max-width:760px){
+  .dashboard-minimal #dashboardv > .dv-account-panel.is-collapsed + .dashboardv-deals:not(.dashboardv-current-deals){
+    padding-top:144px!important;
+  }
+}
+
 </style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal">
