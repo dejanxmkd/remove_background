@@ -1428,6 +1428,37 @@ body.dashboard-minimal {
   .dashboard-minimal .dv-explore-card .dv-explore-card-heading {font-size:23px;}
 }
 
+
+/* V1 brand accents: keep the minimal neutral layout, restore only selective purple. */
+body.dashboard-minimal{--purple:#6633cc;}
+.dashboard-minimal .shopping-cart-count{background:#6633cc;}
+.dashboard-minimal :is(button,a):focus-visible{outline-color:#6633cc;}
+.dashboard-minimal .dv-primary{background:#6633cc;border-color:#6633cc;color:#fff;}
+.dashboard-minimal .dv-primary:hover{background:#5126aa;border-color:#5126aa;color:#fff;}
+.dashboard-minimal .dv-due strong{color:#6633cc;}
+.dashboard-minimal .dv-secondary,
+.dashboard-minimal .dv-account-section .dv-account-tracking .dv-quick{
+  background:#f5f0ff;border-color:#e8defa;color:#6633cc;
+}
+.dashboard-minimal .dv-secondary:hover,
+.dashboard-minimal .dv-account-section .dv-account-tracking .dv-quick:hover{
+  background:#ebe1fc;border-color:#ddcff7;color:#5126aa;
+}
+.dashboard-minimal .dv-account-tracking .dv-steps::after{background:#6633cc;}
+.dashboard-minimal .dv-account-tracking .dv-steps .complete .dv-step-dot{background:#6633cc;border-color:#6633cc;}
+.dashboard-minimal .dv-account-tracking .dv-steps .current .dv-step-dot{box-shadow:0 0 0 4px #f0e9ff;}
+.dashboard-minimal .dv-account-tracking .dv-steps .current .dv-step-label{color:#6633cc;}
+.dashboard-minimal .dv-account-invoices .dv-invoice-actions .dv-primary{
+  background:#6633cc;border-color:#6633cc;color:#fff;
+}
+.dashboard-minimal .dv-account-invoices .dv-invoice-actions .dv-primary:hover{
+  background:#5126aa;border-color:#5126aa;color:#fff;
+}
+.dashboard-minimal .dashboardv-deals .mobile-view-all{background:#6633cc;color:#fff;}
+.dashboard-minimal .dashboardv-current-deals .progress span{background:#6633cc;}
+.dashboard-minimal .dv-explore-card a.dv-explore-card-action,
+.dashboard-minimal .dv-explore-card a.dv-explore-card-action:hover{color:#6633cc;border-color:#e4d8fa;}
+.dashboard-minimal .dv-explore-card a.dv-explore-card-action:hover{background:#f5f0ff;}
 </style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal">
