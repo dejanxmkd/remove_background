@@ -2283,7 +2283,8 @@ body.dashboard-/* Category navigation: 5 equal scrollable slots + 1 identically 
 }
 .dashboard-minimal .dv-cat-shop-all .dv-cat-icon.material-symbols-rounded{color:#fff;}
 .dashboard-minimal .dv-cat-shop-all:hover{background:#5425b6;color:#fff;}
-.dashboard-minimal .dv-category-nav a:focus-visible{outline:2px solid #6633cc;outline-offset:-3px;}
+.dashboard-minimal .dv-category-nav button{cursor:pointer;appearance:none;-webkit-appearance:none;}
+.dashboard-minimal .dv-category-nav button:focus-visible{outline:2px solid #6633cc;outline-offset:-3px;}
 @media(max-width:1100px){
   .dashboard-minimal .dv-category-nav{height:86px;margin-bottom:20px;}
 }
@@ -2396,21 +2397,21 @@ body.dashboard-/* Category navigation: 5 equal scrollable slots + 1 identically 
         <div class="dv-category-carousel">
           <div class="dv-cat-scroll-wrap">
             <div class="dv-cat-scroll" id="dvCategoryScroll" tabindex="0" aria-label="Scrollable category navigation">
-            <a class="dv-cat-segment is-active" href="#dashboardvDealsGrid" aria-current="location"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">sell</span><span>DEALS</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">favorite</span><span>FAVS</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">auto_awesome</span><span>NEW</span></a>
-            <a class="dv-cat-segment" href="./index.html#brands-title"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">layers</span><span>BRANDS</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">smoking_rooms</span><span>CIGS</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">cookie</span><span>CANDY</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">bakery_dining</span><span>CHOCOLATE</span></a>
-            <a class="dv-cat-segment" href="./index.html#brands-title"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">local_cafe</span><span>GIANNOS</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">radio_button_checked</span><span>GUM</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">handyman</span><span>HARDWARE</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">health_and_safety</span><span>HEALTH BEAUTY</span></a>
+            <button type="button" class="dv-cat-segment is-active" aria-pressed="true"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">sell</span><span>DEALS</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">favorite</span><span>FAVS</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">auto_awesome</span><span>NEW</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">layers</span><span>BRANDS</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">smoking_rooms</span><span>CIGS</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">cookie</span><span>CANDY</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">bakery_dining</span><span>CHOCOLATE</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">local_cafe</span><span>GIANNOS</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">radio_button_checked</span><span>GUM</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">handyman</span><span>HARDWARE</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">health_and_safety</span><span>HEALTH BEAUTY</span></button>
             </div>
           </div>
         </div>
-        <a class="dv-cat-shop-all" href="./index.html#categories-title"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">shopping_bag</span><span>SHOP ALL</span></a>
+        <button type="button" class="dv-cat-shop-all" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">shopping_bag</span><span>SHOP ALL</span></button>
       </nav>
       <div class="dashboardv-deals-grid-wrap">
         <div class="dashboardv-deals-grid" id="dashboardvDealsGrid" aria-label="Deals grid">
@@ -2865,6 +2866,17 @@ body.dashboard-/* Category navigation: 5 equal scrollable slots + 1 identically 
   const nav=document.querySelector('.dv-category-nav');
   const list=document.getElementById('dvCategoryScroll');
   if(!nav||!list)return;
+  // Prototype tabs only update selection; no navigation or page jump.
+  const tabs=Array.from(nav.querySelectorAll('.dv-cat-segment, .dv-cat-shop-all'));
+  tabs.forEach(function(tab){
+    tab.addEventListener('click',function(){
+      tabs.forEach(function(item){
+        const selected=item===tab;
+        item.classList.toggle('is-active',selected);
+        item.setAttribute('aria-pressed',String(selected));
+      });
+    });
+  });
   function update(){
     const max=Math.max(0,list.scrollWidth-list.clientWidth);
     nav.classList.toggle('can-scroll-left',list.scrollLeft>2);
