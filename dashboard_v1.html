@@ -2154,6 +2154,19 @@ body.dashboard-minimal button#dvOverviewToggle{
 }
 
 /* Compact near-square category tabs, equal widths, with SHOP ALL fixed at the right edge. */
+/* Explicitly override the dashboard's global pill-button rule for connected tabs. */
+body.dashboard-minimal .dv-category-nav button.dv-cat-segment{
+  border-radius:0!important;
+}
+body.dashboard-minimal .dv-category-nav button.dv-cat-shop-all{
+  border-radius:0 11px 11px 0!important;
+}
+@media(max-width:760px){
+  body.dashboard-minimal .dv-category-nav button.dv-cat-shop-all{
+    border-radius:0 10px 10px 0!important;
+  }
+}
+
 .dashboard-minimal .dv-category-nav{
   display:flex;
   align-items:stretch;
