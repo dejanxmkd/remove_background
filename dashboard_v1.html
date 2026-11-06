@@ -1339,6 +1339,99 @@ body.dashboard-minimal {
 .dashboard-minimal .dashboardv-current-deals .progress {background:#e5e9ec;}
 .dashboard-minimal .dashboardv-current-deals .progress span {background:#586772;}
 
+/* V1 Current Deals: full-card colored image placeholders, same proportions as featured cards, with true black text. */
+.dashboard-minimal .dashboardv-current-deals #dashboardv-current-title{color:#000;}
+.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{
+  position:relative;
+  isolation:isolate;
+  flex:0 0 calc((100% - 3 * var(--gap))/4);
+  aspect-ratio:1.13;
+  min-height:310px;
+  overflow:hidden;
+  border:0;
+  border-radius:16px;
+  background:#e4ddfb;
+  box-shadow:none;
+}
+.dashboard-minimal #dashboardv > .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card .dashboardv-deal-placeholder.picture{
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  max-width:none!important;
+  height:100%!important;
+  min-height:100%!important;
+  margin:0!important;
+  aspect-ratio:auto!important;
+  flex:none!important;
+  background:#e4ddfb;
+  border:0;
+  z-index:0;
+}
+.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card:nth-child(2) .dashboardv-deal-placeholder.picture{background:#dceaf4;}
+.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card:nth-child(3) .dashboardv-deal-placeholder.picture{background:#f6e3eb;}
+.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card:nth-child(4) .dashboardv-deal-placeholder.picture{background:#e3eee1;}
+.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card:nth-child(5) .dashboardv-deal-placeholder.picture{background:#f5e9d8;}
+.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card:nth-child(6) .dashboardv-deal-placeholder.picture{background:#e8e2fa;}
+.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card:nth-child(7) .dashboardv-deal-placeholder.picture{background:#e0eceb;}
+.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card:nth-child(8) .dashboardv-deal-placeholder.picture{background:#f3e9e1;}
+.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card::after{
+  content:"";
+  position:absolute;
+  z-index:1;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(to bottom,transparent 30%,rgba(255,255,255,.15) 52%,rgba(255,255,255,.83) 100%);
+}
+.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-info.card-info{
+  position:relative;
+  z-index:2;
+  flex:1 1 auto;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:flex-start;
+  width:100%;
+  min-width:0;
+  margin:0;
+  padding:24px 22px;
+  gap:9px;
+  border:0;
+  background:transparent;
+}
+.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .product-title{
+  margin:0;
+  min-height:0;
+  color:#000!important;
+  font-size:clamp(14px,1.32vw,19px);
+  line-height:1.25;
+  font-weight:900;
+  letter-spacing:-.025em;
+  text-transform:uppercase;
+}
+.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-subtitle{
+  margin:0;
+  color:#000!important;
+  font-size:clamp(13px,1.1vw,16px);
+  line-height:1.3;
+  font-weight:500;
+}
+@media(max-width:1100px){
+  .dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{
+    flex-basis:calc((100% - var(--gap))/2);
+  }
+}
+@media(max-width:760px){
+  .dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card.card{
+    flex-basis:calc((100% - var(--gap))/1.5);
+    aspect-ratio:1.13;
+    min-height:310px;
+  }
+  .dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-info.card-info{padding:23px 20px;}
+  .dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .product-title{font-size:17px;}
+  .dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-subtitle{font-size:15px;}
+}
+
 /* Explore blocks should feel like navigation, not promotional billboards. */
 .dashboard-minimal .dv-explore-links {padding:0 0 68px;background:#fff;}
 .dashboard-minimal .dv-explore-card {
