@@ -2291,6 +2291,45 @@ body.dashboard-minimal button#dvOverviewToggle{
   .dashboard-minimal .dv-cat-scroll-wrap::before,
   .dashboard-minimal .dv-cat-scroll-wrap::after{width:12px;}
 }
+
+/* Exactly six equally wide visible slots: five swipeable + fixed SHOP ALL. */
+.dashboard-minimal .dv-category-carousel{
+  flex:0 0 83.333333%;
+  width:83.333333%;
+}
+.dashboard-minimal .dv-cat-scroll-wrap{width:100%;}
+.dashboard-minimal .dv-cat-scroll{width:100%;}
+.dashboard-minimal .dv-cat-segment{
+  flex:0 0 20%;
+  width:20%;
+}
+.dashboard-minimal .dv-cat-shop-all{
+  flex:0 0 16.666667%;
+  width:16.666667%;
+}
+.dashboard-minimal .dv-cat-segment,
+.dashboard-minimal .dv-cat-shop-all{
+  font:800 12px/1.2 var(--font);
+  gap:9px;
+  padding:8px 4px;
+  white-space:normal;
+}
+.dashboard-minimal .dv-cat-icon{
+  width:26px;
+  height:26px;
+}
+@media(max-width:760px){
+  .dashboard-minimal .dv-cat-segment,
+  .dashboard-minimal .dv-cat-shop-all{
+    font-size:12px;
+    gap:6px;
+    padding:7px 2px;
+  }
+  .dashboard-minimal .dv-cat-icon{
+    width:24px;
+    height:24px;
+  }
+}
 </style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal">
@@ -2392,21 +2431,21 @@ body.dashboard-minimal button#dvOverviewToggle{
         <div class="dv-category-carousel">
           <div class="dv-cat-scroll-wrap">
             <div class="dv-cat-scroll" id="dvCategoryScroll" tabindex="0" aria-label="Scrollable category navigation">
-            <a class="dv-cat-segment is-active" href="#dashboardvDealsGrid" aria-current="location"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.828 8.828a2 2 0 0 0 2.828 0l7.172-7.172a2 2 0 0 0 0-2.828z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg><span>DEALS</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg><span>FAVS</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3Z"/><path d="m19 18 .6 1.4L21 20l-1.4.6L19 22l-.6-1.4L17 20l1.4-.6L19 18Z"/><path d="m5 2 .6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6L5 2Z"/></svg><span>NEW</span></a>
-            <a class="dv-cat-segment" href="./index.html#brands-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg><span>BRANDS</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 12H2v6h16v-6Z"/><path d="M22 12v6"/><path d="M7 12v6"/><path d="M18 8c0-2 2-2 2-4"/><path d="M22 8c0-2 2-2 2-4"/></svg><span>CIGS</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 7 4 10"/><path d="m8 4 2.5 2.5a3.5 3.5 0 0 1 3.5 0l2 2a3.5 3.5 0 0 1 0 3.5l-2.5 2.5a3.5 3.5 0 0 1-3.5 0l-2-2a3.5 3.5 0 0 1 0-3.5L10.5 6.5"/><path d="m7 7-5 1 1-5 5-1-1 5Z"/><path d="m17 17 5-1-1 5-5 1 1-5Z"/></svg><span>CANDY</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10a7 7 0 1 1 14 0v2"/><path d="M19 12v7a2 2 0 0 1-4 0V10a3 3 0 0 0-6 0"/><path d="M5 10h4"/><path d="M13 4l3 3"/><path d="m15 12 4 2"/></svg><span>CHOCOLATE</span></a>
-            <a class="dv-cat-segment" href="./index.html#brands-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M4 7h14v9a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7Z"/><path d="M18 8h2a3 3 0 1 1 0 6h-2"/><path d="M2 22h20"/></svg><span>GIANNOS</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg><span>GUM</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4l-6.1 6.1a2 2 0 0 0 2.8 2.8l6.1-6.1a5 5 0 0 0 6.4-6.4l-3.2 3.2-3.6-3.6 3.2-3.2Z"/></svg><span>HARDWARE</span></a>
-            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"/><path d="M3.2 12H8l2-3 3 6 2-3h5.8"/></svg><span>HEALTH BEAUTY</span></a>
+            <a class="dv-cat-segment is-active" href="#dashboardvDealsGrid" aria-current="location"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.828 8.828a2 2 0 0 0 2.828 0l7.172-7.172a2 2 0 0 0 0-2.828z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg><span>DEALS</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg><span>FAVS</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3Z"/><path d="m19 18 .6 1.4L21 20l-1.4.6L19 22l-.6-1.4L17 20l1.4-.6L19 18Z"/><path d="m5 2 .6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6L5 2Z"/></svg><span>NEW</span></a>
+            <a class="dv-cat-segment" href="./index.html#brands-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg><span>BRANDS</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 12H2v6h16v-6Z"/><path d="M22 12v6"/><path d="M7 12v6"/><path d="M18 8c0-2 2-2 2-4"/><path d="M22 8c0-2 2-2 2-4"/></svg><span>CIGS</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 7 4 10"/><path d="m8 4 2.5 2.5a3.5 3.5 0 0 1 3.5 0l2 2a3.5 3.5 0 0 1 0 3.5l-2.5 2.5a3.5 3.5 0 0 1-3.5 0l-2-2a3.5 3.5 0 0 1 0-3.5L10.5 6.5"/><path d="m7 7-5 1 1-5 5-1-1 5Z"/><path d="m17 17 5-1-1 5-5 1 1-5Z"/></svg><span>CANDY</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10a7 7 0 1 1 14 0v2"/><path d="M19 12v7a2 2 0 0 1-4 0V10a3 3 0 0 0-6 0"/><path d="M5 10h4"/><path d="M13 4l3 3"/><path d="m15 12 4 2"/></svg><span>CHOCOLATE</span></a>
+            <a class="dv-cat-segment" href="./index.html#brands-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M4 7h14v9a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7Z"/><path d="M18 8h2a3 3 0 1 1 0 6h-2"/><path d="M2 22h20"/></svg><span>GIANNOS</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg><span>GUM</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4l-6.1 6.1a2 2 0 0 0 2.8 2.8l6.1-6.1a5 5 0 0 0 6.4-6.4l-3.2 3.2-3.6-3.6 3.2-3.2Z"/></svg><span>HARDWARE</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"/><path d="M3.2 12H8l2-3 3 6 2-3h5.8"/></svg><span>HEALTH BEAUTY</span></a>
             </div>
           </div>
         </div>
-        <a class="dv-cat-shop-all" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l1 14H5L6 7Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span>SHOP ALL</span></a>
+        <a class="dv-cat-shop-all" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l1 14H5L6 7Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span>SHOP ALL</span></a>
       </nav>
       <div class="dashboardv-deals-grid-wrap">
         <div class="dashboardv-deals-grid" id="dashboardvDealsGrid" aria-label="Deals grid">
