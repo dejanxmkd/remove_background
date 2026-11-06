@@ -2151,6 +2151,163 @@ body.dashboard-minimal .site-header #dvOverviewToggle,
 body.dashboard-minimal button#dvOverviewToggle{
   border-radius:0 0 9px 9px!important;
 }
+
+/* Unified segmented category navigation, aligned with the existing deals grid. */
+.dashboard-minimal .dv-category-nav{
+  display:flex;
+  align-items:stretch;
+  width:100%;
+  height:94px;
+  min-width:0;
+  margin:0 0 24px;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid #e1e5e8;
+  border-radius:12px;
+  box-shadow:none;
+  isolation:isolate;
+}
+.dashboard-minimal .dv-category-carousel{
+  display:flex;
+  flex:1 1 auto;
+  min-width:0;
+  overflow:hidden;
+}
+.dashboard-minimal .dv-cat-scroll-wrap{
+  position:relative;
+  flex:1 1 auto;
+  min-width:0;
+  overflow:hidden;
+}
+.dashboard-minimal .dv-cat-scroll-wrap::before,
+.dashboard-minimal .dv-cat-scroll-wrap::after{
+  content:"";
+  position:absolute;
+  z-index:2;
+  top:0;
+  bottom:0;
+  width:18px;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .18s ease;
+}
+.dashboard-minimal .dv-cat-scroll-wrap::before{
+  left:0;
+  background:linear-gradient(90deg,#fff,rgba(255,255,255,0));
+}
+.dashboard-minimal .dv-cat-scroll-wrap::after{
+  right:0;
+  background:linear-gradient(270deg,#fff,rgba(255,255,255,0));
+}
+.dashboard-minimal .dv-category-nav.can-scroll-left .dv-cat-scroll-wrap::before,
+.dashboard-minimal .dv-category-nav.can-scroll-right .dv-cat-scroll-wrap::after{opacity:1;}
+.dashboard-minimal .dv-cat-scroll{
+  display:flex;
+  align-items:stretch;
+  height:100%;
+  min-width:0;
+  overflow-x:auto;
+  overflow-y:hidden;
+  overscroll-behavior-x:contain;
+  scroll-snap-type:x proximity;
+  scroll-behavior:smooth;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+  touch-action:pan-x;
+}
+.dashboard-minimal .dv-cat-scroll::-webkit-scrollbar{display:none;}
+.dashboard-minimal .dv-cat-segment,
+.dashboard-minimal .dv-cat-shop-all{
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  flex:0 0 112px;
+  min-width:0;
+  height:100%;
+  margin:0;
+  padding:10px 9px;
+  text-align:center;
+  border:0;
+  border-radius:0!important;
+  text-decoration:none;
+  font:800 11px/1.2 var(--font);
+  letter-spacing:.015em;
+  white-space:nowrap;
+}
+.dashboard-minimal .dv-cat-segment{
+  position:relative;
+  color:#293239;
+  background:#fff;
+  border-right:1px solid #edf0f2;
+  scroll-snap-align:start;
+  transition:background .18s ease,color .18s ease;
+}
+.dashboard-minimal .dv-cat-segment:hover{background:#f5f2fc;color:#40216e;}
+.dashboard-minimal .dv-cat-segment.is-active{
+  background:#f4efff;
+  color:#5125a5;
+  box-shadow:inset 0 -3px 0 #6633cc;
+}
+.dashboard-minimal .dv-cat-icon{
+  display:block;
+  flex:none;
+  width:24px;
+  height:24px;
+  color:#6633cc;
+}
+.dashboard-minimal .dv-cat-arrow{
+  display:grid;
+  flex:0 0 37px;
+  place-items:center;
+  height:100%;
+  min-width:0;
+  padding:0;
+  border:0;
+  border-radius:0!important;
+  color:#6633cc;
+  background:#fff;
+  cursor:pointer;
+  transition:background .18s ease,opacity .18s ease;
+}
+.dashboard-minimal .dv-cat-arrow-prev{border-right:1px solid #edf0f2;}
+.dashboard-minimal .dv-cat-arrow-next{border-left:1px solid #edf0f2;}
+.dashboard-minimal .dv-cat-arrow:hover:not(:disabled){background:#f5f2fc;}
+.dashboard-minimal .dv-cat-arrow:disabled{color:#bdc2c8;cursor:default;}
+.dashboard-minimal .dv-cat-arrow .dv-cat-icon{width:18px;height:18px;color:inherit;}
+.dashboard-minimal .dv-cat-shop-all{
+  position:relative;
+  z-index:3;
+  flex:0 0 126px;
+  color:#fff;
+  background:#6633cc;
+  border-left:1px solid #6030c0;
+  border-radius:0 11px 11px 0!important;
+  transition:background .18s ease;
+}
+.dashboard-minimal .dv-cat-shop-all .dv-cat-icon{color:#fff;}
+.dashboard-minimal .dv-cat-shop-all:hover{background:#5425b6;color:#fff;}
+.dashboard-minimal .dv-category-nav :is(a,button):focus-visible{
+  outline:2px solid #6633cc;
+  outline-offset:-3px;
+}
+@media(max-width:1100px){
+  .dashboard-minimal .dv-category-nav{height:86px;margin-bottom:20px;}
+  .dashboard-minimal .dv-cat-segment{flex-basis:98px;padding:8px 6px;}
+  .dashboard-minimal .dv-cat-shop-all{flex-basis:112px;}
+}
+@media(max-width:760px){
+  .dashboard-minimal .dv-category-nav{height:78px;margin-bottom:16px;border-radius:11px;}
+  .dashboard-minimal .dv-cat-segment{flex-basis:88px;gap:7px;font-size:10px;padding:8px 5px;}
+  .dashboard-minimal .dv-cat-shop-all{flex-basis:92px;gap:7px;font-size:10px;padding:8px 5px;border-radius:0 10px 10px 0!important;}
+  .dashboard-minimal .dv-cat-icon{width:21px;height:21px;}
+  .dashboard-minimal .dv-cat-arrow{flex-basis:28px;}
+  .dashboard-minimal .dv-cat-arrow .dv-cat-icon{width:17px;height:17px;}
+  .dashboard-minimal .dv-cat-scroll-wrap::before,
+  .dashboard-minimal .dv-cat-scroll-wrap::after{width:12px;}
+}
 </style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal">
@@ -2248,6 +2405,28 @@ body.dashboard-minimal button#dvOverviewToggle{
 
   <section class="new-section dashboardv-deals" aria-label="Deals grid">
     <div class="dashboardv-deals-inner">
+      <nav class="dv-category-nav" aria-label="Shop by category">
+        <div class="dv-category-carousel">
+          <button class="dv-cat-arrow dv-cat-arrow-prev" id="dvCategoryPrev" type="button" aria-label="Scroll categories left" disabled><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+          <div class="dv-cat-scroll-wrap">
+            <div class="dv-cat-scroll" id="dvCategoryScroll" tabindex="0" aria-label="Scrollable category navigation">
+            <a class="dv-cat-segment is-active" href="#dashboardvDealsGrid" aria-current="location"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.828 8.828a2 2 0 0 0 2.828 0l7.172-7.172a2 2 0 0 0 0-2.828z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg><span>DEALS</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg><span>FAVS</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3Z"/><path d="m19 18 .6 1.4L21 20l-1.4.6L19 22l-.6-1.4L17 20l1.4-.6L19 18Z"/><path d="m5 2 .6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6L5 2Z"/></svg><span>NEW</span></a>
+            <a class="dv-cat-segment" href="./index.html#brands-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg><span>BRANDS</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 12H2v6h16v-6Z"/><path d="M22 12v6"/><path d="M7 12v6"/><path d="M18 8c0-2 2-2 2-4"/><path d="M22 8c0-2 2-2 2-4"/></svg><span>CIGS</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 7 4 10"/><path d="m8 4 2.5 2.5a3.5 3.5 0 0 1 3.5 0l2 2a3.5 3.5 0 0 1 0 3.5l-2.5 2.5a3.5 3.5 0 0 1-3.5 0l-2-2a3.5 3.5 0 0 1 0-3.5L10.5 6.5"/><path d="m7 7-5 1 1-5 5-1-1 5Z"/><path d="m17 17 5-1-1 5-5 1 1-5Z"/></svg><span>CANDY</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10a7 7 0 1 1 14 0v2"/><path d="M19 12v7a2 2 0 0 1-4 0V10a3 3 0 0 0-6 0"/><path d="M5 10h4"/><path d="M13 4l3 3"/><path d="m15 12 4 2"/></svg><span>CHOCOLATE</span></a>
+            <a class="dv-cat-segment" href="./index.html#brands-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M4 7h14v9a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7Z"/><path d="M18 8h2a3 3 0 1 1 0 6h-2"/><path d="M2 22h20"/></svg><span>GIANNOS</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg><span>GUM</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4l-6.1 6.1a2 2 0 0 0 2.8 2.8l6.1-6.1a5 5 0 0 0 6.4-6.4l-3.2 3.2-3.6-3.6 3.2-3.2Z"/></svg><span>HARDWARE</span></a>
+            <a class="dv-cat-segment" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"/><path d="M3.2 12H8l2-3 3 6 2-3h5.8"/></svg><span>HEALTH BEAUTY</span></a>
+            </div>
+          </div>
+          <button class="dv-cat-arrow dv-cat-arrow-next" id="dvCategoryNext" type="button" aria-label="Scroll categories right"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+        </div>
+        <a class="dv-cat-shop-all" href="./index.html#categories-title"><svg class="dv-cat-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l1 14H5L6 7Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span>SHOP ALL</span></a>
+      </nav>
       <div class="dashboardv-deals-grid-wrap">
         <div class="dashboardv-deals-grid" id="dashboardvDealsGrid" aria-label="Deals grid">
 <article class="card dashboardv-deal-card">
@@ -2692,6 +2871,46 @@ body.dashboard-minimal button#dvOverviewToggle{
   });
   window.addEventListener('resize',syncHeaderHeight,{passive:true});
   syncHeaderHeight();
+})();
+</script>
+<script>
+/* Category segments are one continuous swipeable row; SHOP ALL stays fixed. */
+(function(){
+  const nav=document.querySelector('.dv-category-nav');
+  const list=document.getElementById('dvCategoryScroll');
+  const prev=document.getElementById('dvCategoryPrev');
+  const next=document.getElementById('dvCategoryNext');
+  if(!nav||!list||!prev||!next)return;
+  function update(){
+    const max=Math.max(0,list.scrollWidth-list.clientWidth);
+    const left=list.scrollLeft;
+    const canLeft=left>2;
+    const canRight=left<max-2;
+    nav.classList.toggle('can-scroll-left',canLeft);
+    nav.classList.toggle('can-scroll-right',canRight);
+    prev.disabled=!canLeft;
+    next.disabled=!canRight;
+  }
+  function move(direction){
+    const segment=list.querySelector('.dv-cat-segment');
+    const step=segment?segment.getBoundingClientRect().width*3:300;
+    list.scrollBy({left:step*direction,behavior:'smooth'});
+  }
+  prev.addEventListener('click',function(){move(-1);});
+  next.addEventListener('click',function(){move(1);});
+  list.addEventListener('scroll',update,{passive:true});
+  list.addEventListener('wheel',function(event){
+    if(Math.abs(event.deltaY)>Math.abs(event.deltaX)&&list.scrollWidth>list.clientWidth){
+      const max=list.scrollWidth-list.clientWidth;
+      if((event.deltaY>0&&list.scrollLeft<max-1)||(event.deltaY<0&&list.scrollLeft>1)){
+        event.preventDefault();
+        list.scrollLeft+=event.deltaY;
+      }
+    }
+  },{passive:false});
+  window.addEventListener('resize',update,{passive:true});
+  if('ResizeObserver' in window)new ResizeObserver(update).observe(list);
+  update();
 })();
 </script>
 </body>
