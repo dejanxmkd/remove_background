@@ -1350,7 +1350,7 @@ body.dashboard-minimal {
   overflow:hidden;
   border:0;
   border-radius:16px;
-  background:#665682;
+  background:#777b83;
   box-shadow:none;
 }
 .dashboard-minimal #dashboardv > .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card .dashboardv-deal-placeholder.picture{
@@ -1364,7 +1364,7 @@ body.dashboard-minimal {
   margin:0!important;
   aspect-ratio:auto!important;
   flex:none!important;
-  background:#665682;
+  background:#777b83;
   border:0;
   z-index:0;
 }
@@ -1761,7 +1761,7 @@ body.dashboard-minimal{--purple:#6633cc;}
 /* Both Dashboard V1 deal sections: placeholders only, white copy and dark bottom overlays. */
 .dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card .dashboardv-deal-placeholder.picture {
   background-image:none!important;
-  background-color:#665682!important;
+  background-color:#777b83!important;
 }
 .dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card::after,
 .dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card::after {
@@ -1804,8 +1804,8 @@ body.dashboard-minimal{--purple:#6633cc;}
 /* One shared placeholder color for every card in both deals sections. */
 .dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card .dashboardv-deal-placeholder.picture,
 .dashboard-minimal #dashboardv > .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card .dashboardv-deal-placeholder.picture{
-  background:#665682!important;
-  background-color:#665682!important;
+  background:#777b83!important;
+  background-color:#777b83!important;
   background-image:none!important;
 }
 </style>
@@ -2329,6 +2329,10 @@ body.dashboard-minimal{--purple:#6633cc;}
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 
   button.addEventListener('click',function(){
+    /* Always return to the dashboard start before expanding or collapsing.
+       Do this synchronously so the height animation cannot shift the viewport
+       while the user is scrolled down into the deal cards. */
+    if(window.scrollY!==0)window.scrollTo({top:0,left:0,behavior:'instant'});
     const show=!targetOpen;
     const from=panel.getBoundingClientRect().height;
     if(running){running.cancel();running=null;}
