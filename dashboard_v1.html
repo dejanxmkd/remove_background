@@ -2129,6 +2129,17 @@ body.dashboard-minimal > footer.site-footer .footer-inner{
     display:none!important;
   }
 }
+
+/* Dashboard V1 buttons and button-style links use fully pill-shaped corners.
+   Exclude the full-screen mobile sheet backdrop, which is not a visible button. */
+body.dashboard-minimal button:not(.mobile-user-sheet-backdrop),
+body.dashboard-minimal a.dv-primary,
+body.dashboard-minimal a.dv-secondary,
+body.dashboard-minimal a.dv-explore-card-action,
+body.dashboard-minimal a.mobile-view-all,
+body.dashboard-minimal a[class*="button"]{
+  border-radius:999px!important;
+}
 </style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal">
