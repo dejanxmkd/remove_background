@@ -10,7 +10,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css?v=dashboard-menu-exact-20261104">
 <style>
 /* Desktop stays right-aligned; mobile layout follows index.html's logo + three icons. */
@@ -2153,29 +2152,17 @@ body.dashboard-minimal button#dvOverviewToggle{
   border-radius:0 0 9px 9px!important;
 }
 
-/* Compact near-square category tabs, equal widths, with SHOP ALL fixed at the right edge. */
-/* Explicitly override the dashboard's global pill-button rule for connected tabs. */
-body.dashboard-minimal .dv-category-nav button.dv-cat-segment{
-  border-radius:0!important;
-}
-body.dashboard-minimal .dv-category-nav button.dv-cat-shop-all{
-  border-radius:0 11px 11px 0!important;
-}
-@media(max-width:760px){
-  body.dashboard-minimal .dv-category-nav button.dv-cat-shop-all{
-    border-radius:0 10px 10px 0!important;
-  }
-}
-
-.dashboard-minimal .dv-category-nav{
-  display:flex;
+/* Single continuous category bar: 12 equally sized tabs on desktop, swipeable tabs on smaller screens. */
+body.dashboard-minimal .dv-category-nav{
+  display:grid;
+  grid-template-columns:minmax(0,11fr) minmax(0,1fr);
   align-items:stretch;
   width:100%;
-  --dv-cat-visible-total:12;
-  --dv-cat-visible-scroll:11;
   height:110px;
   min-width:0;
+  gap:0;
   margin:0 0 24px;
+  padding:0;
   overflow:hidden;
   background:#fff;
   border:1px solid #e1e5e8;
@@ -2183,138 +2170,154 @@ body.dashboard-minimal .dv-category-nav button.dv-cat-shop-all{
   box-shadow:none;
   isolation:isolate;
 }
-.dashboard-minimal .dv-category-carousel{
+body.dashboard-minimal .dv-category-carousel{
   display:flex;
-  flex:1 1 0;
-  width:auto;
+  grid-column:1;
   min-width:0;
+  width:100%;
+  height:100%;
+  padding:0;
+  margin:0;
+  gap:0;
+  overflow:hidden;
 }
-.dashboard-minimal .dv-cat-scroll-wrap{
+body.dashboard-minimal .dv-cat-scroll-wrap{
   position:relative;
   flex:1 1 auto;
   min-width:0;
   width:100%;
+  height:100%;
   overflow:hidden;
 }
-.dashboard-minimal .dv-cat-scroll-wrap::before,
-.dashboard-minimal .dv-cat-scroll-wrap::after{
+body.dashboard-minimal .dv-cat-scroll-wrap::before,
+body.dashboard-minimal .dv-cat-scroll-wrap::after{
   content:"";
-  display:block;
   position:absolute;
   top:0;
   bottom:0;
   z-index:2;
-  width:25px;
+  width:20px;
   opacity:0;
   pointer-events:none;
-  transition:opacity .2s ease;
+  transition:opacity .18s ease;
 }
-.dashboard-minimal .dv-cat-scroll-wrap::before{
+body.dashboard-minimal .dv-cat-scroll-wrap::before{
   left:0;
-  background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.8) 35%,rgba(255,255,255,0) 100%);
+  background:linear-gradient(90deg,#fff,rgba(255,255,255,0));
 }
-.dashboard-minimal .dv-cat-scroll-wrap::after{
+body.dashboard-minimal .dv-cat-scroll-wrap::after{
   right:0;
-  background:linear-gradient(270deg,#fff 0%,rgba(255,255,255,.8) 35%,rgba(255,255,255,0) 100%);
+  background:linear-gradient(270deg,#fff,rgba(255,255,255,0));
 }
-.dashboard-minimal .dv-category-nav.can-scroll-left .dv-cat-scroll-wrap::before,
-.dashboard-minimal .dv-category-nav.can-scroll-right .dv-cat-scroll-wrap::after{opacity:1;}
-.dashboard-minimal .dv-cat-scroll{
-  display:flex;
-  flex-wrap:nowrap;
+body.dashboard-minimal .dv-category-nav.can-scroll-left .dv-cat-scroll-wrap::before,
+body.dashboard-minimal .dv-category-nav.can-scroll-right .dv-cat-scroll-wrap::after{opacity:1;}
+body.dashboard-minimal .dv-cat-scroll{
+  display:grid;
+  grid-template-columns:repeat(11,minmax(0,1fr));
   align-items:stretch;
   width:100%;
   height:100%;
   min-width:0;
-  overflow-x:auto;
+  gap:0;
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
   overflow-y:hidden;
-  overscroll-behavior-x:contain;
-  scroll-behavior:smooth;
-  scroll-snap-type:x proximity;
-  touch-action:pan-x;
   scrollbar-width:none;
-  -ms-overflow-style:none;
 }
-.dashboard-minimal .dv-cat-scroll::-webkit-scrollbar{display:none;}
-.dashboard-minimal .dv-cat-segment,
-.dashboard-minimal .dv-cat-shop-all{
+body.dashboard-minimal .dv-cat-scroll::-webkit-scrollbar{display:none;}
+body.dashboard-minimal .dv-category-nav button.dv-cat-segment,
+body.dashboard-minimal .dv-category-nav button.dv-cat-shop-all{
   box-sizing:border-box;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:9px;
   min-width:0;
+  width:100%;
   height:100%;
+  flex-shrink:0;
+  gap:9px;
   margin:0;
-  padding:16px 5px;
-  text-align:center;
+  padding:15px 3px;
   border:0;
-  border-radius:0!important;
-  text-decoration:none;
+  text-align:center;
   font:800 12px/1.2 var(--font);
   letter-spacing:0;
   white-space:normal;
+  appearance:none;
+  -webkit-appearance:none;
+  cursor:pointer;
 }
-.dashboard-minimal .dv-cat-segment{
-  flex:0 0 calc(100% / var(--dv-cat-visible-scroll));
-  width:calc(100% / var(--dv-cat-visible-scroll));
+body.dashboard-minimal .dv-category-nav button.dv-cat-segment{
   background:#fff;
   color:#252f37;
   border-right:1px solid #edf0f2;
-  scroll-snap-align:start;
-  transition:background .18s ease,color .18s ease;
+  border-radius:0!important;
+  transition:background .18s ease;
 }
-.dashboard-minimal .dv-cat-segment:hover{background:#f8f8fa;color:#252f37;}
-.dashboard-minimal .dv-cat-segment.is-active,
-.dashboard-minimal .dv-cat-segment.is-active:hover{
+body.dashboard-minimal .dv-category-nav button.dv-cat-segment:hover{background:#f8f8fa;color:#252f37;}
+body.dashboard-minimal .dv-category-nav button.dv-cat-segment.is-active,
+body.dashboard-minimal .dv-category-nav button.dv-cat-segment.is-active:hover{
   background:#fff;
   color:#6633cc;
   box-shadow:none;
 }
-.dashboard-minimal .dv-cat-icon.material-symbols-rounded{
+body.dashboard-minimal .dv-category-nav .dv-cat-icon.lucide{
   display:block;
-  flex:none;
+  flex:0 0 24px;
   width:24px;
   height:24px;
-  font-family:"Material Symbols Rounded";
-  font-size:24px;
-  font-weight:400;
-  font-style:normal;
-  line-height:1;
-  letter-spacing:normal;
-  text-transform:none;
-  white-space:nowrap;
-  font-feature-settings:"liga";
-  -webkit-font-feature-settings:"liga";
-  -webkit-font-smoothing:antialiased;
   color:#6633cc;
 }
-.dashboard-minimal .dv-cat-shop-all{
-  position:relative;
-  z-index:3;
-  flex:0 0 calc(100% / var(--dv-cat-visible-total));
-  width:calc(100% / var(--dv-cat-visible-total));
+body.dashboard-minimal .dv-category-nav button.dv-cat-shop-all{
+  grid-column:2;
   color:#fff;
   background:#6633cc;
   border-left:1px solid #6030c0;
   border-radius:0 11px 11px 0!important;
   transition:background .18s ease;
 }
-.dashboard-minimal .dv-cat-shop-all .dv-cat-icon.material-symbols-rounded{color:#fff;}
-.dashboard-minimal .dv-cat-shop-all:hover{background:#5425b6;color:#fff;}
-.dashboard-minimal .dv-category-nav button{cursor:pointer;appearance:none;-webkit-appearance:none;}
-.dashboard-minimal .dv-category-nav button:focus-visible{outline:2px solid #6633cc;outline-offset:-3px;}
+body.dashboard-minimal .dv-category-nav button.dv-cat-shop-all .dv-cat-icon.lucide{color:#fff;}
+body.dashboard-minimal .dv-category-nav button.dv-cat-shop-all:hover{color:#fff;background:#5425b6;}
+body.dashboard-minimal .dv-category-nav button:focus-visible{
+  outline:2px solid #6633cc;
+  outline-offset:-3px;
+}
 @media(max-width:1100px){
-  .dashboard-minimal .dv-category-nav{--dv-cat-visible-total:6;--dv-cat-visible-scroll:5;height:104px;margin-bottom:20px;}
+  body.dashboard-minimal .dv-category-nav{grid-template-columns:minmax(0,5fr) minmax(0,1fr);height:104px;margin-bottom:20px;}
+  body.dashboard-minimal .dv-cat-scroll{
+    display:flex;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-behavior:smooth;
+    overscroll-behavior-x:contain;
+    scroll-snap-type:x proximity;
+    touch-action:pan-x;
+  }
+  body.dashboard-minimal .dv-category-nav button.dv-cat-segment{
+    flex:0 0 20%;
+    width:20%;
+    scroll-snap-align:start;
+  }
 }
 @media(max-width:760px){
-  .dashboard-minimal .dv-category-nav{--dv-cat-visible-total:4;--dv-cat-visible-scroll:3;height:92px;margin-bottom:16px;border-radius:11px;}
-  .dashboard-minimal .dv-cat-segment,
-  .dashboard-minimal .dv-cat-shop-all{font-size:clamp(8px,1.4vw,11px);gap:7px;padding:12px 2px;letter-spacing:-.02em;}
-  .dashboard-minimal .dv-cat-scroll-wrap::before,
-  .dashboard-minimal .dv-cat-scroll-wrap::after{width:16px;}
-  .dashboard-minimal .dv-cat-shop-all{border-radius:0 10px 10px 0!important;}
+  body.dashboard-minimal .dv-category-nav{grid-template-columns:minmax(0,3fr) minmax(0,1fr);height:92px;margin-bottom:16px;border-radius:11px;}
+  body.dashboard-minimal .dv-category-nav button.dv-cat-segment{
+    flex:0 0 33.333333333%;
+    width:33.333333333%;
+  }
+  body.dashboard-minimal .dv-category-nav button.dv-cat-segment,
+  body.dashboard-minimal .dv-category-nav button.dv-cat-shop-all{
+    font-size:clamp(8px,1.4vw,11px);
+    gap:7px;
+    padding:12px 2px;
+    letter-spacing:-.02em;
+  }
+  body.dashboard-minimal .dv-category-nav button.dv-cat-shop-all{border-radius:0 10px 10px 0!important;}
+  body.dashboard-minimal .dv-cat-scroll-wrap::before,
+  body.dashboard-minimal .dv-cat-scroll-wrap::after{width:16px;}
 }
 </style>
 </head>
@@ -2417,21 +2420,21 @@ body.dashboard-minimal .dv-category-nav button.dv-cat-shop-all{
         <div class="dv-category-carousel">
           <div class="dv-cat-scroll-wrap">
             <div class="dv-cat-scroll" id="dvCategoryScroll" tabindex="0" aria-label="Scrollable category navigation">
-            <button type="button" class="dv-cat-segment is-active" aria-pressed="true"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">sell</span><span>DEALS</span></button>
-            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">favorite</span><span>FAVS</span></button>
-            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">auto_awesome</span><span>NEW</span></button>
-            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">layers</span><span>BRANDS</span></button>
-            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">smoking_rooms</span><span>CIGS</span></button>
-            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">cookie</span><span>CANDY</span></button>
-            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">bakery_dining</span><span>CHOCOLATE</span></button>
-            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">local_cafe</span><span>GIANNOS</span></button>
-            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">radio_button_checked</span><span>GUM</span></button>
-            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">handyman</span><span>HARDWARE</span></button>
-            <button type="button" class="dv-cat-segment" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">health_and_safety</span><span>HEALTH BEAUTY</span></button>
+            <button type="button" class="dv-cat-segment is-active" aria-pressed="true"><svg class="dv-cat-icon lucide lucide-tag" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.828 8.828a2 2 0 0 0 2.828 0l7.172-7.172a2 2 0 0 0 0-2.828z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg><span>DEALS</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><svg class="dv-cat-icon lucide lucide-heart" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg><span>FAVS</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><svg class="dv-cat-icon lucide lucide-sparkles" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3Z"/><path d="m19 18 .6 1.4L21 20l-1.4.6L19 22l-.6-1.4L17 20l1.4-.6L19 18Z"/><path d="m5 2 .6 1.4L7 4l-1.4.6L5 6l-.6-1.4L3 4l1.4-.6L5 2Z"/></svg><span>NEW</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><svg class="dv-cat-icon lucide lucide-layers" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg><span>BRANDS</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><svg class="dv-cat-icon lucide lucide-cigarette" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 12H2v6h16v-6Z"/><path d="M22 12v6"/><path d="M7 12v6"/><path d="M18 8c0-2 2-2 2-4"/></svg><span>CIGS</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><svg class="dv-cat-icon lucide lucide-candy" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 7 4 10"/><path d="m8 4 2.5 2.5a3.5 3.5 0 0 1 3.5 0l2 2a3.5 3.5 0 0 1 0 3.5l-2.5 2.5a3.5 3.5 0 0 1-3.5 0l-2-2a3.5 3.5 0 0 1 0-3.5L10.5 6.5"/><path d="m7 7-5 1 1-5 5-1-1 5Z"/><path d="m17 17 5-1-1 5-5 1 1-5Z"/></svg><span>CANDY</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><svg class="dv-cat-icon lucide lucide-candy-cane" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10a7 7 0 1 1 14 0v2"/><path d="M19 12v7a2 2 0 0 1-4 0V10a3 3 0 0 0-6 0"/><path d="M5 10h4"/><path d="M13 4l3 3"/><path d="m15 12 4 2"/></svg><span>CHOCOLATE</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><svg class="dv-cat-icon lucide lucide-coffee" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M4 7h14v9a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7Z"/><path d="M18 8h2a3 3 0 1 1 0 6h-2"/><path d="M2 22h20"/></svg><span>GIANNOS</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><svg class="dv-cat-icon lucide lucide-circle-dot" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg><span>GUM</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><svg class="dv-cat-icon lucide lucide-wrench" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4l-6.1 6.1a2 2 0 0 0 2.8 2.8l6.1-6.1a5 5 0 0 0 6.4-6.4l-3.2 3.2-3.6-3.6 3.2-3.2Z"/></svg><span>HARDWARE</span></button>
+            <button type="button" class="dv-cat-segment" aria-pressed="false"><svg class="dv-cat-icon lucide lucide-heart-pulse" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"/><path d="M3.2 12H8l2-3 3 6 2-3h5.8"/></svg><span>HEALTH BEAUTY</span></button>
             </div>
           </div>
         </div>
-        <button type="button" class="dv-cat-shop-all" aria-pressed="false"><span class="dv-cat-icon material-symbols-rounded" aria-hidden="true">shopping_bag</span><span>SHOP ALL</span></button>
+        <button type="button" class="dv-cat-shop-all" aria-pressed="false"><svg class="dv-cat-icon lucide lucide-shopping-bag" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l1 14H5L6 7Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span>SHOP ALL</span></button>
       </nav>
       <div class="dashboardv-deals-grid-wrap">
         <div class="dashboardv-deals-grid" id="dashboardvDealsGrid" aria-label="Deals grid">
