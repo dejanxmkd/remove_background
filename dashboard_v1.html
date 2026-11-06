@@ -1350,7 +1350,7 @@ body.dashboard-minimal {
   overflow:hidden;
   border:0;
   border-radius:16px;
-  background:#969696;
+  background:#b8b8b8;
   box-shadow:none;
 }
 .dashboard-minimal #dashboardv > .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card .dashboardv-deal-placeholder.picture{
@@ -1364,7 +1364,7 @@ body.dashboard-minimal {
   margin:0!important;
   aspect-ratio:auto!important;
   flex:none!important;
-  background:#969696;
+  background:#b8b8b8;
   border:0;
   z-index:0;
 }
@@ -1761,7 +1761,7 @@ body.dashboard-minimal{--purple:#6633cc;}
 /* Both Dashboard V1 deal sections: placeholders only, white copy and dark bottom overlays. */
 .dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card .dashboardv-deal-placeholder.picture {
   background-image:none!important;
-  background-color:#969696!important;
+  background-color:#b8b8b8!important;
 }
 .dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card::after,
 .dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card::after {
@@ -1804,8 +1804,8 @@ body.dashboard-minimal{--purple:#6633cc;}
 /* One shared placeholder color for every card in both deals sections. */
 .dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card .dashboardv-deal-placeholder.picture,
 .dashboard-minimal #dashboardv > .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card .dashboardv-deal-placeholder.picture{
-  background:#969696!important;
-  background-color:#969696!important;
+  background:#b8b8b8!important;
+  background-color:#b8b8b8!important;
   background-image:none!important;
 }
 
@@ -1985,6 +1985,25 @@ body.dashboard-minimal > #dvAccountOverviewPanel.dv-account-panel > .dv-account-
 @media(prefers-reduced-motion:reduce){
   body.dashboard-minimal > #dvAccountOverviewPanel.dv-account-panel,
   body.dashboard-minimal > #dvOverviewBackdrop.dv-overview-backdrop {transition:none!important;}
+}
+
+/* Keep the sticky navigation and its SHOW/HIDE tab above the modal and
+   backdrop at all times, including while the drawer is expanding. */
+body.dashboard-minimal > header.site-header{
+  position:sticky!important;
+  top:0!important;
+  z-index:1200!important;
+  overflow:visible!important;
+}
+body.dashboard-minimal > header.site-header > .dv-overview-toggle-bar{
+  z-index:15!important;
+  pointer-events:none;
+}
+body.dashboard-minimal > header.site-header #dvOverviewToggle{
+  position:relative;
+  z-index:16!important;
+  pointer-events:auto;
+  visibility:visible!important;
 }
 </style>
 </head>
