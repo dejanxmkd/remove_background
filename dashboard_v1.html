@@ -2094,6 +2094,41 @@ body.dashboard-minimal > footer.site-footer,
 body.dashboard-minimal > footer.site-footer .footer-inner{
   background:#f5f7f8!important;
 }
+
+/* V1 Processing indicator: subtle continuous pulse on the current step only. */
+.dashboard-minimal .dv-account-tracking .dv-steps li.current .dv-step-dot{
+  animation:dv-v1-processing-breathe 2.4s ease-in-out infinite;
+  transform-origin:center center;
+}
+.dashboard-minimal .dv-account-tracking .dv-steps li.current .dv-step-dot::after{
+  content:"";
+  display:block!important;
+  position:absolute;
+  inset:-7px;
+  border:2px solid rgba(102,51,204,.48);
+  border-radius:50%;
+  opacity:0;
+  pointer-events:none;
+  animation:dv-v1-processing-halo 2.4s ease-out infinite!important;
+}
+@keyframes dv-v1-processing-breathe{
+  0%,100%{transform:scale(1);box-shadow:0 0 0 4px #e8edef;}
+  50%{transform:scale(1.07);box-shadow:0 0 0 7px rgba(102,51,204,.13);}
+}
+@keyframes dv-v1-processing-halo{
+  0%{transform:scale(.82);opacity:.75;}
+  75%,100%{transform:scale(1.6);opacity:0;}
+}
+@media(prefers-reduced-motion:reduce){
+  .dashboard-minimal .dv-account-tracking .dv-steps li.current .dv-step-dot{
+    animation:none!important;
+    transform:none;
+  }
+  .dashboard-minimal .dv-account-tracking .dv-steps li.current .dv-step-dot::after{
+    animation:none!important;
+    display:none!important;
+  }
+}
 </style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal">
