@@ -2148,7 +2148,12 @@ body.dashboard-minimal input[type="reset"]{
 
 /* Keep the Account Overview navigation tab attached and square on top,
    restoring its original 0 0 9px 9px corners (not a pill). */
-body.dashboard-/* Compact near-square category tabs, equal widths, with SHOP ALL fixed at the right edge. */
+body.dashboard-minimal .site-header #dvOverviewToggle,
+body.dashboard-minimal button#dvOverviewToggle{
+  border-radius:0 0 9px 9px!important;
+}
+
+/* Compact near-square category tabs, equal widths, with SHOP ALL fixed at the right edge. */
 .dashboard-minimal .dv-category-nav{
   display:flex;
   align-items:stretch;
