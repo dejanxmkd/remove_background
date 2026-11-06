@@ -2074,6 +2074,24 @@ body.dashboard-minimal > header.site-header #dvOverviewToggle{
   .dashboard-minimal .dv-explore-card{min-height:280px;padding:24px;gap:14px;}
   .dashboard-minimal .dv-explore-card .dv-explore-card-heading{font-size:27px;}
 }
+
+/* V1 page canvas and account modal share the requested surface color.
+   Only the sticky navigation and the individual overview cards remain white. */
+body.dashboard-minimal,
+body.dashboard-minimal #dashboardv,
+body.dashboard-minimal #dashboardv > .dashboardv-deals:not(.dashboardv-current-deals),
+body.dashboard-minimal #dashboardv > .dashboardv-current-deals.dashboardv-deals,
+body.dashboard-minimal .dv-explore-links {
+  background:#f5f7f8!important;
+}
+body.dashboard-minimal > header.site-header,
+body.dashboard-minimal > header.site-header .site-nav {
+  background:#fff!important;
+}
+body.dashboard-minimal > #dvAccountOverviewPanel.dv-account-panel,
+body.dashboard-minimal > #dvAccountOverviewPanel.dv-account-panel > .dv-account-section {
+  background:#f5f7f8!important;
+}
 </style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal">
