@@ -1695,6 +1695,29 @@ body.dashboard-minimal{--purple:#6633cc;}
   .dashboard-minimal .dv-account-panel,
   .dashboard-minimal .dv-overview-toggle-icon{transition:none;}
 }
+
+/* Both Dashboard V1 deal sections: placeholders only, white copy and dark bottom overlays. */
+.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card .dashboardv-deal-placeholder.picture {
+  background-image:none!important;
+  background-color:#665682!important;
+}
+.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(2) .dashboardv-deal-placeholder.picture{background-color:#59667e!important;}
+.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(3) .dashboardv-deal-placeholder.picture{background-color:#79647c!important;}
+.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(4) .dashboardv-deal-placeholder.picture{background-color:#657a73!important;}
+.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(5) .dashboardv-deal-placeholder.picture{background-color:#8b716b!important;}
+.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(6) .dashboardv-deal-placeholder.picture{background-color:#6b6485!important;}
+.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(7) .dashboardv-deal-placeholder.picture{background-color:#657b85!important;}
+.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(8) .dashboardv-deal-placeholder.picture{background-color:#85766a!important;}
+.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card:nth-child(9) .dashboardv-deal-placeholder.picture{background-color:#70647b!important;}
+.dashboard-minimal #dashboardvDealsGrid .dashboardv-deal-card::after,
+.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-card::after {
+  background:linear-gradient(180deg,rgba(0,0,0,0) 32%,rgba(0,0,0,.16) 53%,rgba(0,0,0,.88) 100%);
+}
+.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .product-title,
+.dashboard-minimal .dashboardv-current-deals #dashboardvCurrentCarousel .dashboardv-deal-subtitle {
+  color:#fff!important;
+  text-shadow:0 1px 8px rgba(0,0,0,.28);
+}
 </style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal">
@@ -1795,7 +1818,7 @@ body.dashboard-minimal{--purple:#6633cc;}
       <div class="dashboardv-deals-grid-wrap">
         <div class="dashboardv-deals-grid" id="dashboardvDealsGrid" aria-label="Deals grid">
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Snickers wholesale chocolate display" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/original/snickers_display_with_caramel_and_peanuts.png');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Snickers wholesale chocolate display" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:none"></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">LIMITED TIME, SNICKERS X 48</h3>
     <p class="dashboardv-deal-subtitle">15% off! (ends 11/20/2026)</p>
@@ -1803,7 +1826,7 @@ body.dashboard-minimal{--purple:#6633cc;}
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="USB C charger and cable" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/original/neon_purple_usb_c_charging_set.png');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="USB C charger and cable" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:none"></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">DEAL OF THE WEEK: COMBO USB-C CHARGER</h3>
     <p class="dashboardv-deal-subtitle">+ 3ft Cable $5.36</p>
@@ -1811,7 +1834,7 @@ body.dashboard-minimal{--purple:#6633cc;}
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Warehouse inventory photograph" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/original/juul_pod_variety_studio_display.png');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Warehouse inventory photograph" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:none"></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">DON'T MISS OUT: JUUL VIR 5%</h3>
     <p class="dashboardv-deal-subtitle">20% off while they last (100 units)</p>
@@ -1819,7 +1842,7 @@ body.dashboard-minimal{--purple:#6633cc;}
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="GIANNOS coffee beans espresso and coffee package" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/original/giannos_coffee_espresso_still_life.png');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="GIANNOS coffee beans espresso and coffee package" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:none"></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">TRY GIANNOS</h3>
     <p class="dashboardv-deal-subtitle">Discover premium Giannos coffee</p>
@@ -1828,7 +1851,7 @@ body.dashboard-minimal{--purple:#6633cc;}
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Seasonal candy assortment" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/original/halloween_candy_pumpkin_display.png');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Seasonal candy assortment" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:none"></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">SEASONAL CANDY</h3>
     <p class="dashboardv-deal-subtitle">going fast, act quickly</p>
@@ -1836,7 +1859,7 @@ body.dashboard-minimal{--purple:#6633cc;}
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Hershey's King Size chocolate bars" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/original/hershey_s_king_size_chocolate_stack.png');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Hershey's King Size chocolate bars" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:none"></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">ALL NEW HERSHEY'S KING SIZE FLAVORS ARE HERE</h3>
     
@@ -1844,7 +1867,7 @@ body.dashboard-minimal{--purple:#6633cc;}
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="School and office stationery supplies" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/original/vibrant_school_and_office_supplies.png');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="School and office stationery supplies" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:none"></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">SCHOOL AND OFFICE SUPPLIES MUST GO!</h3>
     <p class="dashboardv-deal-subtitle">(30% off, ends 11/30/2026)</p>
@@ -1852,7 +1875,7 @@ body.dashboard-minimal{--purple:#6633cc;}
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Stockroom inventory photograph" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/original/icy_zyn_can_trio_with_frosty_condensation.png');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Stockroom inventory photograph" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:none"></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">DID YOU CHECK YOUR ZYN INVENTORY?</h3>
     <p class="dashboardv-deal-subtitle">Replenish at a discount while in stock!</p>
@@ -1860,7 +1883,7 @@ body.dashboard-minimal{--purple:#6633cc;}
   </div>
 </article>
 <article class="card dashboardv-deal-card">
-  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Spanish-speaking customer support operator" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:url('./assets/dashboard-deals/original/friendly_customer_support_professional.png');background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+  <div class="picture dashboardv-deal-placeholder" role="img" aria-label="Spanish-speaking customer support operator" style="display:block;width:100%;max-width:100%;height:auto;min-height:0;aspect-ratio:10/7;flex:0 0 auto;align-self:stretch;margin:0;background-image:none"></div>
   <div class="card-info dashboardv-deal-info">
     <h3 class="product-title">NECESITAS AYUDA?</h3>
     <p class="dashboardv-deal-subtitle">Nuestras operadoras hablan espanol! Llama al +1-718-746-0008</p>
