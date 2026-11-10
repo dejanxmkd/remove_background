@@ -2348,53 +2348,71 @@ body.dashboard-minimal .dv-category-nav button.dv-cat-shop-all > span:last-child
 }
 </style>
 <style id="dashboard-v2-compact-spacing">
-/* V2: retain the V1 layout and content; tighten only whitespace between objects.
-   The header toggle protrudes 46px from its zero-height bar (44px on mobile).
-   66px top margin therefore leaves 20px of visible space instead of 54px. */
+/* V2: a single 24px rhythm for spacing between independent objects.
+   Preserve card internals, typography, connected category tabs, and all behavior. */
+body.dashboard-minimal.dashboard-v2{
+  --v2-object-gap:24px;
+}
+/* Account toggle protrudes from a zero-height header bar by 46px (44px mobile).
+   Reserve its height plus exactly one 24px gap before the category bar. */
 body.dashboard-minimal.dashboard-v2 #dashboardv > .dashboardv-deals:not(.dashboardv-current-deals){
-  margin-top:66px!important;
+  margin-top:calc(46px + var(--v2-object-gap))!important;
   padding-top:0!important;
-  padding-bottom:32px!important;
+  padding-bottom:var(--v2-object-gap)!important;
 }
 body.dashboard-minimal.dashboard-v2 .dv-category-nav{
-  margin-bottom:18px;
+  margin-bottom:var(--v2-object-gap);
 }
 body.dashboard-minimal.dashboard-v2 #dashboardvDealsGrid{
-  gap:14px;
+  gap:var(--v2-object-gap);
 }
 body.dashboard-minimal.dashboard-v2 #dashboardv > .dashboardv-current-deals.dashboardv-deals{
-  padding-top:4px;
-  padding-bottom:40px;
+  margin-top:0;
+  padding-top:0!important;
+  padding-bottom:var(--v2-object-gap)!important;
 }
 body.dashboard-minimal.dashboard-v2 .dashboardv-current-deals .section-header{
-  margin-bottom:18px;
+  margin-bottom:var(--v2-object-gap);
 }
 body.dashboard-minimal.dashboard-v2 #dashboardvCurrentCarousel{
-  --gap:14px;
+  --gap:var(--v2-object-gap);
+}
+body.dashboard-minimal.dashboard-v2 .dashboardv-current-deals .section-bottom{
+  margin-top:var(--v2-object-gap);
 }
 body.dashboard-minimal.dashboard-v2 .dv-explore-links{
-  padding-bottom:40px;
+  margin-top:0;
+  padding-bottom:var(--v2-object-gap);
 }
 body.dashboard-minimal.dashboard-v2 .dv-explore-links-inner{
-  gap:16px;
+  gap:var(--v2-object-gap);
 }
 body.dashboard-minimal.dashboard-v2 > #dvAccountOverviewPanel.dv-account-panel > .dv-account-section{
-  padding:66px 0 36px!important;
+  padding:calc(46px + var(--v2-object-gap)) 0 var(--v2-object-gap)!important;
+}
+body.dashboard-minimal.dashboard-v2 .dv-account-container{
+  gap:var(--v2-object-gap);
+}
+/* The explore section already supplies the 24px gap above the footer. */
+body.dashboard-minimal.dashboard-v2 > footer.site-footer{
+  padding-top:0!important;
+}
+body.dashboard-minimal.dashboard-v2 > footer.site-footer .footer-columns{
+  gap:var(--v2-object-gap);
+  padding-bottom:var(--v2-object-gap);
+}
+body.dashboard-minimal.dashboard-v2 > footer.site-footer .footer-column h2{
+  margin-bottom:var(--v2-object-gap);
+}
+body.dashboard-minimal.dashboard-v2 > footer.site-footer .footer-bottom{
+  padding:var(--v2-object-gap) 0;
 }
 @media(max-width:760px){
   body.dashboard-minimal.dashboard-v2 #dashboardv > .dashboardv-deals:not(.dashboardv-current-deals){
-    margin-top:60px!important;
-    padding-bottom:24px!important;
+    margin-top:calc(44px + var(--v2-object-gap))!important;
   }
-  body.dashboard-minimal.dashboard-v2 .dv-category-nav{margin-bottom:14px;}
-  body.dashboard-minimal.dashboard-v2 #dashboardvDealsGrid{gap:12px;}
-  body.dashboard-minimal.dashboard-v2 #dashboardv > .dashboardv-current-deals.dashboardv-deals{padding-top:0;padding-bottom:28px;}
-  body.dashboard-minimal.dashboard-v2 .dashboardv-current-deals .section-header{margin-bottom:14px;}
-  body.dashboard-minimal.dashboard-v2 #dashboardvCurrentCarousel{--gap:12px;}
-  body.dashboard-minimal.dashboard-v2 .dv-explore-links{padding-bottom:28px;}
-  body.dashboard-minimal.dashboard-v2 .dv-explore-links-inner{gap:12px;}
   body.dashboard-minimal.dashboard-v2 > #dvAccountOverviewPanel.dv-account-panel > .dv-account-section{
-    padding:60px 0 24px!important;
+    padding:calc(44px + var(--v2-object-gap)) 0 var(--v2-object-gap)!important;
   }
 }
 </style>
