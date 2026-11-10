@@ -2425,10 +2425,10 @@ body.dashboard-minimal .dv-category-nav.can-scroll-left .dv-cat-scroll-wrap::bef
       <button class="header-search-toggle" id="headerSearchToggle" type="button" aria-label="Open search" aria-expanded="false" aria-controls="headerSearchPanel">
         <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-search header-search-open-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-x header-search-close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
       </button>
-      <span class="shopping-cart-button" role="img" aria-label="Notifications, 3 unread">
-        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-bell" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg>
-        <span class="shopping-cart-count" aria-label="3 unread notifications" style="color:#fff!important;-webkit-text-fill-color:#fff!important">3</span>
-      </span>
+      <button class="shopping-cart-button" id="shoppingCart" type="button" aria-label="Shopping cart, 3 items">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide-icon lucide-shopping-cart" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.72a2 2 0 0 0 2-1.61L22 7H5"/></svg>
+        <span class="shopping-cart-count" id="cartCount" aria-live="polite">3</span>
+      </button>
       <span class="shopping-nav-separator" aria-hidden="true"></span>
       <div class="shopping-user">
         <div class="shopping-user-details">
