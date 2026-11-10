@@ -1,31 +1,77 @@
-name: Recover latest stuck GitHub Pages deployment
+name: Recover Dashboard V2 Pages deployment
 on:
   push:
+    branches:
+      - recover-dashboard-v2-20261110
     paths:
       - '.github/workflows/recover-pages.yml'
-  workflow_dispatch:
 
 permissions:
   contents: read
+  actions: write
   pages: write
 
 jobs:
-  cancel-stuck-pages:
+  recover-dashboard-v2:
     runs-on: ubuntu-latest
     steps:
-      - name: Cancel orphaned Pages deployment
+      - name: Cancel only the stuck Dashboard V2 deployment and request a fresh build
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
         run: |
           set -euo pipefail
-          status=$(curl --silent --show-error --output response.json --write-out '%{http_code}' \
-            --request POST \
-            --header "Authorization: Bearer ${GH_TOKEN}" \
-            --header "Accept: application/vnd.github+json" \
-            --header "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/dejanxmkd/remove_background/pages/deployments/1c025380ad75390c8a6391d11557e3950febdedc/cancel")
-          echo "Cancel Pages deployment HTTP status: $status"
-          if [ "$status" != "204" ]; then
-            cat response.json
+          repo="$GITHUB_REPOSITORY"
+          run_id=42812346595
+          target=5a0ae7738f73d3ec08febf762276ac4e42a94feb
+
+          run_sha=$(gh api "repos/$repo/actions/runs/$run_id" --jq '.head_sha')
+          if [ "$run_sha" != "$target" ]; then
+            echo "Refusing to cancel an unrelated deployment."
             exit 1
           fi
+          main_sha=$(gh api "repos/$repo/git/ref/heads/main" --jq '.object.sha')
+          if [ "$main_sha" != "$target" ]; then
+            echo "Main has advanced; leaving newer deployments untouched."
+            exit 0
+          fi
+
+          status=$(gh api "repos/$repo/actions/runs/$run_id" --jq '.status')
+          conclusion=$(gh api "repos/$repo/actions/runs/$run_id" --jq '.conclusion // ""')
+          if [ "$status" = completed ] && [ "$conclusion" = success ]; then
+            echo "Dashboard V2 is already successfully deployed."
+            exit 0
+          fi
+
+          if [ "$status" != completed ]; then
+            if ! gh api --method POST "repos/$repo/pages/deployments/$target/cancel"; then
+              echo "Pages cancellation did not return success; checking the original workflow."
+            fi
+            status=$(gh api "repos/$repo/actions/runs/$run_id" --jq '.status')
+            if [ "$status" != completed ]; then
+              gh api --method POST "repos/$repo/actions/runs/$run_id/cancel" || true
+            fi
+          fi
+
+          for attempt in $(seq 1 20); do
+            status=$(gh api "repos/$repo/actions/runs/$run_id" --jq '.status')
+            [ "$status" = completed ] && break
+            sleep 3
+          done
+          if [ "$status" != completed ]; then
+            echo "Original deployment has not ended; refusing to start a competing build."
+            exit 1
+          fi
+          conclusion=$(gh api "repos/$repo/actions/runs/$run_id" --jq '.conclusion // ""')
+          if [ "$conclusion" = success ]; then
+            echo "Dashboard V2 completed successfully; no rebuild needed."
+            exit 0
+          fi
+
+          build_type=$(gh api "repos/$repo/pages" --jq '.build_type')
+          if [ "$build_type" = workflow ]; then
+            gh api --method POST "repos/$repo/actions/workflows/deploy-pages.yml/dispatches" -f ref=main
+          else
+            gh api --method POST "repos/$repo/pages/builds"
+          fi
+          echo "A fresh deployment of main has been requested."
