@@ -2414,6 +2414,12 @@ body.dashboard-minimal .dv-cat-arrow:disabled{opacity:0;pointer-events:none;}
 body.dashboard-minimal .dv-category-nav.can-scroll-left .dv-cat-scroll-wrap::before,body.dashboard-minimal .dv-category-nav.can-scroll-right .dv-cat-scroll-wrap::after{width:44px;}
 }
 </style>
+<style id="dashboard-v2-menu-close-fix">
+body.dashboard-minimal.td-login-menu-open .site-header .site-nav,
+body.dashboard-minimal.td-login-menu-open .site-header .shopping-nav-controls{position:relative!important;z-index:2800!important;overflow:visible!important;}
+body.dashboard-minimal.td-login-menu-open #mobileMenuToggle{position:relative!important;z-index:2801!important;display:inline-flex!important;visibility:visible!important;opacity:1!important;color:#fff!important;pointer-events:auto!important;}
+body.dashboard-minimal.td-login-menu-open #mobileMenuToggle .mobile-menu-close-icon{display:block!important;visibility:visible!important;opacity:1!important;stroke:#fff!important;width:24px!important;height:24px!important;}
+</style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal dashboard-v2">
 <header class="site-header" id="top">
