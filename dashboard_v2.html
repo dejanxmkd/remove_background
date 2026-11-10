@@ -2348,18 +2348,18 @@ body.dashboard-minimal .dv-category-nav button.dv-cat-shop-all > span:last-child
 }
 </style>
 <style id="dashboard-v2-compact-spacing">
-/* V2: 36px section padding and 24px spacing between independent objects.
+/* V2: 32px between sections and 24px between objects.
    Preserve card internals, typography, connected category tabs, and all behavior. */
 body.dashboard-minimal.dashboard-v2{
   --v2-object-gap:24px;
-  --v2-section-padding:36px;
+  --v2-section-gap:32px;
 }
 /* Account toggle protrudes from a zero-height header bar by 46px (44px mobile).
-   Reserve its height separately from the 36px section padding. */
+   Reserve its height plus 24px before the category bar. */
 body.dashboard-minimal.dashboard-v2 #dashboardv > .dashboardv-deals:not(.dashboardv-current-deals){
-  margin-top:46px!important;
-  padding-top:var(--v2-section-padding)!important;
-  padding-bottom:var(--v2-section-padding)!important;
+  margin-top:calc(46px + var(--v2-object-gap))!important;
+  padding-top:0!important;
+  padding-bottom:var(--v2-section-gap)!important;
 }
 body.dashboard-minimal.dashboard-v2 .dv-category-nav{
   margin-bottom:var(--v2-object-gap);
@@ -2369,8 +2369,8 @@ body.dashboard-minimal.dashboard-v2 #dashboardvDealsGrid{
 }
 body.dashboard-minimal.dashboard-v2 #dashboardv > .dashboardv-current-deals.dashboardv-deals{
   margin-top:0;
-  padding-top:var(--v2-section-padding)!important;
-  padding-bottom:var(--v2-section-padding)!important;
+  padding-top:0!important;
+  padding-bottom:var(--v2-section-gap)!important;
 }
 body.dashboard-minimal.dashboard-v2 .dashboardv-current-deals .section-header{
   margin-bottom:var(--v2-object-gap);
@@ -2383,24 +2383,24 @@ body.dashboard-minimal.dashboard-v2 .dashboardv-current-deals .section-bottom{
 }
 body.dashboard-minimal.dashboard-v2 .dv-explore-links{
   margin-top:0;
-  padding-top:var(--v2-section-padding);
-  padding-bottom:var(--v2-section-padding);
+  padding-top:0;
+  padding-bottom:var(--v2-section-gap);
 }
 body.dashboard-minimal.dashboard-v2 .dv-explore-links-inner{
   gap:var(--v2-object-gap);
 }
 body.dashboard-minimal.dashboard-v2 > #dvAccountOverviewPanel.dv-account-panel > .dv-account-section{
-  padding:calc(46px + var(--v2-section-padding)) 0 var(--v2-section-padding)!important;
+  padding:calc(46px + var(--v2-object-gap)) 0 var(--v2-object-gap)!important;
 }
 body.dashboard-minimal.dashboard-v2 .dv-account-container{
   gap:var(--v2-object-gap);
 }
 @media(max-width:760px){
   body.dashboard-minimal.dashboard-v2 #dashboardv > .dashboardv-deals:not(.dashboardv-current-deals){
-    margin-top:44px!important;
+    margin-top:calc(44px + var(--v2-object-gap))!important;
   }
   body.dashboard-minimal.dashboard-v2 > #dvAccountOverviewPanel.dv-account-panel > .dv-account-section{
-    padding:calc(44px + var(--v2-section-padding)) 0 var(--v2-section-padding)!important;
+    padding:calc(44px + var(--v2-object-gap)) 0 var(--v2-object-gap)!important;
   }
 }
 </style>
