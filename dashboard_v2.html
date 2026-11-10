@@ -2404,6 +2404,16 @@ body.dashboard-minimal.dashboard-v2 .dv-account-container{
   }
 }
 </style>
+<style id="dashboard-v2-category-arrows">
+body.dashboard-minimal .dv-cat-arrow{display:none;}
+@media(min-width:761px){
+body.dashboard-minimal .dv-cat-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;display:grid;place-items:center;width:32px;height:32px;border:0;border-radius:50%;background:#6633cc;color:#fff;padding:0;cursor:pointer;box-shadow:0 2px 6px #0002;}
+body.dashboard-minimal .dv-cat-arrow-left{left:6px;}
+body.dashboard-minimal .dv-cat-arrow-right{right:6px;}
+body.dashboard-minimal .dv-cat-arrow:disabled{opacity:0;pointer-events:none;}
+body.dashboard-minimal .dv-category-nav.can-scroll-left .dv-cat-scroll-wrap::before,body.dashboard-minimal .dv-category-nav.can-scroll-right .dv-cat-scroll-wrap::after{width:44px;}
+}
+</style>
 </head>
 <body data-auth-preview="true" class="dashboard-minimal dashboard-v2">
 <header class="site-header" id="top">
@@ -2504,7 +2514,9 @@ body.dashboard-minimal.dashboard-v2 .dv-account-container{
         <!-- Icon Monks Regular SVGs © Design Monks, MIT License: https://github.com/designmonks-llc/icon-monks/blob/main/LICENSE.md -->
         <div class="dv-category-carousel">
           <div class="dv-cat-scroll-wrap">
-            <div class="dv-cat-scroll" id="dvCategoryScroll" tabindex="0" aria-label="Scrollable category navigation">
+            <button type="button" class="dv-cat-arrow dv-cat-arrow-left" aria-label="Scroll categories to start" aria-controls="dvCategoryScroll"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+<button type="button" class="dv-cat-arrow dv-cat-arrow-right" aria-label="Scroll categories to end" aria-controls="dvCategoryScroll"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+<div class="dv-cat-scroll" id="dvCategoryScroll" tabindex="0" aria-label="Scrollable category navigation">
             <button type="button" class="dv-cat-segment is-active" aria-pressed="true"><svg class="dv-cat-icon icon-monks icon-monks-tag" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M34.34 34.34A8 8 0 0 0 32 40V128A8 8 0 0 0 34.34 133.66L130.34 229.66A8 8 0 0 0 141.66 229.66L229.66 141.66A8 8 0 0 0 229.66 130.34L133.66 34.34A8 8 0 0 0 128 32H40A8 8 0 0 0 34.34 34.34ZM136 212.69L48 124.69V48H124.69L212.69 136L136 212.69ZM88 110A22 22 0 1 0 72.44 103.56A22 22 0 0 0 88 110ZM88 82A6 6 0 1 1 83.76 83.76A6 6 0 0 1 88 82Z"/></svg><span>DEALS</span></button>
             <button type="button" class="dv-cat-segment" aria-pressed="false"><svg class="dv-cat-icon icon-monks icon-monks-heart" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M131.81 219.03A228.87 228.87 0 0 0 147.36 209.62Q165.82 197.63 181.23 184.3Q232 140.41 232 98.07A58 58 0 0 0 147.15 46.18A57.28 57.28 0 0 0 128 62.12A57.44 57.44 0 0 0 108.85 46.18A57.93 57.93 0 0 0 24 98Q24 140.41 74.77 184.3Q90.18 197.63 108.64 209.62A228.71 228.71 0 0 0 124.19 219.03A8 8 0 0 0 131.81 219.03ZM40 98A41.97 41.97 0 0 1 101.44 60.37A42 42 0 0 1 120.64 81.13A8 8 0 0 0 135.36 81.13A42 42 0 0 1 216 97.93Q216 133.09 170.77 172.2Q156.18 184.81 138.64 196.2Q132.6 200.12 128 202.81Q123.4 200.12 117.36 196.2Q99.82 184.81 85.23 172.2Q40 133.09 40 98Z"/></svg><span>FAVS</span></button>
             <button type="button" class="dv-cat-segment" aria-pressed="false"><svg class="dv-cat-icon icon-monks icon-monks-sparkle" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M133.66 26.34A8 8 0 0 0 120.06 31.01Q114.4 76.28 95.34 95.34Q76.28 114.4 31.01 120.06A8 8 0 0 0 31.01 135.94Q76.28 141.6 95.34 160.66Q114.4 179.72 120.06 224.99A8 8 0 0 0 135.94 224.99Q141.6 179.72 160.66 160.66Q179.72 141.6 224.99 135.94A8 8 0 0 0 224.99 120.06Q179.72 114.4 160.66 95.34Q141.6 76.28 135.94 31.01A8 8 0 0 0 133.66 26.34ZM149.34 149.34Q135.76 162.92 128 186.24Q120.24 162.92 106.66 149.34Q93.08 135.76 69.76 128Q93.08 120.24 106.66 106.66Q120.24 93.08 128 69.76Q135.76 93.08 149.34 106.66Q162.92 120.24 186.24 128Q162.92 135.76 149.34 149.34Z"/></svg><span>NEW</span></button>
@@ -2974,6 +2986,9 @@ body.dashboard-minimal.dashboard-v2 .dv-account-container{
   const nav=document.querySelector('.dv-category-nav');
   const list=document.getElementById('dvCategoryScroll');
   if(!nav||!list)return;
+  const left=nav.querySelector('.dv-cat-arrow-left'),right=nav.querySelector('.dv-cat-arrow-right');
+  left?.addEventListener('click',()=>list.scrollTo({left:0,behavior:'smooth'}));
+  right?.addEventListener('click',()=>list.scrollTo({left:list.scrollWidth-list.clientWidth,behavior:'smooth'}));
   // Prototype tabs only update selection; no navigation or page jump.
   const tabs=Array.from(nav.querySelectorAll('.dv-cat-segment, .dv-cat-shop-all'));
   tabs.forEach(function(tab){
@@ -2998,6 +3013,8 @@ body.dashboard-minimal.dashboard-v2 .dv-account-container{
     const max=Math.max(0,list.scrollWidth-list.clientWidth);
     nav.classList.toggle('can-scroll-left',list.scrollLeft>2);
     nav.classList.toggle('can-scroll-right',list.scrollLeft<max-2);
+    if(left)left.disabled=list.scrollLeft<=2;
+    if(right)right.disabled=list.scrollLeft>=max-2;
   }
   list.addEventListener('scroll',update,{passive:true});
   list.addEventListener('wheel',function(event){
